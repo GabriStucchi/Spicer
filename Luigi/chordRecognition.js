@@ -1,51 +1,3 @@
-c = new AudioContext
-
-class chord {
-  #notes = []
-  #type = ''
-  #root = ''
-  #inversion = ''
-  #grade = ''
-  addNote(note) {
-    this.#notes.push(note)
-  }
-  setType(type){
-    this.#type = type;
-  }
-  setRoot(root){
-    this.#root = root;
-  }
-  setInversion(inversion){
-    this.#inversion = inversion;
-  }
-  setGrade(grade){
-    this.#grade = grade;
-  }
-  getNotes(){
-    return this.#notes
-  }
-  getType(){
-    return this.#type
-  }
-  getRoot(){
-    return this.#root
-  }
-  getInversion(){
-    return this.#inversion
-  }
-  getGrade(){
-    return this.#grade
-  }
-}
-
-chord = new chord
-
-notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-major = [0, 2, 4, 5, 7, 9, 11]
-minor = [0, 2, 3, 5, 7, 8, 10]
-
-gains = {}
-
 //Tipi di accordi definiti come coppia di intervalervalli (entrambi riferiti alla nota più bassa)
 {
 maj0=[4,7];
@@ -82,100 +34,6 @@ sdim2=[4,6,9];
 sdim3=[2,5,8];
 }
 
-//MIDI
-
-navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
-
-
-function onMIDIFailure() {
-    console.log('Could not access your MIDI devices.');
-}
-
-function onMIDISuccess(midiAccess) {
-    for (var input of midiAccess.inputs.values())
-        input.onmidimessage = getMIDIMessage;
-    }
-
-function getMIDIMessage(message) {
-    var command = message.data[0];
-    var note = message.data[1];
-    var velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
-    switch (command) {
-        case 144: // noteOn
-        {
-        noteOn(note)
-        break
-        }
-        case 128: // noteOff
-            noteOff(note);
-            break;
-        // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
-    }
-}
-
-
-function clicked(){
-
-  tonality = document.getElementById('tonality').value
-}
-
-function  noteOn(note){
-  //Suona campione piano esterno
-  play(note)
-  //Evidenzia il tasto
-  render(note)
-
-  //Aggiungo a chord una nuova nota
-  chord.addNote(note)
-  chordRecognition(chord)
-  //voicing(chord)
-
-  }
-
-function noteOff(note){
-  //Fine suono
-  gains[note].gain.setValueAtTime(1,c.currentTime);
-  gains[note].gain.linearRampToValueAtTime(0,c.currentTime+0.5);
-
-  //Fine selezione
-  render(note)
-
-  //Tolgo da chord la nota
-  for( var i = 0; i < chord.getNotes().length; i++){
-     if ( chord.getNotes()[i] === note) {
-       chord.getNotes().splice(i, 1);
-     }
-  }
-
-chordRecognition(chord)
-
-}
-
-
-function render(note){
-  document.querySelectorAll('.button').forEach(function(element,index){
-    if (index==note-36) {
-      element.classList.toggle('selected')
-      }
-    }
-  )
-}
-
-//DA FARE modificare play in modo che possa ricevere in input una o più note ed in caso suonare l'accordo
-
-function play(note){
-  var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
-  var audioContext = new AudioContextFunc();
-  var player=new WebAudioFontPlayer();
-  player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
-  g = audioContext.createGain();
-	player.queueWaveTable(audioContext,g, _tone_0250_SoundBlasterOld_sf2, 0, note, 5);
-  g.connect(audioContext.destination);
-  g.gain.value = 0;
-  g.gain.linearRampToValueAtTime(1,c.currentTime+0.05);
-  gains[note] = g
-}
-
 //CHORD RECOGNITION
 //DA FARE: capire se mappare anche gli accordi di nona, sennò sembra impossibile riconoscerli
 //farebbe comodo poterlo fare per esprimere il livello di difficoltà e non aggiungerla dove già c'è
@@ -186,7 +44,6 @@ function chordRecognition(chord) {
   pitches.sort(function(a, b){return a - b});
   for (var i = 0; i < pitches.length - 1; i++) {
     interval.push(pitches[i+1]-pitches[0])
-
     //Traslo le note in un'unica ottava
     if (interval[i]>=12) {
       interval[i]=interval[i]-(Math.floor(interval[i]/12))*12;
@@ -201,7 +58,6 @@ function chordRecognition(chord) {
   if (interval[0] == 0) {
     interval.shift()
   }
-
   //Confronto con i vari tipi di accordi
   if (JSON.stringify(interval)==JSON.stringify(maj0)) {
     chord.setType('maj')
@@ -344,24 +200,8 @@ function chordRecognition(chord) {
     chord.setInversion('undefined')
     chord.setRoot('undefined')
   }
-
-  chord.setGrade(chordGrade(chord.getRoot(),tonality))
-
+  chord.setGrade(findChordGrade(chord.getRoot(),tonality))
   show(chord)
-}
-
-function show(chord){
-  if (chord.getNotes().length>2) {
-    root = chord.getRoot()
-    while (root>=12) {
-      root = root - 12
-    }
-    root = notes[root]
-    document.getElementById('result').innerHTML = 'Accordo di ' + root + chord.getType() + ', ' + chord.getInversion() + ' rivolto. Grado della scala: ' + chord.getGrade()
-  }
-  else {
-    document.getElementById('result').innerHTML = 'Tipo di accordo'
-  }
 }
 
 
@@ -369,11 +209,9 @@ function show(chord){
 
 //chordGrade prende la tonalità come input dall'utente, in questo modo riconosce il grado dell'accordo
 
-function chordGrade(root,tonality) {
-  if (root == 'undefined') {
-    return 'undefined'
-  }
-  else {
+function findChordGrade(root,tonality) {
+  var grade //Di default è undefined, se viene riconosciuto invece assume un valore
+
     //Esprimo la tonalità con un valore
     for (var i = 0; i < notes.length; i++) {
       if (tonality.toUpperCase() == notes[i]) {
@@ -392,5 +230,4 @@ function chordGrade(root,tonality) {
       }
     }
     return grade;
-  }
 }
