@@ -41,15 +41,15 @@ function getMIDIMessage(message) {
 
 function  noteOn(note,timeStamp){
   //Registro la nota
-  recordedNotes.noteEvents.push(note)
+  track.addNote(note)
   //Registro l'istante in cui è suonata
-  recordedNotes.instantOn.push(timeStamp)
+  track.setInstantOn(timeStamp)
   //Allungo l'array instantOff di paripasso con instantOn così da andare poi a registrare quando viene rilasciata
-  recordedNotes.instantOff.push('')
+  track.setInstantOff('')
   //Aggiungo ad array di notesOn
   notesOn.push(note)
   //Suona campione piano esterno
-  play(note,0,4)
+  play(note,0)
   //Evidenzia il tasto
   render(note)
   //Creo nuovo accordo se vengono suonate almeno 3 note
@@ -60,7 +60,7 @@ function  noteOn(note,timeStamp){
     chordRecognition(chord)
     if (chord.getRoot() != 'undefined') {
       chord.setTimeStamp(timeStamp)
-      chordProgression.push(chord)
+      track.addChord(chord)
     }
 
   }
@@ -68,8 +68,7 @@ function  noteOn(note,timeStamp){
 
 function noteOff(note,timeStamp){
   //Fine suono
-  gains[note].gain.setValueAtTime(1,audioContext.currentTime);
-  gains[note].gain.linearRampToValueAtTime(0,audioContext.currentTime+0.5);
+  stopNote(note)
 
   //Fine selezione
   render(note)
@@ -80,10 +79,10 @@ function noteOff(note,timeStamp){
        notesOn.splice(i, 1);
      }
   }
-  //Salvo in instantOn il timestamp così da sapere dopo quanto la nota finisce
-  for( var i = 0; i < recordedNotes.noteEvents.length; i++){
-     if ( recordedNotes.noteEvents[i] == note) {
-       recordedNotes.instantOff[i] = timeStamp
+  //Salvo in instantOff il timestamp così da sapere dopo quanto la nota finisce
+  for( var i = 0; i < track.getNotes().length; i++){
+     if ( track.getNotes()[i] == note && track.getInstantOff()[i] === undefined) {
+       track.setInstantOff(timeStamp,i)
      }
   }
 
@@ -93,8 +92,8 @@ function noteOff(note,timeStamp){
     chord.addNote(notesOn)
     chordRecognition(chord)
     if (chord.getRoot() != 'undefined') {
-      chordProgression.push(chord)
       chord.setTimeStamp(timeStamp)
+      track.addChord(chord)
     }
 
   }
@@ -110,18 +109,19 @@ function render(note){
   )
 }
 
-//DA FARE modificare play in modo che possa ricevere in input una o più note ed in caso suonare l'accordo
+//Suona la nota
 
-function play(note){
+function play(note,instantOn){
+  instantOn = instantOn/1000
   var player=new WebAudioFontPlayer();
   player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
-  g = audioContext.createGain();
-	player.queueWaveTable(audioContext,g, _tone_0250_SoundBlasterOld_sf2, 0 , note, 4);
-  g.connect(audioContext.destination);
-  g.gain.value = 0;
-  g.gain.linearRampToValueAtTime(1,audioContext.currentTime+0.05);
-  gains[note] = g
+  gains[note] = player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, 4);
 }
+
+function stopNote(note){
+  gains[note].cancel()
+  gains[note]=null
+  }
 
 function show(chord){
   if (chord.getNotes().length>2) {

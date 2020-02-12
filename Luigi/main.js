@@ -45,15 +45,8 @@ class accordo {
   }
 }
 
-var recordedNotes = {
-  noteEvents: [],
-  instantOn: [],
-  instantOff: []
-}
-
 notesOn = []
 
-chordProgression = []
 notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 major = [0, 2, 4, 5, 7, 9, 11]
 minor = [0, 2, 3, 5, 7, 8, 10]
