@@ -34,9 +34,8 @@ sdim2=[4,6,9];
 sdim3=[2,5,8];
 }
 
+
 //CHORD RECOGNITION
-//DA FARE: capire se mappare anche gli accordi di nona, sennò sembra impossibile riconoscerli
-//farebbe comodo poterlo fare per esprimere il livello di difficoltà e non aggiungerla dove già c'è
 
 function chordRecognition(chord) {
   interval = [];
@@ -205,9 +204,7 @@ function chordRecognition(chord) {
 }
 
 
-//CHORD GRADE
-
-//chordGrade prende la tonalità come input dall'utente, in questo modo riconosce il grado dell'accordo
+//CHORD GRADE: prende la tonalità come input dall'utente, in questo modo riconosce il grado dell'accordo
 
 function findChordGrade(root,tonality) {
   var grade //Di default è undefined, se viene riconosciuto invece assume un valore

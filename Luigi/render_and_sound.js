@@ -36,8 +36,7 @@ function getMIDIMessage(message) {
 }
 
 
-
-
+//Si attiva tutte le volte che una nota viene premuta
 
 function  noteOn(note,timeStamp){
   //Registro la nota
@@ -59,7 +58,7 @@ function  noteOn(note,timeStamp){
 
     //Inserisco le note on al campo notes di chord
     chord.addNote(notesOn)
-    chordRecognition(chord)
+    setTimeout(chordRecognition(chord),10000)
 
     //Se l'accordo fa parte della scala e o è il primo della progressione o è diverso dall'ultimo della progressione allora aggiungilo
     if (chord.getGrade() !== undefined && (track.getChordProgression().length == 0 || !isEqual(chord,track.getChordProgression()[track.getChordProgression().length - 1])))
@@ -71,6 +70,7 @@ function  noteOn(note,timeStamp){
   }
 }
 
+
 //Confronta due accordi
 
 function isEqual(chord1,chord2){
@@ -79,16 +79,17 @@ function isEqual(chord1,chord2){
       if(chord1.getInversion() == chord2.getInversion()){
         if(chord1.getGrade() == chord2.getGrade()){
           return true
-          console.log('UGUALI');
         }
       }
     }
   }
   else {
     return false
-    console.log('DIVERSI');
   }
 }
+
+
+//Si attiva tutte le volte che una nota viene rilasicata
 
 function noteOff(note,timeStamp){
   //Fine suono
@@ -115,15 +116,21 @@ function noteOff(note,timeStamp){
     //Inserisco le note on al campo notes di chord
     chord.addNote(notesOn)
     chordRecognition(chord)
-    if (chord.getRoot() != 'undefined') {
+
+    /* PROBLEMA: se tolgo ad esempio due note contemporaneamente questa funzione si attiva due volte ed aggiunge un accordo erroneamente
+    //Se l'accordo fa parte della scala e o è il primo della progressione o è diverso dall'ultimo della progressione allora aggiungilo
+    if (chord.getGrade() !== undefined && (track.getChordProgression().length == 0 || !isEqual(chord,track.getChordProgression()[track.getChordProgression().length - 1])))
+    {
       chord.setTimeStamp(timeStamp)
       track.addChord(chord)
-    console.log(track.getChordProgression());
+      console.log(track.getChordProgression());
     }
-
+    */
   }
 }
 
+
+//Illumina il tasto premuto
 
 function render(note){
   document.querySelectorAll('.button').forEach(function(element,index){
@@ -134,7 +141,8 @@ function render(note){
   )
 }
 
-//Suona la nota
+
+//Suona la nota premuta
 
 function play(note,instantOn){
   instantOn = instantOn/1000
@@ -143,10 +151,16 @@ function play(note,instantOn){
   gains[note] = player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, 4);
 }
 
+
+//Termina la nota quando viene rilasciato il tasto
+
 function stopNote(note){
   gains[note].cancel()
   gains[note]=null
   }
+
+
+//Fa vedere in tempo reale il nome dell'accordo suonato (Non necessaria)
 
 function show(chord){
   if (chord.getNotes().length>2) {

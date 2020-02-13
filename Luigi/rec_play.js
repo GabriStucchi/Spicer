@@ -1,3 +1,5 @@
+//Rappresenta la traccia suonata registrata
+
 class track {
   #noteEvents = []
   #instantOn = []
@@ -37,11 +39,17 @@ class track {
 
 track = new track
 
+
+//Registra una nuova traccia track
+
 function rec(){
   track.reset()
   tonality = document.getElementById('tonality').value
   console.log(tonality);
 }
+
+
+//Suona la traccia registrata sotto il nome track
 
 function playTrack(){
   for (var i = 0; i < track.getNotes().length; i++) {

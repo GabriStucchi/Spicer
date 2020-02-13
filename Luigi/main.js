@@ -1,5 +1,3 @@
-//c = new AudioContext
-
 class accordo {
   #notes = []
   #type = ''
@@ -44,11 +42,12 @@ class accordo {
     return this.#timeStamp
   }
 }
-
+//Viene riempito dinamicamente con le note attive
 notesOn = []
 
 notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 major = [0, 2, 4, 5, 7, 9, 11]
 minor = [0, 2, 3, 5, 7, 8, 10]
 
+//Viene riempito dinamicamente con i gain delle note attive
 gains = {}
