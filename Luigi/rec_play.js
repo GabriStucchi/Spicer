@@ -40,6 +40,7 @@ track = new track
 function rec(){
   track.reset()
   tonality = document.getElementById('tonality').value
+  console.log(tonality);
 }
 
 function playTrack(){

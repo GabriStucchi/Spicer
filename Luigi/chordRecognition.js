@@ -225,7 +225,7 @@ function findChordGrade(root,tonality) {
     }
     interval = root - tonic
     for (var i = 0; i < major.length; i++) {
-      if (major[i] == root) {
+      if (major[i] == interval) {
         grade = i + 1
       }
     }

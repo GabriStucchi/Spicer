@@ -52,17 +52,41 @@ function  noteOn(note,timeStamp){
   play(note,0)
   //Evidenzia il tasto
   render(note)
+
   //Creo nuovo accordo se vengono suonate almeno 3 note
   if (notesOn.length>2) {
     chord = new accordo
+
     //Inserisco le note on al campo notes di chord
     chord.addNote(notesOn)
     chordRecognition(chord)
-    if (chord.getRoot() != 'undefined') {
+
+    //Se l'accordo fa parte della scala e o è il primo della progressione o è diverso dall'ultimo della progressione allora aggiungilo
+    if (chord.getGrade() !== undefined && (track.getChordProgression().length == 0 || !isEqual(chord,track.getChordProgression()[track.getChordProgression().length - 1])))
+    {
       chord.setTimeStamp(timeStamp)
       track.addChord(chord)
+      console.log(track.getChordProgression());
     }
+  }
+}
 
+//Confronta due accordi
+
+function isEqual(chord1,chord2){
+  if (chord1.getType() == chord2.getType()) {
+    if(chord1.getRoot() == chord2.getRoot()){
+      if(chord1.getInversion() == chord2.getInversion()){
+        if(chord1.getGrade() == chord2.getGrade()){
+          return true
+          console.log('UGUALI');
+        }
+      }
+    }
+  }
+  else {
+    return false
+    console.log('DIVERSI');
   }
 }
 
@@ -94,6 +118,7 @@ function noteOff(note,timeStamp){
     if (chord.getRoot() != 'undefined') {
       chord.setTimeStamp(timeStamp)
       track.addChord(chord)
+    console.log(track.getChordProgression());
     }
 
   }
