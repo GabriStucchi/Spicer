@@ -53,7 +53,7 @@ function  noteOn(note,timeStamp){
   render(note)
 
   //Creo nuovo accordo se vengono suonate almeno 3 note
-  if (notesOn.length>2) {
+  if (notesOn.length>2 ) {
     chord = new accordo
 
     //Inserisco le note on al campo notes di chord
@@ -111,7 +111,7 @@ function noteOff(note,timeStamp){
      }
   }
 
-  if (notesOn.length>2) {
+  if (notesOn.length>2 ) {
     chord = new accordo
     //Inserisco le note on al campo notes di chord
     chord.addNote(notesOn)

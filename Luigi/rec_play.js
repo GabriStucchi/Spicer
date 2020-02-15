@@ -1,21 +1,26 @@
 //Rappresenta la traccia suonata registrata
 
-class track {
+class traccia {
   #noteEvents = []
   #instantOn = []
   #instantOff = []
   #chordProgression = []
   addNote(note){
-    this.#noteEvents.push(note)
+    this.#noteEvents = this.#noteEvents.concat(note)
   }
   setInstantOn(instantOn){
-    this.#instantOn.push(instantOn)
+    this.#instantOn = this.#instantOn.concat(instantOn)
   }
   setInstantOff(instantOff,index){
-    this.#instantOff[index] = instantOff
+    if (index == 'all') {  //Se voglio inserire tutti gli instantOn metto come index all
+      this.#instantOff = this.#instantOff.concat(instantOff)
+    }
+    else {
+      this.#instantOff[index] = instantOff
+    }
   }
   addChord(chord){
-    this.#chordProgression.push(chord)
+    this.#chordProgression = this.#chordProgression.concat(chord) //Concateno il o gli accordi che si vogliono aggiungere
   }
   getNotes(){
     return this.#noteEvents
@@ -37,21 +42,23 @@ class track {
   }
 }
 
-track = new track
 
+track = new traccia
+
+document.getElementById("rec").onclick = function(){rec(track)};
+document.getElementById("play").onclick = function(){playTrack(track)};
 
 //Registra una nuova traccia track
 
-function rec(){
+function rec(track){
   track.reset()
   tonality = document.getElementById('tonality').value
-  console.log(tonality);
 }
 
 
 //Suona la traccia registrata sotto il nome track
 
-function playTrack(){
+function playTrack(track){
   for (var i = 0; i < track.getNotes().length; i++) {
     instantOn = (track.getInstantOn()[i] - track.getInstantOn()[0])/1000    //Sottraggo a tutti i valori un offset in modo da far partire subito la registrazione ed esprimo in sec
     duration = (track.getInstantOff()[i]-track.getInstantOn()[i])/1000
