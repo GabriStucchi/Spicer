@@ -65,7 +65,6 @@ function  noteOn(note,timeStamp){
     {
       chord.setTimeStamp(timeStamp)
       track.addChord(chord)
-      console.log(track.getChordProgression());
     }
   }
 }

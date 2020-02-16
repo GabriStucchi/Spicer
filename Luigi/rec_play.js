@@ -67,3 +67,22 @@ function playTrack(track){
   	player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn, track.getNotes()[i], duration+0.05)
   }
 }
+
+function playChordProgression(chord_progression){
+  for (var i = 0; i < chord_progression.length; i++) {
+    chord = chord_progression[i]
+    instantOn = (chord.getTimeStamp()- chord_progression[0].getTimeStamp())/1000
+    notes = chord.getNotes()
+    if (chord.getTimeStamp() == chord_progression[chord_progression.length - 1].getTimeStamp()) {
+      duration = 3
+    }
+    else {
+      duration = (chord_progression[i+1].getTimeStamp() - chord.getTimeStamp())/1000
+    }
+    for (var c = 0; c < notes.length; c++) {
+      player=new WebAudioFontPlayer()
+      player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
+      player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , notes[c], duration);
+    }
+  }
+}

@@ -41,6 +41,9 @@ class accordo {
   getTimeStamp(){
     return this.#timeStamp
   }
+  changeNotes(notes){
+    this.#notes = notes
+  }
 }
 //Viene riempito dinamicamente con le note attive
 notesOn = []

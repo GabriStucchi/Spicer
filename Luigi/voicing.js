@@ -1,11 +1,13 @@
+
+//Da migliorare il movimento delle parti nel non-voicing
+
+
 //VOICING
 //Riceve la chord progression, se identifica 2-5-1 allora costruisce i voicing, per gli altri accordi separa il basso
-function voicing(track) {
+function voicing(spicy_track) {
 
-  spicyChordPrgression = []
-
-  for (var i = 0; i < track.getChordProgression().length; i++) {
-    chord = track.getChordProgression()[i]
+  for (var i = 0; i < spicy_track.getChordProgression().length; i++) {
+    chord = spicy_track.getChordProgression()[i]
     //Trovo il basso, lo metto nel giusto range
     bass = chord.getRoot()
     root = chord.getRoot()
@@ -21,85 +23,51 @@ function voicing(track) {
     pitches = [root + 3, root + 7, root + 10, root + 14]   //Trovo 3^min, 5^, 7^min, 9^
     //Sistemo i pitches nel giusto range (D3-F4)
     while (pitches[0] < 62) {
-      /*
-      pitches.forEach(element => {
-        element + 12
-      }*/
-      pitches[0] = pitches[0] + 12
-      pitches[1] = pitches[1] + 12
-      pitches[2] = pitches[2] + 12
-      pitches[3] = pitches[3] + 12
+      pitches = pitches.map(el => el +12)
     }
     while (pitches[0] > 77) {
-    /*
-      pitches.forEach(element => {
-        element + 12
-      })*/
-
-      pitches[0] = pitches[0] - 12
-      pitches[1] = pitches[1] - 12
-      pitches[2] = pitches[2] - 12
-      pitches[3] = pitches[3] - 12
+      pitches = pitches.map(el => el +12)
     }
 
     //Se identifico 2-5-1 ricavo e suono i voicing
-    if (chord.getGrade() == 2 && track.getChordProgression()[i+1].getGrade() == 5 && track.getChordProgression()[i+2].getGrade() == 1) {
+    if (chord.getGrade() == 2 && spicy_track.getChordProgression()[i+1].getGrade() == 5 && spicy_track.getChordProgression()[i+2].getGrade() == 1) {
 
       //Creo i nuovi accordi ed inserisco al loro interno i pitches del voicing rispettivo e li metto nel chordProgression
 
       //Posizione larga
       if (pitches[3] < 77) {
-        chord_II = new accordo
-        chord_II.addNote(pitches.concat(bass))
-        playChord(chord_II.getNotes(), chord.getTimeStamp())
+        spicy_track.getChordProgression()[i].changeNotes(pitches.concat(bass))
         pitches[2] = pitches[2] - 1
-        chord_V = new accordo
-        chord_V.addNote(pitches.concat(bass + 5))
-        playChord(chord_V.getNotes(), track.getChordProgression()[i+1].getTimeStamp())
+        spicy_track.getChordProgression()[i+1].changeNotes(pitches.concat(bass + 5))
         pitches[0] = pitches[0] - 1
         pitches[1] = pitches[1] - 2
         pitches[3] = pitches[3] - 2
-        chord_I = new accordo
-        chord_I.addNote(pitches.concat(bass - 7))
-        playChord(chord_I.getNotes(), track.getChordProgression()[i+2].getTimeStamp())
+        spicy_track.getChordProgression()[i+2].changeNotes(pitches.concat(bass - 7))
       }
 
       //Posizione stretta
       else {
         pitches[2] = pitches[2] - 12
         pitches[3] = pitches[3] - 12
-        chord_II = new accordo
-        chord_II.addNote(pitches.concat(bass))
-        playChord(chord_II.getNotes(), chord.getTimeStamp())
+        spicy_track.getChordProgression()[i].changeNotes(pitches.concat(bass))
         pitches[0] = pitches[0] - 1
-        chord_V = new accordo
-        chord_V.addNote(pitches.concat(bass + 5))
-        playChord(chord_V.getNotes(), track.getChordProgression()[i+1].getTimeStamp())
+        spicy_track.getChordProgression()[i+1].changeNotes(pitches.concat(bass + 5))
         pitches[1] = pitches[1] - 2
         pitches[2] = pitches[2] - 1
         pitches[3] = pitches[3] - 2
-        chord_I = new accordo
-        chord_I.addNote(pitches.concat(bass - 7))
-        playChord(chord_I.getNotes(), track.getChordProgression()[i+2].getTimeStamp())
+        spicy_track.getChordProgression()[i+2].changeNotes(pitches.concat(bass - 7))
       }
-      spicy_track.addChord([chord_II,chord_V,chord_I])
       i = i + 2 //Evito che il 5 e l'1 vengano analizzati dalla funzione
     }
     else {
-      spicy_chord = new accordo
-      spicy_chord.addNote(pitches.concat(bass))
-      spicy_track.addChord(spicy_chord)
-      playChord(spicy_chord.getNotes(),chord.getTimeStamp())
+      pitches = chord.getNotes()
+      while (pitches[0] < 62) {
+        pitches = pitches.map(el => el + 12)
+      }
+      while (pitches[0] > 77) {
+        pitches = pitches.map(el => el + 12)
+      }
+      spicy_track.getChordProgression()[i].changeNotes(pitches.concat(bass - 7))
     }
-  }
-}
-
-
-function playChord(notes,instantOn){
-  instantOn = (instantOn - track.getChordProgression()[0].getTimeStamp())/1000
-  for (var c = 0; c < notes.length; c++) {
-    player=new WebAudioFontPlayer()
-    player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
-    player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , notes[c], 2);
   }
 }
