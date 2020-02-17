@@ -8,13 +8,15 @@ function spicer(track){
   spicy_track.setInstantOff(track.getInstantOff(),'all')
   spicy_track.addChord(track.getChordProgression())
   if (level == 1) {
-    add7(spicy_track)
+    //add7(spicy_track)
   }
   else if (level == 2) {
-    //add9
+    //add7(spicy_track)
+    //add9(spicy_track)
   }
   else if (level == 3) {
     add7(spicy_track)
+    add9(spicy_track)
     voicing(spicy_track)
   }
   playChordProgression(spicy_track.getChordProgression())

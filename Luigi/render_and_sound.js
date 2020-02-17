@@ -65,6 +65,7 @@ function  noteOn(note,timeStamp){
     {
       chord.setTimeStamp(timeStamp)
       track.addChord(chord)
+      show(chord)
     }
   }
 }
@@ -115,6 +116,7 @@ function noteOff(note,timeStamp){
     //Inserisco le note on al campo notes di chord
     chord.addNote(notesOn)
     chordRecognition(chord)
+    show(chord)
 
     /* PROBLEMA: se tolgo ad esempio due note contemporaneamente questa funzione si attiva due volte ed aggiunge un accordo erroneamente
     //Se l'accordo fa parte della scala e o è il primo della progressione o è diverso dall'ultimo della progressione allora aggiungilo
@@ -164,10 +166,11 @@ function stopNote(note){
 function show(chord){
   if (chord.getNotes().length>2) {
     root = chord.getRoot()
+
     while (root>=12) {
       root = root - 12
     }
-    root = notes[root]
+    root = possible_notes[root]
     document.getElementById('result').innerHTML = 'Accordo di ' + root + chord.getType() + ', ' + chord.getInversion() + ' rivolto. Grado della scala: ' + chord.getGrade()
   }
   else {

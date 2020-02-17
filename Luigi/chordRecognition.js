@@ -200,7 +200,6 @@ function chordRecognition(chord) {
     chord.setRoot('undefined')
   }
   chord.setGrade(findChordGrade(chord.getRoot(),tonality))
-  show(chord)
 }
 
 
@@ -210,8 +209,8 @@ function findChordGrade(root,tonality) {
   var grade //Di default è undefined, se viene riconosciuto invece assume un valore
 
     //Esprimo la tonalità con un valore
-    for (var i = 0; i < notes.length; i++) {
-      if (tonality.toUpperCase() == notes[i]) {
+    for (var i = 0; i < possible_notes.length; i++) {
+      if (tonality.toUpperCase() == possible_notes[i]) {
         tonic = i;
       }
     }

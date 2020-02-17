@@ -11,7 +11,7 @@ function voicing(spicy_track) {
     //Trovo il basso, lo metto nel giusto range
     bass = chord.getRoot()
     root = chord.getRoot()
-    //Separo il basso e lo metto in (F1-A2)
+    //Separo il basso e lo metto in (F1-A2) N.B. poi suonerà ad ottava
     while (bass > 57) {
       bass = bass - 12
     }
@@ -19,21 +19,18 @@ function voicing(spicy_track) {
       bass = bass + 12
     }
 
-    //Costruisco i nuovi accordi in base alle posizioni
-    pitches = [root + 3, root + 7, root + 10, root + 14]   //Trovo 3^min, 5^, 7^min, 9^
-    //Sistemo i pitches nel giusto range (D3-F4)
-    while (pitches[0] < 62) {
-      pitches = pitches.map(el => el +12)
-    }
-    while (pitches[0] > 77) {
-      pitches = pitches.map(el => el +12)
-    }
+    //Se identifico 2-5-1 ricavo e suono i voicing (devo inserire nell'if anche l'opzione in cui suono solo un accordo e gli altri sono indefiniti)
+    if (chord.getGrade() == 2 && spicy_track.getChordProgression()[i+1] !== undefined && spicy_track.getChordProgression()[i+1].getGrade() == 5 && spicy_track.getChordProgression()[i+2] !== undefined && spicy_track.getChordProgression()[i+2].getGrade() == 1 ) {
 
-    //Se identifico 2-5-1 ricavo e suono i voicing
-    if (chord.getGrade() == 2 && spicy_track.getChordProgression()[i+1].getGrade() == 5 && spicy_track.getChordProgression()[i+2].getGrade() == 1) {
-
-      //Creo i nuovi accordi ed inserisco al loro interno i pitches del voicing rispettivo e li metto nel chordProgression
-
+      //Costruisco i nuovi accordi in base alle posizioni
+      pitches = [root + 3, root + 7, root + 10, root + 14]   //Trovo 3^min, 5^, 7^min, 9^
+      //Sistemo i pitches nel giusto range (D3-F4)
+      while (pitches[0] < 62) {
+        pitches = pitches.map(el => el +12)
+      }
+      while (pitches[0] > 77) {
+        pitches = pitches.map(el => el +12)
+      }
       //Posizione larga
       if (pitches[3] < 77) {
         spicy_track.getChordProgression()[i].changeNotes(pitches.concat(bass))
@@ -61,13 +58,32 @@ function voicing(spicy_track) {
     }
     else {
       pitches = chord.getNotes()
-      while (pitches[0] < 62) {
-        pitches = pitches.map(el => el + 12)
+      bass = chord.getRoot()
+
+      //Separo il basso e lo metto in (F1-A2) N.B. poi suonerà ad ottava
+      while (bass > 57) {
+        bass = bass - 12
       }
-      while (pitches[0] > 77) {
-        pitches = pitches.map(el => el + 12)
+      while (bass < 41) {
+        bass = bass + 12
       }
-      spicy_track.getChordProgression()[i].changeNotes(pitches.concat(bass - 7))
+
+      for (var c = 0; c < pitches.length; c++) {
+        //Tolgo la radice, tanto poi sarà suonata al basso
+        if ( pitches[c] == chord.getRoot()) {
+          pitches.splice(c, 1);
+        }
+        //Sistemo le note nel range (D3-F4)
+        while (pitches[c] < 62) {
+          pitches[c] = pitches[c] + 12
+        }
+        while (pitches[c] > 77) {
+          pitches[c] = pitches[c] - 12
+        }
+      }
+      spicy_track.getChordProgression()[i].changeNotes(pitches.concat(bass))
+      console.log(spicy_track.getChordProgression()[i].getNotes());
+
     }
   }
 }

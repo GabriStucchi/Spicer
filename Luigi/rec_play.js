@@ -45,7 +45,18 @@ class traccia {
 
 track = new traccia
 
-document.getElementById("rec").onclick = function(){rec(track)};
+document.getElementById("rec").onclick = function(){
+  rec(track)
+  /*  DA FARE: bloccare quello che sta suonando se si preme su play o rec
+  if(audioCtx.state === 'running') {
+    audioCtx.suspend()
+  }
+  else if(audioCtx.state === 'suspended') {
+    audioCtx.resume()
+  }
+  */
+}
+
 document.getElementById("play").onclick = function(){playTrack(track)};
 
 //Registra una nuova traccia track
@@ -65,6 +76,8 @@ function playTrack(track){
     var player=new WebAudioFontPlayer();
     player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
   	player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn, track.getNotes()[i], duration+0.05)
+    setTimeout(render.bind(null, track.getNotes()[i]), (instantOn)*1000)
+    setTimeout(render.bind(null, track.getNotes()[i]), (instantOn + duration)*1000)
   }
 }
 
@@ -83,6 +96,9 @@ function playChordProgression(chord_progression){
       player=new WebAudioFontPlayer()
       player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
       player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , notes[c], duration);
+      //Modo migliore per fare il rendering
+      setTimeout(render.bind(null, notes[c]), (instantOn)*1000)
+      setTimeout(render.bind(null, notes[c]), (instantOn + duration)*1000)
     }
   }
 }
