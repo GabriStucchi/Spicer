@@ -25,10 +25,13 @@ function add9(spicy_track){
     if (grade == 7) {
       //Non fare niente, non è bello caricare il 7 grado sia con settima che con nona
     }
+    //Nella scala maggiore il III grado premutoò essere minore o maggiore (preso in prestito dalla relativa minore melodica)
     else if (grade == 3 && (chord.getType() == 'maj' || chord.getType() == 'maj7')) {
       ninth = chord.getRoot() + 13
       spicy_track.getChordProgression()[i].addNote(ninth)
     }
+    //Aggiungere la 9^ è più facile perche si parla sempre di 9^ maggiore
+
     else {
       ninth = chord.getRoot() + 14
       spicy_track.getChordProgression()[i].addNote(ninth)

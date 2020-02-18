@@ -1,4 +1,7 @@
-document.getElementById("spicer").onclick = function(){spicer(track)}
+document.getElementById("spicer").onclick = function(){
+  clearInterval(id)
+  spicer(track)
+}
 
 function spicer(track){
   //Creo la traccia spicy_track come copia della traccia originale, poi sarà arricchita in base al livello
@@ -15,9 +18,16 @@ function spicer(track){
     //add9(spicy_track)
   }
   else if (level == 3) {
+    //add7(spicy_track)
+    //add9(spicy_track)
+    //voicing(spicy_track)
+  }
+  else if (level == 4) {
     add7(spicy_track)
     add9(spicy_track)
     voicing(spicy_track)
+    walkingBass(spicy_track)
+
   }
   playChordProgression(spicy_track.getChordProgression())
 }

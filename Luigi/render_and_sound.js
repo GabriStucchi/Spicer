@@ -48,7 +48,7 @@ function  noteOn(note,timeStamp){
   //Aggiungo ad array di notesOn
   notesOn.push(note)
   //Suona campione piano esterno
-  play(note,0)
+  play(note)
   //Evidenzia il tasto
   render(note)
 
@@ -145,11 +145,17 @@ function render(note){
 
 //Suona la nota premuta
 
-function play(note,instantOn){
+function play(note,instantOn,duration){
+  if (instantOn === undefined) {
+    instantOn = 0
+  }
+  if (duration === undefined) {
+    duration = 4
+  }
   instantOn = instantOn/1000
   var player=new WebAudioFontPlayer();
   player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
-  gains[note] = player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, 4);
+  gains[note] = player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, duration);
 }
 
 
@@ -161,7 +167,7 @@ function stopNote(note){
   }
 
 
-//Fa vedere in tempo reale il nome dell'accordo suonato (Non necessaria)
+//Fa vedere in tempo reale il nome dell'accordo suonato
 
 function show(chord){
   if (chord.getNotes().length>2) {

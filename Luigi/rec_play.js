@@ -42,6 +42,7 @@ class traccia {
   }
 }
 
+var bpm
 
 track = new traccia
 
@@ -55,9 +56,16 @@ document.getElementById("rec").onclick = function(){
     audioCtx.resume()
   }
   */
+  bpm = document.getElementById('metronome').value
+  if (bpm != 0) {
+    playBeat(bpm)
+  }
 }
 
-document.getElementById("play").onclick = function(){playTrack(track)};
+document.getElementById("play").onclick = function(){
+  clearInterval(id)
+  playTrack(track)
+};
 
 //Registra una nuova traccia track
 
