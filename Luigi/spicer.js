@@ -18,9 +18,9 @@ function spicer(track){
     //add9(spicy_track)
   }
   else if (level == 3) {
-    //add7(spicy_track)
-    //add9(spicy_track)
-    //voicing(spicy_track)
+    add7(spicy_track)
+    add9(spicy_track)
+    voicing(spicy_track)
   }
   else if (level == 4) {
     add7(spicy_track)

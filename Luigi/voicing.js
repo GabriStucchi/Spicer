@@ -82,7 +82,6 @@ function voicing(spicy_track) {
         }
       }
       spicy_track.getChordProgression()[i].changeNotes(pitches.concat(bass))
-      console.log(spicy_track.getChordProgression()[i].getNotes());
 
     }
   }

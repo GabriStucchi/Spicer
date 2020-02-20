@@ -145,17 +145,20 @@ function render(note){
 
 //Suona la nota premuta
 
-function play(note,instantOn,duration){
+function play(note,instantOn,duration,volume){
   if (instantOn === undefined) {
     instantOn = 0
   }
   if (duration === undefined) {
     duration = 4
   }
+  if (volume === undefined){
+    volume = 0.5
+  }
   instantOn = instantOn/1000
   var player=new WebAudioFontPlayer();
   player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
-  gains[note] = player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, duration);
+  gains[note] = player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, duration ,volume);
 }
 
 
