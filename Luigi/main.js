@@ -21,50 +21,52 @@ class accordo {
   #inversion = ''
   #grade = ''
   #timeStamp = ''
-  addNote(note) {
+  addNote(note) {  //aggiungi la nota / le note all'accordo
     this.#notes = this.#notes.concat(note)
   }
-  setType(type){
+  setType(type){    //setta il tipo dell'accordo
     this.#type = type;
   }
-  setRoot(root){
+  setRoot(root){    //setta la radice dell'accordo
     this.#root = root;
   }
-  setInversion(inversion){
+  setInversion(inversion){    //Setta il numero di rivolto (0 = posizione standard)
     this.#inversion = inversion;
   }
-  setGrade(grade){
+  setGrade(grade){      //setta il grado della scala dell'accordo
     this.#grade = grade;
   }
-  setTimeStamp(timeStamp){
+  setTimeStamp(timeStamp){      //setta il timeStamp dell'accordo
     this.#timeStamp = timeStamp
   }
-  getNotes(){
+  getNotes(){         //restituisce le note dell'accordo
     return this.#notes
   }
-  getType(){
+  getType(){   //Restituisce il tipo dell'accordo
     return this.#type
   }
-  getRoot(){
+  getRoot(){      //restitutisce la radice dell'accordo
     return this.#root
   }
-  getInversion(){
+  getInversion(){     //restituisce il rivolto dell'accordo
     return this.#inversion
   }
-  getGrade(){
+  getGrade(){       //restituisce il grado della scala dell'accordo
     return this.#grade
   }
-  getTimeStamp(){
+  getTimeStamp(){    //restituisce l'istante in cui è stato suonato l'accordo
     return this.#timeStamp
   }
-  changeNotes(notes){
+  changeNotes(notes){   //permette di sostituire le note di unaccordo con un nuovo array di note
     this.#notes = notes
   }
 }
-//Viene riempito dinamicamente con le note attive
+//Viene riempito dinamicamente con le note attive (notesOn) che vengono tolte quando si attiva noteOff
 notesOn = []
 
 possible_notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+
+//Intervalli scale maggiori e minori
 major = [0, 2, 4, 5, 7, 9, 11]
 minor = [0, 2, 3, 5, 7, 8, 10]
 

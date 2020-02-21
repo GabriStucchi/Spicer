@@ -25,7 +25,7 @@ dom71=[3,6,8];
 dom72=[3,5,9];
 dom73=[2,6,9];
 dim70=[3,6,9];
-dim71=[];
+dim71=[];  //PROBLEMA: tutti i rivolti sia dim che aug hanno sempre gli stessi intervalli (non si possono distinguere)
 dim72=[];
 dim73=[];
 sdim0=[3,6,10];
@@ -40,10 +40,12 @@ sdim3=[2,5,8];
 function chordRecognition(chord) {
   interval = [];
   pitches = chord.getNotes();
+  //Le riordino in base all'altezza (prima erano in base all'ordine di esecuzione)
   pitches.sort(function(a, b){return a - b});
+  //Esprimo l'accordo sotto forma di intervalli dalla nota più bassa (che non è necessariamente la radice)
   for (var i = 0; i < pitches.length - 1; i++) {
     interval.push(pitches[i+1]-pitches[0])
-    //Traslo le note in un'unica ottava
+    //Traslo le note in un'unica ottava perchè potrei avere un accordo distribuito in più ottave
     if (interval[i]>=12) {
       interval[i]=interval[i]-(Math.floor(interval[i]/12))*12;
     }
@@ -57,7 +59,7 @@ function chordRecognition(chord) {
   if (interval[0] == 0) {
     interval.shift()
   }
-  //Confronto con i vari tipi di accordi
+  //Confronto con i vari tipi di accordi e quando riscontro una somiglianza completo i campi
   if (JSON.stringify(interval)==JSON.stringify(maj0)) {
     chord.setType('maj')
     chord.setInversion(0)
@@ -195,20 +197,21 @@ function chordRecognition(chord) {
     chord.setRoot(pitches[1])
   }
   else {
+    //Se non trovo nessuna somiglianza rimane undefined (sarà eliminato dalla progressione armonica)
     chord.setType('')
     chord.setInversion('undefined')
     chord.setRoot('undefined')
   }
+  //A questo punto in base alla tonalità in cui sono vado a trovare il grado della scala dell'accordo
   chord.setGrade(findChordGrade(chord.getRoot(),tonality))
 }
 
 
-//CHORD GRADE: prende la tonalità come input dall'utente, in questo modo riconosce il grado dell'accordo
-
+//FIND CHORD GRADE: prende la tonalità come input dall'utente, in questo modo riconosce il grado dell'accordo
 function findChordGrade(root,tonality) {
   var grade //Di default è undefined, se viene riconosciuto invece assume un valore
 
-    //Esprimo la tonalità con un valore
+    //Esprimo la tonalità con un valore confontandola con l'array possible_notes (vedi main)
     for (var i = 0; i < possible_notes.length; i++) {
       if (tonality.toUpperCase() == possible_notes[i]) {
         tonic = i;
@@ -226,4 +229,6 @@ function findChordGrade(root,tonality) {
       }
     }
     return grade;
+    //NB anche se l'accordo non contiene note che fanno parte della scala viene riconosciuto
+    //il suo grado nella scala
 }

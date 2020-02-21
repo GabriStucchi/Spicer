@@ -1,6 +1,8 @@
 //Per far sì che il metronomo si fermi quando premo play o spicer uso la variabile globale id che identifica il setInterval
 //DA FARE se si stoppa tutto quello che suona quando premo i pulsanti sotto si può ovviare a questo, ma non so farlo
 
+//Il metronomo si chiama id, quindi nelle altre pagine viene fermato riferendosi ad 'id'
+//Riceve come input i bpm scelti dall'utente e crea un oscillatore che viene suonato periodicamente
 var id
 
 function playBeat(bpm){

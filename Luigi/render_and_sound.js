@@ -1,9 +1,29 @@
+/*COME FUNIONA PLAYER
+Riceve in input:
+- l'audio context
+- a quale nodo deve connettersi successivamente: ad esempio audioContext.destination o gain se c'è
+- preset, strumento scelto, si trova sul sito
+- quando far partire il suono ESPRESSO IN SECONDI
+- il valore midi della nota
+- la durata della nota ESPRESSA IN SECONDI
+- il volume (da 0 a 1)
+- slides (mai usato, dovrebbe essere per il pitch bend)
+
+Gli ultimi 3 campi possono essere omessi, sono presi quelli di default
+
+NB per darlo funzionare sono stati aggiunti dei riferimenti anche nell'index
+*/
+
+
 //Contesto, preso dalla funzione play
 var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContextFunc();
 
 
 //MIDI
+
+//DA FARE: si potrebbe anche prendere dal midi message la pressione con cui si suona
+//per impostare il volume della nota
 
 navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
 
@@ -60,12 +80,14 @@ function  noteOn(note,timeStamp){
     chord.addNote(notesOn)
     setTimeout(chordRecognition(chord),10000)
 
-    //Se l'accordo fa parte della scala e o è il primo della progressione o è diverso dall'ultimo della progressione allora aggiungilo
-    if (chord.getGrade() !== undefined && (track.getChordProgression().length == 0 || !isEqual(chord,track.getChordProgression()[track.getChordProgression().length - 1])))
+    //Se l'accordo è definito, fa parte della scala e o è il primo della progressione
+    //o è diverso dall'ultimo della progressione allora aggiungilo e salva il suo timestamp
+    if (chord.getGrade() !== undefined && (track.getChordProgression().length == 0
+      || !isEqual(chord,track.getChordProgression()[track.getChordProgression().length - 1])))
     {
       chord.setTimeStamp(timeStamp)
       track.addChord(chord)
-      show(chord)
+      show(chord) //scrivi a monitor il tipo di accordo suonato in tempo reale
     }
   }
 }
@@ -158,11 +180,13 @@ function play(note,instantOn,duration,volume){
   instantOn = instantOn/1000
   var player=new WebAudioFontPlayer();
   player.loader.decodeAfterLoading(audioContext, '_tone_0000_FluidR3_GM_sf2_file');
-  gains[note] = player.queueWaveTable(audioContext, audioContext.destination, _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, duration ,volume);
+  //Salvo il player come gain almeno viene aggiunto all'array dei gain e posso toglierlo quando la nota termina
+  gains[note] = player.queueWaveTable(audioContext, audioContext.destination,
+    _tone_0250_SoundBlasterOld_sf2, audioContext.currentTime + instantOn , note, duration ,volume);
 }
 
 
-//Termina la nota quando viene rilasciato il tasto
+//Termina la nota quando viene rilasciato il tasto, togli il suo gain dall'array
 
 function stopNote(note){
   gains[note].cancel()
