@@ -3,6 +3,7 @@ var mixer = new Mixer;
 var filter = new Filter;
 var lfos = [new Lfo(1400), new Lfo(5000)];
 var envelope = new Envelope(0.2, 0.1, 0.7, 0.2);
+var filterEnvelope = new FilterEnvelope(0.2, 0.1, 0.7, 0.2, 10010);
 var reverb = new Tone.Reverb(2);
 var delay = new Tone.PingPongDelay(0.25, 0.25);
 var mainGain = new Tone.Gain();
@@ -15,9 +16,10 @@ var mainVolume = document.querySelector("#output");
 var lfoPitchParams = document.querySelectorAll(".lfoPitchParam");
 var lfoCutoffParams = document.querySelectorAll(".lfoCutoffParam");
 var envelopeParams = document.querySelectorAll(".envelope");
+var filterEnvAMT = document.querySelector("#filterAMT");
 var reverbMix = document.querySelector("#reverbMix");
 var delayMix = document.querySelector("#delayMix");
-var duration = document.querySelector("#duration")
+var duration = document.querySelector("#duration");
 
 //-----------CONNECTIONS-----------------
 mixer.connect(osc[0], osc[1]);
@@ -25,6 +27,7 @@ envelope.connect(mixer.getGain1());
 envelope.connect(mixer.getGain2());
 envelope.connect(mixer.getNoiseGain());
 filter.connect(envelope.get());
+filter.connectEnvelope(filterEnvelope.get());
 filter.get().connect(reverb);
 reverb.connect(delay);
 delay.connect(mainGain);
@@ -47,6 +50,7 @@ function resume() {
 
 function play() {
     envelope.trigger(duration.value);
+    filterEnvelope.trigger(duration.value);
     reverb.generate();
 }
 
@@ -82,6 +86,7 @@ function changeVolume(element, index){
 //------------FILTER----------------------
 cutoff.oninput = function() {
     filter.changeCutoff(cutoff.value);
+    filterEnvelope.changeBaseFreq(cutoff.value);
 }
 
 function changeFilter(type) {
@@ -131,8 +136,22 @@ envelopeParams.forEach(changeEnvelope);
 function changeEnvelope(param, index) {
     param.oninput = function() {
         envelope.changeParam(index, param.value);
+        filterEnvelope.changeParam(index, param.value);
     }
 }
+
+filterEnvAMT.oninput = function() {
+    filterEnvelope.changeOctaves(filterEnvAMT.value);
+}
+
+/*modulateCutoff.onclick = function() {
+    if(modulateCutoff.checked)
+        filter.connectEnvelope(filterEnvelope.get());
+    else{
+        filter.disconnectEnvelope(filterEnvelope.get());
+        filter.changeCutoff(cutoff.value);
+    }
+}*/
 //-------------------------------------------
 
 //-----------EFFECTS--------------------------
