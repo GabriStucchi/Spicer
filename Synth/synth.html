@@ -8,8 +8,8 @@
     </head>
     <body>
 
+<!--__________________________MODULATION____________________________________________-->
         <div class="main-container large black">
-
             <p class="section-name">MODULATION<p>
 
             <div class="double-section" id="pitch-mod">
@@ -57,8 +57,8 @@
             </div>
         </div>
 
+<!--_________________________________________OSCILLATORS_______________________________________________-->
         <div class="main-container large lightblue">
-
             <p class="section-name">OSCILLATORS</p>
 
             <div class="oscillators">
@@ -159,8 +159,8 @@
             </div>
         </div>
 
+<!--_________________________________________MIXER_______________________________________________-->
         <div class="main-container medium black">
-
             <p class="section-name">MIXER</p>
 
             <input type="range" class="volumes" id="osc1volume" name="volume" value="1" min="0" max="1" step="0.01">
@@ -189,8 +189,8 @@
             </form>
         </div>
 
+<!--_________________________________________FILTER_______________________________________________-->
         <div class="main-container medium green">
-
             <p class="section-name">FILTER</p>
 
             <input type="range" id="cutoff" name="cutoff" value="10010" min="20" max="20000" step="0.001">
@@ -217,8 +217,8 @@
 
         </div>
 
+<!--_________________________________________ENVELOPE_______________________________________________-->
         <div class="main-container large black">
-
             <p class="section-name">ENVELOPE</p>
 
             <input type="range" class="envelope" id="attack" name="attack" value="0.2" min="0.01" max="5" step="0.01">
@@ -233,11 +233,12 @@
             <input type="range" class="envelope" id="release" name="release" value="0.2" min="0.01" max="5" step="0.01">
             <p class="label">RELEASE</p>
 
-            <input type="checkbox" name="activation" value="0" onclick="modulateCutoff()">
-            <label for="activation" class="label">CUTOFF</label>
+            <p class="label">FILTER</p>
+            <input type="range" id="filterAMT" name="filterAMT" value="0" min="0" max="5" step="0.01">
 
         </div>
 
+<!--_________________________________________OUTPUT_______________________________________________-->
         <div class="main-container medium">
             <div class="small black">
 
@@ -248,8 +249,8 @@
 
             </div>
 
+<!--_________________________________________REVERB_______________________________________________-->
             <div class="small red">
-
                 <p class="section-name">REVERB</p>
 
                 <input type="range" id="reverbMix" name="reverbMix" value="0" min="0" max="1" step="0.01">
@@ -257,8 +258,8 @@
 
             </div>
 
+<!--_________________________________________DELAY_______________________________________________-->
             <div class="small yellow">
-
                 <p class="section-name">DELAY</p>
 
                 <input type="range" id="delayMix" name="delayMix" value="0" min="0" max="1" step="0.01">
@@ -280,6 +281,7 @@
      <script src="js/Filter.js"></script>
      <script src="js/Lfo.js"></script>
      <script src="js/Envelope.js"></script>
+     <script src="js/FilterEnvelope.js"></script>
      <script src="js/synth.js"></script>
 
      </script>

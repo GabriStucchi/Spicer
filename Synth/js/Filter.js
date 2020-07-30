@@ -28,4 +28,12 @@ class Filter {
     connect(input) {
         input.connect(this.#filter);
     }
+
+    connectEnvelope(input) {
+        input.connect(this.#filter.frequency);
+    }
+
+    disconnectEnvelope(input) {
+        input.disconnect(this.#filter.frequency);
+    }
 }
