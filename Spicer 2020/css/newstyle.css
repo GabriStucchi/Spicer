@@ -1,0 +1,60 @@
+
+body{
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  height: 100%
+}
+
+header{
+  padding-top: 20px;
+}
+
+h1{
+    //font-family: 'Nothing You Could Do', cursive;
+    padding-top: 20px;
+    font-family: 'Amatic SC', cursive;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    font-size: 4vw;
+}
+
+.red-txt{
+  color: red;
+}
+
+.chili-logo{
+  width: 3.8%;
+}
+
+.main-content{
+  margin-top: 40px;
+  display: block;
+}
+
+.knob-container{
+  display: flex;
+  justify-content: center;
+  width : 100%;
+}
+
+#main-knob{
+  width: 18%;
+  height: 18%;
+}
+
+
+
+#myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+}

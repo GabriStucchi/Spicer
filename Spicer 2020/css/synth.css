@@ -1,0 +1,52 @@
+
+.module{
+  border: 2px solid black;
+  display: inline-block;
+  position: absolute;
+  top: 0px;
+  height: 300px;
+  width: 124px;
+}
+
+.module.large{
+  width: 248px;
+}
+
+.module.small{
+  height: 100px;
+}
+
+#mixer{
+  left: 0px;
+}
+
+#oscillators{
+left: 124px;
+}
+
+#modulation{
+  left: 372px;
+
+}
+
+#filter{
+  left:620px;
+}
+
+#envelope{
+  left: 744px;
+}
+
+#output{
+  left: 992px;
+}
+
+#delay{
+left: 992px;
+top:100px;
+}
+
+#reverb{
+left: 992px;
+top:200px;
+}

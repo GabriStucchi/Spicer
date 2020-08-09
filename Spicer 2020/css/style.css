@@ -1,0 +1,85 @@
+
+body{
+  display: block;
+  justify-content: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+  background-color: rgb(45,45,45);
+  height: auto;
+}
+
+.leather-box{
+  width: 1200px;
+  height: 650px;
+  margin: 30px auto;
+  position: relative;
+  border: 2px solid black;
+  /*(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0.6) 61%, rgba(0,0,0,1) 100% */
+  background: linear-gradient(  rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.7) 61%, rgba(0,0,0,0.8) 100%), url("images/leather.jpg");
+  /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("images/leather.jpg"); */
+  background-position:center top;
+  background-size: contain;
+  border-radius: 5px;
+  box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.7), -1px -1px 2px 0px rgba(0, 0, 0, 0.7);
+}
+.synth-container{
+  width: 1126px;
+  height: 600px;
+  margin: 30px auto;
+  position: relative;
+}
+
+#synth{
+  margin-left: 30px auto;
+  margin-right: 30px auto;
+  position: relative;
+  max-width: 1200px;
+  border: 3px solid rgba(0,0,0,0.9);
+  height: 391px;
+  border-radius: 2px;
+}
+
+#keyboard{
+  margin-left: 30px auto;
+  margin-right: 30px auto;
+  position: relative;
+  max-width: 1200px;
+  display: block;
+}
+
+
+.spiceSection{
+  display: block;
+  position: relative;
+}
+
+#spiceRange{
+  position: relative;
+  margin: 0px 25%;
+  width: 50%;
+
+}
+h1{
+    //font-family: 'Nothing You Could Do', cursive;
+    padding-top: 20px;
+    font-family: 'Amatic SC', cursive;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    font-size: 4vw;
+    color: rgb(0,0,0);
+}
+
+
+.red-txt{
+  color: red;
+}
+
+.chili-logo{
+  width: 3.8%;
+}
