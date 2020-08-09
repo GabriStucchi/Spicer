@@ -1,4 +1,4 @@
-class knob {
+class Knob {
 
  #elem
  #page

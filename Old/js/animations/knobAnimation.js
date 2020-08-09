@@ -66,10 +66,7 @@ function scaleKnob(posY){
   if(posY>maxPixels){ //just a control on the values used for the rotation
     posY=maxPixels;
   }
-
-
   tempRot =  rotation - posY*rotSpeed; //this is where the _rotation_ happens (matematically)
-
 
   if(tempRot>360){ //to avoid "overflow" (rotating over 360 degrees)
     tempRot=360;
@@ -79,7 +76,7 @@ function scaleKnob(posY){
     tempRot=0;
   }
 
-  startY=posY+startY; // resets the starting position to the current mouse position 
+  startY=posY+startY; // resets the starting position to the current mouse position
 
   return tempRot;
 }
