@@ -4,7 +4,7 @@ class Lfo {
     #amp = 0;
 
     constructor(variation) {
-        this.#lfo = new Tone.LFO("0.1", -variation, variation);
+        this.#lfo = new Tone.LFO("0.1", 0, variation);
         this.#lfo.amplitude.value = 0;
     }
 

@@ -1,12 +1,13 @@
 class Oscillator {
     #osc;
-    #initialFreq = 0;
+    #baseFreq = 0;
+    #octave = 1;
 
     constructor(freq, waveform){
         this.#osc = new Tone.Oscillator(freq, waveform);
         this.#osc.volume.value = -10;
         this.#osc.start();
-        this.#initialFreq = freq;
+        this.#baseFreq = freq;
     }
 
     getOsc() {
@@ -19,7 +20,9 @@ class Oscillator {
 
     setFrequency(freq){
       if(freq>0){
-          this.#osc.frequency.value = freq;
+          //this.#osc.frequency.value = freq;
+          this.#baseFreq = freq;
+          this.updateFrequency();
       }
     }
 
@@ -36,6 +39,12 @@ class Oscillator {
     }
 
     setOctave(octave){
-        this.#osc.frequency.value = octave*(this.#initialFreq);
+        this.#octave = octave;
+        this.updateFrequency();
+        //this.#osc.frequency.value = octave*(this.#initialFreq);
+    }
+
+    updateFrequency(){
+        this.#osc.frequency.value = this.#octave*(this.#baseFreq);
     }
 }
