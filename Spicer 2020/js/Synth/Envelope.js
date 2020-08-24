@@ -13,8 +13,13 @@ class Envelope {
         input.connect(this.#envelope);
     }
 
-    trigger(duration) {
-        this.#envelope.triggerAttackRelease(duration);
+    triggerAttack() {
+        this.#envelope.triggerAttack();
+    }
+
+
+    triggerRelease() {
+        this.#envelope.triggerRelease();
     }
 
     changeParam(param, value) {

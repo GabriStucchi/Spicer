@@ -33,7 +33,7 @@ filter.connectEnvelope(filterEnvelope.get());
 filter.get().connect(reverb);
 reverb.connect(delay);
 delay.connect(mainGain);
-mainGain.toMaster();
+mainGain.toDestination();
 
 osc.forEach(function(osc) {
     lfos[0].connect(osc.getDetune());
@@ -50,11 +50,27 @@ function resume() {
     Tone.context.resume();
 }
 
+
+/*
 function play() {
     envelope.trigger(1);
     filterEnvelope.trigger(1);
     reverb.generate();
 }
+
+*/
+
+function synthNoteOn() {
+    envelope.triggerAttack("0", 1);
+    filterEnvelope.triggerAttack("0", 1);
+    reverb.generate();
+}
+
+function synthNoteOff() {
+    envelope.triggerRelease("0");
+    filterEnvelope.triggerRelease("0");
+}
+
 
 //------------OSCILLATORS-------------------
 function changeWaveform(index, type) {

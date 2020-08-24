@@ -240,7 +240,7 @@
 			//		'<span name="OCTAVE_LABEL" value="' + i + '">' + (__octave + parseInt(i)) + '</span>' + (n.substr(1,1)?n.substr(1,1):'');
 			//	thisKey.appendChild(label);
 				thisKey.setAttribute('ID', 'KEY_' + n + ',' + i);
-				thisKey.addEventListener(evtListener[0], (function(_temp) { return function() { fnPlayKeyboard({keyCode:_temp}); } })(reverseLookup[n + ',' + i]));
+				//thisKey.addEventListener(evtListener[0], (function(_temp) { return function() { fnPlayKeyboard({keyCode:_temp}); } })(reverseLookup[n + ',' + i]));
 				visualKeyboard[n + ',' + i] = thisKey;
 				visualKeyboard.appendChild(thisKey);
 
@@ -251,7 +251,7 @@
 
 	visualKeyboard.style.width = iWhite * 40 + 'px';
 
-	window.addEventListener(evtListener[1], function() { n = keysPressed.length; while(n--) { fnRemoveKeyBinding({keyCode:keysPressed[n]}); } });
+//	window.addEventListener(evtListener[1], function() { n = keysPressed.length; while(n--) { fnRemoveKeyBinding({keyCode:keysPressed[n]}); } });
 
 
 // Detect keypresses, play notes.
@@ -277,7 +277,11 @@
 			var note = arrPlayNote[0];
 			var octaveModifier = arrPlayNote[1]|0;
 		//	fnPlayNote(note, __octave + octaveModifier);
+
+
 			synthPlayNote(note,__octave + octaveModifier);
+
+
 		} else {
 			return false;
 		}
@@ -314,6 +318,9 @@
 
 	};
 
+
+let noteOnCounter = 0;
+
 var synthPlayNote = function (note, octave){
 
 
@@ -339,8 +346,20 @@ var synthPlayNote = function (note, octave){
 	osc[1].setFrequency(65.41 * Math.pow(2,freq/12));
 	//65.41 is the frequency of c2
 	resume();
-	play();
+	synthNoteOn();
+	noteOnCounter++;
 };
+
+
+
+document.addEventListener('keyup', event=>{
+noteOnCounter--;
+	if(noteOnCounter==0){
+		synthNoteOff();
+	}
+
+} );
+
 
 
 
