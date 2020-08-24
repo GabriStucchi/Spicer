@@ -33,10 +33,6 @@ class Oscillator {
         this.#osc.type = waveform;
     }
 
-    setDetune(semitone) {
-        this.#osc.detune.value = semitone;
-    }
-
     setOctave(octave){
         this.#octave = octave;
         this.updateFrequency();

@@ -10,7 +10,6 @@ var reverb = new Tone.Reverb(2);
 var delay = new Tone.PingPongDelay(0.25, 0.25);
 var mainGain = new Tone.Gain();
 
-var osc2detune = document.querySelector("#osc2detune");
 var volumes = document.querySelectorAll(".volumes");
 var cutoff = document.querySelector("#cutoff");
 var resonance = document.querySelector("#resonance");
@@ -77,13 +76,8 @@ function changeWaveform(index, type) {
     osc[index].setWaveform(type);
 }
 
-osc2detune.oninput = function() {
-    osc[1].setDetune(osc2detune.value);
-}
-
 function changeOctave(index, octave) {
     osc[index].setOctave(octave);
-    osc[1].setDetune(osc2detune.value);
 }
 //-----------------------------------------
 
