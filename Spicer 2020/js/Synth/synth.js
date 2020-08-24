@@ -35,9 +35,9 @@ reverb.connect(delay);
 delay.connect(mainGain);
 mainGain.toMaster();
 
-osc.forEach(function(osc) {
+/*osc.forEach(function(osc) {
     lfos[0].connect(osc.getDetune());
-})
+})*/
 lfos[1].connect(filter.getDetune());
 //-----------------------------------------
 
