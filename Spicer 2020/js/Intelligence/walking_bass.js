@@ -20,6 +20,7 @@ for (var i = 0; i < possible_notes.length; i++) {
       tonic = tonic + 12
     }
   }
+}
 
 //Creo la funzione che sceglie a caso un elemento da un insieme
 function getRndmFromSet(set)

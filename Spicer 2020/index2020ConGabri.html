@@ -22,9 +22,10 @@
     <script src="js/Synth/Envelope.js" defer></script>
     <script src="js/Synth/FilterEnvelope.js" defer></script>
     <script src="js/Synth/synth.js" defer></script>
+    <script src="js/MidiManagement.js" defer></script>
+    <script src="js/EventManager.js" defer></script>
 
-    <script src="js/input-knobs.js" defer></script>
-</script>
+    <script src="js/KnobStyle.js" defer></script>
     <script src="https://tonejs.github.io/build/Tone.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -385,11 +386,14 @@
   </div>
 
 </div>
+
 <div class="spiceSection">
+  <label class="switch">
+    <input type="checkbox" onclick="toggleInstrument()">
+    <span class="slider round">SWITCH</span>
+  </label>
   <input type="range" id="spiceRange" name="spice" step="0.01" value="0" min="-700" max="700"/>
 </div>
-
-
 
 
   </body>

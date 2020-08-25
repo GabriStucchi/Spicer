@@ -41,4 +41,8 @@ class Oscillator {
     updateFrequency(){
         this.#osc.frequency.value = this.#octave*(this.#baseFreq);
     }
+
+    mute(bool){
+        this.#osc.mute = bool;
+    }
 }

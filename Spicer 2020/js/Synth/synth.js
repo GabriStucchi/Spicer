@@ -59,7 +59,19 @@ function play() {
 
 */
 
-function synthNoteOn() {
+function muteSynth(bool){
+    osc.forEach(function(osc) {
+        osc.mute(bool);
+    })
+}
+
+function changeSynthNote(note) {
+    osc.forEach(function(osc) {
+        osc.setFrequency(Math.pow(2, (note-69)/12)*440);
+    })
+}
+
+function synthNoteOn(frequency) {
     envelope.triggerAttack("0", 1);
     filterEnvelope.triggerAttack("0", 1);
     reverb.generate();
