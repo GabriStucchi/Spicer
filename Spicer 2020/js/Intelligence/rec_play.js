@@ -14,7 +14,7 @@ class traccia {
   setInstantOff(instantOff,index){ //aggiunge l'istante off di tali note
     if (index == 'all') {  //Se voglio inserire tutti gli instantOff metto come index all
       this.#instantOff = this.#instantOff.concat(instantOff)
-    }//// TODO: qua bastava controllare instant off.size
+    }
     else {
       this.#instantOff[index] = instantOff
     }

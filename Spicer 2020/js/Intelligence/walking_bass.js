@@ -1,7 +1,7 @@
 /*WalkingBass crea un basso che suona 4 note tra un accordo e l'altro vincolate nel range (F2,A3): per ogni coppia di accordi vengono
-elaborate due linee di basso, close_walking che minimizza gli intervalli tra i 4 beat e random walking charset
+elaborate due linee di basso, close_walking che minimizza gli intervalli tra i 4 beat e random walking che
 seppur contenendo dei vincoli (anche di distanza) non minimizza gli intervalli. Ogni volta viene scelta
-a caso una delle due per creare un andamento che conenga sia salti che scale.
+a caso una delle due per creare un andamento che contenga sia salti che scale.
 Nel caso in cui non esista una nota che soddisfi i vincoli allora per riempire il buco viene scelta la nota che
 fa parte dell'accordo suonato più vicina a quella precedente.
 NB C'è anche un criterio per la scelta delle toniche, spiegato sotto per la funzione firstBeats */
@@ -9,6 +9,17 @@ NB C'è anche un criterio per la scelta delle toniche, spiegato sotto per la fun
 
 
 bass_line = []  //Sarà tutta la linea del basso nella progressione
+
+for (var i = 0; i < possible_notes.length; i++) {
+  if (tonality.toUpperCase() == possible_notes[i]) {
+    tonic = i;
+    while (tonic > 55) {
+      tonic = tonic - 12
+    }
+    while (tonic < 43) {
+      tonic = tonic + 12
+    }
+  }
 
 //Creo la funzione che sceglie a caso un elemento da un insieme
 function getRndmFromSet(set)
@@ -42,9 +53,10 @@ function walkingBass(track){
       clearInterval(beat)
     }
   }, 60/bpm*1000, i, chord_progression, bass_line)
+  console.log(bass_line);
 }
 
-/*Estrapola le toniche di ogni accordo che corrispondono ai first beat di ogni walkingBar e per ognuna aggiungere
+/*Estrapola le toniche di ogni accordo che corrispondono ai first beat di ogni walkingBar e per ognuna aggiunge
 come possibilità di scelta anche quella all'ottava superiore o inferiore solo se si rimane nel range stabilito.
 Infine se ne sceglie una a caso. Questo rende il basso più dinamico ed evita di rimanere sempre nella stessa zona*/
 function firstBeats(chord_progression){
@@ -88,7 +100,7 @@ function walkingBar(chord,next_chord,first_beat,next_beat){
   //Chord_pitches_set contiene le note del primo accordo suonato traslate su tutto il range, sarà usato per prendere
   //una nota da inserire per coprire il buco di un beat per cui non si è trovata nessuna nota che soddisfi i vincoli
   //siccome il fourth_beat è sempre individuabile, questo stratagemma si usa solo per second e third
-  //Imposto il range come vincolo tenendo conto che non third e second non potranno mai assumere 56 o 42
+  //Imposto il range come vincolo tenendo conto che third e second non potranno mai assumere 56 o 42
   chord_pitches_set = []
   chord_pitches = chord.getNotes()
   for (var i = 0; i < chord_pitches.length; i++) {
@@ -108,7 +120,7 @@ function walkingBar(chord,next_chord,first_beat,next_beat){
   //SCELTA DEL FOURTH BEAT
   //Il fourth_beat deve essere un leading tone, quindi approccia la radice successiva o cromaticamente (#,b)
   //o diatonicamente (nota della scala vicina) o con il salto di quinta
-  //DA FARE: la variante in cui la scala scelta è negativa, (previous_note e following_note cambiano)
+  //DA FARE: la variante in cui la scala scelta è minore, (previous_note e following_note cambiano)
   if (next_grade == 1 || next_grade == 4) {
     previous_note = next_beat - 1
     following_note = next_beat + 2
@@ -145,20 +157,16 @@ modalità sono "close", se si vuole però bisogna modificare un pò di sintassi!
   fourth_beat = getRndmFromSet(fourth_set)
 
   /*SCELTA DEL THIRD BEAT
-  Per il terzo beat scelgo una qualsiasi nota della scala dell'accordo (escluso il quarto beat) purchè
-  sia ad una distanza non superiore a 5 semitoni dal quarto beat, mentre per il fourth_close minimizo la
+  Per il terzo beat scelgo una qualsiasi nota della scala della tonalità (escluso il quarto beat) purchè
+  sia ad una distanza non superiore a 5 semitoni dal quarto beat, mentre per il fourth_close minimizzo la
   distanza ed elimino il fourth beat come possibilità*/
   third_set = []
   pitches = []
+
+
   for (var i = 1; i < major.length; i++) {
-    if (chord.getType() == 'maj' || chord.getType() == 'maj7') {
-      tone = root + major[i]
+      tone = tonality + major[i]
       pitches.push(...[tone, tone - 12])    //Inserisco come possibilità anche le note dell'ottava sotto
-    }
-    else {
-      tone = root + minor[i]
-      pitches.push(...[tone, tone - 12])    //Inserisco come possibilità anche le note dell'ottava sotto
-    }
   }
   for (var i = 0; i < pitches.length; i++) {
     while (pitches[i] > 56) {        //Imposto un range come vincolo
@@ -204,7 +212,7 @@ modalità sono "close", se si vuole però bisogna modificare un pò di sintassi!
   }
 
   /*SCELTA DEL SECOND BEAT
-  Per il secondo beat (come per il terzo) si sceglie tra le note della scala dell'accordo quella che sia diversa
+  Per il secondo beat (come per il terzo) si sceglie tra le note della scala della tonalità quella che sia diversa
   dal third_beat, dal fourth_beat, dal first_beat, ad una distanza non superiore a 5 semitoni dal third_beat
   e non superiore a 10 semitoni dal first_beat ammeno che non si tratti di un'ottava (il salto di ottava ci sta bene)
   NB uso pitches che avevo costruito per il third_beat*/
@@ -245,7 +253,7 @@ modalità sono "close", se si vuole però bisogna modificare un pò di sintassi!
     }
   }
 
-  //Costruisco il randome e il close walking e poi scelgo a caso
+  //Costruisco il random e il close walking e poi scelgo a caso
   random_walking = [first_beat, second_beat, third_beat, fourth_beat]
   close_walking = [first_beat, second_close, third_close, fourth_beat]
 

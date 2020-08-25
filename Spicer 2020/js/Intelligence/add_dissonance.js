@@ -8,8 +8,11 @@ function add7(spicy_track){
     }
     else if (chord.getNotes().length == 3) {
       //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
-      //DA FARE: variante per tonalità minore
+      //IF MAJOR
       seventh = major[(grade + 5)%major.length] + 12 - major[grade - 1]
+      /* IF MINOR
+      seventh = minor[(grade + 5)%minor.length] + 12 - minor[grade - 1]
+      */
       if (seventh > 12) {
         seventh = seventh - 12
       }
@@ -18,6 +21,36 @@ function add7(spicy_track){
     }
   }
 }
+
+/*ADD 7 NEW: riceve in input un array di oggetti accordi che analizza e modifica
+aggiungendo dove si può le settime
+function add7(chord_progression){
+  for (var i = 0; i < chord_progression.length; i++) {
+    chord = chord_progression[i]
+    grade = chord.getGrade()
+    if (chord.getNotes().length == 3) {
+      if (grade == 5 && (chord_progression[i+1] != 1 ||
+        chord_progression[i+1] === undefined)) {
+        //Non fare niente, non posso aggiungere la 7^ di dom se poi non risolve su 1
+      }
+      else {
+        //Trovo la settima con un loop sull' array maj/min e poi trovo il suo intervallo con la radice
+        //IF MAJOR
+        seventh = major[(grade + 5)%major.length] + 12 - major[grade - 1]
+        //IF MINOR
+        //seventh = minor[(grade + 5)%minor.length] + 12 - minor[grade - 1]
+
+        if (seventh > 12) {
+          seventh = seventh - 12
+        }
+        seventh = chord.getRoot() + seventh
+        chord_progression[i].addNote(seventh)
+      }
+    }
+  }
+}
+*/
+
 
 //Aggiunge la 9^ sempre maggiore!!
 function add9(spicy_track){

@@ -11,7 +11,7 @@ Riceve in input:
 
 Gli ultimi 3 campi possono essere omessi, sono presi quelli di default
 
-NB per darlo funzionare sono stati aggiunti dei riferimenti anche nell'index
+NB per farlo funzionare sono stati aggiunti dei riferimenti anche nell'index
 */
 
 
@@ -93,7 +93,8 @@ function  noteOn(note,timeStamp){
 }
 
 
-//Confronta due accordi
+//Confronta due accordi     DA TENERE??  serve ad evitre che si ripeta due volte lo stesso Accordo
+// nella progresione
 
 function isEqual(chord1,chord2){
   if (chord1.getType() == chord2.getType()) {

@@ -217,17 +217,26 @@ function findChordGrade(root,tonality) {
         tonic = i;
       }
     }
-
-    //Trovo la funzione dell'accordo rispetto alla tonalità
+    //Trovo il grado dell'accordo rispetto alla tonalità
     while (root >= tonic+12) {
       root = root - 12;
     }
     interval = root - tonic
+
+    //IF MAJOR
     for (var i = 0; i < major.length; i++) {
       if (major[i] == interval) {
         grade = i + 1
       }
     }
+    /*
+    //IF MINOR
+    for (var i = 0; i < minor.length; i++) {
+      if (minor[i] == interval) {
+        grade = i + 1
+      }
+    }
+    */
     return grade;
     //NB anche se l'accordo non contiene note che fanno parte della scala viene riconosciuto
     //il suo grado nella scala
