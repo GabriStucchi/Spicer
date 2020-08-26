@@ -63,6 +63,7 @@ function muteSynth(bool){
     osc.forEach(function(osc) {
         osc.mute(bool);
     })
+    mixer.muteNoise(bool);
 }
 
 function changeSynthNote(note) {

@@ -42,4 +42,8 @@ class Mixer {
         osc2.getOsc().connect(this.#osc2Gain);
         this.#noise.connect(this.#noiseGain);
     }
+
+    muteNoise(bool){
+        this.#noise.mute = bool;
+    }
 }

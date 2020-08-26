@@ -5,6 +5,7 @@
 
 //let noteOnCounter = 0;
 
+const default_duration = 123456789;
 let activeNotes = [];
 
 navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
@@ -20,39 +21,40 @@ function onMIDISuccess(midiAccess) {
 
 function getMIDIMessage(message) {
     var command = message.data[0];
-    var note = message.data[1];
+    var pitch = message.data[1];
     var velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
     var timeStamp = message.timeStamp
     switch (command) {
         case 144: // noteOn
         {
-        noteOn(note,timeStamp)
-        break
+            noteOn(pitch, timeStamp, velocity)
+            break
         }
         case 128: // noteOff
-            noteOff(note,timeStamp);
+            noteOff(pitch, timeStamp);
             break;
         // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
     }
 }
 
-function  noteOn(note,timeStamp){
+function  noteOn(pitch, timeStamp, velocity){
     resume();
 
     if(playSynth){
-        changeSynthNote(note);
+        changeSynthNote(pitch);
         synthNoteOn();
     }
     else{
         //suona piano
+        instrumentNoteOn(pitch, velocity);
     }
 
-    activeNotes.push(note);
+    activeNotes.push(pitch);
 }
 
-function noteOff(note, timeStamp){  
+function noteOff(pitch, timeStamp){  
 
-    let index = activeNotes.indexOf(note);
+    let index = activeNotes.indexOf(pitch);
    
     activeNotes.splice(index, 1);
 
@@ -64,12 +66,13 @@ function noteOff(note, timeStamp){
     }
     else{
         //note off piano
+        instrumentNoteOff(pitch);
     }
 }
 
-function fnPlayNote(note, octave) {
+function fnPlayNote(pitch, octave) {
 
-    src = __audioSynth.generate(selectSound.value, note, octave, 2);
+    src = __audioSynth.generate(selectSound.value, pitch, octave, 2);
     container = new Audio(src);
     container.addEventListener('ended', function() { container = null; });
     container.addEventListener('loadeddata', function(e) { e.target.play(); });
@@ -78,4 +81,26 @@ function fnPlayNote(note, octave) {
     container.load();
     return container;
 
-};
+}
+
+function instrumentNoteOn(pitch, velocity){ 
+    instrumentNoteOff(pitch);
+    var envelope = player.queueWaveTable(audioContext, audioContext.destination, tone, 0, pitch, default_duration, velocity / 100);
+    var note = {
+        pitch: pitch,
+        envelope: envelope
+    };
+    activeNotes.push(note);
+}
+
+function instrumentNoteOff(pitch){
+    for (var i = 0; i < activeNotes.length; i++) {
+        if (activeNotes[i].pitch == pitch) {
+            if (activeNotes[i].envelope) {
+                activeNotes[i].envelope.cancel();
+            }
+            activeNotes.splice(i, 1);
+            return;
+        }
+    }
+}
