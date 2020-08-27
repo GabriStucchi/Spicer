@@ -3,8 +3,6 @@ class Chord {
   #notes
   #type
   #root
-  #inversion
-  #grade
 
   constructor(...args) {
     this.#notes = [];
@@ -26,11 +24,8 @@ class Chord {
   identifyChord(){
     let pitches = notes.slice() // copies the array by value
     let interval = []
-
     pitches.sort(function(a, b){return a - b}); //native js sorting
     let lowestMNote = pitches[0].getMidiNote();
-
-
 
     for (var i = 0; i < pitches.length - 1; i++) {
       interval.push(pitches[i+1].getMidiNote()-lowestMNote) //calcolo l'intervallo del pitch dalla nota più bassa
@@ -40,166 +35,19 @@ class Chord {
       }
     }
 
-    //Riordino gli intervalervalli
-    interval.sort(function(a, b){return a - b});
-
-    //Elimino gli unisoni
-    interval = [... new Set(interval)]
-
-    // deletes the 0 interval since it's not really an interval
-    if (interval[0] == 0) {
+    interval.sort(function(a, b){return a - b}); //Riordino gli intervalervalli
+    interval = [... new Set(interval)] //Elimino gli unisoni
+    if (interval[0] == 0) {     // deletes the 0 interval since it's not really an interval
       interval.shift()
     }
-
-
-
-// TODO: condense the following lines of code
-    //Confronto con i vari tipi di accordi e quando riscontro una somiglianza completo i campi
-    if (JSON.stringify(interval)==JSON.stringify(maj0)) {
-      chord.setType('maj')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
+    //searches in the chordsIntervals map for my interval and makes my chord of the found Type
+    this.#type = chordsIntervals[JSON.stringify(interval)]
+    if(this.type===undefined){ //if type not found then the root is undefined as well
+      this.#root=undefined;
+    }else{
+      this.#root = pitches[this.#type.rootPos]
     }
-    else if (JSON.stringify(interval)==JSON.stringify(maj1)) {
-      chord.setType('maj')
-      chord.setInversion(1)
-      chord.setRoot(pitches[2])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(maj2)) {
-      chord.setType('maj')
-      chord.setInversion(2)
-      chord.setRoot(pitches[1])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(min0)) {
-      chord.setType('min')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(min1)) {
-      chord.setType('min')
-      chord.setInversion(1)
-      chord.setRoot(pitches[2])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(min2)) {
-      chord.setType('min')
-      chord.setInversion(2)
-      chord.setRoot(pitches[1])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dim0)) {
-      chord.setType('dim')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dim1)) {
-      chord.setType('dim')
-      chord.setInversion(1)
-      chord.setRoot(pitches[2])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dim2)) {
-      chord.setType('dim')
-      chord.setInversion(2)
-      chord.setRoot(pitches[1])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(aug0)) {
-      chord.setType('aug')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-
-    else if (JSON.stringify(interval)==JSON.stringify(maj70)) {
-      chord.setType('maj7')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(maj71)) {
-      chord.setType('maj7')
-      chord.setInversion(1)
-      chord.setRoot(pitches[3])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(maj72)) {
-      chord.setType('maj7')
-      chord.setInversion(2)
-      chord.setRoot(pitches[2])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(maj73)) {
-      chord.setType('maj7')
-      chord.setInversion(3)
-      chord.setRoot(pitches[1])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(min70)) {
-      chord.setType('min7')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(min71)) {
-      chord.setType('min7')
-      chord.setInversion(1)
-      chord.setRoot(pitches[3])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(min72)) {
-      chord.setType('min7')
-      chord.setInversion(2)
-      chord.setRoot(pitches[2])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(min73)) {
-      chord.setType('min7')
-      chord.setInversion(3)
-      chord.setRoot(pitches[1])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dom70)) {
-      chord.setType('dom7')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dom71)) {
-      chord.setType('dom7')
-      chord.setInversion(1)
-      chord.setRoot(pitches[3])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dom72)) {
-      chord.setType('dom7')
-      chord.setInversion(2)
-      chord.setRoot(pitches[2])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dom73)) {
-      chord.setType('dom7')
-      chord.setInversion(3)
-      chord.setRoot(pitches[3])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(dim70)) {
-      chord.setType('dim7')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(sdim0)) {
-      chord.setType('sdim')
-      chord.setInversion(0)
-      chord.setRoot(pitches[0])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(sdim1)) {
-      chord.setType('sdim')
-      chord.setInversion(1)
-      chord.setRoot(pitches[3])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(sdim2)) {
-      chord.setType('sdim')
-      chord.setInversion(2)
-      chord.setRoot(pitches[2])
-    }
-    else if (JSON.stringify(interval)==JSON.stringify(sdim3)) {
-      chord.setType('sdim')
-      chord.setInversion(3)
-      chord.setRoot(pitches[1])
-    }
-    else {
-      //Se non trovo nessuna somiglianza rimane undefined (sarà eliminato dalla progressione armonica)
-      chord.setType('')
-      chord.setInversion('undefined')
-      chord.setRoot('undefined')
-    }
-
   }
-
 
 //inverts the chord n times
   invert(n){
@@ -242,18 +90,13 @@ findChordGrade(key) {
     return this.#root
   }
 
-  getType(){
-    return this.#type;
+  getName(){
+    return this.#type.getName();
   }
   getInversion(){
-    return this.#inversion;
+    return this.#type.getInversion();
   }
   getGrade(){
     return this.#grade;
   }
-  getTimeStamp(){
-    return this.#timestamp;
-  }
-
-
 }
