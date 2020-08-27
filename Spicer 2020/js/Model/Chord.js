@@ -12,6 +12,7 @@ class Chord {
           this.#notes.push(item); //adds the argument to the note list
     });
     this.#grade = undefined;
+    identifyChord()
   }
 
   addNotes(...args){ //loops throught the arguments
@@ -19,6 +20,7 @@ class Chord {
         if(item.constructor.name == Note.name) //checks that item is a note
           this.#notes.push(item); //adds the argument to the note list
     });
+    identifyChord()
   }
 
 //finds the root, inverion and type of the chord
@@ -36,12 +38,7 @@ class Chord {
         interval[i]-=(Math.floor(interval[i]/12))*12;
       }
     }
-
     interval.sort(function(a, b){return a - b}); //Riordino gli intervalervalli
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //todo fix!!! perchè se ordini gli intervalli vuol dire che perdi l'informazione sui rivolti!!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     interval = [... new Set(interval)] //Elimino gli unisoni
 
@@ -57,7 +54,6 @@ class Chord {
       this.#root = pitches[this.#type.getRootPos()]
     }
   }
-
 
 //find the grade of the chord
   findChordGrade() {
@@ -85,10 +81,14 @@ class Chord {
 
 
   //inverts the chord n times
-    invert(n){
-  // TODO:
+    invertTimes(n){
+      for(i = 0; i < n; ++i){
+        temp = this.#notes.shift()
+        temp.setMidiNote(temp.getMidiNote()+12)
+        this.#notes.push(temp);
+      }
+      identifyChord();
     }
-
 
 
     getNotes(){
