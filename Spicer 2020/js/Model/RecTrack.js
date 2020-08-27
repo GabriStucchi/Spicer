@@ -1,7 +1,7 @@
 //rec track holds the notes played during recording
 
 class RecTrack {
-  #notes[]
+  #notes
 
   constructor(...args) {
     this.#notes = [];
