@@ -10,19 +10,25 @@ class Mixer {
         this.#noise = new Tone.Noise("white").start();
         this.#noise.volume.value = -10;
         this.#noiseGain = new Tone.Gain(0);
+        this.#noise.connect(this.#noiseGain);
     }
 
-    getGain1() {
-        return this.#osc1Gain;
+    getGain(gain) {
+        if(gain == 0)
+            return this.#osc1Gain;
+        else if(gain ==1)
+            return this.#osc2Gain;
+        else if(gain == 2)
+            return this.#noiseGain;
     }
 
-    getGain2() {
+    /*getGain2() {
         return this.#osc2Gain;
     }
 
     getNoiseGain() {
         return this.#noiseGain;
-    }
+    }*/
 
     changeVolumeValue(index, value) {
         if(index==0)
@@ -37,11 +43,11 @@ class Mixer {
         this.#noise.type = value;
     }
 
-    connect(osc1, osc2) {
+    /*connect(osc1, osc2) {
         osc1.getOsc().connect(this.#osc1Gain);
         osc2.getOsc().connect(this.#osc2Gain);
         this.#noise.connect(this.#noiseGain);
-    }
+    }*/
 
     muteNoise(bool){
         this.#noise.mute = bool;
