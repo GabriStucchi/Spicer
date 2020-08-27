@@ -5,7 +5,6 @@ class Chord {
   #root
   #inversion
   #grade
-  #timestamp
 
   constructor(...args) {
     this.#notes = [];
@@ -13,7 +12,6 @@ class Chord {
         if(item.constructor.name == Note.name) //checks that item is a note
           this.#notes.push(item); //adds the argument to the note list
     });
-    this.computeTimeStamp();
   }
 
   addNotes(...args){ //loops throught the arguments
@@ -21,31 +19,31 @@ class Chord {
         if(item.constructor.name == Note.name) //checks that item is a note
           this.#notes.push(item); //adds the argument to the note list
     });
-    this.computeTimeStamp();
   }
 
+//finds the root of the chord
   findRoot(){
-
+    // TODO: andare a copiare
   }
 
-  computeInversion(){
-
+//finds the type of the chord
+  findType(){
+    // TODO: andare a copiare
   }
 
-  invert(num){
-
+//find the current inversion of the chord
+  findInversion(){
+    // TODO: andare a copiare
   }
 
+//inverts the chord n times
+  invert(n){
+// TODO:
+  }
+
+//find the grade of the chord
   computeGrade(key){
-
-  }
-
-  computeTimeStamp(){
-    this.#timestamp = 0;
-    this.#notes.forEach((item,i)=>{
-      if(item.constructor.name == Note.name) //checks if i'm passing a note as parameter
-      this.#timestamp = this.#timestamp + item.getInstantOn()/this.#notes.length
-    })
+    // TODO: andare a copiare
   }
 
 

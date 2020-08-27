@@ -1,5 +1,6 @@
 class ChordsTrack {
   #chords
+  #key
 
   constructor(...args) {
     this.#chords = [];
@@ -23,5 +24,9 @@ class ChordsTrack {
 
   getChords(){
     return this.#chords;
+  }
+
+  setKey(key){
+    this.#key=key;
   }
 }

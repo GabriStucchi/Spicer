@@ -5,6 +5,9 @@
 
 //let noteOnCounter = 0;
 
+// TODO: uniform methods for synth and instrument
+//move methods for instrumentnoteOn ecc on a specific file
+
 const default_duration = 123456789;
 let activeNotes = [];
 
@@ -19,6 +22,7 @@ function onMIDISuccess(midiAccess) {
         input.onmidimessage = getMIDIMessage;
     }
 
+// TODO: add record condition
 function getMIDIMessage(message) {
     var command = message.data[0];
     var pitch = message.data[1];

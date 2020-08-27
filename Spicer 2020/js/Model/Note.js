@@ -15,7 +15,8 @@ class Note {
     this.#velocity = velocity;
     this.#instantOn = instantOn; //when the note is first played
     this.#instantOff = instantOff; //when the note is stopped
-    this.#duration = this.#instantOff - this.#instantOn;
+    if(instantOff!==undefined)
+      this.#duration = this.#instantOff - this.#instantOn;
     this.#frequency = 440 * Math.pow(2, (this.#midiNote-69)/12);
   }
 
@@ -51,5 +52,12 @@ class Note {
   setMidiNote(mnote){
     this.#midiNote=mnote;
     this.#frequency = 440 * Math.pow(2, (this.midiNote-69)/12);
+  }
+
+  setInstantOff(instOff){
+    if(instantOff!==undefined){
+      this.#instantOff= instOff;
+      this.#duration = this.#instantOff - this.#instantOn;
+    }
   }
 }
