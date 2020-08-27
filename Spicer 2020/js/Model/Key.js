@@ -8,15 +8,15 @@ class Key {
 
 //returns the tonic of the tonality (ex "C", "F#", ecc)
   getKeyNote(){
-
+    return this.#tonality;
   }
 
   //returns true if major
   isMajor(){
-
-  }
-//returns the couple tonality and type as a single element
-  getKey(){
-
+    if(this.#type=="Maj")
+      return true;
+    if(this.#type=="Min")
+      return false;
+    return undefined
   }
 }

@@ -3,6 +3,7 @@ class Chord {
   #notes
   #type
   #root
+  #grade
 
   constructor(...args) {
     this.#notes = [];
@@ -22,9 +23,10 @@ class Chord {
 
 //finds the root, inverion and type of the chord
   identifyChord(){
-    let pitches = notes.slice() // copies the array by value
+    let pitches = this.#notes.slice() // copies the array by value
     let interval = []
-    pitches.sort(function(a, b){return a - b}); //native js sorting
+
+    pitches.sort(function(a, b){return a.getMidiNote() - b.getMidiNote()}); //native js sorting
     let lowestMNote = pitches[0].getMidiNote();
 
     for (var i = 0; i < pitches.length - 1; i++) {
@@ -36,67 +38,74 @@ class Chord {
     }
 
     interval.sort(function(a, b){return a - b}); //Riordino gli intervalervalli
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //todo fix!!! perchè se ordini gli intervalli vuol dire che perdi l'informazione sui rivolti!!!!
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     interval = [... new Set(interval)] //Elimino gli unisoni
+
     if (interval[0] == 0) {     // deletes the 0 interval since it's not really an interval
       interval.shift()
     }
+
     //searches in the chordsIntervals map for my interval and makes my chord of the found Type
     this.#type = chordsIntervals[JSON.stringify(interval)]
-    if(this.type===undefined){ //if type not found then the root is undefined as well
+    if(this.#type===undefined){ //if type not found then the root is undefined as well
       this.#root=undefined;
     }else{
-      this.#root = pitches[this.#type.rootPos]
+      this.#root = pitches[this.#type.getRootPos()]
     }
   }
 
-//inverts the chord n times
-  invert(n){
-// TODO:
-  }
 
 //find the grade of the chord
-findChordGrade(key) {
+  findChordGrade() {
+    //obtain the number of the tonic of the key in semitones (0-11)
+    let tonic = possible_notes.indexOf(key.getKeyNote())
 
-  //obtain the number of the tonic of the key in semitones (0-11)
-  let tonic = possible_notes.indexOf(key.getKeyNote())
+    //shifts the root note of the chord to the 0 octave
+    let zeroRoot = this.#root - Math.floor(this.#root/12) * 12;
 
-  //shifts the root note of the chord to the 0 octave
-  let zeroRoot = this.#root - Math.floor(this.#root/12) * 12;
+    //distance between the zeroRoot of the chord and the tonic of the key
+    let interval = zeroRoot - tonic
 
-  //distance between the zeroRoot of the chord and the tonic of the key
-  let interval = zeroRoot - tonic
+    if (key.isMajor){
+      this.#grade = major.find(interval);
+    }else {
+      this.#grade = minor.find(interval);
+    }
+    //if the root note is not found in the tonality then the grade is left undefined
+    //if the grade is undefined we are not going to _s p i c e_ it
 
-  if (key.isMajor){
-    this.#grade = major.find(interval);
-  }else {
-    this.#grade = minor.find(interval);
-  }
-  //if the root note is not found in the tonality then the grade is left undefined
-  //if the grade is undefined we are not going to _s p i c e_ it
-
-  if (this.#grade!==undefined){
-    this.#grade++; //this is done to shift the 0 value to 1;
-  }
-
-
-}
-
-
-  getNotes(){
-    return this.#notes
+    if (this.#grade!==undefined){
+      this.#grade++; //this is done to shift the 0 value to 1;
+    }
   }
 
-  getRoot(){
-    return this.#root
-  }
 
-  getName(){
-    return this.#type.getName();
-  }
-  getInversion(){
-    return this.#type.getInversion();
-  }
-  getGrade(){
-    return this.#grade;
-  }
+  //inverts the chord n times
+    invert(n){
+  // TODO:
+    }
+
+
+
+    getNotes(){
+      return this.#notes
+    }
+
+    getRoot(){
+      return this.#root
+    }
+
+    getName(){
+      return this.#type.getName();
+    }
+    getInversion(){
+      return this.#type.getInversion();
+    }
+    getGrade(){
+      return this.#grade;
+    }
 }

@@ -18,7 +18,7 @@ let major = [0, 2, 4, 5, 7, 9, 11]
 let minor = [0, 2, 3, 5, 7, 8, 10]
 
 // TODO:  initialize a key object that will be used to get the current key values
-//let key = new Key()
+let key = new Key("C","Maj")
 
 
 let chordsIntervals = {
