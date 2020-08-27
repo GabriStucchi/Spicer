@@ -1,0 +1,5 @@
+class ChordTrack {
+  constructor() {
+
+  }
+}

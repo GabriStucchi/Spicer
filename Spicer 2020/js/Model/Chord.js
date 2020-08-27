@@ -49,4 +49,26 @@ class Chord {
   }
 
 
+  getNotes(){
+    return this.#notes
+  }
+
+  getRoot(){
+    return this.#root
+  }
+
+  getType(){
+    return this.#type;
+  }
+  getInversion(){
+    return this.#inversion;
+  }
+  getGrade(){
+    return this.#grade;
+  }
+  getTimeStamp(){
+    return this.#timestamp;
+  }
+
+
 }
