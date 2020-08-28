@@ -14,13 +14,17 @@ class Chord {
     this.#grade = undefined;
   }
 
+
+
   addNotes(...args){ //loops throught the arguments
     args.forEach((item, i) => {
         if(item.constructor.name == Note.name) //checks that item is a note
           this.#notes.push(item); //adds the argument to the note list
     });
-    identifyChord()
+  //  this.identifyChord()
   }
+
+
 
 //finds the root, inverion and type of the chord
   identifyChord(){
@@ -59,16 +63,16 @@ class Chord {
     //obtain the number of the tonic of the key in semitones (0-11)
     let tonic = possible_notes.indexOf(key.getKeyNote())
 
-    //shifts the root note of the chord to the 0 octave
-    let zeroRoot = this.#root - Math.floor(this.#root/12) * 12;
 
+    //shifts the root note of the chord to the 0 octave
+    let zeroRoot = this.#root.getMidiNote() - Math.floor(this.#root.getMidiNote()/12) * 12;
     //distance between the zeroRoot of the chord and the tonic of the key
     let interval = zeroRoot - tonic
 
-    if (key.isMajor){
-      this.#grade = major.find(interval);
+    if (key.isMajor()){
+      this.#grade = major.findIndex(element => element == interval);
     }else {
-      this.#grade = minor.find(interval);
+      this.#grade = minor.findIndex(element => element == interval);
     }
     //if the root note is not found in the tonality then the grade is left undefined
     //if the grade is undefined we are not going to _s p i c e_ it
@@ -94,22 +98,55 @@ class Chord {
     }
 
 
-    add7(){
 
-      
+
+
+//todo fix major problems (concerning octave position)
+    add7(){
+      if((this.#grade!== undefined) && (this.#root!== undefined) ){
+        let seventh
+        let newVel
+        let newOn
+        let newOff
+        let newQueue;
+
+        if (this.#notes.length == 3) {
+          //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
+          if(key.isMajor()){
+            seventh = major[(this.#grade + 5)%major.length] + 12 - major[this.#grade - 1]
+          }else{ //IF MINOR
+            seventh = minor[(this.#grade + 5)%minor.length] + 12 - minor[this.#grade - 1]
+          }
+
+          if (seventh > 12) {
+            seventh = seventh - 12
+          }
+          seventh = this.#root.getMidiNote() + seventh
+          this.#notes.forEach((item) => {
+            newVel += item.getVelocity()/this.#notes.length}
+          );
+
+          newOn = this.#notes[this.#notes.length -1 ].getInstantOn()
+          newOff = this.#notes[this.#notes.length -1 ].getInstantOff()
+          newQueue = this.#notes[this.#notes.length -1 ].getQueue()
+
+
+          this.addNotes(new Note(seventh,newQueue,newVel,newOn,newOff))
+        }
+      }
     }
 
-
-
-
-
-
-
-
-
-
-
-
+  //Aggiunge la 9^ sempre maggiore!!
+     add9(){
+      let ninth
+      //Nella scala maggiore il III grado può essere minore o maggiore (preso in prestito dalla relativa minore melodica)
+      if (this.#grade == 3 &&
+         (this.#type.getName() == 'maj' || this.#type.getName() == 'maj7')) {
+        ninth = this.#root + 13
+      }else {
+        ninth = chord.getRoot() + 14
+      }
+    }
 
 
 
@@ -130,4 +167,5 @@ class Chord {
     getGrade(){
       return this.#grade;
     }
+
 }

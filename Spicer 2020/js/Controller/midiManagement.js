@@ -31,7 +31,8 @@ function getMIDIMessage(message) {
     switch (command) {
         case 144: // noteOn
         {
-            noteOn(pitch, timeStamp, velocity)
+
+            noteOn(new Note(pitch,velocity, timeStamp,undefined,undefined))
             break
         }
         case 128: // noteOff
@@ -41,28 +42,27 @@ function getMIDIMessage(message) {
     }
 }
 
-function  noteOn(pitch, timeStamp, velocity){
+function  noteOn(note){
     resume();
 
-    if(playSynth){
-        changeSynthNote(pitch);
-        activeNotes.push(pitch);
+    if(note.constructor.name == Note.name){ //checks that note is actually a note)
+      if(playSynth){
+        changeSynthNote(note);
+        activeNotes.push(note);
         synthNoteOn();
+      }
+      else{
+          //suona piano
+          instrumentNoteOn(note);
+      }
     }
-    else{
-        //suona piano
-        instrumentNoteOn(pitch, velocity);
-    }
+
+
 }
 
 function noteOff(pitch, timeStamp){
-
-    let index = activeNotes.indexOf(pitch);
-
-
-
+    let index = activeNotes.map(x => x.getMidiNote()).indexOf(pitch); // gets the index of the note with the searched pitch
     if(playSynth){
-        activeNotes.splice(index, 1);
         if(activeNotes.length == 0)
             synthNoteOff();
         else if(index == activeNotes.length)
@@ -70,66 +70,32 @@ function noteOff(pitch, timeStamp){
     }
     else{
         //note off piano
-        instrumentNoteOff(pitch);
+        instrumentNoteOff(timeStamp, index);
     }
 }
 
-function fnPlayNote(pitch, octave) {
 
-    src = __audioSynth.generate(selectSound.value, pitch, octave, 2);
-    container = new Audio(src);
-    container.addEventListener('ended', function() { container = null; });
-    container.addEventListener('loadeddata', function(e) { e.target.play(); });
-    container.autoplay = false;
-    container.setAttribute('type', 'audio/wav');
-    container.load();
-    return container;
 
-}
+function instrumentNoteOn(pitch,timestamp, velocity){
+    instrumentNoteOff(pitch,timeStamp);
+    let envelope = player.queueWaveTable(audioContext, audioContext.destination, tone, 0, pitch, default_duration, velocity / 100);
+    let note = new Note(pitch,envelope,velocity,timeStamp,undefined)
+    recActiveNotes.push(note);
 
-function instrumentNoteOn(pitch, velocity){
-    instrumentNoteOff(pitch);
-    var envelope = player.queueWaveTable(audioContext, audioContext.destination, tone, 0, pitch, default_duration, velocity / 100);
-    var note = {
-        pitch: pitch,
-        envelope: envelope
-    };
-    activeNotes.push(note);
-
-    //Controllo se viene suonato un accordo e in tal caso lo creo e riconosco
-    if (activeNotes.length>2 ) {
-      chord = new accordo
-
-      //Inserisco le active Notes al campo notes di chord
-      chord.addNote(activeNotes.pitch)
-      chordRecognition(chord)
-      console.log(chord);
-      //show(chord)
+    if(onAir){
+      recorder.record(note) //records the note
     }
 }
 
-function instrumentNoteOff(pitch){
-    for (var i = 0; i < activeNotes.length; i++) {
-        if (activeNotes[i].pitch == pitch) {
-            if (activeNotes[i].envelope) {
-                activeNotes[i].envelope.cancel();
-            }
-            activeNotes.splice(i, 1);
-            return;
+function instrumentNoteOff(timeStamp,index){
+
+  if (activeNotes[index].envelope) {
+      activeNotes[index].envelope.cancel();
+  }
+  recorder.endNote(activeNotes[index],timeStamp);
+  activeNotes.splice(index, 1);
+
+  return;
         }
     }
-}
-
-//Mostra l'accordo in console
-function show(chord){
-  if (chord.getNotes().length>2) {
-    root = chord.getRoot()
-
-    while (root>=12) {
-      root = root - 12
-    }
-    root = keys[root]
-    console.log('Accordo di ' + root + chord.getType() + ', ' + chord.getInversion()
-      + ' rivolto. Grado della scala: ' + chord.getGrade());
-  }
 }

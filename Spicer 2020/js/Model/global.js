@@ -20,6 +20,8 @@ let minor = [0, 2, 3, 5, 7, 8, 10]
 // TODO:  initialize a key object that will be used to get the current key values
 let key = new Key("C","Maj")
 
+let tempo = new Tempo(120)
+
 
 let chordsIntervals = {
 '[4,7]': new ChordType('maj',0,0),
@@ -50,3 +52,7 @@ let chordsIntervals = {
 '[4,6,9]': new ChordType('sdim',2,2),
 '[2,5,8]': new ChordType('sdim',3,1)
 }
+
+
+timeThresh = 25; //time threshold under which we add a note to a chord
+timeDist = 2;

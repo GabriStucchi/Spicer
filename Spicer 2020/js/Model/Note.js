@@ -55,9 +55,24 @@ class Note {
   }
 
   setInstantOff(instOff){
-    if(instantOff!==undefined){
+    if(instOff!==undefined){
       this.#instantOff= instOff;
       this.#duration = this.#instantOff - this.#instantOn;
     }
   }
+
+  setInstantOn(instOn){
+    if(instOn!==undefined){
+      this.#instantOn= instOn;
+      this.#duration = this.#instantOff - this.#instantOn;
+    }
+  }
+
+  setVelocity(vel){
+    this.#velocity = vel
+  }
+  setQueue(queue){
+    this.#queue = queue
+  }
+
 }

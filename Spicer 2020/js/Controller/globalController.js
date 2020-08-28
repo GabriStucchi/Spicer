@@ -6,6 +6,7 @@ function toggleInstrument(){
     if(playSynth){
         muteSynth(true);
         synthNoteOff();
+
     }
     else
         muteSynth(false);

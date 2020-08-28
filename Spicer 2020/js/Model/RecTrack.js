@@ -5,7 +5,6 @@
 //are pressed, but they're also stored in the "now playing" array in midi manager
 //on note off we will change the note off parameter of the note in now played that will also change the value here in rec track
 
-
 class RecTrack {
   #notes
 
@@ -28,7 +27,7 @@ class RecTrack {
       });
     }
   }
-  
+
 //adds a single note
   addNote(note){
     if(onAir){
