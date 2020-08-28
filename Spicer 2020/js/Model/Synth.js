@@ -1,6 +1,7 @@
 class Synth {
   #oscillators;
   #mixer;
+  #velocity;
   #filter;
   #lfos;        //0: Pitch; 1: Cutoff
   #envelopes;   //0: Amplitude; 1: Filter
@@ -14,6 +15,7 @@ class Synth {
     this.#oscillators = [new Oscillator(440, "sine"),     //Osc 1
                          new Oscillator(440, "sine")];    //Osc 2
     this.#mixer = new Mixer;
+    this.#velocity = new Tone.Gain(0);
     this.#filter = new Tone.Filter({frequency:10010, type:"lowpass", rolloff:-24});
     this.#lfos = [new Tone.LFO({frequency:"0", min:0, max:0}),    //Pitch LFO
                   new Tone.LFO({frequency:"0", min:0, max:0})];   //Cutoff LFO
@@ -29,9 +31,10 @@ class Synth {
       osc.getOsc().connect(this.#mixer.getGain(index));   //Each Oscillator to its Mixer gain
     })
     this.#lfos[1].connect(this.#filter.detune);           //Cutoff LFO to Filter detune (cutoff frequency offset)
-    this.#mixer.getGain(0).connect(this.#envelopes[0]);   //Mixer gains (Osc 1, Osc 2, Noise) to Amplitude Envelope
+    this.#mixer.getGain(0).connect(this.#envelopes[0]);   //Mixer gains (Osc 1, Osc 2, Noise) to Velocity gain
     this.#mixer.getGain(1).connect(this.#envelopes[0]);
     this.#mixer.getGain(2).connect(this.#envelopes[0]);
+    this.#velocity.connect(this.#envelopes[0]);           //Velocity gain to Amplitude Envelope
     this.#envelopes[0].connect(this.#filter);             //Amplitude Envelope to Filter
     this.#envelopes[1].connect(this.#filter.frequency);   //Filter Envelope to Filter frequency 
     this.#filter.connect(this.#delay);                    //Filter to Delay
@@ -158,6 +161,8 @@ class Synth {
   //Change frequency of both Oscillators
   changeNote(note) {
     this.#oscillators.forEach((osc) => osc.setFrequency(note.getFrequency()));
+    this.#velocity.gain.value = note.getVelocity()/127;
+    console.log("Velocity " + note.getVelocity());
   }
 
   //Trigger attack of both Envelopes
