@@ -17,9 +17,14 @@ function toggleInstrument(){
 
 
 document.getElementById("rec").onclick = ()=> {
-  onAir = true
-  console.log(currentTime());
-  recorder.setStart(currentTime())
+  if(!playSynth){
+    onAir = !onAir;
+    if(onAir){
+      recorder.setStart(currentTime())
+    }else{
+      console.log(recorder.getRecTrack())
+    }
+  }
 }
 
 

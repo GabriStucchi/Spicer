@@ -28,15 +28,13 @@ function onMIDISuccess(midiAccess) {
 
 // TODO: add record condition
 function getMIDIMessage(message) {
-    var command = message.data[0];
-    var pitch = message.data[1];
-    var velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+    let command = message.data[0];
+    let pitch = message.data[1];
+    let velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
     var timestamp = currentTime()
-    console.log(timestamp)
     switch (command) {
         case 144: // noteOn
         {
-
             noteOn(new Note(pitch,velocity, timestamp,undefined,undefined))
             break
         }
