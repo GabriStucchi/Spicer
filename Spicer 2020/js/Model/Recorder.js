@@ -17,7 +17,11 @@ class Recorder{
   }
 
   endNote(note,timeStamp){
-    note.setInstantOff(timeStamp - timeStart)
+    note.setInstantOff(timeStamp - this.#timeStart)
+  }
+
+  getRecTrack(){
+    return this.#track;
   }
 
 

@@ -31,8 +31,8 @@ class RecTrack {
 //adds a single note
   addNote(note){
     if(onAir){
-      if(item.constructor.name == Note.name) //checks that item is a note
-        this.#notes.push(item); //adds the argument to the note list
+      if(note.constructor.name == Note.name) //checks that item is a note
+        this.#notes.push(note); //adds the argument to the note list
     }
   }
 
