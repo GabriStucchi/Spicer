@@ -61,7 +61,7 @@ function changeEnvelope(knob, index) {
   knob.oninput = () => synth.setEnvelope(index, knob.value);
 }
 
-//-------- PLAY ---------
+//-------- MIDI ---------
 
 function changeSynthNote(note) {
   synth.changeNote(note);
@@ -73,6 +73,10 @@ function synthNoteOn() {
 
 function synthNoteOff() {
   synth.stop();
+}
+
+function muteSynth(bool) {
+  synth.mute(bool);
 }
 
 
