@@ -18,9 +18,12 @@ function onMIDIFailure() {
 }
 
 function onMIDISuccess(midiAccess) {
-    for (var input of midiAccess.inputs.values())
-        input.onmidimessage = getMIDIMessage;
+    for (var input of midiAccess.inputs.values()){
+        input.onmidimessage = getMIDIMessage
     }
+
+    }
+
 
 // TODO: add record condition
 function getMIDIMessage(message) {
@@ -28,6 +31,7 @@ function getMIDIMessage(message) {
     var pitch = message.data[1];
     var velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
     var timeStamp = message.timeStamp
+    console.log(timeStamp)
     switch (command) {
         case 144: // noteOn
         {
@@ -62,25 +66,28 @@ function  noteOn(note){
 
 function noteOff(pitch, timeStamp){
     let index = activeNotes.map(x => x.getMidiNote()).indexOf(pitch); // gets the index of the note with the searched pitch
-    if(playSynth){
-        if(activeNotes.length == 0)
-            synthNoteOff();
-        else if(index == activeNotes.length)
-            changeSynthNote(activeNotes[activeNotes.length - 1]);
+    if(index!=-1){ // if the note is found in active notes
+      if(playSynth){
+          if(activeNotes.length == 0)
+              synthNoteOff();
+          else if(index == activeNotes.length)
+              changeSynthNote(activeNotes[activeNotes.length - 1]);
+      }
+      else{
+          //note off piano
+          instrumentNoteOff(timeStamp, index);
+      }
     }
-    else{
-        //note off piano
-        instrumentNoteOff(timeStamp, index);
-    }
+
 }
 
 
 
-function instrumentNoteOn(pitch,timestamp, velocity){
-    instrumentNoteOff(pitch,timeStamp);
-    let envelope = player.queueWaveTable(audioContext, audioContext.destination, tone, 0, pitch, default_duration, velocity / 100);
-    let note = new Note(pitch,envelope,velocity,timeStamp,undefined)
-    recActiveNotes.push(note);
+function instrumentNoteOn(note){
+    noteOff(note.getMidiNote(),note.getInstantOn());
+    let queue = player.queueWaveTable(audioContext, audioContext.destination, tone, 0, note.getMidiNote(), default_duration, note.getVelocity / 100);
+    note.setQueue(queue);
+    activeNotes.push(note);
 
     if(onAir){
       recorder.record(note) //records the note
@@ -89,13 +96,13 @@ function instrumentNoteOn(pitch,timestamp, velocity){
 
 function instrumentNoteOff(timeStamp,index){
 
-  if (activeNotes[index].envelope) {
-      activeNotes[index].envelope.cancel();
+  if (activeNotes[index].getQueue()) {
+      activeNotes[index].getQueue().cancel();
   }
-  recorder.endNote(activeNotes[index],timeStamp);
+  if(onAir){
+    recorder.endNote(activeNotes[index],timeStamp);
+  }
   activeNotes.splice(index, 1);
 
   return;
-        }
-    }
-}
+  }

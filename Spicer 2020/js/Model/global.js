@@ -19,8 +19,8 @@ let minor = [0, 2, 3, 5, 7, 8, 10]
 
 // TODO:  initialize a key object that will be used to get the current key values
 let key = new Key("C","Maj")
-
 let tempo = new Tempo(120)
+let recorder = new Recorder();
 
 
 let chordsIntervals = {

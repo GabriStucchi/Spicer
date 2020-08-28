@@ -12,7 +12,7 @@ class Recorder{
     this.#track.addNote(note); //add note automatically checks if the arg is a note
   }
 
-  setStart(timeStamp){ //sets the timestamp of the start of the recording (first downbeat after preclick)
+  setStart(timeStart){ //sets the timestamp of the start of the recording (first downbeat after preclick)
     this.#timeStart = timeStart
   }
 
