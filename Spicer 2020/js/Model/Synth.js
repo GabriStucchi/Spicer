@@ -31,9 +31,9 @@ class Synth {
       osc.getOsc().connect(this.#mixer.getGain(index));   //Each Oscillator to its Mixer gain
     })
     this.#lfos[1].connect(this.#filter.detune);           //Cutoff LFO to Filter detune (cutoff frequency offset)
-    this.#mixer.getGain(0).connect(this.#envelopes[0]);   //Mixer gains (Osc 1, Osc 2, Noise) to Velocity gain
-    this.#mixer.getGain(1).connect(this.#envelopes[0]);
-    this.#mixer.getGain(2).connect(this.#envelopes[0]);
+    this.#mixer.getGain(0).connect(this.#velocity);       //Mixer gains (Osc 1, Osc 2, Noise) to Velocity gain
+    this.#mixer.getGain(1).connect(this.#velocity);
+    this.#mixer.getGain(2).connect(this.#velocity);
     this.#velocity.connect(this.#envelopes[0]);           //Velocity gain to Amplitude Envelope
     this.#envelopes[0].connect(this.#filter);             //Amplitude Envelope to Filter
     this.#envelopes[1].connect(this.#filter.frequency);   //Filter Envelope to Filter frequency 
@@ -41,7 +41,6 @@ class Synth {
     this.#delay.connect(this.#reverb);                    //Delay to Reverb
     this.#reverb.connect(this.#outputGain);               //Reverb to Output Gain
     this.#outputGain.toDestination();
-
   }
 
   //------- LFO --------
@@ -158,17 +157,15 @@ class Synth {
 
   //-------- MIDI ---------
 
-  //Change frequency of both Oscillators
+  //Change frequency and velocity of both Oscillators
   changeNote(note) {
     this.#oscillators.forEach((osc) => osc.setFrequency(note.getFrequency()));
     this.#velocity.gain.value = note.getVelocity()/127;
-    console.log("Velocity " + note.getVelocity());
   }
 
   //Trigger attack of both Envelopes
   play() {
     this.#envelopes.forEach((envelope) => envelope.triggerAttack());
-    this.#reverb.generate();
   }
 
   //Trigger release phase of both Envelopes
