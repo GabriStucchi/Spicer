@@ -12,7 +12,6 @@ class Chord {
           this.#notes.push(item); //adds the argument to the note list
     });
     this.#grade = undefined;
-    identifyChord()
   }
 
   addNotes(...args){ //loops throught the arguments
@@ -80,15 +79,38 @@ class Chord {
   }
 
 
+
+
+//todo fixare
   //inverts the chord n times
     invertTimes(n){
-      for(i = 0; i < n; ++i){
+      let temp
+      for(let i = 0; i < n; ++i){
         temp = this.#notes.shift()
         temp.setMidiNote(temp.getMidiNote()+12)
         this.#notes.push(temp);
       }
-      identifyChord();
+     this.identifyChord();
     }
+
+
+    add7(){
+
+      
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     getNotes(){
