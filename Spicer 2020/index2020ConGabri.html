@@ -2,33 +2,27 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Spricer2k20</title>
+    <title>Spicer</title>
     <link rel="stylesheet" href="css/clearAll.css">
     <link rel="stylesheet" href="css/keyboard.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/synthStyle.css">
-<!-- MODEL -->
+
     <script src="js/Model/Key.js" defer></script>
     <script src="js/Model/ChordType.js" defer></script>
     <script src="js/Model/global.js" defer></script>
     <script src="js/Model/Note.js" defer></script>
     <script src="js/Model/Chord.js" defer></script>
-
+    <script src="js/Model/SynthComponents/Oscillator.js" defer></script>
+    <script src="js/Model/SynthComponents/Mixer.js" defer></script>
+    <script src="js/Model/Synth.js" defer></script>
 
     <script src="js/View/buildKeyboard.js" defer></script>
     <script src="js/View/KnobStyle.js" defer></script>
 
-    <script src="js/Synth/Oscillator.js" defer></script>
-    <script src="js/Synth/Mixer.js" defer></script>
-    <script src="js/Synth/Filter.js" defer></script>
-    <script src="js/Synth/Lfo.js" defer></script>
-    <script src="js/Synth/Envelope.js" defer></script>
-    <script src="js/Synth/FilterEnvelope.js" defer></script>
-    <script src="js/Synth/synth.js" defer></script>
-
-
     <script src="js/Controller/MidiManagement.js" defer></script>
-
+    <script src="js/Controller/globalController.js" defer></script>
+    <script src="js/Controller/synthController.js" defer></script>
 
     <script src="js/Instruments.js" defer></script>
 
@@ -79,35 +73,35 @@
                       <p class="label">PITCH</p>
 
                       <div class="singleKnob">
-                        <input type="range" class="input-knob lfoPitchParam"  name="rate" value="0.1" min="0.1" max="20" step="0.001" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
+                        <input type="range" class="input-knob lfoPitchParam"  name="0" value="0.1" min="0.1" max="20" step="0.001" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
                         <p class="knob-label">RATE</p>
                       </div>
 
                       <div class="singleKnob">
-                        <input type="range" class="input-knob lfoPitchParam"  name="amount" value="0" min="0" max="350" step="0.01" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
+                        <input type="range" class="input-knob lfoPitchParam"  name="0" value="0" min="0" max="350" step="0.01" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
                         <p class="knob-label">AMT</p>
                       </div>
 
                       <form class="radio-container">
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="sine" name="0" onclick="changeLfoWaveform(0, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" checked/>
+                              <input type="radio" class="input-switch lfoWaveform" value="sine" name="0" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" checked/>
                               <img class="invert-color" src="css/images/sine.svg" alt="sine">
                           </div>
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="triangle" name="0" onclick="changeLfoWaveform(0, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                              <input type="radio" class="input-switch lfoWaveform" value="triangle" name="0" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                               <img class="invert-color" src="css/images/triangle.svg" alt="triangle">
                           </div>
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="square" name="0" onclick="changeLfoWaveform(0, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                              <input type="radio" class="input-switch lfoWaveform" value="square" name="0" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                               <img class="invert-color" src="css/images/square.svg" alt="square">
                           </div>
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="sawtooth" name="0" onclick="changeLfoWaveform(0, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                              <input type="radio" class="input-switch lfoWaveform" value="sawtooth" name="0" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                               <img class="invert-color" src="css/images/sawtooth.svg" alt="sawtooth">
                           </div>
                         </form>
 
-                      <input type="checkbox" class="input-switch toggle" name="activation" value="0" onclick="toggleLfo(value)" data-src="css/images/switch_offon.png" data-diameter="50" />
+                      <input type="checkbox" class="input-switch toggle" name="0" data-src="css/images/switch_offon.png" data-diameter="50" />
 
                   </div>
 
@@ -118,37 +112,37 @@
 
 
                       <div class="singleKnob">
-                        <input type="range" class="input-knob lfoCutoffParam" name="rate" value="0.1" min="0.1" max="25" step="0.001" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
+                        <input type="range" class="input-knob lfoCutoffParam" name="1" value="0.1" min="0.1" max="25" step="0.001" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
                         <p class="knob-label">RATE</p>
                       </div>
 
 
                       <div class="singleKnob">
-                        <input type="range" class="input-knob lfoCutoffParam" name="amount" value="0" min="0" max="2500" step="0.01" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
+                        <input type="range" class="input-knob lfoCutoffParam" name="1" value="0" min="0" max="2500" step="0.01" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
                         <p class="knob-label">AMT</p>
                       </div>
 
 
                       <form class="radio-container">
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="sine" name="1" onclick="changeLfoWaveform(1, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" checked/>
+                              <input type="radio" class="input-switch lfoWaveform" value="sine" name="1" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" checked/>
                               <img class="invert-color" src="css/images/sine.svg" alt="sine">
                           </div>
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="triangle" name="1" onclick="changeLfoWaveform(1, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                              <input type="radio" class="input-switch lfoWaveform" value="triangle" name="1" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                               <img class="invert-color" src="css/images/triangle.svg" alt="triangle">
                           </div>
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="square" name="1" onclick="changeLfoWaveform(1, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                              <input type="radio" class="input-switch lfoWaveform" value="square" name="1" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                               <img class="invert-color" src="css/images/square.svg" alt="square">
                           </div>
                           <div class="vertical-radio">
-                              <input type="radio" class="input-switch lfoWaveform" value="sawtooth" name="1" onclick="changeLfoWaveform(1, value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                              <input type="radio" class="input-switch lfoWaveform" value="sawtooth" name="1" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                               <img class="invert-color" src="css/images/sawtooth.svg" alt="sawtooth">
                           </div>
                         </form>
 
-                      <input type="checkbox" class="input-switch toggle" name="activation" value="1" onclick="toggleLfo(value)" data-src="css/images/switch_offon.png" data-diameter="50" />
+                      <input type="checkbox" class="input-switch toggle" name="1" data-src="css/images/switch_offon.png" data-diameter="50" />
 
                   </div>
               </div>
@@ -165,19 +159,19 @@
                           <form class="radio-container radioWaveOsc">
                             <p class="knob-label">WAVEFORM</p>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscWaveform" value="sine" name="0" onclick="changeWaveform(0, value)" data-diameter="17" checked/>
+                                  <input type="radio" class="input-switch oscWaveform" value="sine" name="0" data-diameter="17" checked/>
                                   <img src="css/images/sine.svg" alt="sine">
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscWaveform" value="triangle" name="0" onclick="changeWaveform(0, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscWaveform" value="triangle" name="0" data-diameter="17"/>
                                   <img src="css/images/triangle.svg" alt="triangle">
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscWaveform" value="square" name="0" onclick="changeWaveform(0, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscWaveform" value="square" name="0" data-diameter="17"/>
                                   <img src="css/images/square.svg" alt="square">
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscWaveform" value="sawtooth" name="0" onclick="changeWaveform(0, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscWaveform" value="sawtooth" name="0" data-diameter="17"/>
                                   <img src="css/images/sawtooth.svg" alt="sawtooth">
                               </div>
                           </form>
@@ -185,19 +179,19 @@
                           <form class="radio-container radioOctOsc">
                             <p class="knob-label">OCTAVE</p>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="0.25" name="0" onclick="changeOctave(0, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscOctave" value="0.25" name="0" data-diameter="17"/>
                                   <br><label for="1/3">32'</label>
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="0.5" name="0" onclick="changeOctave(0, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscOctave" value="0.5" name="0" data-diameter="17"/>
                                   <br><label for="1/2">16'</label>
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="1" name="0" onclick="changeOctave(0, value)" data-diameter="17" checked/>
+                                  <input type="radio" class="input-switch oscOctave" value="1" name="0" data-diameter="17" checked/>
                                   <br><label for="1">8'</label>
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="2" name="0" onclick="changeOctave(0, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscOctave" value="2" name="0" data-diameter="17"/>
                                   <br><label for="2">4'</label>
                               </div>
                           </form>
@@ -212,19 +206,19 @@
                           <form class="radio-container radioWaveOsc">
                             <p class="knob-label">WAVEFORM</p>
                               <div class="vertical-radio">
-                                <input type="radio" class="input-switch oscWaveform" value="sine" name="1" onclick="changeWaveform(1, value)" data-diameter="17" checked/>
+                                <input type="radio" class="input-switch oscWaveform" value="sine" name="1" data-diameter="17" checked/>
                                   <img src="css/images/sine.svg" alt="sine">
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscWaveform" value="triangle" name="1" onclick="changeWaveform(1, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscWaveform" value="triangle" name="1" data-diameter="17"/>
                                   <img src="css/images/triangle.svg" alt="triangle">
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscWaveform" value="square" name="1" onclick="changeWaveform(1, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscWaveform" value="square" name="1" data-diameter="17"/>
                                   <img src="css/images/square.svg" alt="square">
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscWaveform" value="sawtooth" name="1" onclick="changeWaveform(1, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscWaveform" value="sawtooth" name="1" data-diameter="17"/>
                                   <img src="css/images/sawtooth.svg" alt="sawtooth">
                               </div>
                           </form>
@@ -233,19 +227,19 @@
                           <form class="radio-container radioOctOsc">
                             <p class="knob-label">OCTAVE</p>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="0.5" name="1" onclick="changeOctave(1, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscOctave" value="0.5" name="1" data-diameter="17"/>
                                   <br><label for="1/2">16'</label>
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="1" name="1" onclick="changeOctave(1, value)" data-diameter="17" checked/>
+                                  <input type="radio" class="input-switch oscOctave" value="1" name="1" data-diameter="17" checked/>
                                   <br><label for="1">8'</label>
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="2" name="1" onclick="changeOctave(1, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscOctave" value="2" name="1" data-diameter="17"/>
                                   <br><label for="2">4'</label>
                               </div>
                               <div class="vertical-radio">
-                                  <input type="radio" class="input-switch oscOctave" value="4" name="1" onclick="changeOctave(1, value)" data-diameter="17"/>
+                                  <input type="radio" class="input-switch oscOctave" value="4" name="1" data-diameter="17"/>
                                   <br><label for="3">2'</label>
                               </div>
                           </form>
@@ -279,15 +273,15 @@
 
                   <form class="radio-container" id="noise-type">
                       <div class="vertical-radio">
-                          <input type="radio" class="input-switch" value="white" name="noisetype" onclick="changeNoise(value)" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"  checked/>
+                          <input type="radio" class="input-switch" value="white" name="noiseType" data-diameter="17" data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"  checked/>
                           <br><label for="white">W</label>
                       </div>
                       <div class="vertical-radio">
-                          <input type="radio" class="input-switch" value="pink" name="noisetype" onclick="changeNoise(value)" data-diameter="17"  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                          <input type="radio" class="input-switch" value="pink" name="noiseType" data-diameter="17"  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                           <br><label for="pink">P</label>
                       </div>
                       <div class="vertical-radio">
-                          <input type="radio" class="input-switch" value="brown" name="noisetype" onclick="changeNoise(value)" data-diameter="17"  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
+                          <input type="radio" class="input-switch" value="brown" name="noiseType" data-diameter="17"  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff"/>
                           <br><label for="brown">B</label>
                       </div>
                   </form>
@@ -308,15 +302,15 @@
 
                   <form class="radio-container filterradio" id="filter-type">
                       <div class="vertical-radio">
-                          <input type="radio" class="input-switch" value="lowpass" name="filtertype" onclick="changeFilter(value)" data-diameter="17" checked/>
+                          <input type="radio" class="input-switch" value="lowpass" name="filterType" data-diameter="17" checked/>
                           <br><label for="lowpass">LP</label>
                       </div>
                       <div class="vertical-radio">
-                          <input type="radio" class="input-switch" value="highpass" name="filtertype" onclick="changeFilter(value)" data-diameter="17"/>
+                          <input type="radio" class="input-switch" value="highpass" name="filterType" data-diameter="17"/>
                           <br><label for="highpass">HP</label>
                       </div>
                       <div class="vertical-radio">
-                          <input type="radio" class="input-switch" value="bandpass" name="filtertype" onclick="changeFilter(value)" data-diameter="17"/>
+                          <input type="radio" class="input-switch" value="bandpass" name="filterType" data-diameter="17"/>
                           <br><label for="bandpass">BP</label>
                       </div>
                   </form>
@@ -367,7 +361,7 @@
                   <div class="main-container small black" id="output">
 
                       <p class="section-name fxlbl">OUTPUT</p>
-                      <input type="range" class="input-knob" id="output" name="output" value="1" min="0" max="1" step="0.01" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
+                      <input type="range" class="input-knob" id="outputGain" name="output" value="1" min="0" max="1" step="0.01" data-diameter="60" data-src="css/images/knob70.png" data-sprites="100"/>
                       <p class="knob-label">VOLUME</p>
 
                   </div>

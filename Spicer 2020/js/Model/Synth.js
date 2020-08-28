@@ -2,45 +2,49 @@ class Synth {
   #oscillators;
   #mixer;
   #filter;
-  #lfos;
-  #envelopes;   //0: amplitude; 1: filter
+  #lfos;        //0: Pitch; 1: Cutoff
+  #envelopes;   //0: Amplitude; 1: Filter
   #reverb;
   #delay;
-  #outVolume;
+  #outputGain;
 
   constructor(){
+
     //Initialize all components
-    this.#oscillators = [new Oscillator(440, "sine"), new Oscillator(440, "sine")];
+    this.#oscillators = [new Oscillator(440, "sine"),     //Osc 1
+                         new Oscillator(440, "sine")];    //Osc 2
     this.#mixer = new Mixer;
     this.#filter = new Tone.Filter({frequency:10010, type:"lowpass", rolloff:-24});
-    this.#lfos = [new Tone.LFO({frequency:"0", min:0, max:0}), new Tone.LFO({frequency:"0", min:0, max:0})];
-    this.#envelopes = [new Tone.AmplitudeEnvelope({attack:0.2, decay:0.1, sustain:0.7, release:0.2}), new Tone.FrequencyEnvelope({attack:0.2, decay:0.1, sustain:0.7, release:0.2, basefrequency:10010, octaves:0})];
+    this.#lfos = [new Tone.LFO({frequency:"0", min:0, max:0}),    //Pitch LFO
+                  new Tone.LFO({frequency:"0", min:0, max:0})];   //Cutoff LFO
+    this.#envelopes = [new Tone.AmplitudeEnvelope({attack:0.2, decay:0.1, sustain:0.7, release:0.2}),                                     //Amplitude ENVELOPE
+                       new Tone.FrequencyEnvelope({attack:0.2, decay:0.1, sustain:0.7, release:0.2, baseFrequency:10010, octaves:0})];    //Filter ENVELOPE
     this.#reverb = new Tone.Reverb({decay: 2, wet:0});
-    this.#delay = new Tone.Delay({delayTime:0.25, feedback:0.25, wet:0});
-    this.#outVolume = new Tone.Gain(1);
+    this.#delay = new Tone.PingPongDelay({delayTime:0.25, feedback:0.25, wet:0});
+    this.#outputGain = new Tone.Gain(1);
 
-    //Connect all the nodes
+    // Connections
     this.#oscillators.forEach((osc, index) => {
-      this.#lfos[0].connect(osc.getDetune());
-      osc.getOsc().connect(this.#mixer.getGain(index));
+      this.#lfos[0].connect(osc.getDetune());             //Pitch LFO to both Oscillators' detune
+      osc.getOsc().connect(this.#mixer.getGain(index));   //Each Oscillator to its Mixer gain
     })
-    this.#lfos[1].connect(this.#filter.detune);
-    this.#mixer.getGain(0).connect(this.#envelopes[0]);
+    this.#lfos[1].connect(this.#filter.detune);           //Cutoff LFO to Filter detune (cutoff frequency offset)
+    this.#mixer.getGain(0).connect(this.#envelopes[0]);   //Mixer gains (Osc 1, Osc 2, Noise) to Amplitude Envelope
     this.#mixer.getGain(1).connect(this.#envelopes[0]);
     this.#mixer.getGain(2).connect(this.#envelopes[0]);
-    this.#envelopes[0].connect(this.#filter);
-    this.#envelopes[1].connect(this.#filter.frequency);
-    //TO ASK
-    this.#filter.connect(this.#reverb);
-    this.#reverb.connect(this.#delay);
-    this.#delay.connect(this.#outVolume);
-    this.#outVolume.toDestination();
+    this.#envelopes[0].connect(this.#filter);             //Amplitude Envelope to Filter
+    this.#envelopes[1].connect(this.#filter.frequency);   //Filter Envelope to Filter frequency 
+    this.#filter.connect(this.#delay);                    //Filter to Delay
+    this.#delay.connect(this.#reverb);                    //Delay to Reverb
+    this.#reverb.connect(this.#outputGain);               //Reverb to Output Gain
+    this.#outputGain.toDestination();
+
   }
 
   //------- LFO --------
 
-  // Change RATE (param 0) or AMT (param 1)
-  changeLFOParameter(lfoID, param, value) {
+  // Change Parameter (0: RATE, 1: AMT)
+  setLFOParameter(lfoID, param, value) {
     if(param == 0)
       this.#lfos[lfoID].frequency.value = value;
     else if(param == 1){
@@ -50,8 +54,7 @@ class Synth {
   }
 
   // Change WAVEFORM
-  changeLFOWaveform(lfoID, wave) {
-    Tone.start();
+  setLFOWaveform(lfoID, wave) {
     this.#lfos[lfoID].type = wave;
   }
 
@@ -67,29 +70,104 @@ class Synth {
   //-------- OSCILLATORS --------
 
   // Change WAVEFORM
-  changeOscWaveform(oscID, wave) {
+  setOscWaveform(oscID, wave) {
     this.#oscillators[oscID].setWaveform(wave);
   }
 
   // Change OCTAVE
-  changeOscOctave(oscID, octave) {
+  setOscOctave(oscID, octave) {
     this.#oscillators[oscID].setOctave(octave);
   }
 
-  //-------- PLAY ---------
 
-  changeNote(midiNote) {
-    this.#oscillators.forEach((osc) => osc.setFrequency(Math.pow(2, (midiNote-69)/12)*440))
+  //-------- MIXER --------
+
+  // Change COMPONENT (Osc1, Osc2, Noise) GAIN
+  setMixerGain(component, gain) {
+    this.#mixer.setGain(component, gain);
   }
 
+  // Change noise TYPE
+  setMixerNoise(type) {
+    this.#mixer.setNoiseType(type);
+  }
+
+
+  //-------- FILTER --------
+
+  // Change CUTOFF frequency filter and base frequency of the filter envelope
+  setCutoff(frequency) {
+    this.#filter.frequency.value = frequency;
+    this.#envelopes[1].baseFrequency = frequency;
+  }
+
+  setResonance(value) {
+    this.#filter.Q.value = value;
+  }
+
+  setFilterType(type) {
+    this.#filter.type = type;
+  }
+
+
+  //-------- ENVELOPE --------
+
+  // Change ENVELOPE parameter of both amplitude and filter envelope
+  // 0:ATTACK, 1:DECAY, 2:SUSTAIN, 3:RELEASE
+  setEnvelope(parameter, value) {
+    if(parameter == 0){
+      this.#envelopes.forEach((envelope) => envelope.attack = value);
+    }
+    else if (parameter == 1){
+      this.#envelopes.forEach((envelope) => envelope.decay = value);
+    }
+    else if (parameter == 2){
+      this.#envelopes.forEach((envelope) => envelope.sustain = value);
+    }
+    else if (parameter == 3){
+      this.#envelopes.forEach((envelope) => envelope.release = value);
+    }
+  }
+
+  // Change the amount of envelope applied to the filter 
+  setFilterEnvelopeAMT(value) {
+    this.#envelopes[1].octaves = value;
+  }
+
+
+  //-------- EFFECTS --------
+
+  setDelay(mix) {
+    this.#delay.wet.value = mix;
+  }
+
+  setReverb(mix) {
+    this.#reverb.wet.value = mix;
+  }
+
+
+  //-------- OUTPUT --------
+
+  setOutputGain(gain) {
+    this.#outputGain.gain.value = gain;
+  }
+
+
+  //-------- PLAY ---------
+
+  //Change frequency of both Oscillators
+  changeNote(note) {
+    this.#oscillators.forEach((osc) => osc.setFrequency(note.getFrequency()));
+  }
+
+  //Trigger attack of both Envelopes
   play() {
-    this.#envelopes[0].triggerAttack("0", 1);
-    this.#envelopes[1].triggerAttack("0", 1);
+    this.#envelopes.forEach((envelope) => envelope.triggerAttack());
     this.#reverb.generate();
   }
 
+  //Trigger release phase of both Envelopes
   stop() {
-    this.#envelopes[0].triggerRelease("0");
-    this.#envelopes[1].triggerRelease("0");
+    this.#envelopes.forEach((envelope) => envelope.triggerRelease());
   }
 }

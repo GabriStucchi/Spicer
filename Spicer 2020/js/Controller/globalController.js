@@ -15,4 +15,4 @@ function toggleInstrument(){
 }
 
 
-document.getElementById("rec").onclick(()=> onAir = true;)
+//document.getElementById("rec").onclick(()=> onAir = true);
