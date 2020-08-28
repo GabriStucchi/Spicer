@@ -8,6 +8,7 @@ class Note {
   #instantOff //when the note is stopped
   #duration
   #frequency
+  #name
 
   constructor(midiNote, queue, velocity, instantOn,instantOff) {
     this.#midiNote = midiNote; // stores the midi value of the note
@@ -18,6 +19,7 @@ class Note {
     if(instantOff!==undefined)
       this.#duration = this.#instantOff - this.#instantOn;
     this.#frequency = 440 * Math.pow(2, (this.#midiNote-69)/12);
+    this.computeName()
   }
 
 
@@ -52,6 +54,7 @@ class Note {
   setMidiNote(mnote){
     this.#midiNote=mnote;
     this.#frequency = 440 * Math.pow(2, (this.midiNote-69)/12);
+    this.computeName()
   }
 
   setInstantOff(instOff){
@@ -73,6 +76,11 @@ class Note {
   }
   setQueue(queue){
     this.#queue = queue
+  }
+
+  computeName(){
+    console.log(shiftToOctave(0,this.#midiNote));
+    this.#name = possible_notes[shiftToOctave(0,this.#midiNote)]
   }
 
 }

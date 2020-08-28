@@ -21,7 +21,7 @@ let minor = [0, 2, 3, 5, 7, 8, 10]
 let key = new Key("C","Maj")
 let tempo = new Tempo(120)
 let recorder = new Recorder();
-
+let cprog = new ChordProgression()
 
 let chordsIntervals = {
 '[4,7]': new ChordType('maj',0,0),

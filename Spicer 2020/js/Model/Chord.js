@@ -24,6 +24,11 @@ class Chord {
   //  this.identifyChord()
   }
 
+  addNote(note){ //loops throught the arguments
+    if(note.constructor.name == Note.name) //checks that item is a note
+          this.#notes.push(note); //adds the argument to the note list
+  //  this.identifyChord()
+  }
 
 
 //finds the root, inverion and type of the chord
@@ -56,6 +61,10 @@ class Chord {
     }else{
       this.#root = pitches[this.#type.getRootPos()]
     }
+
+    if(key!=undefined){
+      this.findChordGrade()
+    }
   }
 
 //find the grade of the chord
@@ -65,7 +74,7 @@ class Chord {
 
 
     //shifts the root note of the chord to the 0 octave
-    let zeroRoot = this.#root.getMidiNote() - Math.floor(this.#root.getMidiNote()/12) * 12;
+    let zeroRoot = this.#root - Math.floor(this.#root.getMidiNote()/12) * 12;
     //distance between the zeroRoot of the chord and the tonic of the key
     let interval = zeroRoot - tonic
 

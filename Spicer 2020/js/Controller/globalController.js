@@ -22,7 +22,14 @@ document.getElementById("rec").onclick = ()=> {
     if(onAir){
       recorder.setStart(currentTime())
     }else{
-      console.log(recorder.getRecTrack())
+      cprog.detectChords(recorder.getRecTrack());
+
+      cprog.getChords().forEach((item) => {
+        item.identifyChord();
+      });
+
+      console.log(cprog.getChords());
+
     }
   }
 }
@@ -30,4 +37,13 @@ document.getElementById("rec").onclick = ()=> {
 
 let currentTime = ()=> {
     return performance.now()
+}
+
+
+function shiftToOctave(octave,midiNote){ //shifts to a specific octave
+  return (midiNote -  Math.floor(midiNote/12)*12) + 12*octave;
+}
+
+function shiftOfOctave(nOctaves,midiNote){
+  return midiNote + 12 * nOctaves;
 }
