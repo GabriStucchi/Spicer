@@ -22,14 +22,6 @@ class Mixer {
             return this.#noiseGain;
     }
 
-    /*getGain2() {
-        return this.#osc2Gain;
-    }
-
-    getNoiseGain() {
-        return this.#noiseGain;
-    }*/
-
     setGain(index, value) {
         if(index==0)
             this.#osc1Gain.gain.value = value;
@@ -50,7 +42,6 @@ class Mixer {
     }
 
     muteNoise(bool){
-        console.log("Noise" + bool);
         this.#noise.mute = bool;
     }
 }

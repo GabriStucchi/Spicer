@@ -11,6 +11,8 @@
 const default_duration = 123456789;
 let activeNotes = [];
 
+k = 0;
+
 navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
 
 function onMIDIFailure() {
@@ -21,8 +23,7 @@ function onMIDISuccess(midiAccess) {
     for (var input of midiAccess.inputs.values()){
         input.onmidimessage = getMIDIMessage
     }
-
-    }
+}
 
 
 // TODO: add record condition
@@ -30,17 +31,17 @@ function getMIDIMessage(message) {
     var command = message.data[0];
     var pitch = message.data[1];
     var velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
-    var timeStamp = message.timeStamp
-    console.log(timeStamp)
+    var timestamp = currentTime()
+    console.log(timestamp)
     switch (command) {
         case 144: // noteOn
         {
 
-            noteOn(new Note(pitch,velocity, timeStamp,undefined,undefined))
+            noteOn(new Note(pitch,velocity, timestamp,undefined,undefined))
             break
         }
         case 128: // noteOff
-            noteOff(pitch, timeStamp);
+            noteOff(pitch, timestamp);
             break;
         // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
     }
@@ -64,10 +65,11 @@ function  noteOn(note){
 
 }
 
-function noteOff(pitch, timeStamp){
+function noteOff(pitch, timestamp){
     let index = activeNotes.map(x => x.getMidiNote()).indexOf(pitch); // gets the index of the note with the searched pitch
     if(index!=-1){ // if the note is found in active notes
       if(playSynth){
+          activeNotes.splice(index, 1);
           if(activeNotes.length == 0)
               synthNoteOff();
           else if(index == activeNotes.length)
@@ -75,7 +77,7 @@ function noteOff(pitch, timeStamp){
       }
       else{
           //note off piano
-          instrumentNoteOff(timeStamp, index);
+          instrumentNoteOff(timestamp, index);
       }
     }
 
@@ -94,13 +96,13 @@ function instrumentNoteOn(note){
     }
 }
 
-function instrumentNoteOff(timeStamp,index){
+function instrumentNoteOff(timestamp,index){
 
   if (activeNotes[index].getQueue()) {
       activeNotes[index].getQueue().cancel();
   }
   if(onAir){
-    recorder.endNote(activeNotes[index],timeStamp);
+    recorder.endNote(activeNotes[index],timestamp);
   }
   activeNotes.splice(index, 1);
 
