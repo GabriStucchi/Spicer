@@ -37,7 +37,7 @@ function getMIDIMessage(message) {
         case 144: // noteOn
         {
 
-            noteOn(new Note(pitch,velocity, timestamp,undefined,undefined))
+            noteOn(new Note(pitch, undefined, velocity, timestamp, undefined))
             break
         }
         case 128: // noteOff
