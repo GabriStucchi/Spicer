@@ -44,6 +44,7 @@ class Oscillator {
     }
 
     mute(bool){
+        console.log(bool);
         this.#osc.mute = bool;
     }
 }

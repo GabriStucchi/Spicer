@@ -50,6 +50,7 @@ class Mixer {
     }
 
     muteNoise(bool){
+        console.log("Noise" + bool);
         this.#noise.mute = bool;
     }
 }

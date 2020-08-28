@@ -153,7 +153,7 @@ class Synth {
   }
 
 
-  //-------- PLAY ---------
+  //-------- MIDI ---------
 
   //Change frequency of both Oscillators
   changeNote(note) {
@@ -169,5 +169,11 @@ class Synth {
   //Trigger release phase of both Envelopes
   stop() {
     this.#envelopes.forEach((envelope) => envelope.triggerRelease());
+  }
+
+  //Mute/Unmute the synth
+  mute(bool) {
+    this.#oscillators.forEach((oscillator) => oscillator.mute(bool));
+    this.#mixer.muteNoise(bool);
   }
 }
