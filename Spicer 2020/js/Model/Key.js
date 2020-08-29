@@ -1,14 +1,14 @@
 class Key {
-  #tonality
+  #rootKey
   #type
-  constructor(ton,type) {
-    this.#tonality = ton;
+  constructor(root,type) {
+    this.#rootKey = root;
     this.#type = type;
   }
 
 //returns the tonic of the tonality (ex "C", "F#", ecc)
   getKeyNote(){
-    return this.#tonality;
+    return this.#rootKey;
   }
 
   //returns true if major
@@ -19,4 +19,20 @@ class Key {
       return false;
     return undefined
   }
+
+  setScaleType(type){ //if the type of scale is changed then i delete everything that has been recorded + all the spicer tracks
+    this.#type= type
+    recorder = new Recorder();
+    cprog = new ChordProgression();
+    spricer = new PianoSpicer();
+  }
+
+  setRootKey(root){ //if the root of the scale is changed then i delete everything that has been recorded + all the spicer tracks
+    this.#rootKey = root
+    recorder = new Recorder();
+    cprog = new ChordProgression();
+    spricer = new PianoSpicer();
+  }
+
+  
 }

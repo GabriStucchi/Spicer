@@ -53,7 +53,7 @@ body{
 }
 
 
-.spiceSection{
+#spicerSection{
   z-index: 1;
   background-color: rgba(60, 194, 235, 0.678);
   display: block;

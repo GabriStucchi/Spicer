@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/keyboard.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/synthStyle.css">
+  <link rel="stylesheet" href="css/images.css">
 
 
   <script src="js/Model/Key.js" defer></script>
@@ -29,6 +30,7 @@
 
   <script src="js/View/buildKeyboard.js" defer></script>
   <script src="js/View/KnobStyle.js" defer></script>
+  <script src="js/View/spicerSection.js" defer></script>
 
 
   <script src="js/Controller/MidiManagement.js" defer></script>
@@ -438,21 +440,22 @@
 
   </div>
 
-  <div class="spiceSection">
-  
-    <!--
+  <div id="spicerSection">
+    <img src="css/images/arrow.svg" class="arrow" id="bringUp" >
+    
     <label class="switch">
       <input type="checkbox" onclick="toggleInstrument()">
       <span class="slider round">SWITCH</span>
     </label>
 
-    <button type="button" id="rec">REC</button>
     <p><select id='ins' onchange="selectIns(this)"></select></p>
-    <p><select id='key' onchange="selectKey(this)"></select></p>
-    <p><select id='tonality' onchange="selectTonality(this)"></select></p>
     <div id="tempoBox">Tempo: <span id="showTempo">120</span>BPM <input id="tempo" type="range" min="30.0" max="300.0"
-        step="1" value="120" style="height: 20px; width: 200px"></div>
-      -->
+      step="1" value="120" style="height: 20px; width: 200px"></div>
+
+    <p><select id="keyRoot"></select></p>
+    <p><select id='typeOfScale'"></select></p>
+ 
+    
   </div>
 
 

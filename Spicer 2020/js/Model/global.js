@@ -10,8 +10,6 @@ let playSynth = false;
 
 let possible_notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 let tonalities = ["Maj", "Min"];
-let selectedKey = 'C';
-let selectedTonality = 'Maj';
 
 //Intervalli scale maggiori e minori
 let major = [0, 2, 4, 5, 7, 9, 11]
