@@ -54,8 +54,13 @@ body{
 
 
 .spiceSection{
+  z-index: 1;
+  background-color: rgba(60, 194, 235, 0.678);
   display: block;
-  position: relative;
+  position: fixed;
+  bottom : 0%;
+  width : 100%;
+  height: 5%;
 }
 
 #spiceRange{
@@ -64,8 +69,10 @@ body{
   width: 50%;
 
 }
+
+
 h1{
-    //font-family: 'Nothing You Could Do', cursive;
+    /*font-family: 'Nothing You Could Do', cursive;*/
     padding-top: 20px;
     font-family: 'Amatic SC', cursive;
     white-space: nowrap;

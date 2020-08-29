@@ -13,7 +13,6 @@ document.getElementById("rec").onclick = () => {
   
   if(!playSynth){
     document.getElementById("rec").innerText = metronome.play();
-
   }
   
   /*if (!playSynth) {
