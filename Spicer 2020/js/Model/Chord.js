@@ -8,11 +8,21 @@ class Chord {
 
   constructor(...args) {
     this.#notes = [];
-    args.forEach((item, i) => { //loops throught the arguments
+    if(args.length==1 && args[0].constructor.name == Chord.name ){ //if the arguments is just one and is a chord then COPY constructor
+      let chord = args[0]
+      chord.getNotes().forEach((note) => {
+        this.#notes.push(new Note(note))
+      });
+      this.#type = chord.getType()
+      this.#root = chord.getRoot()
+      this.#grade = chord.getGrade()
+    }else{ // if the argument it's not a chord then normal constructor (by reference)
+      args.forEach((item, i) => { //loops throught the arguments
         if(item.constructor.name == Note.name) //checks that item is a note
-          this.#notes.push(item); //adds the argument to the note list
-    });
-    this.#grade = undefined;
+        this.#notes.push(item); //adds the argument to the note list
+      });
+      this.#grade = undefined;
+    }
   }
 
 
@@ -109,6 +119,26 @@ class Chord {
 
 
 
+    //Aggiunge la 6^ sempre maggiore!!
+     add6(){
+      let sixth = this.getRoot().getMidiNote() + 9
+      let newVel
+      let newOn
+      let newOff
+      let newQueue;
+//todo if execution is too slow delete velocity average
+      this.#notes.forEach((item) => { //the velocity is an everage of the velocities of the chord
+        newVel += item.getVelocity()/this.#notes.length}
+      );
+
+      newOn = this.#notes[this.#notes.length -1 ].getInstantOn()
+      newOff = this.#notes[this.#notes.length -1 ].getInstantOff()
+      newQueue = this.#notes[this.#notes.length -1 ].getQueue()
+
+      this.addNotes(new Note(sixth,newQueue,newVel,newOn,newOff))
+      }
+
+
 
 
 //todo fix major problems (concerning octave position)
@@ -132,7 +162,8 @@ class Chord {
             seventh = seventh - 12
           }
           seventh = this.#root.getMidiNote() + seventh
-          this.#notes.forEach((item) => {
+//todo if execution is too slow delete velocity average
+          this.#notes.forEach((item) => { //the velocity is an everage of the velocities of the chord
             newVel += item.getVelocity()/this.#notes.length}
           );
 
@@ -221,6 +252,9 @@ class Chord {
     }
     getGrade(){
       return this.#grade;
+    }
+    getType(){
+      return this.#type
     }
 
 }

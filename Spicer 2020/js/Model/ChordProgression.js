@@ -83,18 +83,14 @@ this.#chords.forEach((chord) => {
 
   add7s(){
     this.#chords.forEach((chord, i) => {
-      if(i<this.#chords.length -1){
-        /*
-        if(chord.getGrade() == 5 && this.#chords[i+1].getGrade()!=1){
-            chord.add2() //if the 5th doesn't resolve to the 1st then whe add a 2 to the chord
-        }else{*/
-          chord.add7()
-        //}
-      }else{
-        if(chord.getGrade() != 5){
+      if(i<this.#chords.length){
+        if(chord.getGrade() == 5){
+          if( (i!=this.#chords.length-1 && this.#chords[i+1].getGrade()!=1) || i==this.#chords.length-1){
+              chord.add6() // if the 5th doesn't resolve to a 1st or if it's the last chord then we add a 6th instead of a 7th 
+        }
+        }else{
           chord.add7()
         }
-
       }
     });
   }

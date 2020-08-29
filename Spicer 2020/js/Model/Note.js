@@ -11,17 +11,23 @@ class Note {
   #name
 
   constructor(midiNote, queue, velocity, instantOn,instantOff) {
-    this.#midiNote = midiNote; // stores the midi value of the note
-    this.#queue = queue; // queueWaveTable value
-    this.#velocity = velocity;
-    this.#instantOn = instantOn; //when the note is first played
-    this.#instantOff = instantOff; //when the note is stopped
-    if(instantOff!==undefined)
-      this.#duration = this.#instantOff - this.#instantOn;
-    this.#frequency = 440 * Math.pow(2, (this.#midiNote-69)/12);
+    if(arguments.length==1 && arguments[0].constructor.name == Note.name){ //if you pass a note as argument then copy constructor
+      let note = arguments[0]
+      this.#midiNote = note.getMidiNote()
+      this.#queue = note.getQueue()
+      this.#velocity = note.getVelocity()
+      this.#instantOn = note.getInstantOn()
+      this.setInstantOff(note.getInstantOff()) //this also sets the duration
+    }else{ //normal constructor
+      this.#midiNote = midiNote; // stores the midi value of the note
+      this.#queue = queue; // queueWaveTable value
+      this.#velocity = velocity;
+      this.#instantOn = instantOn; //when the note is first played
+      this.setInstantOff(instantOff)
+    }
+    this.computeFrequency()
     this.computeName()
   }
-
 
   getMidiNote(){
     return this.#midiNote;
@@ -58,15 +64,15 @@ class Note {
   }
 
   setInstantOff(instOff){
-    if(instOff!==undefined){
-      this.#instantOff= instOff;
-      this.#duration = this.#instantOff - this.#instantOn;
+    this.#instantOff= instOff;
+    if(this.#instantOn!==undefined && instOff!==undefined){
+    this.#duration = this.#instantOff - this.#instantOn;
     }
   }
 
   setInstantOn(instOn){
-    if(instOn!==undefined){
-      this.#instantOn= instOn;
+    this.#instantOn= instOn;
+    if(this.#instantOff!==undefined && instOn!==undefined){
       this.#duration = this.#instantOff - this.#instantOn;
     }
   }
@@ -80,6 +86,14 @@ class Note {
 
   computeName(){
     this.#name = possible_notes[shiftToOctave(0,this.#midiNote)]
+  }
+
+  computeFrequency(){
+    if(this.#midiNote!=undefined){
+      this.#frequency = 440 * Math.pow(2, (this.#midiNote-69)/12);
+    }else{
+      this.#frequency= undefined
+    }
   }
 
 }
