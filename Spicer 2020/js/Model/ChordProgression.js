@@ -56,6 +56,51 @@ class ChordProgression {
   }
 
 
+  generateVoicings(){
+/*
+    let pitches
+    this.#chords.forEach((chord, i) => {
+      if(i<this.#chords.length-2){
+        if (chord.getGrade() == 2
+          && this.#chords[i+1].getGrade() == 5
+          && this.#chords[i+2].getGrade() == 1 ){
+
+
+      }
+
+
+    });
+*/
+
+this.#chords.forEach((chord) => {
+  chord.rearrange()
+
+});
+
+
+  }
+
+
+  add7s(){
+    this.#chords.forEach((chord, i) => {
+      if(i<this.#chords.length -1){
+        /*
+        if(chord.getGrade() == 5 && this.#chords[i+1].getGrade()!=1){
+            chord.add2() //if the 5th doesn't resolve to the 1st then whe add a 2 to the chord
+        }else{*/
+          chord.add7()
+        //}
+      }else{
+        if(chord.getGrade() != 5){
+          chord.add7()
+        }
+
+      }
+    });
+  }
+
+
+
   getChords(){
     return this.#chords;
   }

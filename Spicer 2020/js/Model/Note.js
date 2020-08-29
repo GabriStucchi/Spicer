@@ -79,7 +79,6 @@ class Note {
   }
 
   computeName(){
-    console.log(shiftToOctave(0,this.#midiNote));
     this.#name = possible_notes[shiftToOctave(0,this.#midiNote)]
   }
 

@@ -19,15 +19,17 @@ function toggleInstrument(){
 document.getElementById("rec").onclick = ()=> {
   if(!playSynth){
     onAir = !onAir;
-    if(onAir){
+    if(onAir){ //starts recording
       recorder.setStart(currentTime())
-    }else{
+    }else{ //stops recording and starts processing
       cprog.detectChords(recorder.getRecTrack());
-
       cprog.getChords().forEach((item) => {
         item.identifyChord();
       });
 
+      //temp for testing
+
+      spicer.spice(cprog)
       console.log(cprog.getChords());
 
     }

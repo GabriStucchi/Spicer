@@ -1,3 +1,4 @@
+//todo remove bass note!!!
 
 class Chord {
   #notes
@@ -57,7 +58,7 @@ class Chord {
     //searches in the chordsIntervals map for my interval and makes my chord of the found Type
     this.#type = chordsIntervals[JSON.stringify(interval)]
     if(this.#type===undefined){ //if type not found then the root is undefined as well
-      this.#root=undefined;
+      this.#root=pitches[0];
     }else{
       this.#root = pitches[this.#type.getRootPos()]
     }
@@ -156,6 +157,51 @@ class Chord {
         ninth = chord.getRoot() + 14
       }
     }
+
+
+
+
+//todo finire
+    rearrange(){
+      let root = this.#root.getMidiNote()
+
+      root = shiftToOctave(0,root);
+      let pitches = [root + 3, root + 7, root + 10, root + 14]   //Trovo 3^min, 5^, 7^min, 9^
+
+      //Sistemo i pitches nel giusto range (D3-F4)
+
+      while (pitches[0] < 62) {
+        console.log(1);
+        pitches = pitches.map(el => el + 12)  //Così aggiungo 12 a tutti gli elementi di pitches
+      }
+      while (pitches[0] > 77) {
+        console.log(1);
+        pitches = pitches.map(el => el - 12)
+      }
+
+      //Posizione larga
+      if (pitches[3] < 77) {
+
+      }
+      //Posizione stretta
+      else {
+        pitches[2] = pitches[2] - 12
+        pitches[3] = pitches[3] - 12
+      }
+
+      this.changeNotes(pitches) //Salvo il 2 e il suo basso
+
+  }
+
+
+
+  changeNotes(pitches){
+      this.#notes.splice(this.#notes.indexOf(this.#root),1);
+
+    this.#notes.forEach((note,i) => {
+      note.setMidiNote(pitches[i])
+    });
+  }
 
 
 
