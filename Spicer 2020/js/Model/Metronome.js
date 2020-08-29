@@ -11,6 +11,7 @@ class Metronome {
   #timerWorker;         // The Web Worker used to fire timer messages
   #bar;                 //Bar tracker
   #osc;                 //Sound of metronome
+  #firstBeat;
 
   constructor() {
     this.#audioContext = new AudioContext();
@@ -25,15 +26,20 @@ class Metronome {
     this.#bar = -1;
     this.#osc = this.#audioContext.createOscillator();
     this.#osc.connect(this.#audioContext.destination);
+    this.#firstBeat = true;
 
     //Manages the messages received from the Worker
     this.#timerWorker.onmessage = function (e) {
       if (e.data == "schedule") {
-        this.scheduler();
-      }
-      else
+          // while there are notes that will need to play before the next interval, 
+          // schedule them and advance the pointer.
+          while (this.#nextNoteTime < this.#audioContext.currentTime + this.#scheduleAheadTime) {
+            this.scheduleNote(this.#current16thNote, this.#nextNoteTime);
+            this.nextNote();
+          }
+        }else
         console.log("message: " + e.data);
-    };
+    }.bind(this); //this changes value in nested functions, so we have to bind the nested this to the current this
     this.#timerWorker.postMessage({ "interval": this.#lookahead });
   }
 
@@ -74,6 +80,7 @@ class Metronome {
     else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
       this.#osc.frequency.value = 440.0;
 
+      
     this.#osc.start(time);
     this.#osc.stop(time + this.#noteLength);
   }
@@ -104,12 +111,5 @@ class Metronome {
   }
 
 
-  scheduler() {
-    // while there are notes that will need to play before the next interval, 
-    // schedule them and advance the pointer.
-    while (this.#nextNoteTime < this.#audioContext.currentTime + this.#scheduleAheadTime) {
-      this.scheduleNote(this.#current16thNote, this.#nextNoteTime);
-      this.nextNote();
-    }
-  }
+
 }

@@ -60,6 +60,7 @@ class ChordProgression {
         endOfChord = item.getInstantOff();
       }
     });
+    
     if (tempChord.getNotes().length > 2) {
       //pushes last chord
       tempChord.identifyChord();

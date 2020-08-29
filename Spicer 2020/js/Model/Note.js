@@ -56,6 +56,10 @@ class Note {
     return this.#frequency;
   }
 
+  getVolume(){
+    return mapLog(this.#velocity,1,128,1,2)-0.9;
+  }
+
 
   setMidiNote(mnote){
     this.#midiNote=mnote;

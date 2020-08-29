@@ -9,3 +9,10 @@ function shiftToOctave(octave,midiNote){ //shifts to a specific octave
 function shiftOfOctave(nOctaves,midiNote){
   return midiNote + 12 * nOctaves;
 }
+
+
+ function mapLog(value,start1,stop1,start2,stop2) {
+  start2 = Math.log(start2);
+  stop2 = Math.log(stop2);
+  return Math.exp(start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1)))
+}

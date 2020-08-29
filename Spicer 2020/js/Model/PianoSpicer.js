@@ -12,8 +12,7 @@ class PianoSpicer {
 
 //spice verrà utilizzatov per creare le 3 tracce spiced subito dopo la rec
   spiceTrack(baseTrack,level){
-    let cProg = baseTrack
-    let track = Object.assign(cProg,baseTrack)
+    let track = new ChordProgression(baseTrack)
 
     if(track.constructor.name == ChordProgression.name){
       switch (level) {
@@ -30,19 +29,6 @@ class PianoSpicer {
 
     return track
   }
-
-  levelUp(){
-    if(this.#level<1){
-      level++
-    }
-  }
-
-  levelDown(){
-    if(this.#level>0){
-      level--
-    }
-  }
-
   spice(cprog){ //returns the spiced track according to the level
     console.log("base track");
     console.log(cprog);
@@ -54,6 +40,19 @@ class PianoSpicer {
     }
 
     return this.#spiced_tracks[this.#level]
+  }
+
+
+  levelUp(){
+    if(this.#level<1){
+      level++
+    }
+  }
+
+  levelDown(){
+    if(this.#level>0){
+      level--
+    }
   }
 
 }
