@@ -23,6 +23,7 @@ let tempo = new Tempo(120)
 let recorder = new Recorder();
 let cprog = new ChordProgression()
 spicer = new PianoSpicer()
+let metronome = new Metronome;
 
 let chordsIntervals = {
 '[4,7]': new ChordType('maj',0,0),

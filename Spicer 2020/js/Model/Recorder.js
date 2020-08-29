@@ -12,8 +12,14 @@ class Recorder{
     this.#track.addNote(note); //add note automatically checks if the arg is a note
   }
 
-  setStart(timeStart){ //sets the timestamp of the start of the recording (first downbeat after preclick)
+  start(timeStart){ //sets the timestamp of the start of the recording (first downbeat after preclick)
+    onAir = true;
     this.#timeStart = timeStart
+  }
+
+  stop(){
+    onAir = false;
+    cprog.detectChords(recorder.getRecTrack());
   }
 
   endNote(note,timeStamp){
