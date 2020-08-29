@@ -1,14 +1,21 @@
-# Loop Spicer  LOGO
-##### A tool for spicing up your music: as simple as a loop station, as spicy as a whole band!
+# Spicer    <img src="https://user-images.githubusercontent.com/57997005/91635010-1c57d900-e9f5-11ea-9c0b-b008605fe2d1.png" alt="photo5879783007177519913" width="50"/>
+
+#### A tool for spicing up your music: as simple as a loop station, as spicy as a whole band!
+
+![Schermata 2020-08-29 alle 12 34 01](https://user-images.githubusercontent.com/57997005/91635013-1f52c980-e9f5-11ea-852c-8e1d80ab34b9.png)
+
 
 ## How To Use
-The loop spicer comes from the need of having a virtual band playing live together with you. Starting from a simple chord progression played on the keyboard it will reproduce and spice it up by adding more instruments and enriching the harmony in order to create an immersive experience bla bla
+The Spicer is meant to spice up your music performance offering a virtual band playing live together with you: just play the basic chord progression of your piece and let the magic happen! 
+You can choose the instruments to play with on your band and their level of expertise and also modify them while playing to create different textures.
 
-1. Select the tonality of your music
-2. Select the bpm (?)
-3. Start playing some simple chords, they will be looped and represent the basic harmony of your performance
-4. Now you can start playing and improvising above the chosen chord progression with the synth sound you prefer
-5. While playing you can choose to add or remove some instruments (bass, piano, drums) as well as changing their complexity
+Follow this simple steps to get started:
+
+1. Connect a MIDI keyboard
+2. Select the tonality and bpm of your music
+3. Play the basic chords of your piece, they will loop and form the harmony structure
+4. Choose what instruments to include and their spicer level
+5. Now you can start playing and improvising your solo with a synth and obtain the spiciest sound by tuning its parameters
 6. At the end, if you like the performance, it is possible to export it as wav??
 
 ## Features
