@@ -38,18 +38,18 @@ class ChordProgression {
           if(item.getInstantOff()<endOfChord){
             endOfChord = item.getInstantOff();
           }
-        }else{
+        }else
           if(tempChord.getNotes().length>2){
+              tempChord.identifyChord();
               this.#chords.push(tempChord);
               tempChord = new Chord(item);
           }
           endOfChord=item.getInstantOff();
 
         }
-      }
-
     });
     if(tempChord.getNotes().length>2){ //pushes last chord
+        tempChord.identifyChord();
         this.#chords.push(tempChord);
     }
 
@@ -86,7 +86,7 @@ this.#chords.forEach((chord) => {
       if(i<this.#chords.length){
         if(chord.getGrade() == 5){
           if( (i!=this.#chords.length-1 && this.#chords[i+1].getGrade()!=1) || i==this.#chords.length-1){
-              chord.add6() // if the 5th doesn't resolve to a 1st or if it's the last chord then we add a 6th instead of a 7th 
+              chord.add6() // if the 5th doesn't resolve to a 1st or if it's the last chord then we add a 6th instead of a 7th
         }
         }else{
           chord.add7()
