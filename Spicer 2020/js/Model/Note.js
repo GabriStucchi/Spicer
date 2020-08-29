@@ -57,7 +57,7 @@ class Note {
   }
 
   getVolume(){
-    return mapLog(this.#velocity,1,128,1,2)-0.9;
+    return mapLog(this.#velocity,1,128,1,2)-0.9999;
   }
 
 
