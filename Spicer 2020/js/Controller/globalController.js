@@ -10,13 +10,13 @@ function toggleInstrument() {
 }
 
 document.getElementById("rec").onclick = () => {
-  /*
+  
   if(!playSynth){
     document.getElementById("rec").innerText = metronome.play();
 
   }
-  */
-  if (!playSynth) {
+  
+  /*if (!playSynth) {
     onAir = !onAir
     if (onAir) {
       //starts recording
@@ -27,7 +27,7 @@ document.getElementById("rec").onclick = () => {
       spicer.spice(cprog);
       console.log(cprog.getChords());
     }
-  }
+  }*/
 };
 
 document.getElementById("tempoBox").oninput = (event) => {

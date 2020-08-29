@@ -10,8 +10,6 @@ class Metronome {
   #noteLength;          // length of "beep" (in seconds)
   #timerWorker;         // The Web Worker used to fire timer messages
   #bar;                 //Bar tracker
-  #osc;                 //Sound of metronome
-  #firstBeat;
 
   constructor() {
     this.#audioContext = new AudioContext();
@@ -24,9 +22,6 @@ class Metronome {
     this.#noteLength = 0.05;
     this.#timerWorker = new Worker("js/Model/metronomeWorker.js");
     this.#bar = -1;
-    this.#osc = this.#audioContext.createOscillator();
-    this.#osc.connect(this.#audioContext.destination);
-    this.#firstBeat = true;
 
     //Manages the messages received from the Worker
     this.#timerWorker.onmessage = function (e) {
@@ -73,16 +68,16 @@ class Metronome {
       return; // we're not on beat
 
     // create an oscillator
-    //let osc = this.#audioContext.createOscillator();
-    //osc.connect(this.#audioContext.destination);
+    let osc = this.#audioContext.createOscillator();
+    osc.connect(this.#audioContext.destination);
     if (beatNumber % 16 === 0)    // beat 0 == high pitch
-      this.#osc.frequency.value = 880.0;
+      osc.frequency.value = 880.0;
     else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
-      this.#osc.frequency.value = 440.0;
+      osc.frequency.value = 440.0;
 
       
-    this.#osc.start(time);
-    this.#osc.stop(time + this.#noteLength);
+    osc.start(time);
+    osc.stop(time + this.#noteLength);
   }
 
 
