@@ -10,6 +10,7 @@ body{
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
   background-color: rgb(45,45,45);
+  background-image: url("css/images/background.jpg");
   height: auto;
 }
 
@@ -92,7 +93,7 @@ h1{
 }
 
 
-button{
+.onAirBtn{
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -103,15 +104,14 @@ button{
   font-size: 16px;
   background-color: rgba(78, 6, 6, 0.76);
   color: black;
-  border: 2px solid #180101; /* Green */
-}
-
-.onAir{
-  background-color:  rgba(204, 32, 32, 0.911);
-  color: white;
+  border: 2px solid #180101;
+  border-radius: 4px;
+  text-shadow: 0 0px 50px rgb(0, 0, 0,0.6);
+  box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.7);
 }
 
 .onAir {
+  background-color:  rgba(204, 32, 32, 0.911);
   color: #fff;
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
@@ -127,5 +127,4 @@ button{
     text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
   }
 }
-
 
