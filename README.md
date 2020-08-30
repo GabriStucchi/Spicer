@@ -3,9 +3,9 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/57997005/91635010-1c57d900-e9f5-11ea-9c0b-b008605fe2d1.png?raw=true" alt="logo" width="120"//>
 </p>
-
-<h1 align="center"> Spicer (scritta carina) </h1>
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/57997005/91661200-c2c9da00-eada-11ea-9c8b-797fa9bf3db4.jpeg" alt="scritta" width="300"//>
+</p>
 
 <h3 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
 
@@ -16,19 +16,23 @@
 </p>
 
 ## How To Use
-The Spicer is meant to spice up your music performance offering a virtual band playing live together with you: just play the basic chord progression of your piece and let the magic happen! 
+The Spicer is meant to spice up your music performances offering a virtual band playing live together with you: just play the basic chord progression of your piece and let the magic happen! 
+
 You can choose the instruments to play with on your band and their level of expertise and also modify them while playing to create different textures.
 
 Follow this simple steps to get started:
 
 1. Connect a MIDI keyboard
-2. Select the tonality and bpm of your music
+2. Select the tonality and bpm of your music piece
 3. Press space bar and wait the countdown to start recording
-4. Play the basic chords of your piece and stop recording, they will loop and form the harmony structure
-5. Choose what instruments to include and their spicer level
+4. Play the basic chords of your piece and stop recording, they will loop and form the harmony structure 
+5. Choose which instruments to include and their spicer levels
 6. Now you can start playing and improvising your solo with a synth and obtain the spiciest sound by tuning its parameters
 7. At the end, if you like the performance, it is possible to export it as wav??
 
+* EASY MODE: Instead of playing the chords for defining the harmony it's possible to play just the root of each one; then they will be set by looking at the key harmonization
+
+<h3 align="center"> youtube demo link </h3>
 
 ## Features
 #### Band Instrument Selection
@@ -48,4 +52,3 @@ Follow this simple steps to get started:
 | Something    | write here       | write here     |
 
 
-## Demo
