@@ -39,13 +39,11 @@ class ChordProgression {
     //con queste info crea un accordo e procede al calcolo dei successivi accordingly
     let endOfChord = undefined;
     let tempChord;
-    console.log(recTrack);
 
     recTrack.getNotes().forEach((item, i) => {
       if (endOfChord === undefined) {
         //first iteration of the loop
         tempChord = new Chord(item); //creates a new chord adding its first note
-        console.log("new");
         endOfChord = item.getInstantOff(); //sets  end of chord
       } else {
         if (endOfChord > item.getInstantOn()) {
@@ -57,7 +55,6 @@ class ChordProgression {
           tempChord.identifyChord();
           this.#chords.push(tempChord);
           tempChord = new Chord(item);
-          console.log("new");
         }
         endOfChord = item.getInstantOff();
       }
@@ -66,12 +63,9 @@ class ChordProgression {
     if (tempChord.getNotes().length > 2) {
       //pushes last chord
       tempChord.identifyChord();
-      console.log("last");
       this.#chords.push(tempChord);
     }
 
-    console.log("detectchords")
-    console.log(this.#chords)
   }
 
   generateVoicings() {
@@ -113,7 +107,11 @@ class ChordProgression {
     });
   }
 
-
+  add9s() {
+    this.#chords.forEach((chord, i) => {
+      chord.add9();
+    });
+  }
 
   getNotesTrack(){ //returns the chord progression as an array of notes
     let temp = this.#chords.map((chord)=> chord.getNotes())

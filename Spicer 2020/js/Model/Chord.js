@@ -36,7 +36,6 @@ class Chord {
         //checks that item is a note
         this.#notes.push(item); //adds the argument to the note list
     });
-    //  this.identifyChord()
   }
 
   addNote(note) {
@@ -44,7 +43,6 @@ class Chord {
     if (note.constructor.name == Note.name)
       //checks that item is a note
       this.#notes.push(note); //adds the argument to the note list
-    //  this.identifyChord()
   }
 
   //finds the root, inverion and type of the chord
@@ -83,7 +81,6 @@ class Chord {
     } else {
       this.#root = pitches[this.#type.getRootPos()];
     }
-    console.log(1);
     this.cleanChord()
     if (key != undefined) {
       this.findChordGrade();
@@ -113,7 +110,9 @@ class Chord {
 
     if (this.#grade !== undefined) {
       this.#grade++; //this is done to shift the 0 value to 1;
+
     }
+
   }
 
   //todo fixare
@@ -129,26 +128,6 @@ class Chord {
   }
 
   cleanChord() {
-    //used to clean the chord both if undefined or defined
-    if (this.#type == undefined) {
-      this.fixUCO();
-    } else {
-      let root = this.#root.getMidiNote();
-      let intervals = noInvertInterval[this.#type.getName()];
-      let pitches = intervals.map((el) => el + root); //creates the chord
-      pitches.unshift(root);
-      this.#notes.forEach((item, i) => {
-        item.setMidiNote(pitches[i]);
-      });
-
-      console.log(pitches);
-    }
-    this.rearrange(); //shifts notes to the "golden octave"
-
-  }
-
-  fixUCO() {
-    //fixes Unidentified Chord Object
     //[c,e,g,c,e,g]
     let different_notes = [];
     different_notes = new Set(this.#notes.map((el) => el.getName()));
@@ -159,10 +138,7 @@ class Chord {
       newNotes.push(this.#notes.find((el) => el.getName() == noteName));
     });
     this.#notes = newNotes;
-
-    console.log(this.#notes);
-    console.log("different notes");
-    console.log(different_notes);
+    this.rearrange(); //shifts notes to the "golden octave"
   }
 
   //Aggiunge la 6^ sempre maggiore!!
@@ -183,6 +159,8 @@ class Chord {
     newQueue = this.#notes[this.#notes.length - 1].getQueue();
 
     this.addNotes(new Note(sixth, newQueue, newVel, newOn, newOff));
+    this.rearrange();
+
   }
 
   //todo fix major problems (concerning octave position)
@@ -193,12 +171,7 @@ class Chord {
       let newOn;
       let newOff;
       let newQueue;
-      let different_notes = [];
-      different_notes = new Set(this.#notes.map((el) => el.getName()));
-      console.log("different notes");
-      console.log(different_notes);
-
-      if (different_notes.length == 3) {
+      if (this.#notes.length == 3) {
         //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
         if (key.isMajor()) {
           seventh =
@@ -230,23 +203,39 @@ class Chord {
         newQueue = this.#notes[this.#notes.length - 1].getQueue();
 
         this.addNotes(new Note(seventh, newQueue, newVel, newOn, newOff));
+        this.rearrange();
       }
     }
   }
 
   //Aggiunge la 9^ sempre maggiore!!
   add9() {
-    let ninth;
+    if (this.#grade !== undefined && this.#root !== undefined) {
+      let ninth;
+      let newVel;
+      let newOn;
+      let newOff;
+      let newQueue;
     //Nella scala maggiore il III grado può essere minore o maggiore (preso in prestito dalla relativa minore melodica)
     if (
       this.#grade == 3 &&
       (this.#type.getName() == "maj" || this.#type.getName() == "maj7")
     ) {
-      ninth = this.#root + 13;
+      ninth = this.#root.getMidiNote() + 13;
     } else {
-      ninth = chord.getRoot() + 14;
+      ninth = this.#root.getMidiNote() + 14;
     }
+    newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
+    newOn = this.#notes[this.#notes.length - 1].getInstantOn() + 2;
+    newOff = this.#notes[this.#notes.length - 1].getInstantOff();
+    newQueue = this.#notes[this.#notes.length - 1].getQueue();
+    console.log(ninth);
+    this.addNotes(new Note(ninth, newQueue, newVel, newOn, newOff));
+    this.rearrange();
+
+    //Da fare controllo different notes?
   }
+}
 
   //todo finire
   voicingTODO() {
@@ -279,18 +268,18 @@ class Chord {
   rearrange() {
     //shifts chords to the "golden octave"
     this.#notes.forEach((note, i) => {
-      if (i != 0) {
-        if (note.getMidiNote() < 62 || note.getMidiNote() < 77) {
+        if (note.getMidiNote() < 62 || note.getMidiNote() > 77) {
           note.setMidiNote(shiftToOctave(5, note.getMidiNote()));
         }
-      }
     });
+
     this.#notes.forEach((note) => {
       //shifts 60 and 61 one octave above
       if (note.getMidiNote() < 62) {
         note.setMidiNote(note.getMidiNote() + 12);
       }
     });
+
   }
 
   changeNotes(pitches) {
