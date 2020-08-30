@@ -1,0 +1,13 @@
+#bringUp{
+    transform: rotate(-90deg);
+}
+
+#dropDown{
+    transform: rotate(90deg);
+}
+
+.arrow{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}

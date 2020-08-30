@@ -13,11 +13,15 @@ class Recorder{
   }
 
   start(timeStart){ //sets the timestamp of the start of the recording (first downbeat after preclick)
+    onAir = true;
     this.#timeStart = timeStart
   }
 
   stop(){
+    stopAllNotes()
+    onAir = false;
     cprog.detectChords(recorder.getRecTrack());
+    console.log(cprog)
   }
 
   endNote(note,timeStamp){
