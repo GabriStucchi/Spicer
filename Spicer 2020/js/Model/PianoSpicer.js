@@ -29,7 +29,7 @@ class PianoSpicer {
 
     return track
   }
-  spice(cprog){ //returns the spiced track according to the level
+  spice(){ //returns the spiced track according to the level
     console.log("base track");
     console.log(cprog);
     if(this.#spiced_tracks === undefined){

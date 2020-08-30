@@ -91,11 +91,12 @@ class Chord {
 
   //find the grade of the chord
   findChordGrade() {
+
     //obtain the number of the tonic of the key in semitones (0-11)
     let tonic = possible_notes.indexOf(key.getKeyNote());
-
+  
     //shifts the root note of the chord to the 0 octave
-    let zeroRoot = this.#root - Math.floor(this.#root.getMidiNote() / 12) * 12;
+    let zeroRoot = this.#root.getMidiNote() - Math.floor(this.#root.getMidiNote() / 12) * 12;
     //distance between the zeroRoot of the chord and the tonic of the key
     let interval = zeroRoot - tonic;
 
@@ -156,10 +157,10 @@ class Chord {
       if (this.#notes.length == 3) {
         //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
         if (key.isMajor()) {
-          seventh =
-            major[(this.#grade + 5) % major.length] +
-            12 -
-            major[this.#grade - 1];
+          
+          seventh = major[(this.#grade + 5) % major.length] + 12 - major[this.#grade - 1];
+          console.log("value")
+          console.log(this.#grade)
         } else {
           //IF MINOR
           seventh =
@@ -172,13 +173,15 @@ class Chord {
           seventh = seventh - 12;
         }
         seventh = this.#root.getMidiNote() + seventh;
+
         //todo if execution is too slow delete velocity average
-        this.#notes.forEach((item) => {
+       /* this.#notes.forEach((item) => {
           //the velocity is an everage of the velocities of the chord
           newVel += item.getVelocity() / this.#notes.length;
         });
-
-        newOn = this.#notes[this.#notes.length - 1].getInstantOn();
+        */
+       newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
+        newOn = this.#notes[this.#notes.length - 1].getInstantOn() + 2;
         newOff = this.#notes[this.#notes.length - 1].getInstantOff();
         newQueue = this.#notes[this.#notes.length - 1].getQueue();
 

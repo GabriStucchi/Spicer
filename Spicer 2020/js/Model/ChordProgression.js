@@ -107,6 +107,17 @@ class ChordProgression {
     });
   }
 
+
+
+  getNotesTrack(){ //returns the chord progression as an array of notes
+    let temp = this.#chords.map((chord)=> chord.getNotes())
+    let noteTrack = []
+    temp.forEach((element)=>{
+      noteTrack = noteTrack.concat(element)
+    })
+    return noteTrack
+  }
+
   getChords() {
     return this.#chords;
   }

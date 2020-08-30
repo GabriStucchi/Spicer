@@ -85,8 +85,16 @@ function noteOff(pitch, timestamp){
 
 
 function instrumentNoteOn(note){
+    
+    let timestampOn = 0;
+    let duration = default_duration;
+    if(!onAir && note.getInstantOff() != undefined){ // for playback
+        timestampOn = note.getInstantOn()/1000;
+        duration = note.getDuration()/1000;
+    }
+
     noteOff(note.getMidiNote(),note.getInstantOn());
-    let queue = player.queueWaveTable(audioContext, audioContext.destination, tone, 0, note.getMidiNote(), default_duration, note.getVolume());
+    let queue = player.queueWaveTable(audioContext, audioContext.destination, tone, audioContext.currentTime + timestampOn, note.getMidiNote(), duration, note.getVolume());
     note.setQueue(queue);
     activeNotes.push(note);
 
