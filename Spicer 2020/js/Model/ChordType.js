@@ -2,11 +2,13 @@ class ChordType {
   #name
   #inversion
   #rootPos
+  
 
   constructor(type,inv,rootPos) {
     this.#name = type;
     this.#inversion = inv;
     this.#rootPos = rootPos;
+
   }
 
   getName(){
@@ -20,4 +22,6 @@ class ChordType {
   getRootPos(){
     return this.#rootPos;
   }
+
+
 }
