@@ -22,16 +22,12 @@ class Key {
 
   setScaleType(type){ //if the type of scale is changed then i delete everything that has been recorded + all the spicer tracks
     this.#type= type
-    recorder = new Recorder();
-    cprog = new ChordProgression();
-    spricer = new PianoSpicer();
+    cleanRec()
   }
 
   setRootKey(root){ //if the root of the scale is changed then i delete everything that has been recorded + all the spicer tracks
     this.#rootKey = root
-    recorder = new Recorder();
-    cprog = new ChordProgression();
-    spricer = new PianoSpicer();
+    cleanRec()
   }
 
   

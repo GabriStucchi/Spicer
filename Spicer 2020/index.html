@@ -34,9 +34,10 @@
 
 
   <script src="js/Controller/MidiManagement.js" defer></script>
+  <script src="js/Controller/synthController.js" defer></script>
   <script src="js/Controller/globalController.js" defer></script>
   <script src="js/Controller/musicFunctions.js" defer></script>
-  <script src="js/Controller/synthController.js" defer></script>
+  
 
   <script src="js/Instruments.js" defer></script>
 
@@ -77,6 +78,7 @@
     <h1>
       <div class="red-txt">SPIC</div><img class="chili-logo" src="css/images/chili.svg" alt="">R
     </h1>
+    <button id ="instrumentToggle" class="">ON AIR</button>
   </div>
 
   <div class="leather-box">
@@ -442,11 +444,6 @@
 
   <div id="spicerSection">
     <img src="css/images/arrow.svg" class="arrow" id="bringUp" >
-    
-    <label class="switch">
-      <input type="checkbox" onclick="toggleInstrument()">
-      <span class="slider round">SWITCH</span>
-    </label>
 
     <p><select id='ins' onchange="selectIns(this)"></select></p>
     <div id="tempoBox">Tempo: <span id="showTempo">120</span>BPM <input id="tempo" type="range" min="30.0" max="300.0"

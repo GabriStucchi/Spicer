@@ -16,3 +16,10 @@ function shiftOfOctave(nOctaves,midiNote){
   stop2 = Math.log(stop2);
   return Math.exp(start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1)))
 }
+
+
+function cleanRec(){
+  recorder = new Recorder();
+  cprog = new ChordProgression();
+  spricer = new PianoSpicer();
+}
