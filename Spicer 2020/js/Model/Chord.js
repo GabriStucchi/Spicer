@@ -83,7 +83,7 @@ class Chord {
     } else {
       this.#root = pitches[this.#type.getRootPos()];
     }
-
+    console.log(1);
     this.cleanChord()
     if (key != undefined) {
       this.findChordGrade();
@@ -137,9 +137,14 @@ class Chord {
       let intervals = noInvertInterval[this.#type.getName()];
       let pitches = intervals.map((el) => el + root); //creates the chord
       pitches.unshift(root);
+      this.#notes.forEach((item, i) => {
+        item.setMidiNote(pitches[i]);
+      });
+
+      console.log(pitches);
     }
     this.rearrange(); //shifts notes to the "golden octave"
-    console.log(this)
+
   }
 
   fixUCO() {

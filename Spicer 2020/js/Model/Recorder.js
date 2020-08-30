@@ -24,13 +24,11 @@ class Recorder{
   //Stop the recordig, change the graphic and call the chord recognition
   stop(){
     stopAllNotes()
-    this.record(new Note(undefined,))
     onAir = false;
     setOnAirTxt() //sets text in on air div
     cprog.detectChords(recorder.getRecTrack());
-    console.log(spicer.spice())
-    player.play(spicer.spice().getNotesTrack())
-    //player.play(cprog.getNotesTrack())
+    //player.play(spicer.spice().getNotesTrack())
+    player.play(cprog.getNotesTrack())
   }
 
   endNote(note,timeStamp){
