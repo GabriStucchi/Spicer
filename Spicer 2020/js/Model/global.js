@@ -6,7 +6,7 @@ let _notes = {'C':261.63,'C#':277.18,'D':293.66,'D#':311.13,'E':329.63,
               'F':349.23,'F#':369.99,'G':392.00,'G#':415.30,'A':440.00,
               'A#':466.16,'B':493.88};
 
-let playSynth = false;
+let playSynth = true;
 
 let possible_notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 let tonalities = ["Maj", "Min"];
@@ -16,7 +16,7 @@ let major = [0, 2, 4, 5, 7, 9, 11]
 let minor = [0, 2, 3, 5, 7, 8, 10]
 
 // TODO:  initialize a key object that will be used to get the current key values
-let key = new Key("C","Maj")
+let key = new Key('C',"Maj")
 let tempo = new Tempo(120)
 let recorder = new Recorder();
 let cprog = new ChordProgression()

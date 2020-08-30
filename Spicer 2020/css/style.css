@@ -10,7 +10,9 @@ body{
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
   background-color: rgb(45,45,45);
-  background-image: url("css/images/background.jpg");
+  background-image: url("images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   height: auto;
 }
 
