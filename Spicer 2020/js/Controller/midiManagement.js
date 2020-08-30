@@ -90,10 +90,14 @@ function instrumentNoteOn(note){
     let duration = default_duration;
     if(!onAir && note.getInstantOff() != undefined){ // for playback
         timestampOn = note.getInstantOn()/1000;
-        duration = note.getDuration()/1000;
+        //duration = note.getDuration()/1000;
+        duration = 2;
+    }else{
+        noteOff(note.getMidiNote(),note.getInstantOn());
     }
 
-    noteOff(note.getMidiNote(),note.getInstantOn());
+    
+    console.log(note)
     let queue = player.queueWaveTable(audioContext, audioContext.destination, tone, audioContext.currentTime + timestampOn, note.getMidiNote(), duration, note.getVolume());
     note.setQueue(queue);
     activeNotes.push(note);
