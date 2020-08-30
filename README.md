@@ -9,7 +9,7 @@
 
 <h3 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
 
-![tag](https://img.shields.io/aur/last-modified/google-chrome)   tag??
+![tag](https://img.shields.io/aur/last-modified/google-chrome) ![Mozilla Add-on](https://img.shields.io/amo/rating/dustman) ![Github All Contributors](https://img.shields.io/github/all-contributors/all-contributors/all-contributors/master) 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/57997005/91635013-1f52c980-e9f5-11ea-852c-8e1d80ab34b9.png?raw=true" alt="image"/>
