@@ -66,6 +66,9 @@ class ChordProgression {
       tempChord.identifyChord();
       this.#chords.push(tempChord);
     }
+
+    console.log("detectchords")
+    console.log(this.#chords)
   }
 
   generateVoicings() {

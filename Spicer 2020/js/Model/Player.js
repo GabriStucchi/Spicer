@@ -7,4 +7,12 @@ class Player{
 
     }
 
+    stop(){
+
+    }
+
+    loop() {
+        
+    }
+
 }

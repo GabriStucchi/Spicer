@@ -45,8 +45,6 @@ function getMIDIMessage(message) {
 
 function noteOn(note) {
   resume();
-
-  console.log(playSynth);
   if (note.constructor.name == Note.name) {
     //checks that note is actually a note)
     if (playSynth) {
@@ -87,8 +85,7 @@ function instrumentNoteOn(note) {
     noteOff(note.getMidiNote(), note.getInstantOn());
   }
 
-  console.log(note);
-  let queue = player.queueWaveTable(
+  let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
     audioContext.destination,
     tone,

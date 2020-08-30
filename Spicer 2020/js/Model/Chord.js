@@ -162,8 +162,6 @@ class Chord {
         if (key.isMajor()) {
           
           seventh = major[(this.#grade + 5) % major.length] + 12 - major[this.#grade - 1];
-          console.log("value")
-          console.log(this.#grade)
         } else {
           //IF MINOR
           seventh =

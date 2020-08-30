@@ -111,7 +111,6 @@ class Metronome {
         this.play();
         recorder.stop();
       }
-      console.log("Bar: " + this.#bar);
     }
   }
 

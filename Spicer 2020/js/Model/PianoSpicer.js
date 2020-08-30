@@ -23,15 +23,10 @@ class PianoSpicer {
         default: //do nothing
       }
     }
-    console.log("track level")
-    console.log(level);
-    console.log(track);
 
     return track
   }
   spice(){ //returns the spiced track according to the level
-    console.log("base track");
-    console.log(cprog);
     if(this.#spiced_tracks === undefined){
       this.#spiced_tracks = []
       this.#spiced_tracks.push(cprog);

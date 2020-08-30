@@ -44,7 +44,9 @@ let key = new Key("C", "Maj");
 let tempo = new Tempo(120);
 let recorder = new Recorder();
 let cprog = new ChordProgression();
-spicer = new PianoSpicer();
+let player = new Player()
+let spicer = new PianoSpicer();
+
 let metronome = new Metronome();
 
 let chordsIntervals = {
@@ -107,5 +109,4 @@ function cleanRec() {
   recorder = new Recorder();
   cprog = new ChordProgression();
   spricer = new PianoSpicer();
-  player = new Player();
 }

@@ -9,7 +9,6 @@ class Recorder{
 
   record(note){
     note.setInstantOn(note.getInstantOn() - this.#timeStart) //shifts the timestamp accordingly to the beginning of the recording
-    console.log(note.getInstantOn())
     this.#track.addNote(note); //add note automatically checks if the arg is a note
   }
 
@@ -28,9 +27,6 @@ class Recorder{
     onAir = false;
     setOnAirTxt() //sets text in on air div
     cprog.detectChords(recorder.getRecTrack());
-    
-    let player = new Player
-  
     
     player.play(spicer.spice().getNotesTrack())
     //player.play(cprog.getNotesTrack())
