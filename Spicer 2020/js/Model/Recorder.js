@@ -24,6 +24,7 @@ class Recorder{
   stop(){
     stopAllNotes()
     onAir = false;
+    instrumentBtn.innerText = "ON AIR";
     cprog.detectChords(recorder.getRecTrack());
     console.log(cprog)
   }

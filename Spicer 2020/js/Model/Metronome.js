@@ -41,7 +41,7 @@ class Metronome {
   }
 
   setTempo(value) {
-    this.#tempo = tempo;
+    this.#tempo = value;
   }
 
   getTempo() {
