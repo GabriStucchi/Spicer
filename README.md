@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/57997005/91635010-1c57d900-e9f5-11ea-9c0b-b008605fe2d1.png?raw=true" alt="Sublime's custom image" width="120"//>
+  <img src="https://user-images.githubusercontent.com/57997005/91635010-1c57d900-e9f5-11ea-9c0b-b008605fe2d1.png?raw=true" alt="logo" width="120"//>
 </p>
 
 <h1 align="center"> Spicer (scritta carina) </h1>
@@ -9,10 +9,10 @@
 
 <h3 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
 
-![tag](https://img.shields.io/aur/last-modified/google-chrome)
+![tag](https://img.shields.io/aur/last-modified/google-chrome)   tag??
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/57997005/91635013-1f52c980-e9f5-11ea-852c-8e1d80ab34b9.png?raw=true" alt="Schermata 2020-08-29 alle 12 34 01"/>
+  <img src="https://user-images.githubusercontent.com/57997005/91635013-1f52c980-e9f5-11ea-852c-8e1d80ab34b9.png?raw=true" alt="image"/>
 </p>
 
 ## How To Use
