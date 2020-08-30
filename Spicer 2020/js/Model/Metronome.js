@@ -12,11 +12,11 @@ class Metronome {
   #bar;                 //Bar tracker
   #countdown;           //Countdown for recording
 
-  constructor() {
+  constructor(bpm) {
     this.#audioContext = new AudioContext();
     this.#isPlaying = false;
     this.#current16thNote = 0;
-    this.#tempo = 120.0;
+    this.#tempo = bpm;
     this.#lookahead = 25.0;
     this.#scheduleAheadTime = 0.1;
     this.#nextNoteTime = 0.0;
@@ -47,7 +47,8 @@ class Metronome {
   getTempo() {
     return this.#tempo;
   }
-  //Onclick function
+
+  // Start and stop the metronome
   play() {
     this.#isPlaying = !this.#isPlaying;
 
@@ -102,14 +103,12 @@ class Metronome {
       this.#current16thNote = 0;
       this.#bar++;
 
-      // START RECORDING
-      if (this.#bar == 0){
+      if (this.#bar == 0){              // START RECORDING
         console.log("RECORDING");
         recorder.start(currentTime())
       }
-      else if (this.#bar == 4){
+      else if (this.#bar == 4){         // STOP RECORDING (after 4 bars)
         this.play();
-        recorder.stop();
       }
     }
   }

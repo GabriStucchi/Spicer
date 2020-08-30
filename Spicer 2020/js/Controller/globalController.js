@@ -1,8 +1,7 @@
 //onclick function function of toggle button
 let instrumentBtn = document.getElementById("instrumentToggle");
 let onAirBtn = document.querySelector(".onAirBtn");
-
-instrumentBtn.onclick = toggleInstrument;
+let playLoopBtn = document.getElementById("playLoop");
 
 function toggleInstrument() {
   playSynth = !playSynth;
@@ -18,8 +17,38 @@ function toggleInstrument() {
   activeNotes.splice(0, activeNotes.length);
 }
 
+function playback() {
+  if(playLoopBtn.innerText == "START"){
+    player.play(true);
+    setLoopBtnTxt("STOP")
+  }
+  else {
+    player.play(false);
+    setLoopBtnTxt("START");
+  }
+}
+
+function setOnAirTxt(txt) {
+  txt == undefined
+    ? (onAirBtn.innerText = "ON AIR")
+    : (onAirBtn.innerText = txt);
+}
+
+function setLoopBtnTxt(txt) {
+  playLoopBtn.innerText = txt;
+}
+
+function toggleOnAirLight() {
+  onAirBtn.classList.toggle("onAir");
+}
+
+
+instrumentBtn.onclick = toggleInstrument;
+playLoopBtn.onclick = playback;
+
 document.getElementById("tempoBox").oninput = (event) => {
   metronome.setTempo(event.target.value);
+  player.setTempo(event.target.value);
   document.getElementById("showTempo").innerText = metronome.getTempo();
 };
 
@@ -33,13 +62,3 @@ document.onkeydown = (e) => {
     metronome.play();
   }
 };
-
-function setOnAirTxt(txt) {
-  txt == undefined
-    ? (onAirBtn.innerText = "ON AIR")
-    : (onAirBtn.innerText = txt);
-}
-
-function toggleOnAirLight() {
-  onAirBtn.classList.toggle("onAir");
-}

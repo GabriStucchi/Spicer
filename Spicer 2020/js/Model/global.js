@@ -41,13 +41,11 @@ let minor = [0, 2, 3, 5, 7, 8, 10];
 
 // TODO:  initialize a key object that will be used to get the current key values
 let key = new Key("C", "Maj");
-let tempo = new Tempo(120);
 let recorder = new Recorder();
 let cprog = new ChordProgression();
-let player = new Player()
+let metronome = new Metronome(120);
+let player = new Player(120);
 let spicer = new PianoSpicer();
-
-let metronome = new Metronome();
 
 let chordsIntervals = {
   "[4,7]": new ChordType("maj", 0, 0),

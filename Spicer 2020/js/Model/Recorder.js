@@ -25,10 +25,12 @@ class Recorder{
   stop(){
     stopAllNotes()
     onAir = false;
-    setOnAirTxt() //sets text in on air div
+    setOnAirTxt();            //sets text in on air div
+    setLoopBtnTxt("STOP");    //sets text in loop button
     cprog.detectChords(recorder.getRecTrack());
     
-    player.play(spicer.spice().getNotesTrack())
+    player.setTrack(spicer.spice().getNotesTrack());
+    player.play(true);
     //player.play(cprog.getNotesTrack())
   }
 
