@@ -92,6 +92,10 @@ class Note {
     this.#name = possible_notes[shiftToOctave(0,this.#midiNote)]
   }
 
+  getName(){
+    return this.#name
+  }
+
   computeFrequency(){
     if(this.#midiNote!=undefined){
       this.#frequency = 440 * Math.pow(2, (this.#midiNote-69)/12);

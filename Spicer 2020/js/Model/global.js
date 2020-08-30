@@ -49,6 +49,7 @@ let spicer = new PianoSpicer();
 
 let metronome = new Metronome();
 
+
 let chordsIntervals = {
   "[4,7]": new ChordType("maj", 0, 0),
   "[3,8]": new ChordType("maj", 1, 2),
@@ -76,8 +77,21 @@ let chordsIntervals = {
   "[3,6,10]": new ChordType("sdim", 0, 0),
   "[3,7,9]": new ChordType("sdim", 1, 3),
   "[4,6,9]": new ChordType("sdim", 2, 2),
-  "[2,5,8]": new ChordType("sdim", 3, 1),
-};
+  "[2,5,8]": new ChordType("sdim", 3, 1)
+  };
+
+
+  let noInvertInterval ={
+    "maj": [4,7],
+    "min": [3,7],
+    "dim": [3,6],
+    "aug": [4,8],
+    "maj7": [4,7,11],
+    "min7": [3,7,10],
+    "dom7": [4,7,10],
+    "dim7": [3,6,9],
+    "sdim": [3,6,10]
+  }
 
 timeThresh = 25; //time threshold under which we add a note to a chord
 timeDist = 2;

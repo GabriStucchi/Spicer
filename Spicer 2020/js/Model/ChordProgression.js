@@ -34,7 +34,7 @@ class ChordProgression {
       this.#chords.push(item); //adds the argument to the note list
   }
 
-  detectChords(recTrack) {
+  detectChords(recTrack) { //todo CONTROL ON MAX MS 
     //scorre la traccia e partendo dalla prima nota, prende tutte le note che si trovano dopo il primo note On fino al primo note Off,
     //con queste info crea un accordo e procede al calcolo dei successivi accordingly
     let endOfChord = undefined;
