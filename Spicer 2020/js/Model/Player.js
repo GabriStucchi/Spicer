@@ -1,5 +1,4 @@
-class Player{
-    
+class Player{ 
 
     play(track){
         track.forEach(note => {
@@ -7,6 +6,5 @@ class Player{
         });
 
     }
-
 
 }

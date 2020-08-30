@@ -1,25 +1,22 @@
 //onclick function function of toggle button
 let instrumentBtn = document.getElementById("instrumentToggle");
+let onAirBtn = document.querySelector(".onAirBtn");
 
-/*instrumentBtn.onclick = toggleInstrument;
+instrumentBtn.onclick = toggleInstrument;
 
 function toggleInstrument() {
+  playSynth = !playSynth;
+  console.log(playSynth);
   if (playSynth) {
+    muteSynth(false);
+    stopAllNotes()
+    console.log(activeNotes)
+  } else {
     muteSynth(true);
     synthNoteOff();
-    instrumentBtn.innerHTML = "REC";
-  } else {
-    muteSynth(false);
-    instrumentBtn.toggle("");
-    instrumentBtn.innerHTML = "STOP";
   }
-
-  instrumentBtn.toggle("recBtn");
-  instrumentBtn.toggle("stopBtn");
-  playSynth = !playSynth;
   activeNotes.splice(0, activeNotes.length);
 }
-*/
 
 document.getElementById("tempoBox").oninput = (event) => {
   metronome.setTempo(event.target.value);
@@ -28,17 +25,21 @@ document.getElementById("tempoBox").oninput = (event) => {
 
 document.onkeydown = (e) => {
   if (e.code == "Space") {
-    if (!playSynth) {
-      //document.getElementById("rec").innerText = metronome.play();
-      muteSynth(false);
-    } else {
-      muteSynth(true);
-      synthNoteOff();
+    if (playSynth) {
+      toggleInstrument();
     }
     cleanRec();
     activeNotes.splice(0, activeNotes.length);
     metronome.play();
-    playSynth = !playSynth;
-
   }
 };
+
+function setOnAirTxt(txt) {
+  txt == undefined
+    ? (onAirBtn.innerText = "ON AIR")
+    : (onAirBtn.innerText = txt);
+}
+
+function toggleOnAirLight() {
+  onAirBtn.classList.toggle("onAir");
+}

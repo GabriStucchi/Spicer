@@ -160,7 +160,7 @@ class Synth {
   //Change frequency and velocity of both Oscillators
   changeNote(note) {
     this.#oscillators.forEach((osc) => osc.setFrequency(note.getFrequency()));
-    this.#velocity.gain.value = note.getVelocity()/127;
+    this.#velocity.gain.value = note.getVolume();
   }
 
   //Trigger attack of both Envelopes

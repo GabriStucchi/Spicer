@@ -18,17 +18,21 @@ class Recorder{
   start(timeStart){
     onAir = true;
     this.#timeStart = timeStart;
-    instrumentBtn.innerText = "ON AIR";
+    setOnAirTxt() //sets text in on air div
+
   }
 
   //Stop the recordig, change the graphic and call the chord recognition
   stop(){
     stopAllNotes()
     onAir = false;
-    instrumentBtn.innerText = "ON AIR";
+    setOnAirTxt() //sets text in on air div
     cprog.detectChords(recorder.getRecTrack());
     
     let player = new Player
+  
+    
+    //player.play(spicer.spice().getNotesTrack())
     player.play(cprog.getNotesTrack())
   }
 

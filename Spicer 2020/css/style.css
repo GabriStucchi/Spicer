@@ -97,6 +97,7 @@ h1{
 
 .onAirBtn{
   padding: 15px 32px;
+  width: 75px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -113,6 +114,7 @@ h1{
 }
 
 .onAir {
+
   background-color:  rgba(204, 32, 32, 0.911);
   color: #fff;
   -webkit-animation: glow 1s ease-in-out infinite alternate;

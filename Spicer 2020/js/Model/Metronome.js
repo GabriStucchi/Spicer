@@ -57,10 +57,10 @@ class Metronome {
       this.#countdown = 4;
       this.#nextNoteTime = this.#audioContext.currentTime;
       this.#timerWorker.postMessage("start");       //Message to worker
-      instrumentBtn.classList.toggle("onAir");      //Ligths up the label
+      toggleOnAirLight()      //Ligths up the label
     } else {
       this.#timerWorker.postMessage("stop");        //Message to worker
-      instrumentBtn.classList.toggle("onAir");      //Ligths off the label
+      toggleOnAirLight()      //Ligths off the label
       recorder.stop();
     }
   }
@@ -77,7 +77,7 @@ class Metronome {
 
     if(!onAir){
       osc.frequency.value = 440.0;
-      instrumentBtn.innerText = this.#countdown;
+      setOnAirTxt(this.#countdown) 
       this.#countdown--;
     }
     else{

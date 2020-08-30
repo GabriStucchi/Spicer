@@ -96,8 +96,11 @@ class Chord {
     let tonic = possible_notes.indexOf(key.getKeyNote());
   
     //shifts the root note of the chord to the 0 octave
-    let zeroRoot = this.#root.getMidiNote() - Math.floor(this.#root.getMidiNote() / 12) * 12;
+    let zeroRoot = shiftToOctave(0,this.#root.getMidiNote())
     //distance between the zeroRoot of the chord and the tonic of the key
+    if(zeroRoot<tonic){
+      zeroRoot+=12
+    }
     let interval = zeroRoot - tonic;
 
     if (key.isMajor()) {
