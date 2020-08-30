@@ -32,8 +32,8 @@ class Recorder{
     let player = new Player
   
     
-    //player.play(spicer.spice().getNotesTrack())
-    player.play(cprog.getNotesTrack())
+    player.play(spicer.spice().getNotesTrack())
+    //player.play(cprog.getNotesTrack())
   }
 
   endNote(note,timeStamp){
