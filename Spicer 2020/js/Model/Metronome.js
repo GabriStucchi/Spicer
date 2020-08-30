@@ -66,7 +66,7 @@ class Metronome {
     }
   }
 
-
+/*
   scheduleNote(beatNumber, time) {
 
     if (beatNumber % 4)
@@ -82,11 +82,57 @@ class Metronome {
       this.#countdown--;
     }
     else{
-      if (beatNumber % 16 === 0)    // beat 0 == high pitch
+      if (beatNumber % 16 === 0) {   // beat 0 == high pitch
         osc.frequency.value = 880.0;
+      }
       else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
         osc.frequency.value = 440.0;
     } 
+
+  
+    osc.start(time);
+    osc.stop(time + this.#noteLength);
+  }
+*/
+
+  
+  scheduleNote(beatNumber, time) {
+
+    if (beatNumber % 4)
+      return; // we're not on beat
+
+    let drum =[undefined,undefined,undefined]
+
+    // create an oscillator
+    let osc = this.#audioContext.createOscillator();
+    osc.connect(this.#audioContext.destination);
+
+    if(!onAir){
+      osc.frequency.value = 440.0;
+      setOnAirTxt(this.#countdown) 
+      this.#countdown--;
+    }
+    else{
+      if (beatNumber % 16 === 0) {   // beat 0 == high pitch
+        osc.frequency.value = 880.0;
+        drum[0] = new Audio('/css/Audio/kickHat.wav');
+      }
+      else{
+        if (beatNumber % 8 === 0){    // 1/2 notes
+          drum[0] = new Audio('/css/Audio/kickHard.wav');
+        }else{
+          if (beatNumber % 4 === 0){   // quarter notes = medium pitch
+            osc.frequency.value = 440.0;
+            drum[0] = new Audio('/css/Audio/kickSoft.wav');
+            drum[1] = new Audio('/css/Audio/snare.wav');
+          }
+        }   
+      }
+    }
+
+    drum.forEach(item=>{
+      item != undefined ? item.play() : 0;
+    })
     osc.start(time);
     osc.stop(time + this.#noteLength);
   }
