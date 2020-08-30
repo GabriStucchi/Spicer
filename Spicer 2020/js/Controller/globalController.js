@@ -31,13 +31,11 @@ document.onkeydown = (e) => {
     if (!playSynth) {
       //document.getElementById("rec").innerText = metronome.play();
       muteSynth(false);
-      instrumentBtn.classList.toggle("onAir");
     } else {
       muteSynth(true);
       synthNoteOff();
-      instrumentBtn.classList.toggle("onAir");
     }
-    cleanRec()
+    cleanRec();
     activeNotes.splice(0, activeNotes.length);
     metronome.play();
     playSynth = !playSynth;
