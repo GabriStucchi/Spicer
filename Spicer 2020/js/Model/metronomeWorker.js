@@ -2,7 +2,6 @@ let timerID = null;
 let schedulingInterval = 100;
 
 self.onmessage=function(e){
-	console.log("called");
 	if (e.data=="start") {
 		console.log("starting");
 		timerID=setInterval(function(){

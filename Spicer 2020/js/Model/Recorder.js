@@ -13,15 +13,19 @@ class Recorder{
     this.#track.addNote(note); //add note automatically checks if the arg is a note
   }
 
-  start(timeStart){ //sets the timestamp of the start of the recording (first downbeat after preclick)
+  //sets the timestamp of the start of the recording (first downbeat after preclick)
+  //Change the graphic of the button
+  start(timeStart){
     onAir = true;
-    this.#timeStart = timeStart
-    console.log(this.#timeStart)
+    this.#timeStart = timeStart;
+    instrumentBtn.innerText = "ON AIR";
   }
 
+  //Stop the recordig, change the graphic and call the chord recognition
   stop(){
     stopAllNotes()
     onAir = false;
+    instrumentBtn.innerText = "ON AIR";
     cprog.detectChords(recorder.getRecTrack());
     
     let player = new Player

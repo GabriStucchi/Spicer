@@ -1,7 +1,7 @@
 
 class Metronome {
   #audioContext;
-  #isPlaying;           // Are we currently playing?
+  #isPlaying;      // Are we currently playing?
   #current16thNote;     // What note is currently last scheduled?
   #tempo;               // tempo (in beats per minute)
   #lookahead;           // How frequently to call scheduling function (in milliseconds)
@@ -10,6 +10,7 @@ class Metronome {
   #noteLength;          // length of "beep" (in seconds)
   #timerWorker;         // The Web Worker used to fire timer messages
   #bar;                 //Bar tracker
+  #countdown;           //Countdown for recording
 
   constructor() {
     this.#audioContext = new AudioContext();
@@ -22,6 +23,7 @@ class Metronome {
     this.#noteLength = 0.05;
     this.#timerWorker = new Worker("js/Model/metronomeWorker.js");
     this.#bar = -1;
+    this.#countdown = 4;
 
     //Manages the messages received from the Worker
     this.#timerWorker.onmessage = function (e) {
@@ -39,7 +41,7 @@ class Metronome {
   }
 
   setTempo(value) {
-    this.#tempo = tempo;
+    this.#tempo = value;
   }
 
   getTempo() {
@@ -49,15 +51,17 @@ class Metronome {
   play() {
     this.#isPlaying = !this.#isPlaying;
 
-    if (this.#isPlaying) { // start playing
+    if(this.#isPlaying){
       this.#current16thNote = 0;
       this.#bar = -1;
+      this.#countdown = 4;
       this.#nextNoteTime = this.#audioContext.currentTime;
       this.#timerWorker.postMessage("start");       //Message to worker
-      return "STOP";                          //Change button text
+      instrumentBtn.classList.toggle("onAir");      //Ligths up the label
     } else {
       this.#timerWorker.postMessage("stop");        //Message to worker
-      return "REC";                           //Change button text
+      instrumentBtn.classList.toggle("onAir");      //Ligths off the label
+      recorder.stop();
     }
   }
 
@@ -70,12 +74,18 @@ class Metronome {
     // create an oscillator
     let osc = this.#audioContext.createOscillator();
     osc.connect(this.#audioContext.destination);
-    if (beatNumber % 16 === 0)    // beat 0 == high pitch
-      osc.frequency.value = 880.0;
-    else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
-      osc.frequency.value = 440.0;
 
-      
+    if(!onAir){
+      osc.frequency.value = 440.0;
+      instrumentBtn.innerText = this.#countdown;
+      this.#countdown--;
+    }
+    else{
+      if (beatNumber % 16 === 0)    // beat 0 == high pitch
+        osc.frequency.value = 880.0;
+      else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
+        osc.frequency.value = 440.0;
+    } 
     osc.start(time);
     osc.stop(time + this.#noteLength);
   }
@@ -101,7 +111,7 @@ class Metronome {
         this.play();
         recorder.stop();
       }
-      console.log(this.#bar);
+      console.log("Bar: " + this.#bar);
     }
   }
 
