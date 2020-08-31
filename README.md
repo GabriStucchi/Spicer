@@ -43,9 +43,9 @@ Follow this simple steps to get started:
 | Bass    | Plays the fundamental note of each chord       | Create a walking bass line      |
 | Drums    | Plays a standard drumfill?       | Plays a strong drumfill     |
 
-#### Synth
-Inspired by the colorful design of the Moog Grandmother and build using [Tone.js](https://tonejs.github.io/) framework the Spicer Synth gives the opportunity to jam on top of your spiced arrangement.
-The synth is monophonic and is composed of the following components:
+#### Synthesizer
+Inspired by the colorful design of the Moog Grandmother and build using [Tone.js](https://tonejs.github.io/) framework the Spicer monophonic Synthesizer gives the opportunity to jam on top of your spiced arrangement.
+The synth is composed of the following components:
 * **2 Oscillators** - Both are able to play the classic four waveforms (Sine, Triangle, Square and Sawtooth) and have a dedicated octave control.
 * **Mixer** - Craft the sound by controlling oscillators' gains and by adding some Noise that can be White, Pink or Brown
 * **Filter** - Can be low pass, high pass or bandpass with a 24 dB/octave slope and a Resoncance control.
