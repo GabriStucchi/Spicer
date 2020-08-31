@@ -53,7 +53,30 @@ document.getElementById("tempoBox").oninput = (event) => {
 };
 
 document.onkeydown = (e) => {
-  if (e.code == "Space") {
+  switch(e.code) {
+
+    case "Space":
+      playSynth ? toggleInstrument() : 0;
+      player.play(false);   //Stops the player
+      cleanRec();           //Defined in global.js
+      activeNotes.splice(0, activeNotes.length);
+      metronome.play();
+      break;
+
+    case "KeyP":
+      playback();
+      break;
+
+    case "ShiftLeft":
+      showSpicer();
+      break;
+    
+    case "ShiftRight":
+      showSpicer();
+      break;
+  }
+  
+  /*if (e.code == "Space") {
     if (playSynth) {
       toggleInstrument();
     }
@@ -61,5 +84,5 @@ document.onkeydown = (e) => {
     cleanRec();           //Defined in global.js
     activeNotes.splice(0, activeNotes.length);
     metronome.play();
-  }
+  }*/
 };

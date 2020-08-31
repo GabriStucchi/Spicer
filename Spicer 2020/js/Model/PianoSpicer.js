@@ -3,7 +3,7 @@ class PianoSpicer {
   #spiced_tracks
 
   constructor() {
-    this.#level = 2;
+    this.#level = 1;
     this.#spiced_tracks = undefined
   }
 

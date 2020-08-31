@@ -10,7 +10,6 @@ class RecTrack {
 
   constructor(...args) {
     this.#notes = [];
-    console.log("On air: " + onAir)
     if(onAir){
       args.forEach((item, i) => { //loops throught the arguments
           if(item.constructor.name == Note.name) //checks that item is a note

@@ -35,8 +35,7 @@ class ChordProgression {
   }
 
   detectChords(recTrack) {
-    if(recTrack.getNotes().length == 0)
-      return
+    if (recTrack.getNotes().length == 0) return;
     //todo CONTROL ON MAX MS
     //scorre la traccia e partendo dalla prima nota, prende tutte le note che si trovano dopo il primo note On fino al primo note Off,
     //con queste info crea un accordo e procede al calcolo dei successivi accordingly
@@ -68,9 +67,9 @@ class ChordProgression {
           } else {
               if (tempChord.getNotes().length == 1 || tempChord.getNotes().length == 2) {
               //if  the user played a single note
-              console.log(tempChord)
               tempChord.cleanBichord();
               tempChord.harmonizeFromRoot();
+              tempChord.identifyChord(); //identifies the chord
               this.#chords.push(tempChord); //pushes the chord in the chord progression
               tempChord = new Chord(item); //creates a new chord
             }
@@ -89,8 +88,9 @@ class ChordProgression {
         //if  the user played a single note
         tempChord.cleanBichord();
         tempChord.harmonizeFromRoot();
+        tempChord.identifyChord(); //identifies the chord
         this.#chords.push(tempChord); //pushes the chord in the chord progression
-      } 
+      }
     }
   }
 
@@ -138,13 +138,14 @@ class ChordProgression {
     this.#chords.forEach((chord, i) => {
       if (i < this.#chords.length) {
         if (
-          chord.getGrade() == 5 && ((i != this.#chords.length - 1 &&
+          chord.getGrade() == 5 &&
+          ((i != this.#chords.length - 1 &&
             this.#chords[i + 1].getGrade() != 1) ||
-          i == this.#chords.length - 1)
+            i == this.#chords.length - 1)
         ) {
           chord.add6(); // if the 5th doesn't resolve to a 1st or if it's the last chord then we add a 6th instead of a 7th
-          } else {
-        chord.add7();
+        } else {
+          chord.add7();
         }
       }
     });
