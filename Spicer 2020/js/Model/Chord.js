@@ -89,6 +89,10 @@ class Chord {
 
   //find the grade of the chord
   findChordGrade() {
+    
+    if(this.#grade!=undefined) //if we already know the grade then don't process it again
+      return
+
     //obtain the number of the tonic of the key in semitones (0-11)
     let tonic = possible_notes.indexOf(key.getKeyNote());
 
@@ -298,6 +302,52 @@ class Chord {
     });
   }
 
+  harmonizeFromRoot(){
+    if(this.#notes.length !=1 || key.isMajor()==undefined)
+      return
+
+    let root = this.#notes[0]
+    let tempNote
+    let midiNote
+    let scale
+    let noteGrade
+
+    let newVel;
+    let newOn;
+    let newOff = root.getInstantOff();
+    let newQueue = root.getQueue();
+    
+    //sets the scale itervals to scale
+    key.isMajor() =="Min" ? scale = minor : scale = major ; 
+
+    this.#root = root;
+ 
+    this.findChordGrade();
+   
+    scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals dow
+
+    //TODO randomize instant on within a certain time window
+    // add third
+    noteGrade = this.#grade -1 + 2
+    noteGrade >= scale.length ? noteGrade -= scale.length : 0;
+
+    midiNote = root.getMidiNote() + scale[noteGrade]
+    
+    newOn = root.getInstantOn() +6;
+    newVel = root.getVelocity - 6;
+    this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
+
+    //add fifth
+    noteGrade = this.#grade -1 + 4
+    noteGrade > scale.length ? noteGrade -= scale.length : 0; 
+    newOn = root.getInstantOn() +6;
+    newVel = root.getVelocity - 6;
+    this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
+    this.identifyChord()
+  }
+
+
+  
   getNotes() {
     return this.#notes;
   }

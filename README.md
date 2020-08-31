@@ -35,20 +35,27 @@ Follow this simple steps to get started:
 <h3 align="center"> youtube demo link </h3>
 
 ## Features
-#### Band Instrument Selection
+### Band Instrument Selection
 
 | Instrument | Low Complexity | High Complexity | 
 | :---         | :---      | :--- |
-| Piano   | Enriches the chords with maj and min 7th, if possible, depending on the chord progression    | Enriches the chords with 9th and generates voicings if possible    |
-| Bass    | Plays the fundamental note of each chord       | Create a walking bass line      |
-| Drums    | Plays a standard drumfill?       | Plays a strong drumfill     |
+| **Piano**   | Enriches the chords with maj and min 7th, if possible, depending on the chord progression    | Enriches the chords with 9th and generates voicings if possible    |
+| **Bass**   | Plays the fundamental note of each chord       | Create a walking bass line      |
+| **Drums**    | Plays a standard drumfill?       | Plays a strong drumfill     |
 
-#### Synth
+### Synthesizer
+Inspired by the colorful design of the _Moog Grandmother_ and build using [Tone.js](https://tonejs.github.io/) framework the Spicer monophonic Synthesizer gives the opportunity to jam on top of your spiced arrangement.
+The synth is composed of the following components:
 
-| Instrument | Low Complexity | High Complexity | 
-| :---         | :---      | :--- |
-| LFO   | write here    | write here    |
-| Oscillator    | write here       | write here      |
-| Something    | write here       | write here     |
+| Control |  |
+| :---  | :---  | 
+| **Oscillators** | There are two of them: both are able to play the classic four waveforms (_Sine_, _Triangle_, _Square_ and _Sawtooth_) and have a dedicated octave control. |
+| **Mixer** | Craft the sound by controlling the oscillators' gains and by adding some Noise that can be _White_, _Pink_ or _Brown_. |
+| **Filter** | Can be _low pass_, _high pass_ or _bandpass_ with a 24 dB/octave slope and a Resonance control. |
+| **Envelope** | Shapes the sound amplitude and (optionally) the filter cutoff frequency. |
+| **Output** | Control the main output gain. |
+| **Effects** | The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_. |
+| **Modulation** | Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitches and the filter cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated. |
 
-
+The following scheme respresents the signal path.
+-------------SCHEMA---------------
