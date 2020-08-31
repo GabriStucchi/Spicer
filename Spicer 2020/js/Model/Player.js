@@ -43,18 +43,17 @@ class Player {
       if(shouldPlay) {
         this.#timerWorker.postMessage("start");
         //stopAllNotes();     //Clearing the queue
-        this.#track.forEach((note) => instrumentNoteOn(note));  //Defined in midiManagement.js
+        this.#track.forEach((note) => playbackNote(note));  //Defined in midiManagement.js
       }
       else{
         this.#timerWorker.postMessage("stop");  
-        stopAllNotes();         //Defined in midiManagement.js
+        this.#track.forEach((note) => stopNote(note));         //Defined in midiManagement.js
       }
     }
   }
 
   loop() {
-    stopAllNotes();     //Clearing the queue
-    this.#track.forEach((note) => instrumentNoteOn(note));  //Defined in midiManagement.js
+    this.#track.forEach((note) => playbackNote(note));  //Defined in midiManagement.js
   }
 
   clear() {

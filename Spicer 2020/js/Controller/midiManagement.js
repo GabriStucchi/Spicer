@@ -75,23 +75,15 @@ function noteOff(pitch, timestamp) {
 }
 
 function instrumentNoteOn(note) {
-  let timestampOn = 0;
-  let duration = default_duration;
-  if (!onAir && note.getInstantOff() != undefined) {
-    // for playback
-    timestampOn = note.getInstantOn() / 1000;
-    duration = note.getDuration() / 1000;
-  } else {
-    noteOff(note.getMidiNote(), note.getInstantOn());
-  }
 
+  noteOff(note.getMidiNote(), note.getInstantOn());
   let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
     audioContext.destination,
     tone,
-    audioContext.currentTime + timestampOn,
+    0,
     note.getMidiNote(),
-    duration,
+    default_duration,
     note.getVolume()
   );
   note.setQueue(queue);
@@ -115,11 +107,33 @@ function instrumentNoteOff(timestamp, index) {
 }
 
 function stopAllNotes() {
-    activeNotes.forEach((item)=> {
-        if (item.getQueue()) {
-            item.getQueue().cancel();
-          }
-          recorder.endNote(item, currentTime());
-    })
+  activeNotes.forEach((item)=> {
+      if (item.getQueue()) {
+          item.getQueue().cancel();
+        }
+        recorder.endNote(item, currentTime());
+  })
   activeNotes = []
+}
+
+function playbackNote(note) {
+  timestampOn = note.getInstantOn() / 1000;
+  duration = note.getDuration() / 1000;
+  let queue = webAudioFontPlayer.queueWaveTable(
+    audioContext,
+    audioContext.destination,
+    tone,
+    audioContext.currentTime + timestampOn,
+    note.getMidiNote(),
+    duration,
+    note.getVolume()
+  );
+  note.setQueue(queue);
+}
+
+//Stop the note (for playback)
+function stopNote(note) {
+  if (note.getQueue()) {
+    note.getQueue().cancel();
+  }
 }
