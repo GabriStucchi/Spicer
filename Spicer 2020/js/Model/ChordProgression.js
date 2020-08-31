@@ -66,14 +66,13 @@ class ChordProgression {
             this.#chords.push(tempChord); //pushes the chord in the chord progression
             tempChord = new Chord(item); //creates a new chord
           } else {
-            if (tempChord.getNotes().length == 1) {
+              if (tempChord.getNotes().length == 1 || tempChord.getNotes().length == 2) {
               //if  the user played a single note
               console.log(tempChord)
+              tempChord.cleanBichord();
               tempChord.harmonizeFromRoot();
               this.#chords.push(tempChord); //pushes the chord in the chord progression
               tempChord = new Chord(item); //creates a new chord
-            } else {
-              //if the user played a bichord
             }
           }
         }
@@ -86,13 +85,12 @@ class ChordProgression {
       tempChord.identifyChord();
       this.#chords.push(tempChord);
     } else {
-      if (tempChord.getNotes().length == 1) {
+      if (tempChord.getNotes().length == 1 || tempChord.getNotes().length == 2) {
         //if  the user played a single note
+        tempChord.cleanBichord();
         tempChord.harmonizeFromRoot();
         this.#chords.push(tempChord); //pushes the chord in the chord progression
-      } else {
-        //if the user played a bichord
-      }
+      } 
     }
   }
 

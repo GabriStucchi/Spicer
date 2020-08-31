@@ -89,7 +89,7 @@ class Chord {
 
   //find the grade of the chord
   findChordGrade() {
-    
+
     if(this.#grade!=undefined) //if we already know the grade then don't process it again
       return
 
@@ -231,7 +231,7 @@ class Chord {
     //Nella scala maggiore il III grado può essere minore o maggiore (preso in prestito dalla relativa minore melodica)
     if (
       this.#grade == 3 &&
-      (this.#type.getName() == "maj" || this.#type.getName() == "maj7")
+      (this.#type !== undefined && (this.#type.getName() == "maj" || this.#type.getName() == "maj7"))
     ) {
       ninth = this.#root.getMidiNote() + 13;
     } else {
@@ -302,6 +302,17 @@ class Chord {
     });
   }
 
+  cleanBichord(){
+    if(this.#notes.length !=2 || key.isMajor()==undefined)
+      return
+
+     if(this.#notes[0].getMidiNote() <  this.#notes[1].getMidiNote()){
+       this.#notes.splice(1,1)
+     }else{
+      this.#notes.splice(0,1)
+     }
+  }
+
   harmonizeFromRoot(){
     if(this.#notes.length !=1 || key.isMajor()==undefined)
       return
@@ -316,14 +327,14 @@ class Chord {
     let newOn;
     let newOff = root.getInstantOff();
     let newQueue = root.getQueue();
-    
+
     //sets the scale itervals to scale
-    key.isMajor() =="Min" ? scale = minor : scale = major ; 
+    key.isMajor() =="Min" ? scale = minor : scale = major ;
 
     this.#root = root;
- 
+
     this.findChordGrade();
-   
+
     scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals dow
 
     //TODO randomize instant on within a certain time window
@@ -332,14 +343,14 @@ class Chord {
     noteGrade >= scale.length ? noteGrade -= scale.length : 0;
 
     midiNote = root.getMidiNote() + scale[noteGrade]
-    
+
     newOn = root.getInstantOn() +6;
     newVel = root.getVelocity - 6;
     this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
 
     //add fifth
     noteGrade = this.#grade -1 + 4
-    noteGrade > scale.length ? noteGrade -= scale.length : 0; 
+    noteGrade > scale.length ? noteGrade -= scale.length : 0;
     newOn = root.getInstantOn() +6;
     newVel = root.getVelocity - 6;
     this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
@@ -347,7 +358,7 @@ class Chord {
   }
 
 
-  
+
   getNotes() {
     return this.#notes;
   }

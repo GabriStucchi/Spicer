@@ -20,7 +20,7 @@ class PianoSpicer {
         break;
         case 2: {
           track.add9s();
-          track.generateVoicings();
+          //track.generateVoicings();
         }
 
         break;
