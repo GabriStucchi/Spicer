@@ -34,27 +34,46 @@ class ChordProgression {
       this.#chords.push(item); //adds the argument to the note list
   }
 
-  detectChords(recTrack) { //todo CONTROL ON MAX MS
+  detectChords(recTrack) {
+    //todo CONTROL ON MAX MS
     //scorre la traccia e partendo dalla prima nota, prende tutte le note che si trovano dopo il primo note On fino al primo note Off,
     //con queste info crea un accordo e procede al calcolo dei successivi accordingly
     let endOfChord = undefined;
     let tempChord;
 
     recTrack.getNotes().forEach((item, i) => {
+      //loops through the notes
       if (endOfChord === undefined) {
         //first iteration of the loop
         tempChord = new Chord(item); //creates a new chord adding its first note
         endOfChord = item.getInstantOff(); //sets  end of chord
       } else {
+        //if we're already working on a chord
         if (endOfChord > item.getInstantOn()) {
-          tempChord.addNote(item);
+          // if the current note start falls between the duration of the chord shortest note
+          tempChord.addNote(item); //add note to the chord
           if (item.getInstantOff() < endOfChord) {
-            endOfChord = item.getInstantOff();
+            //if the duration of the last note is shorter then the current shortest
+            endOfChord = item.getInstantOff(); //change end of chord
           }
-        } else if (tempChord.getNotes().length > 2) {
-          tempChord.identifyChord();
-          this.#chords.push(tempChord);
-          tempChord = new Chord(item);
+        } else {
+          //if the note is played after the end of the current chord
+          if (tempChord.getNotes().length > 2) {
+            //if the user played at least a triad
+            tempChord.identifyChord(); //identifies the chord
+            this.#chords.push(tempChord); //pushes the chord in the chord progression
+            tempChord = new Chord(item); //creates a new chord
+          } else {
+            if (tempChord.getNotes().length == 1) {
+              //if  the user played a single note
+              console.log(tempChord)
+              tempChord.harmonizeFromRoot();
+              this.#chords.push(tempChord); //pushes the chord in the chord progression
+              tempChord = new Chord(item); //creates a new chord
+            } else {
+              //if the user played a bichord
+            }
+          }
         }
         endOfChord = item.getInstantOff();
       }
@@ -64,8 +83,15 @@ class ChordProgression {
       //pushes last chord
       tempChord.identifyChord();
       this.#chords.push(tempChord);
+    } else {
+      if (tempChord.getNotes().length == 1) {
+        //if  the user played a single note
+        tempChord.harmonizeFromRoot();
+        this.#chords.push(tempChord); //pushes the chord in the chord progression
+      } else {
+        //if the user played a bichord
+      }
     }
-
   }
 
   generateVoicings() {
@@ -113,13 +139,14 @@ class ChordProgression {
     });
   }
 
-  getNotesTrack(){ //returns the chord progression as an array of notes
-    let temp = this.#chords.map((chord)=> chord.getNotes())
-    let noteTrack = []
-    temp.forEach((element)=>{
-      noteTrack = noteTrack.concat(element)
-    })
-    return noteTrack
+  getNotesTrack() {
+    //returns the chord progression as an array of notes
+    let temp = this.#chords.map((chord) => chord.getNotes());
+    let noteTrack = [];
+    temp.forEach((element) => {
+      noteTrack = noteTrack.concat(element);
+    });
+    return noteTrack;
   }
 
   getChords() {
