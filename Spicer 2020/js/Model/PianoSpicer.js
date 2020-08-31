@@ -3,7 +3,7 @@ class PianoSpicer {
   #spiced_tracks
 
   constructor() {
-    this.#level = 2;
+    this.#level = 1;
     this.#spiced_tracks = undefined
   }
 
@@ -18,7 +18,7 @@ class PianoSpicer {
       switch (level) {
         case 1: track.add7s();
         break;
-        case 2: track.add9s();
+        case 2: //track.add9s();
         break;
         default: //do nothing
       }

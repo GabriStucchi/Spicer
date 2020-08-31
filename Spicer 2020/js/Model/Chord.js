@@ -81,7 +81,9 @@ class Chord {
     } else {
       this.#root = pitches[this.#type.getRootPos()];
     }
-    this.cleanChord()
+
+    this.cleanChord() //clean chord
+
     if (key != undefined) {
       this.findChordGrade();
     }
@@ -306,8 +308,8 @@ class Chord {
     if(this.#notes.length !=1 || key.isMajor()==undefined)
       return
 
+     
     let root = this.#notes[0]
-    let tempNote
     let midiNote
     let scale
     let noteGrade
@@ -343,10 +345,21 @@ class Chord {
     newOn = root.getInstantOn() +6;
     newVel = root.getVelocity - 6;
     this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
-    this.identifyChord()
+    //this.identifyChord()
+    
+   
   }
 
+  cleanBichord(){
+    if(this.#notes.length !=2 || key.isMajor()==undefined)
+      return
 
+     if(this.#notes[0].getMidiNote() <  this.#notes[1].getMidiNote()){
+       this.#notes.splice(1,1)
+     }else{
+      this.#notes.splice(0,1)
+     }
+  }
   
   getNotes() {
     return this.#notes;
