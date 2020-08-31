@@ -18,7 +18,11 @@ class PianoSpicer {
       switch (level) {
         case 1: track.add7s();
         break;
-        case 2: track.add9s();
+        case 2: {
+          track.add9s();
+          track.generateVoicings();
+        }
+
         break;
         default: //do nothing
       }

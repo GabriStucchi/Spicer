@@ -69,25 +69,44 @@ class ChordProgression {
   }
 
   generateVoicings() {
-    /*
-    let pitches
     this.#chords.forEach((chord, i) => {
       if(i<this.#chords.length-2){
         if (chord.getGrade() == 2
           && this.#chords[i+1].getGrade() == 5
           && this.#chords[i+2].getGrade() == 1 ){
+            let root = this.#chords[i].getRoot().getMidiNote();
+            let pitches = [root + 3, root + 7, root + 10, root + 14];
 
+            //Posizione larga
+            if (pitches[3] < 77) {
+              this.#chords[i].changeNotes(pitches);    //Salvo il 2
+              pitches[2] = pitches[2] - 1
+              this.#chords[i+1].changeNotes(pitches);   //Salvo il 5
+              pitches[0] = pitches[0] - 1
+              pitches[1] = pitches[1] - 2
+              pitches[3] = pitches[3] - 2
+              this.#chords[i+2].changeNotes(pitches);   //Salvo l'1
+              console.log(this);
+            }
 
-      }
-
-
-    });
-*/
-
-    this.#chords.forEach((chord) => {
-      chord.rearrange();
-    });
+            //Posizione stretta
+            else {
+              pitches[2] = pitches[2] - 12
+              pitches[3] = pitches[3] - 12
+              this.#chords[i].changeNotes(pitches);    //Salvo il 2
+              pitches[0] = pitches[0] - 1
+              this.#chords[i+1].changeNotes(pitches);   //Salvo il 5
+              pitches[1] = pitches[1] - 2
+              pitches[2] = pitches[2] - 1
+              pitches[3] = pitches[3] - 2
+              this.#chords[i+2].changeNotes(pitches);   //Salvo l'1
+            }
+            i = i + 2 //Evito che il 5 e l'1 vengano rianalizzati dalla funzione
+          }
+        }
+    })
   }
+
 
   add7s() {
     this.#chords.forEach((chord, i) => {
