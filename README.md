@@ -47,11 +47,11 @@ Follow this simple steps to get started:
 Inspired by the colorful design of the Moog Grandmother and build using [Tone.js](https://tonejs.github.io/) framework the Spicer monophonic Synthesizer gives the opportunity to jam on top of your spiced arrangement.
 The synth is composed of the following components:
 * **2 Oscillators** - Both are able to play the classic four waveforms (Sine, Triangle, Square and Sawtooth) and have a dedicated octave control.
-* **Mixer** - Craft the sound by controlling oscillators' gains and by adding some Noise that can be White, Pink or Brown
+* **Mixer** - Craft the sound by controlling oscillators' gains and by adding some Noise that can be White, Pink or Brown.
 * **Filter** - Can be low pass, high pass or bandpass with a 24 dB/octave slope and a Resoncance control.
 * **Envelope** - Shapes the sound amplitude and (optionally) the filter cutoff frequency.
 * **Output** - Control the main output gain.
-* **Effects** - The sound generated can be spiced up even more applying a Convolution Reverb and a PingPong Delay.
+* **Effects** - The sound generated can be spiced up even more applying a PingPong Delay and a Convolution Reverb.
 * **Modulation** - Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitch and the filter cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated.
 
 The following scheme respresents the signal path.
