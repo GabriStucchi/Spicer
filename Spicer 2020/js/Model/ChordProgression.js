@@ -35,6 +35,8 @@ class ChordProgression {
   }
 
   detectChords(recTrack) {
+    if(recTrack.getNotes().length == 0)
+      return
     //todo CONTROL ON MAX MS
     //scorre la traccia e partendo dalla prima nota, prende tutte le note che si trovano dopo il primo note On fino al primo note Off,
     //con queste info crea un accordo e procede al calcolo dei successivi accordingly
