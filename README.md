@@ -4,7 +4,7 @@
   <img src="https://user-images.githubusercontent.com/57997005/91635010-1c57d900-e9f5-11ea-9c0b-b008605fe2d1.png?raw=true" alt="logo" width="120"//>
 </p>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/57997005/91661200-c2c9da00-eada-11ea-9c8b-797fa9bf3db4.jpeg" alt="scritta" width="300"//>
+  <img src="https://user-images.githubusercontent.com/57997005/91749439-bf5d4e00-ebc1-11ea-8c81-2c3514b02f03.gif" width="900"//>
 </p>
 
 <h3 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
