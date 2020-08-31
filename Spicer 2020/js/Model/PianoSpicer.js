@@ -50,4 +50,8 @@ class PianoSpicer {
     }
   }
 
+  clear() {
+    this.#spiced_tracks = undefined;
+  }
+
 }

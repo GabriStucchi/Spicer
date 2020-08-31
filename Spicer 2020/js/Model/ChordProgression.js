@@ -123,4 +123,8 @@ class ChordProgression {
   getChords() {
     return this.#chords;
   }
+
+  clear() {
+    this.#chords = [];
+  }
 }

@@ -117,7 +117,8 @@ function mapLog(value, start1, stop1, start2, stop2) {
 }
 
 function cleanRec() {
-  recorder = new Recorder();
-  cprog = new ChordProgression();
-  spricer = new PianoSpicer();
+  player.clear();
+  recorder.clear();
+  cprog.clear();
+  spicer.clear();
 }

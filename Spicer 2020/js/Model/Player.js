@@ -42,7 +42,7 @@ class Player {
     else {
       if(shouldPlay) {
         this.#timerWorker.postMessage("start");
-        stopAllNotes();     //Clearing the queue
+        //stopAllNotes();     //Clearing the queue
         this.#track.forEach((note) => instrumentNoteOn(note));  //Defined in midiManagement.js
       }
       else{
@@ -55,5 +55,9 @@ class Player {
   loop() {
     stopAllNotes();     //Clearing the queue
     this.#track.forEach((note) => instrumentNoteOn(note));  //Defined in midiManagement.js
+  }
+
+  clear() {
+    this.#track = undefined;
   }
 }
