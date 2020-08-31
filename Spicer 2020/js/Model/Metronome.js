@@ -66,7 +66,6 @@ class Metronome {
     }
   }
 
-/*
   scheduleNote(beatNumber, time) {
 
     if (beatNumber % 4)
@@ -93,9 +92,8 @@ class Metronome {
     osc.start(time);
     osc.stop(time + this.#noteLength);
   }
-*/
 
-  
+ /* 
   scheduleNote(beatNumber, time) {
 
     if (beatNumber % 4)
@@ -136,7 +134,7 @@ class Metronome {
     osc.start(time);
     osc.stop(time + this.#noteLength);
   }
-
+*/
 
   nextNote() {
     // Advance current note and time by a 16th note...

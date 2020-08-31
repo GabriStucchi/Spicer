@@ -5,6 +5,7 @@ class Recorder{
 
   constructor(){
     this.#track = new RecTrack();
+    this.#timeStart = 0;
   }
 
   record(note){
@@ -27,7 +28,7 @@ class Recorder{
     onAir = false;
     setOnAirTxt();            //sets text in on air div
     setLoopBtnTxt("STOP");    //sets text in loop button
-    cprog.detectChords(recorder.getRecTrack());
+    cprog.detectChords(this.#track);
     
     player.setTrack(spicer.spice().getNotesTrack());
     player.play(true);
@@ -40,6 +41,12 @@ class Recorder{
 
   getRecTrack(){
     return this.#track;
+  }
+
+  clear() {
+    this.#track = undefined;
+    this.#timeStart = 0;
+    this.#track = new RecTrack();
   }
 
 
