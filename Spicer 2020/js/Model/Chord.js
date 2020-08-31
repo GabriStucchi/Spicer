@@ -141,6 +141,14 @@ class Chord {
     this.rearrange(); //shifts notes to the "golden octave"
   }
 
+  deleteSpecificNote(del_note) {
+    this.#notes.forEach((note, i) => {
+      if (Math.abs(del_note - note.getMidiNote())%12 == 0) {
+        this.#notes.splice(i, 1);
+      }
+    });
+  }
+
   //Aggiunge la 6^ sempre maggiore!!
   add6() {
     let sixth = this.getRoot().getMidiNote() + 9;
@@ -229,8 +237,8 @@ class Chord {
     newOn = this.#notes[this.#notes.length - 1].getInstantOn() + 2;
     newOff = this.#notes[this.#notes.length - 1].getInstantOff();
     newQueue = this.#notes[this.#notes.length - 1].getQueue();
-    console.log(ninth);
     this.addNotes(new Note(ninth, newQueue, newVel, newOn, newOff));
+    this.deleteSpecificNote(this.#root.getMidiNote()+7);    //It deletes the perfect 5th when adding 9th
     this.rearrange();
 
     //Da fare controllo different notes?
