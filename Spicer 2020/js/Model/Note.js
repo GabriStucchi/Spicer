@@ -28,6 +28,7 @@ class Note {
     this.computeFrequency()
     this.computeName()
   }
+  
 
   getMidiNote(){
     return this.#midiNote;

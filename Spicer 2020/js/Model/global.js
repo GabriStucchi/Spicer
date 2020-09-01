@@ -46,6 +46,7 @@ let cprog = new ChordProgression();
 let metronome = new Metronome(120);
 let player = new Player(120);
 let spicer = new PianoSpicer();
+let walking_bass = new WalkingBass();
 
 let chordsIntervals = {
   "[4,7]": new ChordType("maj", 0, 0),

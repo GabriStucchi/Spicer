@@ -21,6 +21,7 @@ class PianoSpicer {
         case 2: {
           track.add9s();
           //track.generateVoicings();
+          //walking_bass.computeBassLine(track.getChords());
         }
 
         break;

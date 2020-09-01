@@ -1,67 +1,267 @@
-
+//TODO CONTROLLO SU ACCORDI NON IDENTIFICATI
 class WalkingBass {
-  #closeWalk;     //Walking bass bar in "close mode"
-  #randomWalk;    //Walking bass bar in "random mode"
+  #bassLine;
   #highLimit;     //Higher limit of the range of notes
-  #lowLimit;      //Lowr limit of the range of notes
+  #lowLimit;      //Lower limit of the range of notes
   #firstBeats;
+  #firstVelocity;
+  #secondVelocity;
+  #thirdVelocity;
+  #fourthVelocity;
 
   constructor() {
-    this.#closeWalk = [];
-    this.#randomWalk = [];
-    this.#highLimit = 57;     //A3
-    this.#lowLimit = 41;      //F2
+    this.#bassLine = [];
+    this.#highLimit = 57;     //A3 change up to 60
+    this.#lowLimit = 41;      //F2 change down to 24
     this.#firstBeats = [];
-  }
-
-  getBassBar() {
-    let set = [this.#closeWalk, this.#randomWalk];
-    return set[Math.floor(Math.random() * set.length)];
+    this.#firstVelocity = Array(127 - 110 + 1).fill().map((_, idx) => 110 + idx);
+    this.#secondVelocity = Array(100 - 80 + 1).fill().map((_, idx) => 80 + idx);
+    this.#thirdVelocity = Array(110 - 100 + 1).fill().map((_, idx) => 100 + idx);
+    this.#fourthVelocity = Array(80 - 60 + 1).fill().map((_, idx) => 60 + idx);
   }
 
   computeBassLine(chordProgression) {
+    // First it computes and store all the first_beats
     this.computeFirstBeats(chordProgression);
-    this.computeFourthBeat(chordProgression);
-    //get first beats()
-    //
-    //Compute fourth Beat()
-    // compute third beat()
-    // compute second beat()
-  }
-
-  computeFirstBeats(progression) {
-    let roots = progression.getChords().map((chord) => chord.getRoot().getMidiNote());
-    this.#firstBeats = roots.map((root) => chooseRandom(duplicateInRange(root)));
-  }
-
-  computeFourthBeat(progression) {
-    //TODO
-    if(key.isMajor()){
-      if (next_grade == 1 || next_grade == 4) {
-        previous_note = next_beat - 1
-        following_note = next_beat + 2
+    // Then the other beats
+    for (var i = 0; i < chordProgression.length - 1; i++) {
+        let bass_bar = this.computeBassBar(i, chordProgression[i], chordProgression[i+1])
+        this.#bassLine.push(...bass_bar)
       }
-      else if (next_grade == 7 || next_grade == 3) {
-        following_note = next_beat + 1
-        previous_note = next_beat - 2
+       //At the end of the progression use the first chord as next chord (loop)
+      let bass_bar = this.computeBassBar(chordProgression.length - 1,
+      chordProgression[chordProgression.length], chordProgression[0])
+      this.#bassLine.push(...bass_bar)
+
+      console.log(this.#bassLine);
+
+  }
+
+//Compute the 4 beats walking bass bar of index i (of the progression) between
+//two chords (first_chord, second_chord)
+  computeBassBar(i, first_chord, second_chord) {
+
+// ------------------------- FIRST BEAT -------------------------------
+    let newVel = this.chooseRandom(this.#firstVelocity);
+    let newOn;
+    let newOff;
+    let newQueue;
+
+    let first_beat = new Note(this.#firstBeats[i], newQueue,newVel, newOn, newOff)
+
+  // ----------------------- FOURTH BEAT ------------------------------
+    let fourth_beat
+
+    if (i < this.#firstBeats.length - 1) {
+      fourth_beat = this.computeFourthBeat(first_chord, second_chord, this.#firstBeats[i+1])
+    }
+    else {      //I need to loop and take the first element as next firstBeat
+      fourth_beat = this.computeFourthBeat(first_chord, second_chord, this.#firstBeats[0])
+    }
+
+//  ------------------------ THIRD BEAT -------------------------------
+    let third_beat = this.computeThirdBeat(first_beat.getMidiNote(), fourth_beat.getMidiNote())
+
+    //If it couldn't be found then choose randomly from the chord's notes
+    if (third_beat === undefined) {
+      let newVel = this.chooseRandom(this.#thirdVelocity);
+      let newOn;
+      let newOff;
+      let newQueue;
+      candidates_set = chord.getNotes().getMidiNote().map((candidate) => this.duplicateInRange(candidate));
+      third_beat == new Note(this.chooseRandom(candidates_set),newQueue,newVel, newOn, newOff);
+    }
+//  ------------------------ SECOND BEAT ------------------------------
+    let second_beat = this.computeSecondBeat(first_beat.getMidiNote(),
+      third_beat.map(beat => beat.getMidiNote()), fourth_beat.getMidiNote())
+
+    if (second_beat === undefined) {
+      let newVel = this.chooseRandom(this.#thirdVelocity);
+      let newOn;
+      let newOff;
+      let newQueue;
+      candidates_set = chord.getNotes().getMidiNote().map((candidate) => this.duplicateInRange(candidate));
+      second_beat == new Note(this.chooseRandom(candidates_set), newQueue,newVel, newOn, newOff);
+    }
+// Generates two alternatives for the bass bar: close_walking minimizes the distances between the beats
+// While random_walking gives a more random behaviour
+    let close_walking = [first_beat, second_beat[0], third_beat[0], fourth_beat]
+    let random_walking = [first_beat, second_beat[1], third_beat[1], fourth_beat]
+
+    return this.chooseRandom([close_walking, random_walking]);
+  }
+
+
+//Compute the array of all the first beats (adding a little bit of variety)
+  computeFirstBeats(progression) {
+    let roots = progression.map((chord) => chord.getRoot().getMidiNote());
+
+    this.#firstBeats = roots.map((root) => this.chooseRandom(this.duplicateInRange(root)));
+  }
+
+  computeFourthBeat(actual_chord, next_chord, next_first) {
+
+    let newVel = this.chooseRandom(this.#fourthVelocity);
+    let newOn;
+    let newOff;
+    let newQueue;
+
+    let fourth_beat
+    let next_grade = next_chord.getGrade();
+
+    let following_interval
+    let previous_interval
+
+    //Choose as leading tone the following or previous note of the scale (in the given tonality)
+    if (key.isMajor()) {
+      if (major[next_grade - 2] === undefined) {
+        previous_interval = Math.abs(major[major.length] - 12)
+        following_interval = major[next_grade] - major[next_grade - 1]
       }
       else {
-        previous_note = next_beat - 2
-        following_note = next_beat + 2
+        if (major[next_grade] === undefined) {
+          previous_interval = major[next_grade - 1] - major[next_grade - 2]
+          following_interval = major[0] + 12 - major[next_grade]
+        }
+        else {
+          previous_interval = major[next_grade - 1] - major[next_grade - 2]
+          following_interval = major[next_grade] - major[next_grade - 1]
+        }
       }
     }
+    else {
+      if (minor[next_grade - 2] === undefined) {
+        previous_interval = Math.abs(minor[minor.length] - 12)
+        following_interval = minor[next_grade] - minor[next_grade - 1]
+      }
+      else {
+        if (minor[next_grade] === undefined) {
+          previous_interval = minor[next_grade - 1] - minor[next_grade - 2]
+          following_interval = minor[0] + 12 - minor[next_grade]
+        }
+        else {
+          previous_interval = minor[next_grade - 1] - minor[next_grade - 2]
+          following_interval = minor[next_grade] - minor[next_grade - 1]
+        }
+      }
+    }
+
+    let fourth_set = [next_first - 1, next_first + 1, next_first - 5,
+      next_first + 7, next_first + following_interval, next_first - previous_interval]
+
+    fourth_set.forEach((item, i) => {
+      if (item > this.#highLimit || item < this.#lowLimit) {
+        fourth_set.splice(i,1)
+      }
+    });
+
+    fourth_beat = this.chooseRandom(fourth_set);
+    return new Note(fourth_beat, newQueue, newVel, newOn, newOff);
+
   }
 
-  computeThirdBeat() {
+  computeThirdBeat(first_beat, fourth_beat) {
+    /*As third_beat it's randomly choosen whatever note of the key (except fourth beat)
+    only if it isn't further than 5 halfsteps from the fourth_beat; while for fourth_close
+    it's choosen the note which minimizes the distance from fourth_beat*/
+
+    let newVel = this.chooseRandom(this.#thirdVelocity);
+    let newOn;
+    let newOff;
+    let newQueue;
+
+    let candidates = [] //Set of possible candidates
+    let third_set = []
+
+    if (key.isMajor()) {
+      major.forEach((interval, i) => {
+        candidates.push(...this.duplicateInRange(possible_notes.indexOf(key.getKeyNote())+ interval));
+      });
+
+    }
+    else {
+      minor.forEach((interval, i) => {
+        candidates.push(...this.duplicateInRange(possible_notes.indexOf(key.getKeyNote()) + interval));
+      });
+    }
+
+    candidates.forEach((candidate, i) => {
+      if (candidate != fourth_beat && (Math.abs(candidate - fourth_beat)) < 5) {
+        third_set.push(candidate)
+      }
+    });
+
+    let third_rand = this.chooseRandom(third_set)
+
+    //Find third_close
+    let third_close = 10000 //high number
+    for (var i = 0; i < third_set.length; i++) {
+      if (Math.abs(fourth_beat - third_set[i]) < Math.abs(fourth_beat - third_close)) {
+        third_close = third_set[i]
+      }
+    }
+
+    return [new Note(third_close, newQueue, newVel, newOn, newOff),
+       new Note(third_rand, newQueue,newVel, newOn, newOff)]
 
   }
 
-  computeSecondBeat() {
+  computeSecondBeat(first_beat, third_beat, fourth_beat) {
+    /*
+    As second_beat is randomly choosen whatever note of the key only if:
+    - Different from first_beat, third_beat, fourth_beat
+    - No further than 5 halfsteps from third_beat
+    - No further than 10 halfsteps from first_beat unless it's a perfect octave
+    */
 
-  }
+    let newVel = this.chooseRandom(this.#secondVelocity);
+    let newOn;
+    let newOff;
+    let newQueue;
 
+    let candidates = []
+    let second_set = []
+
+    if (key.isMajor()) {
+      major.forEach((interval, i) => {
+        candidates.push(...this.duplicateInRange(possible_notes.indexOf(key.getKeyNote()) + interval));
+      });
+
+    }
+    else {
+      minor.forEach((interval, i) => {
+        candidates.push(...this.duplicateInRange(possible_notes.indexOf(key.getKeyNote()) + interval));
+      });
+    }
+
+    candidates.forEach((candidate, i) => {
+      if ((candidate != fourth_beat) && (candidate != third_beat[1]) && (candidate != first_beat)
+        && (Math.abs(candidate - third_beat[1])) < 5
+        && (((Math.abs(candidate - first_beat)) < 10) || ((Math.abs(candidate - first_beat)) == 12))
+        && Math.abs(candidate - first_beat != 6)) {
+        second_set.push(candidate)
+        }
+      });
+
+    let second_rand = this.chooseRandom(second_set)
+
+    //Compute second_close as before, but it cannot be equal to third_close
+    let second_close = 1000;
+    for (var i = 0; i < second_set.length; i++) {
+      if (Math.abs(third_beat[0]- second_set[i]) < Math.abs(third_beat[0] - second_close)
+       && second_set[i] != third_beat[0]) {
+        second_close = second_set[i]
+      }
+    }
+
+    return [new Note(second_close, newQueue, newVel, newOn, newOff),
+       new Note(second_rand, newQueue,newVel, newOn, newOff)]
+}
+
+  //Copy the note in different octaves but then keep only those inside a range
   duplicateInRange(note) {
-    let set = [note, note + 12, note - 12];
+    let shifted_note = shiftToOctave(3, note)
+    let set = [shifted_note, shifted_note + 12, shifted_note - 12];
 
     set.forEach((item, i) => {
       if (item > this.#highLimit || item < this.#lowLimit) {
@@ -72,10 +272,10 @@ class WalkingBass {
     return set;
   }
 
+  //Choose randomly from a set
   chooseRandom(set) {
     var rndm = Math.floor(Math.random() * set.length);
     return set[rndm];
   }
-
 
 }
