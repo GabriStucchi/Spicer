@@ -17,11 +17,11 @@ function toggleInstrument() {
 
 function playback() {
   if(playLoopBtn.innerText == "START"){
-    player.play(true);
+    metronome.resume();
     setLoopBtnTxt("STOP")
   }
   else {
-    player.play(false);
+    metronome.pause();
     setLoopBtnTxt("START");
   }
 }
@@ -55,7 +55,7 @@ document.onkeydown = (e) => {
 
     case "Space":
       playSynth ? toggleInstrument() : 0;
-      player.play(false);   //Stops the player
+      metronome.pause();     //stop the metronome (if it was playing)
       cleanRec();           //Defined in global.js
       activeNotes.splice(0, activeNotes.length);
       metronome.start();

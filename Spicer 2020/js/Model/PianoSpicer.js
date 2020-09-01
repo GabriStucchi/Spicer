@@ -54,7 +54,7 @@ class PianoSpicer {
     }
   }
 
-  clear() {
+  clean() {
     this.#spiced_tracks = undefined;
   }
 

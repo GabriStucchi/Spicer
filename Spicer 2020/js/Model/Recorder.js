@@ -48,7 +48,7 @@ class Recorder{
     return this.#track;
   }
 
-  clear() {
+  clean() {
     this.#track = undefined;
     this.#timeStart = 0;
     this.#track = new RecTrack();

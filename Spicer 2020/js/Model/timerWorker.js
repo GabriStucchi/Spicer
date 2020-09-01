@@ -3,14 +3,9 @@ let timerInterval = 100;
 
 self.onmessage=function(e){
 	if (e.data=="start") {
+		console.log("timer started")
 		timerID = setInterval(() => postMessage("timeout"), timerInterval);
   }
-  /*else if (e.data == "startRec") {
-    timerID = setInterval(() => postMessage("startRecording"), timerInterval);
-  }
-  else if (e.data == "stopRec") {
-    timerID = setInterval(() => postMessage("stopRecording"), timerInterval);
-  }*/
 	else if (e.data.interval) {
 		timerInterval = e.data.interval;
 		if (timerID) {
@@ -19,6 +14,7 @@ self.onmessage=function(e){
 		}
 	}
 	else if (e.data=="stop") {
+		console.log("timer stopped")
 		clearInterval(timerID);
 		timerID = null;
 	}

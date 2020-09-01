@@ -174,7 +174,7 @@ class ChordProgression {
     return this.#chords;
   }
 
-  clear() {
+  clean() {
     this.#chords = [];
   }
 }
