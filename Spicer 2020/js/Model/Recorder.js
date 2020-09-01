@@ -19,7 +19,6 @@ class Recorder{
     onAir = true;
     this.#timeStart = timeStart;
     setOnAirTxt() //sets text in on air div
-
   }
 
   //Stop the recordig, change the graphic and call the chord recognition
@@ -29,9 +28,10 @@ class Recorder{
     setOnAirTxt();            //sets text in on air div
     setLoopBtnTxt("STOP");    //sets text in loop button
     cprog.detectChords(this.#track);
-    
+
     player.setTrack(spicer.spice().getNotesTrack());
     player.play(true);
+    //player.playDrum();
     //player.play(cprog.getNotesTrack())
   }
 
