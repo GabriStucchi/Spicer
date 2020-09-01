@@ -326,7 +326,7 @@ class Chord {
      }else{
       this.#notes.splice(0,1)
      }
-     return new Chord(this.#notes[0])
+  //   return new Chord(this.#notes[0])
   }
 
   harmonizeFromRoot(){
@@ -372,7 +372,7 @@ class Chord {
     newVel = root.getVelocity - 6;
     this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
     //this.identifyChord()
-    return new Chord(this.#notes[0],this.#notes[1],this.#notes[2])
+//    return new Chord(this.#notes[0],this.#notes[1],this.#notes[2])
   }
 
 

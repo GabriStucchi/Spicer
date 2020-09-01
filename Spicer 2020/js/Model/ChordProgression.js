@@ -71,11 +71,11 @@ class ChordProgression {
               console.log("tempchord: pre clean")
               console.log(tempChord)
               if(tempChord.getNotes().length==2){
-                tempChord = tempChord.cleanBichord();
+                tempChord.cleanBichord();
               }
               console.log("tempchord: after clean pre harm")
               console.log(tempChord)
-              tempChord = tempChord.harmonizeFromRoot();
+              tempChord.harmonizeFromRoot();
               console.log("tempchord: after clean post harm in progression")
               console.log(tempChord)
               tempChord.identifyChord(); //identifies the chord
