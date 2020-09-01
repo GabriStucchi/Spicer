@@ -29,11 +29,12 @@ class Recorder{
     setLoopBtnTxt("STOP");    //sets text in loop button
     cprog.detectChords(this.#track);
     let trackToPlay= spicer.spice().getNotesTrack()
+
     trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
     //player.setTrack(spicer.spice().getNotesTrack());
     player.setTrack(trackToPlay);
     player.play(true);
-    
+
 
 
     //player.play(cprog.getNotesTrack())

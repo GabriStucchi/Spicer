@@ -23,7 +23,6 @@ class WalkingBass {
   computeBassLine(chordProgression) {
     // First it computes and store all the first_beats
     this.computeFirstBeats(chordProgression);
-
     // Then the other beats
     for (var i = 0; i < chordProgression.length - 1; i++) {
         let bass_bar = this.computeBassBar(i, chordProgression[i], chordProgression[i+1])
@@ -40,12 +39,9 @@ class WalkingBass {
             chordProgression[i].getNotes().forEach((candidate, i) => {
               candidates_set.push(...this.duplicateInRange(candidate.getMidiNote()))
             });
-            console.log('scelta tra sostituti: ');
-            console.log(candidates_set);
-            selected_candidate = this.chooseRandom(candidates_set)
-            bass_bar[index] == new Note(selected_candidate, newQueue,newVel, newOn, newOff);
-            console.log('undefined sobstituted: ');
-            console.log(selected_candidate);
+            let selected_candidate = this.chooseRandom(candidates_set)
+            bass_bar[index] = new Note(selected_candidate, newQueue,newVel, newOn, newOff);
+
 
           }
       });
@@ -56,7 +52,6 @@ class WalkingBass {
        //At the end of the progression use the first chord as next chord (loop)
       let bass_bar = this.computeBassBar(chordProgression.length - 1,
       chordProgression[chordProgression.length], chordProgression[0])
-      this.#bassLine.push(...bass_bar)
       //Same control as before but on the last bar
       bass_bar.forEach((note, index) => {
         if (note.getMidiNote() === undefined) {
@@ -68,15 +63,14 @@ class WalkingBass {
           chordProgression[i].getNotes().forEach((candidate, i) => {
             candidates_set.push(...this.duplicateInRange(candidate.getMidiNote()))
           });
-          console.log('scelta tra sostituti: ');
-          console.log(candidates_set);
+          let selected_candidate = this.chooseRandom(candidates_set)
 
-          bass_bar[index] == new Note(this.chooseRandom(candidates_set), newQueue,newVel, newOn, newOff);
-          console.log('undefined sobstituted: ');
-          console.log(bass_bar[index]);
+          bass_bar[index] = new Note(selected_candidate, newQueue,newVel, newOn, newOff);
 
         }
     });
+
+      this.#bassLine.push(...bass_bar)
 
 
       this.assignTimeStamps()
@@ -205,6 +199,7 @@ class WalkingBass {
       }
     });
 
+
     fourth_beat = this.chooseRandom(fourth_set);
     return new Note(fourth_beat, newQueue, newVel, newOn, newOff);
 
@@ -238,16 +233,12 @@ class WalkingBass {
       });
     }
 
-    console.log("ex third set: ");
-    console.log(candidates);
-
     candidates.forEach((candidate, i) => {
       if (candidate != fourth_beat && (Math.abs(candidate - fourth_beat)) < 5) {
         third_set.push(candidate)
       }
     });
-    console.log("new third set: ");
-    console.log(candidates);
+
 
     let third_rand = this.chooseRandom(third_set)
 
@@ -290,19 +281,16 @@ class WalkingBass {
         candidates.push(...this.duplicateInRange(possible_notes.indexOf(key.getKeyNote()) + interval));
       });
     }
-    console.log("ex second set: ");
-    console.log(candidates);
 
     candidates.forEach((candidate, i) => {
       if ((candidate != fourth_beat) && (candidate != third_beat[1]) && (candidate != first_beat)
         && (Math.abs(candidate - third_beat[1])) < 5
         && (((Math.abs(candidate - first_beat)) < 10) || ((Math.abs(candidate - first_beat)) == 12))
-        && Math.abs(candidate - first_beat != 6)) {
+        && (Math.abs(candidate - first_beat != 6)))
+        {
         second_set.push(candidate)
         }
       });
-      console.log("new second set: ");
-      console.log(candidates);
 
     let second_rand = this.chooseRandom(second_set)
 
@@ -358,7 +346,7 @@ class WalkingBass {
     let noteLength = 60000 / metronome.getTempo()
     this.#bassLine.forEach((note,i) => {
       note.setQueue(newQueue)
-      note.setInstantOn(240 + noteLength * i)
+      note.setInstantOn(noteLength * i)
       note.setDuration(noteLength/2)
     })
   }

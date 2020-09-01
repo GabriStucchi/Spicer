@@ -66,18 +66,11 @@ class ChordProgression {
             tempChord = new Chord(item); //creates a new chord
           } else {
               if (tempChord.getNotes().length == 1 || tempChord.getNotes().length == 2) {
-                console.log("--------------------------------------")
               //if the user played one or 2 notes
-              console.log("tempchord: pre clean")
-              console.log(tempChord)
               if(tempChord.getNotes().length==2){
                 tempChord.cleanBichord();
               }
-              console.log("tempchord: after clean pre harm")
-              console.log(tempChord)
               tempChord.harmonizeFromRoot();
-              console.log("tempchord: after clean post harm in progression")
-              console.log(tempChord)
               tempChord.identifyChord(); //identifies the chord
               this.#chords.push(tempChord); //pushes the chord in the chord progression
               tempChord = new Chord(item); //creates a new chord

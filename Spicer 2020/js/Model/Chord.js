@@ -81,9 +81,7 @@ class Chord {
     } else {
       this.#root = pitches[this.#type.getRootPos()];
     }
-    console.log(this)
     this.cleanChord() //clean chord
-    console.log(this)
     if (key != undefined) {
       this.findChordGrade();
     }
@@ -135,11 +133,9 @@ class Chord {
 
   cleanChord() {
     //[c,e,g,c,e,g]
-    console.log(this.#notes)
-    console.log(this.#notes.map((el) => el.getName()))
+
     let different_notes = [];
     different_notes = new Set(this.#notes.map((el) => el.getName()));
-    console.log(different_notes)
     //[c,e,g]
     let newNotes = [];
     different_notes.forEach((noteName) => {
@@ -147,11 +143,8 @@ class Chord {
       newNotes.push(this.#notes.find((el) => el.getName() == noteName));
     });
     this.#notes = newNotes;
-    console.log("** clean Chord: **")
-    console.log(this)
+
     this.rearrange(); //shifts notes to the "golden octave"
-    console.log("** cAfter Rearrange: **")
-    console.log(this)
   }
 
   deleteSpecificNote(del_note) {
@@ -260,8 +253,6 @@ class Chord {
 
 
   rearrange() {
-    console.log("rearrange: ")
-    console.log(this)
     //shifts chords to the "golden octave"
     this.#notes.forEach((note, i) => {
         if (note.getMidiNote() < 62 || note.getMidiNote() > 77) {
@@ -275,8 +266,6 @@ class Chord {
         note.setMidiNote(note.getMidiNote() + 12);
       }
     });
-    console.log("rearrange end: ")
-    console.log(this)
   }
 
   changeNotes(pitches) {
