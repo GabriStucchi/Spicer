@@ -28,10 +28,15 @@ class Recorder{
     setOnAirTxt();            //sets text in on air div
     setLoopBtnTxt("STOP");    //sets text in loop button
     cprog.detectChords(this.#track);
-
-    player.setTrack(spicer.spice().getNotesTrack());
+    let trackToPlay= spicer.spice().getNotesTrack()
+    trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
+    console.log(trackToPlay)
+    //player.setTrack(spicer.spice().getNotesTrack());
+    player.setTrack(trackToPlay);
     player.play(true);
-    //player.playDrum();
+    
+
+
     //player.play(cprog.getNotesTrack())
   }
 

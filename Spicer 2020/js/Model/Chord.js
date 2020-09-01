@@ -244,40 +244,13 @@ class Chord {
     newOff = this.#notes[this.#notes.length - 1].getInstantOff();
     newQueue = this.#notes[this.#notes.length - 1].getQueue();
     this.addNotes(new Note(ninth, newQueue, newVel, newOn, newOff));
-    this.deleteSpecificNote(this.#root.getMidiNote()+7);    //It deletes the perfect 5th when adding 9th
+    this.deleteSpecificNote(this.#root.getMidiNote());    //It deletes the perfect 5th when adding 9th
     this.rearrange();
 
     //Da fare controllo different notes?
   }
 }
 
-  //todo finire
-  voicingTODO() {
-    let root = this.#root.getMidiNote();
-
-    root = shiftToOctave(0, root);
-    let pitches = [root + 3, root + 7, root + 10, root + 14]; //Trovo 3^min, 5^, 7^min, 9^
-
-    //Sistemo i pitches nel giusto range (D3-F4)
-
-    while (pitches[0] < 62) {
-      pitches = pitches.map((el) => el + 12); //Così aggiungo 12 a tutti gli elementi di pitches
-    }
-    while (pitches[0] > 77) {
-      pitches = pitches.map((el) => el - 12);
-    }
-
-    //Posizione larga
-    if (pitches[3] < 77) {
-    }
-    //Posizione stretta
-    else {
-      pitches[2] = pitches[2] - 12;
-      pitches[3] = pitches[3] - 12;
-    }
-
-    this.changeNotes(pitches); //Salvo il 2 e il suo basso
-  }
 
   rearrange() {
     //shifts chords to the "golden octave"
@@ -297,11 +270,41 @@ class Chord {
   }
 
   changeNotes(pitches) {
+    this.#notes.forEach((note, i) => {
+      if (pitches[i] !== undefined) {
+        note.setMidiNote(pitches[i])
+      }
+    });
+    if (this.#notes.length < pitches.length) {
+      let newVel = 0
+      let newOn = 0
+      let newOff = 0
+      let newQueue = 0
+      for (var i = 0; i < this.#notes.length; i++) {
+        newVel += this.#notes[i].getVelocity()
+        newOn += this.#notes[i].getInstantOn()
+        newOff += this.#notes[i].getInstantOff()
+        newQueue += this.#notes[i].getQueue()
+      }
+      newVel = newVel/this.#notes.length
+      newOn = newOn/this.#notes.length
+      newOff = newOff/this.#notes.length
+      newQueue = newQueue/this.#notes.length
+
+
+
+      for (var i = this.#notes.length; i < pitches.length; i++) {
+        this.addNote(new Note(pitches[i], newQueue, newVel, newOn, newOff))
+      }
+    }
+
+    /*
     this.#notes.splice(this.#notes.indexOf(this.#root), 1);
 
     this.#notes.forEach((note, i) => {
       note.setMidiNote(pitches[i]);
     });
+    */
   }
 
   cleanBichord(){
