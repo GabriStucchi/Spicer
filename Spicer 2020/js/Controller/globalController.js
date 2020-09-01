@@ -75,14 +75,4 @@ document.onkeydown = (e) => {
       showSpicer();
       break;
   }
-  
-  /*if (e.code == "Space") {
-    if (playSynth) {
-      toggleInstrument();
-    }
-    player.play(false);   //Stops the player
-    cleanRec();           //Defined in global.js
-    activeNotes.splice(0, activeNotes.length);
-    metronome.play();
-  }*/
 };
