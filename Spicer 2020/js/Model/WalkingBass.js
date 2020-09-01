@@ -34,6 +34,8 @@ class WalkingBass {
       chordProgression[chordProgression.length], chordProgression[0])
       this.#bassLine.push(...bass_bar)
 
+
+      this.assignTimeStamps()
       console.log(this.#bassLine);
 
   }
@@ -161,10 +163,13 @@ class WalkingBass {
 
   }
 
-  computeThirdBeat(first_beat, fourth_beat) {
-    /*As third_beat it's randomly choosen whatever note of the key (except fourth beat)
+
+ //------------------COMPUTE THIRD BEAT----------------
+
+      /*As third_beat it's randomly choosen whatever note of the key (except fourth beat)
     only if it isn't further than 5 halfsteps from the fourth_beat; while for fourth_close
     it's choosen the note which minimizes the distance from fourth_beat*/
+  computeThirdBeat(first_beat, fourth_beat) {
 
     let newVel = this.chooseRandom(this.#thirdVelocity);
     let newOn;
@@ -207,14 +212,14 @@ class WalkingBass {
 
   }
 
-  computeSecondBeat(first_beat, third_beat, fourth_beat) {
-    /*
+//------------------------COMPUTE SECOND BEAT
+      /*
     As second_beat is randomly choosen whatever note of the key only if:
     - Different from first_beat, third_beat, fourth_beat
     - No further than 5 halfsteps from third_beat
     - No further than 10 halfsteps from first_beat unless it's a perfect octave
     */
-
+  computeSecondBeat(first_beat, third_beat, fourth_beat) {
     let newVel = this.chooseRandom(this.#secondVelocity);
     let newOn;
     let newOff;
@@ -279,8 +284,7 @@ class WalkingBass {
     return set[rndm];
   }
 
-  getBassLine(chord_progression){
-    this.computeBassLine(chord_progression)
+  getBassLine(){
     return this.#bassLine;
   }
 
@@ -288,4 +292,21 @@ class WalkingBass {
     return this.#firstBeats;
   }
 
+
+
+//temp for testing
+
+//todo change notes and length based on the distance between chords
+  assignTimeStamps(){
+
+    let newQueue = cprog.getChords()[0].getNotes()[0].getQueue()
+    let noteLength = 60000 / metronome.getTempo()
+    this.#bassLine.forEach((note,i) => {
+      note.setQueue(newQueue)
+      note.setInstantOn(noteLength * i)
+      note.setDuration(noteLength/2)
+    })
+  }
 }
+
+

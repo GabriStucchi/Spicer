@@ -157,6 +157,4 @@ class Metronome {
     }
   }
 
-
-
 }

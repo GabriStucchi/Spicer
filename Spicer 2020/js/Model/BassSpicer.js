@@ -13,9 +13,10 @@ class BassSpicer {
   spice(){ //returns the spiced track according to the level
     if(this.#spiced_tracks === undefined){
       let walking_bass = new WalkingBass;
+      walking_bass.computeBassLine(cprog.getChords())
       this.#spiced_tracks = []
-      this.#spiced_tracks.push(walking_bass.getBassLine(cprog.getChords())); //spices the base track
-      this.#spiced_tracks.unshift(walking_bass.getFirstBeats()); //spices the already spiced track
+      this.#spiced_tracks.push(walking_bass.getFirstBeats());
+      this.#spiced_tracks.push(walking_bass.getBassLine());
     }
     if (this.#level == 1 || this.#level == 2 ) {
       return this.#spiced_tracks[this.#level]
