@@ -9,7 +9,9 @@ body{
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-  background-color: rgb(45,45,45);
+  
+background-color: #081222;
+background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23000000' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   height: auto;
 }
 
@@ -19,13 +21,16 @@ body{
   margin: 30px auto;
   position: relative;
   border: 2px solid black;
-  /*(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0.6) 61%, rgba(0,0,0,1) 100% */
+  border-top: 4px solid rgb(44, 255, 125);
+  border-left: 4px solid rgb(44, 255, 125);
+  border-bottom: 4px solid rgb(255, 72, 72);
+  border-right: 4px solid rgb(255, 72, 72);
+
   background: linear-gradient(  rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.7) 61%, rgba(0,0,0,0.8) 100%), url("images/leather.jpg");
-  /*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("images/leather.jpg"); */
   background-position:center top;
   background-size: contain;
   border-radius: 5px;
-  box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.7), -1px -1px 2px 0px rgba(0, 0, 0, 0.7);
+  box-shadow: 5px 7px 10px 5px rgba(255, 72, 72, 0.842), -5px -7px 10px 5px rgba(44, 255, 125, 0.753);
 }
 .synth-container{
   width: 1126px;
@@ -55,12 +60,23 @@ body{
 
 #spicerSection{
   z-index: 1;
-  background-color: rgba(60, 194, 235, 0.678);
+  background-color: rgba(42, 241, 255, 0.788);
+  background-image: url("images/mountains.svg");
+  border-top: 4px solid rgba(255, 72, 72, 0.842);
+  box-shadow: 0px -7px 10px 0px rgba(255, 72, 72, 0.842);
   display: block;
   position: fixed;
   bottom : 0%;
   width : 100%;
   height: 5%;
+}
+
+#spicerContent-large{
+  display: none;
+}
+
+#spicerContent-small{
+  display: block;
 }
 
 #spiceRange{
@@ -72,24 +88,13 @@ body{
 
 
 h1{
-    /*font-family: 'Nothing You Could Do', cursive;*/
     padding-top: 20px;
-    font-family: 'Amatic SC', cursive;
     white-space: nowrap;
     display: flex;
     justify-content: center;
-    font-size: 4vw;
-    color: rgb(0,0,0);
+    font-size: 8vw;
 }
 
-
-.red-txt{
-  color: red;
-}
-
-.chili-logo{
-  width: 3.8%;
-}
 
 
 .onAirBtn{
@@ -129,3 +134,55 @@ h1{
   }
 }
 
+
+#instrumentToggle{
+  width: 150px;
+  height:50px;
+  border-radius:180px;
+  position:relative;
+  left:calc(50% - 75px);
+  top:calc(50% - 25px);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  cursor:pointer;
+  line-height:12px;
+}
+
+#instrumentToggle:before {
+  content:'';
+  z-index:1;
+  position:absolute;
+  display:block;
+  width:80%;
+  height:70%;
+  top:15%;
+  left:10%;
+  transition: 0.3s opacity ease-in-out;
+  filter:blur(15px);
+  opacity:0;
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+}
+
+#instrumentToggle:hover:before {
+  opacity:1;
+  transition: 0.3s opacity ease-in-out;
+  filter:blur(25px);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);  
+}
+
+#instrumentToggle:after {
+  content:'Synth';
+  text-align:center;
+  line-height:40px;
+  font-size:18px;
+  color:rgba(235,235,235,1);
+  font-weight:bold;
+  z-index:5;
+  position:absolute;
+  display:block;
+  border-radius:180px;
+  width:92%;
+  height:80%;
+  top:10%;
+  left:4%;  
+  background-color:rgb(19, 20, 22);
+}

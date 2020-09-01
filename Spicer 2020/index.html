@@ -75,9 +75,7 @@
 <body>
 
   <div class="title">
-    <h1>
-      <div class="red-txt">SPIC</div><img class="chili-logo" src="css/images/chili.svg" alt="">R
-    </h1>
+    <h1>SPICER</h1>
     <div class="onAirBtn">ON AIR</div>
   </div>
 
@@ -444,15 +442,20 @@
 
   <div id="spicerSection">
     <img src="css/images/arrow.svg" class="arrow" id="bringUp" >
+
+    <div id="spicerContent-large">
     <button id="instrumentToggle">Instrumet Toggle</button>
     <p><select id='ins' onchange="selectIns(this)"></select></p>
     <div id="tempoBox">Tempo: <span id="showTempo">120</span>BPM <input id="tempo" type="range" min="30.0" max="300.0"
       step="1" value="120" style="height: 20px; width: 200px"></div>
-
     <p><select id="keyRoot"></select></p>
     <p><select id='typeOfScale'"></select></p>
     <button id="playLoop">START</button>
- 
+  </div>
+
+  <div id="spicerContent-small">
+
+  </div>
     
   </div>
 
