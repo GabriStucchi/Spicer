@@ -303,7 +303,7 @@ class WalkingBass {
     let noteLength = 60000 / metronome.getTempo()
     this.#bassLine.forEach((note,i) => {
       note.setQueue(newQueue)
-      note.setInstantOn(noteLength * i)
+      note.setInstantOn(240 + noteLength * i)
       note.setDuration(noteLength/2)
     })
   }

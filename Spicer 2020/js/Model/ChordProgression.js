@@ -66,9 +66,18 @@ class ChordProgression {
             tempChord = new Chord(item); //creates a new chord
           } else {
               if (tempChord.getNotes().length == 1 || tempChord.getNotes().length == 2) {
-              //if  the user played a single note
-              tempChord.cleanBichord();
-              tempChord.harmonizeFromRoot();
+                console.log("--------------------------------------")
+              //if the user played one or 2 notes
+              console.log("tempchord: pre clean")
+              console.log(tempChord)
+              if(tempChord.getNotes().length==2){
+                tempChord = tempChord.cleanBichord();
+              }
+              console.log("tempchord: after clean pre harm")
+              console.log(tempChord)
+              tempChord = tempChord.harmonizeFromRoot();
+              console.log("tempchord: after clean post harm in progression")
+              console.log(tempChord)
               tempChord.identifyChord(); //identifies the chord
               this.#chords.push(tempChord); //pushes the chord in the chord progression
               tempChord = new Chord(item); //creates a new chord
@@ -79,6 +88,8 @@ class ChordProgression {
       }
     });
 
+
+    //-------------------------------last chords-------------------------------
     if (tempChord.getNotes().length > 2) {
       //pushes last chord
       tempChord.identifyChord();
@@ -106,15 +117,12 @@ class ChordProgression {
             //Posizione larga
             if (pitches[3] < 77) {
               this.#chords[i].changeNotes(pitches);    //Salvo il 2
-              console.log(pitches);
               pitches[2] = pitches[2] - 1
               this.#chords[i+1].changeNotes(pitches);   //Salvo il 5
-              console.log(pitches);
               pitches[0] = pitches[0] - 1
               pitches[1] = pitches[1] - 2
               pitches[3] = pitches[3] - 2
               this.#chords[i+2].changeNotes(pitches);   //Salvo l'1
-              console.log(pitches);
             }
 
             //Posizione stretta

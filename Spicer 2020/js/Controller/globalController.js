@@ -5,11 +5,9 @@ let playLoopBtn = document.getElementById("playLoop");
 
 function toggleInstrument() {
   playSynth = !playSynth;
-  console.log(playSynth);
   if (playSynth) {
     muteSynth(false);
     stopAllNotes()
-    console.log(activeNotes)
   } else {
     muteSynth(true);
     synthNoteOff();
