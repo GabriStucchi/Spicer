@@ -23,6 +23,7 @@ class WalkingBass {
   computeBassLine(chordProgression) {
     // First it computes and store all the first_beats
     this.computeFirstBeats(chordProgression);
+
     // Then the other beats
     for (var i = 0; i < chordProgression.length - 1; i++) {
         let bass_bar = this.computeBassBar(i, chordProgression[i], chordProgression[i+1])
@@ -276,6 +277,15 @@ class WalkingBass {
   chooseRandom(set) {
     var rndm = Math.floor(Math.random() * set.length);
     return set[rndm];
+  }
+
+  getBassLine(chord_progression){
+    this.computeBassLine(chord_progression)
+    return this.#bassLine;
+  }
+
+  getFirstBeats(){
+    return this.#firstBeats;
   }
 
 }

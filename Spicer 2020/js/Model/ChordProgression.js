@@ -106,13 +106,15 @@ class ChordProgression {
             //Posizione larga
             if (pitches[3] < 77) {
               this.#chords[i].changeNotes(pitches);    //Salvo il 2
+              console.log(pitches);
               pitches[2] = pitches[2] - 1
               this.#chords[i+1].changeNotes(pitches);   //Salvo il 5
+              console.log(pitches);
               pitches[0] = pitches[0] - 1
               pitches[1] = pitches[1] - 2
               pitches[3] = pitches[3] - 2
               this.#chords[i+2].changeNotes(pitches);   //Salvo l'1
-              console.log(this);
+              console.log(pitches);
             }
 
             //Posizione stretta
