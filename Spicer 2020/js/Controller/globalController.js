@@ -58,7 +58,7 @@ document.onkeydown = (e) => {
       player.play(false);   //Stops the player
       cleanRec();           //Defined in global.js
       activeNotes.splice(0, activeNotes.length);
-      metronome.play();
+      metronome.start();
       break;
 
     case "KeyP":

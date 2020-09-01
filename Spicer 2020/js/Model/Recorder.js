@@ -19,7 +19,6 @@ class Recorder{
     onAir = true;
     this.#timeStart = timeStart;
     setOnAirTxt() //sets text in on air div
-
   }
 
   //Stop the recordig, change the graphic and call the chord recognition
