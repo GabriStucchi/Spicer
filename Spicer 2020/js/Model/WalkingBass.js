@@ -14,10 +14,10 @@ class WalkingBass {
     this.#highLimit = 57;     //A3 change up to 60
     this.#lowLimit = 41;      //F2 change down to 24
     this.#firstBeats = [];
-    this.#firstVelocity = Array(127 - 110 + 1).fill().map((_, idx) => 110 + idx);
-    this.#secondVelocity = Array(100 - 80 + 1).fill().map((_, idx) => 80 + idx);
-    this.#thirdVelocity = Array(110 - 100 + 1).fill().map((_, idx) => 100 + idx);
-    this.#fourthVelocity = Array(80 - 60 + 1).fill().map((_, idx) => 60 + idx);
+    this.#firstVelocity = Array(127 - 110 + 1).fill().map((_, idx) => 110 - 40 + idx);
+    this.#secondVelocity = Array(100 - 80 + 1).fill().map((_, idx) => 80 - 40 + idx);
+    this.#thirdVelocity = Array(110 - 100 + 1).fill().map((_, idx) => 100 - 40 + idx);
+    this.#fourthVelocity = Array(80 - 60 + 1).fill().map((_, idx) => 60 - 40 + idx);
   }
 
   computeBassLine(chordProgression) {
@@ -358,7 +358,7 @@ class WalkingBass {
     let noteLength = 60000 / metronome.getTempo()
     this.#bassLine.forEach((note,i) => {
       note.setQueue(newQueue)
-      note.setInstantOn(noteLength * i)
+      note.setInstantOn(240 + noteLength * i)
       note.setDuration(noteLength/2)
     })
   }

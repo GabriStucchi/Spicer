@@ -44,7 +44,7 @@ let key = new Key("C", "Maj");
 let recorder = new Recorder();
 let cprog = new ChordProgression();
 let metronome = new Metronome(120);
-let player = new Player(120);
+let player = new Player;
 let spicer = new PianoSpicer();
 let bass_spicer = new BassSpicer();
 

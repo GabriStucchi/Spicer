@@ -38,7 +38,6 @@ class PianoSpicer {
       this.#spiced_tracks.push(this.spiceTrack(this.#spiced_tracks[0],1)); //spices the base track
       this.#spiced_tracks.push(this.spiceTrack(this.#spiced_tracks[1],2)); //spices the already spiced track
     }
-    console.log(this);
     return this.#spiced_tracks[this.#level]
   }
 

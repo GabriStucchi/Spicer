@@ -5,11 +5,9 @@ let playLoopBtn = document.getElementById("playLoop");
 
 function toggleInstrument() {
   playSynth = !playSynth;
-  console.log(playSynth);
   if (playSynth) {
     muteSynth(false);
     stopAllNotes()
-    console.log(activeNotes)
   } else {
     muteSynth(true);
     synthNoteOff();
@@ -60,7 +58,7 @@ document.onkeydown = (e) => {
       player.play(false);   //Stops the player
       cleanRec();           //Defined in global.js
       activeNotes.splice(0, activeNotes.length);
-      metronome.play();
+      metronome.start();
       break;
 
     case "KeyP":

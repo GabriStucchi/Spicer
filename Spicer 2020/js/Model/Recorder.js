@@ -19,7 +19,6 @@ class Recorder{
     onAir = true;
     this.#timeStart = timeStart;
     setOnAirTxt() //sets text in on air div
-
   }
 
   //Stop the recordig, change the graphic and call the chord recognition
@@ -31,7 +30,6 @@ class Recorder{
     cprog.detectChords(this.#track);
     let trackToPlay= spicer.spice().getNotesTrack()
     trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
-    console.log(trackToPlay)
     //player.setTrack(spicer.spice().getNotesTrack());
     player.setTrack(trackToPlay);
     player.play(true);
