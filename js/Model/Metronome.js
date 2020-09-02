@@ -1,7 +1,7 @@
 
 class Metronome {
+  #isPlaying;
   #audioContext;
-  #isPlaying;           // True if the timer is going
   #isSounding;          // True if the metronome is ticking
   #current16thNote;     // Current 16th note tracker
   #tempo;               // tempo (in beats per minute)
@@ -12,6 +12,7 @@ class Metronome {
   #playDrum;
 
   constructor(bpm) {
+    this.#isPlaying = false;
     this.#audioContext = new AudioContext();
     this.#isSounding = false;
     this.#current16thNote = 0;
@@ -45,27 +46,50 @@ class Metronome {
 
   // Start the metronome (and the recording)
   start() {
-    this.#isSounding = true;
     this.#current16thNote = 0;
     this.#bar = -1;
     this.#countdown = 4;
     this.#playDrum = false;
-    toggleOnAirLight()                            // Ligths up the label
+    this.#isSounding = true;
+    toggleOnAirLight()                            // Ligths up the label (Defined in globalController.js)
     this.#timerWorker.postMessage("start");       // Start the timer
+    this.#isPlaying = true;
     this.schedule();
   }
 
-  // Pause the metronome
+  // Stop the metronome (during the recording phase)
+  stop() {
+    this.#timerWorker.postMessage("stop");      // Stop the timer
+    this.#isPlaying = false;
+    if (this.#isSounding) {           // If is in the recording mode
+      setOnAirTxt();                // Sets the text "ON AIR" (It may be showing the countdown)
+      toggleOnAirLight();           // Toggle the light off
+    }
+  }
+
+  // Pause the metronome (during playback)
   pause() {
     player.play(false);                         // Stop the loop
     this.#timerWorker.postMessage("stop");      // Stop the timer
+    this.#isPlaying = false;
     this.#current16thNote = 0;                  // Reset all values
     this.#bar = 0;
   }
 
-  // Resume the metronome
+  // Resume the metronome (from playback)
   resume() {
-    this.#timerWorker.postMessage("start");
+    this.#timerWorker.postMessage("start");   // Start the timer for loop
+    this.#isPlaying = true;
+  }
+
+  // Return true if we are in the recording phase (pre-record ticking included)
+  isTicking() {
+    return this.#isSounding;
+  }
+
+  // Return true if the timer is running (indipendent from record phase or playback phase)
+  isPlaying() {
+    return this.#isPlaying;
   }
 
   // Schedule the actions
@@ -78,8 +102,9 @@ class Metronome {
           console.log("RECORDING");
         }
         else {                              // The recording tick is finished
-          if (onAir) {                       //If we are on air stop the recording
-            recorder.stop();
+          if (onAir) {                      //If we are on air stop the recording
+            recorder.stop(true);
+            toggleOnAirLight();             // Toggle the light off
             console.log("STOP RECORDING")
           }
           else {                            //If we are not on air loop the recording
