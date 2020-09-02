@@ -15,6 +15,29 @@ background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox=
   height: auto;
 }
 
+#logo_container{
+  padding-top: 20px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  font-size: 8vw;
+
+}
+#logo{
+  width: 25%;
+  height: auto;
+  z-index: 1;
+}
+
+#glare{
+  position: absolute;
+  width: 100px;
+  z-index: 0;
+  background: rgb(0,0,0);
+  background: radial-gradient(circle, rgba(0,0,0,0.39539565826330536) 0%, rgba(255,123,0,1) 51%, rgba(255,0,0,1) 100%);
+  border-radius:50%;
+}
+
 .leather-box{
   width: 1200px;
   height: 650px;
