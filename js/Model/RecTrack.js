@@ -10,33 +10,33 @@ class RecTrack {
 
   constructor(...args) {
     this.#notes = [];
-    if(onAir){
+    if (onAir) {
       args.forEach((item, i) => { //loops throught the arguments
-          if(item.constructor.name == Note.name) //checks that item is a note
-            this.#notes.push(item); //adds the argument to the note list
-      });
-    }
-  }
-
-//adds n notes
-  addNotes(...args){
-    if(onAir){
-      args.forEach((item, i) => { //loops throught the arguments
-        if(item.constructor.name == Note.name) //checks that item is a note
+        if (item.constructor.name == Note.name) //checks that item is a note
           this.#notes.push(item); //adds the argument to the note list
       });
     }
   }
 
-//adds a single note
-  addNote(note){
-    if(onAir){
-      if(note.constructor.name == Note.name) //checks that item is a note
+  //adds n notes
+  addNotes(...args) {
+    if (onAir) {
+      args.forEach((item, i) => { //loops throught the arguments
+        if (item.constructor.name == Note.name) //checks that item is a note
+          this.#notes.push(item); //adds the argument to the note list
+      });
+    }
+  }
+
+  //adds a single note
+  addNote(note) {
+    if (onAir) {
+      if (note.constructor.name == Note.name) //checks that item is a note
         this.#notes.push(note); //adds the argument to the note list
     }
   }
 
-  getNotes(){
+  getNotes() {
     return this.#notes
   }
 }
