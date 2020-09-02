@@ -59,3 +59,28 @@ The synth is composed of the following components:
 
 The following scheme respresents the signal path.
 -------------SCHEMA---------------
+
+### Walking Bass
+If the bass is active and set to the higher complexity level it plays an ever changing walking bass line, which consists of notes of equal duration (typically 1/4 notes) that create a feeling of forward motion. Its implementation is designed in order to give a realistic feel and a certain degree of freedom to it and the four beats <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> of each bass line are choosen by following specific rules:
+* beat <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/> : It must be the root of the chord played on this beat. It's the first to be computed by the algorithm by randomly choosing the root on different octaves (but constrained to the walking bass range).
+
+
+
+* beat  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/> : It must be a note of the selected key. It's the last to be computed by the algorithm by choosing from a set of possible notes which depends on the other beats' choices and on a series of constraints about intervals' length and type.
+
+
+
+* beat <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/> : It must be a note of the selected key. It's the third to be computed by the algorithm by choosing from a set of possible notes which depends on the other beats' choices and on a series of constraints about intervals' length and type.
+
+
+
+* beat <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> : It must be a _leading tone_ (chromatic, diatonic or dominant). It's the second to be computed by the algorithm by randomly choosing one of the leading tones.
+
+
+The choice of <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/> and <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/> can follow two logics:
+* **Close Walking** : They are chosen from the _possible beats sets_ by minimizing the distances between the beats. The result will be a walking bass line in which the notes played are as close as possible but still respect the basic constrains.
+
+* **Random Walking** : They are chosen from the _possible beats sets_ randomly. The result will be a walking bass with a more random behaviour, possibly showing certain number of jumps, but still respect the basic constrains.
+
+After having computed these two different walking bass bars the algorithm will randomly choose one of them and construct a multicolored and ever changing bass line!
+![1](https://user-images.githubusercontent.com/57997005/91876344-e167d680-ec7c-11ea-9260-d4bf05276bb9.png)
