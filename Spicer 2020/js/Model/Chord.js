@@ -345,7 +345,7 @@ class Chord {
     //TODO randomize instant on within a certain time window
     // add third
     noteGrade = this.#grade -1 + 2
-    noteGrade >= scale.length ? noteGrade -= scale.length : 0;
+    noteGrade >= scale.length ? noteGrade -= scale.length + 1 : 0;
     midiNote = root.getMidiNote() + scale[noteGrade]
     newOn = root.getInstantOn() +6;
     newVel = root.getVelocity() - 6;
@@ -354,7 +354,7 @@ class Chord {
 
     //add fifth
     noteGrade = this.#grade -1 + 4
-    noteGrade > scale.length ? noteGrade -= scale.length : 0;
+    noteGrade > scale.length ? noteGrade -= scale.length + 1 : 0;
     midiNote = root.getMidiNote() + scale[noteGrade]
     newOn = root.getInstantOn() +12;
     newVel = root.getVelocity() -2;
