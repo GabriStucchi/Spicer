@@ -232,22 +232,22 @@ class Chord {
       let newQueue;
     //Nella scala maggiore il III grado può essere minore o maggiore (preso in prestito dalla relativa minore melodica)
     if (
-      this.#grade == 3 &&
+      this.#grade == 3 && key.isMajor() &&
       (this.#type !== undefined && (this.#type.getName() == "maj" || this.#type.getName() == "maj7"))
     ) {
       ninth = this.#root.getMidiNote() + 13;
     } else {
       ninth = this.#root.getMidiNote() + 14;
     }
-    newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
-    newOn = this.#notes[this.#notes.length - 1].getInstantOn() + 2;
-    newOff = this.#notes[this.#notes.length - 1].getInstantOff();
-    newQueue = this.#notes[this.#notes.length - 1].getQueue();
-    this.addNotes(new Note(ninth, newQueue, newVel, newOn, newOff));
-    this.deleteSpecificNote(this.#root.getMidiNote());    //It deletes the perfect 5th when adding 9th
-    this.rearrange();
-
-    //Da fare controllo different notes?
+    if (this.#grade != 7) {   //Ninth on the seventh grade is not good
+      newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
+      newOn = this.#notes[this.#notes.length - 1].getInstantOn() + 2;
+      newOff = this.#notes[this.#notes.length - 1].getInstantOff();
+      newQueue = this.#notes[this.#notes.length - 1].getQueue();
+      this.addNotes(new Note(ninth, newQueue, newVel, newOn, newOff));
+      this.deleteSpecificNote(this.#root.getMidiNote());    //It deletes the root
+      this.rearrange();
+    }
   }
 }
 

@@ -14,10 +14,10 @@ class WalkingBass {
     this.#highLimit = 57;     //A3 change up to 60
     this.#lowLimit = 41;      //F2 change down to 24
     this.#firstBeats = [];
-    this.#firstVelocity = Array(127 - 110 + 1).fill().map((_, idx) => 110 - 40 + idx);
-    this.#secondVelocity = Array(100 - 80 + 1).fill().map((_, idx) => 80 - 40 + idx);
-    this.#thirdVelocity = Array(110 - 100 + 1).fill().map((_, idx) => 100 - 40 + idx);
-    this.#fourthVelocity = Array(80 - 60 + 1).fill().map((_, idx) => 60 - 40 + idx);
+    this.#firstVelocity = Array(127 - 110 + 1).fill().map((_, idx) => 110 + idx);
+    this.#secondVelocity = Array(90 - 70 + 1).fill().map((_, idx) => 70 + idx);
+    this.#thirdVelocity = Array(110 - 90 + 1).fill().map((_, idx) => 90 + idx);
+    this.#fourthVelocity = Array(70 - 50 + 1).fill().map((_, idx) => 50 + idx);
   }
 
   computeBassLine(chordProgression) {
@@ -30,7 +30,7 @@ class WalkingBass {
         //Chrek if there is an undefined in the bass_bar, in case sobstitute it withi
         //a random note from the chord
         bass_bar.forEach((note, index) => {
-          if (note.getMidiNote() === undefined) {
+          if (note.getMidiNote() === undefined || isNaN(note.getMidiNote())) {
             let newVel = this.chooseRandom(this.#fourthVelocity);
             let newOn;
             let newOff;
@@ -39,9 +39,9 @@ class WalkingBass {
             chordProgression[i].getNotes().forEach((candidate, i) => {
               candidates_set.push(...this.duplicateInRange(candidate.getMidiNote()))
             });
+
             let selected_candidate = this.chooseRandom(candidates_set)
             bass_bar[index] = new Note(selected_candidate, newQueue,newVel, newOn, newOff);
-
 
           }
       });
@@ -54,7 +54,7 @@ class WalkingBass {
       chordProgression[chordProgression.length], chordProgression[0])
       //Same control as before but on the last bar
       bass_bar.forEach((note, index) => {
-        if (note.getMidiNote() === undefined) {
+        if (note.getMidiNote() === undefined || isNaN(note.getMidiNote())) {
           let newVel = this.chooseRandom(this.#fourthVelocity);
           let newOn;
           let newOff;
@@ -64,9 +64,7 @@ class WalkingBass {
             candidates_set.push(...this.duplicateInRange(candidate.getMidiNote()))
           });
           let selected_candidate = this.chooseRandom(candidates_set)
-
           bass_bar[index] = new Note(selected_candidate, newQueue,newVel, newOn, newOff);
-
         }
     });
 
@@ -124,7 +122,7 @@ class WalkingBass {
       }
     }
 
-    return this.chooseRandom([close_walking, close_walking]);
+    return this.chooseRandom([close_walking, random_walking]);
   }
 
 
@@ -144,20 +142,19 @@ class WalkingBass {
 
     let fourth_beat
     let next_grade = next_chord.getGrade();
-
     let following_interval
     let previous_interval
 
     //Choose as leading tone the following or previous note of the scale (in the given tonality)
     if (key.isMajor()) {
       if (major[next_grade - 2] === undefined) {
-        previous_interval = Math.abs(major[major.length] - 12)
+        previous_interval = Math.abs(major[major.length - 1] - 12)
         following_interval = major[next_grade] - major[next_grade - 1]
       }
       else {
         if (major[next_grade] === undefined) {
           previous_interval = major[next_grade - 1] - major[next_grade - 2]
-          following_interval = major[0] + 12 - major[next_grade]
+          following_interval = major[0] + 12 - major[next_grade - 1]
         }
         else {
           previous_interval = major[next_grade - 1] - major[next_grade - 2]
@@ -182,14 +179,19 @@ class WalkingBass {
       }
     }
 
+
     let fourth_set = []
 
     if (next_first > actual_first ) {
-      fourth_set.push(next_first - previous_interval)
+      if (previous_interval !== undefined && !isNaN(previous_interval)) {
+        fourth_set.push(next_first - previous_interval)
+      }
       fourth_set.push(next_first - 1)
       fourth_set.push(next_first - 5)
     }else {
-      fourth_set.push(next_first + following_interval)
+      if (following_interval !== undefined && !isNaN(following_interval)) {
+        fourth_set.push(next_first + following_interval)
+      }
       fourth_set.push(next_first + 1)
       fourth_set.push(next_first + 7)
     }
@@ -198,6 +200,7 @@ class WalkingBass {
         fourth_set.splice(i,1)
       }
     });
+    fourth_set = [... new Set(fourth_set)]        //Elimino i doppioni
 
 
     fourth_beat = this.chooseRandom(fourth_set);

@@ -1,34 +1,44 @@
 class Player {
-  #track;         //Reference to the track to play
-  #drums;
+  #pianoTrack;        //Reference to the pianoTrack to play
+  #bassTrack;         //Reference to the bass track to play
+  #drums;             //Drums (scheduled in playDrum())
   #currentBeat;
 
   constructor() {
-    this.#track = undefined;
+    this.#pianoTrack = undefined;
+    this.#bassTrack = undefined;
     this.#drums = [new Audio('/css/Audio/kickHat.wav'), new Audio('/css/Audio/kickHard.wav'), new Audio('/css/Audio/snareRide.wav'), new Audio('/css/Audio/ch1.wav')];
     this.#currentBeat = 0;
   }
 
+  // Set the piano track
   setTrack(track) {
-    this.#track = track;
+    this.#pianoTrack = track;
+  }
+
+  // Set the bass track
+  setBassTrack(track) {
+    this.#bassTrack = track;
   }
 
   //Play/Stop the track depending on shouldPlay value
   play(shouldPlay) {
-    if(this.#track === undefined)
+    if(this.#pianoTrack === undefined)
       console.log("Track undefined");
     else {
       if(shouldPlay) {
-        this.#track.forEach((note) => playbackNote(note));    //Defined in midiManagement.js
+        this.#pianoTrack.forEach((note) => playbackNote(note));    //Defined in midiManagement.js
+        this.#bassTrack.forEach((note) => playbackBass(note));
       }
       else{
-        this.#track.forEach((note) => stopNote(note));        //Defined in midiManagement.js
+        this.#pianoTrack.forEach((note) => stopNote(note));        //Defined in midiManagement.js
+        this.#bassTrack.forEach((note) => stopNote(note));
         this.#currentBeat = 0;
       }
     }
   }
  
-
+  //Play the drum (at scheduled instants)
   playDrum() {
     switch(this.#currentBeat) {
       case 0:
@@ -64,8 +74,10 @@ class Player {
       this.#currentBeat = 0;
   }
 
+  // Clean the layer (deletes the tracks and restart the drums)
   clean() {
-    this.#track = undefined;
+    this.#pianoTrack = undefined;
+    this.#bassTrack = undefined;
     this.#currentBeat = 0;
   }
 }

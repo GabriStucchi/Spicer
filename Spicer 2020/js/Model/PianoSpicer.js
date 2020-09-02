@@ -21,14 +21,13 @@ class PianoSpicer {
         case 2: {
           track.add9s();
           track.generateVoicings();
-          //walking_bass.computeBassLine(track.getChords());
         }
 
         break;
         default: //do nothing
       }
     }
-
+    console.log(this);
     return track
   }
   spice(){ //returns the spiced track according to the level

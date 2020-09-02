@@ -116,6 +116,7 @@ function stopAllNotes() {
   activeNotes = []
 }
 
+// Playback the note
 function playbackNote(note) {
   timestampOn = note.getInstantOn() / 1000;
   duration = note.getDuration() / 1000;
@@ -131,7 +132,22 @@ function playbackNote(note) {
   note.setQueue(queue);
 }
 
-//Stop the note (for playback)
+function playbackBass(note) {
+  timestampOn = note.getInstantOn() / 1000;
+  duration = note.getDuration() / 1000;
+  let queue = webAudioFontPlayer.queueWaveTable(
+    bassAudioContext,
+    bassAudioContext.destination,
+    bassTone,
+    bassAudioContext.currentTime + timestampOn,
+    note.getMidiNote(),
+    duration,
+    note.getVolume()
+  );
+  note.setQueue(queue);
+}
+
+// Stop the note (for playback)
 function stopNote(note) {
   if (note.getQueue()) {
     note.getQueue().cancel();
