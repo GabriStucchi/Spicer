@@ -39,7 +39,7 @@ class WalkingBass {
         chordProgression[i + 1]
       );
 
-      //Chrek if there is an undefined in the bass_bar, in case sobstitute it withi
+      //Chrek if there is an undefined in the bass_bar, in case sobstitute it with
       //a random note from the chord
       bass_bar.forEach((note, index) => {
         if (note.getMidiNote() === undefined || isNaN(note.getMidiNote())) {
@@ -432,12 +432,12 @@ class WalkingBass {
   //else play one note each beat using the notes computed before
 
   assignTimeStamps() {
-    
+
     if (this.#bassLine != undefined) {
       let newQueue = cprog.getChords()[0].getNotes()[0].getQueue();
       let beatLength = 60000 / metronome.getTempo();
       //let loopLenght = beatLength = 60000 / metronome.getTempo() * 4;
-      /*
+
       let nOfChords = cprog.getChords().length;
       let windowStart = 0;
       let windowEnd = 0;
@@ -449,7 +449,7 @@ class WalkingBass {
       let chordsInWind = 0;
       let bassLineIndex = 0;
       let isChordSelected = false;
-
+      let newBassLine = []
       for (i = 0; i < 16; ++i) {
         //loops on the "bars" of the "loop"
         windowStart = beatLength * i;
@@ -471,33 +471,42 @@ class WalkingBass {
 
         if (chordsInWind.length == 1) {
           this.#bassLine[bassLineIndex].setInstantOn(windowStart);
+          newBassLine.push(this.#bassLine[bassLineIndex])
+
           bassLineIndex++;
+
         } else {
           if (chordsInWind.length > 1) {
             this.#bassLine[bassLineIndex].setInstantOn(windowStart);
+            newBassLine.push(this.#bassLine[bassLineIndex])
+
             bassLineIndex += chordsInWind.length * 4;
+
           } else {
             if (chordsInWind.length == 0) {
               this.#bassLine[bassLineIndex].setInstantOn(windowStart);
+              newBassLine.push(this.#bassLine[bassLineIndex])
+
               bassLineIndex++;
             }
           }
         }
       }
-      /*
+    console.log(newBassLine);
+    /*
     cprog.forEach((item) => {
       if(cprog[i+1] !=undefined)
-        let chord_distance =cprog[i+1].getNotes()[0].getInstantOn() - item.getNotes()[0].getInstantOn() 
+        let chord_distance =cprog[i+1].getNotes()[0].getInstantOn() - item.getNotes()[0].getInstantOn()
         if (chord_distance/4 > note8thLength){
 
         }else{
 
         }
     });
-
     */
+
       this.#bassLine.forEach((note, i) => {
-        note.setInstantOn(beatLength * i)
+        //note.setInstantOn(beatLength * i)
         note.setQueue(newQueue);
         note.setDuration(beatLength / 2);
       });
