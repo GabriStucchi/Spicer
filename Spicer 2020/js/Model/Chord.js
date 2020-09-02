@@ -232,7 +232,7 @@ class Chord {
       let newQueue;
     //Nella scala maggiore il III grado può essere minore o maggiore (preso in prestito dalla relativa minore melodica)
     if (
-      this.#grade == 3 &&
+      this.#grade == 3 && key.isMajor() &&
       (this.#type !== undefined && (this.#type.getName() == "maj" || this.#type.getName() == "maj7"))
     ) {
       ninth = this.#root.getMidiNote() + 13;
@@ -310,6 +310,8 @@ class Chord {
     if(this.#notes.length !=2 || key.isMajor()==undefined)
       return
 
+      //to do if a note is not part of the key then choose the other one
+
      if(this.#notes[0].getMidiNote() <  this.#notes[1].getMidiNote()){
        this.#notes.splice(1,1)
      }else{
@@ -322,7 +324,6 @@ class Chord {
     if(this.#notes.length !=1 || key.isMajor()==undefined)
       return
 
-
     let root = this.#notes[0]
     let midiNote
     let scale
@@ -334,12 +335,21 @@ class Chord {
     let newQueue = root.getQueue();
 
     //sets the scale itervals to scale
+    
     key.isMajor() =="Min" ? scale = minor : scale = major ;
+    let rootMidi = root.getMidiNote();
+
+    if(!isInKey(rootMidi)){ //if the played note is not In key
+      console.log("not in key")
+      rootMidi--;
+      root.setMidiNote(rootMidi)
+    }
 
     this.#root = root;
 
     this.findChordGrade();
 
+    console.log(this)
     scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals dow
 
     //TODO randomize instant on within a certain time window
@@ -387,3 +397,5 @@ class Chord {
     return this.#type;
   }
 }
+
+
