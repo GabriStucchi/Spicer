@@ -170,6 +170,29 @@ class ChordProgression {
     return noteTrack;
   }
 
+  getFirstChords(){
+    let beatLength = 60000 / metronome.getTempo();
+    let chordsInWind
+    let windowStart
+    let windowEnd
+    let choosen_chords = []
+    let instantsOn = cprog.getChords().map((el) => el.getNotes()[0].getInstantOn());
+    for (i = 0; i < 4; i+=4) {
+      //loops on the "bars" of the "loop"
+      windowStart = beatLength * i;
+      windowEnd = beatLength * (i + 4);
+      //console.log(instantsOn);
+      chordsInWind = instantsOn.filter(
+          (el) => el >= windowStart && el < windowEnd);
+      if (chordsInWind.length == 0) {
+        choosen_chords.push(choosen_chords[choosen_chords.length - 1])
+      } else {
+        choosen_chords.push(chordsInWind[0])
+      }
+    }
+    return choosen_chords
+  }
+
   getChords() {
     return this.#chords;
   }
