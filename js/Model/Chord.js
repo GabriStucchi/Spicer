@@ -96,6 +96,11 @@ class Chord {
     if(this.#grade!=undefined) //if we already know the grade then don't process it again
       return
 
+    if(!isInKey(this.#root.getMidiNote())){
+      this.#grade = undefined;
+      return
+    }
+
     //obtain the number of the tonic of the key in semitones (0-11)
     let tonic = possible_notes.indexOf(key.getKeyNote());
 
@@ -114,7 +119,8 @@ class Chord {
     }
     //if the root note is not found in the tonality then the grade is left undefined
     //if the grade is undefined we are not going to _s p i c e_ it
-
+    console.log("grade:")
+    console.log(this.#grade)
     if (this.#grade !== undefined) {
       this.#grade++; //this is done to shift the 0 value to 1;
 
@@ -182,7 +188,7 @@ class Chord {
 
   //todo fix major problems (concerning octave position)
   add7() {
-    if ((this.#grade !== undefined || isNaN(this.#grade) ) && this.#root !== undefined  && key.isMajor()!==undefined) {
+    if (this.#grade !== undefined && !isNaN(this.#grade) && this.#root !== undefined  && key.isMajor()!==undefined) {
       let newVel;
       let newOn;
       let newOff;
@@ -246,7 +252,7 @@ class Chord {
 
   //Aggiunge la 9^ sempre maggiore!!
   add9() {
-    if (this.#grade !== undefined && this.#root !== undefined) {
+    if (this.#grade !== undefined && !isNaN(this.#grade) && this.#root !== undefined  && key.isMajor()!==undefined) {
       let ninth;
       let newVel;
       let newOn;
