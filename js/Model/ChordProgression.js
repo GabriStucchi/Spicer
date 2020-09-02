@@ -177,19 +177,36 @@ class ChordProgression {
     let windowEnd
     let choosen_chords = []
     let instantsOn = cprog.getChords().map((el) => el.getNotes()[0].getInstantOn());
-    for (i = 0; i < 4; i+=4) {
+
+    for (var i = 0; i < 16; i+=4) {
       //loops on the "bars" of the "loop"
       windowStart = beatLength * i;
       windowEnd = beatLength * (i + 4);
-      //console.log(instantsOn);
+
+      console.log('-------------------------GET FIRST BEAT')
+      console.log('windowStart')
+      console.log(windowStart)
+      console.log('windowEnd')
+      console.log(windowEnd)
+      console.log('instantsOn');
+      console.log(instantsOn);
       chordsInWind = instantsOn.filter(
           (el) => el >= windowStart && el < windowEnd);
+      console.log('chordsInWind')
+      console.log(chordsInWind)
       if (chordsInWind.length == 0) {
-        choosen_chords.push(choosen_chords[choosen_chords.length - 1])
+        if(choosen_chords.length>1){
+          choosen_chords.push(choosen_chords[choosen_chords.length - 1])
+        }
+        else{
+        //seleziona il successivo
+        }
       } else {
-        choosen_chords.push(chordsInWind[0])
+        choosen_chords.push(cprog.getChords().find(el=> el.getNotes()[0].getInstantOn() == chordsInWind[0]))
+        console.log(choosen_chords)
       }
     }
+//    console.log(choosen_chords)
     return choosen_chords
   }
 
