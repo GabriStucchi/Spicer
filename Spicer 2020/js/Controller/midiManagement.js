@@ -95,6 +95,8 @@ function instrumentNoteOn(note) {
 }
 
 function instrumentNoteOff(timestamp, index) {
+  console.log("noteoooooff")
+  console.log(activeNotes[index])
   if (activeNotes[index].getQueue()) {
     activeNotes[index].getQueue().cancel();
   }
