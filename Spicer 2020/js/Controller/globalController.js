@@ -2,6 +2,11 @@
 let instrumentBtn = document.getElementById("instrumentToggle");
 let onAirBtn = document.querySelector(".onAirBtn");
 let playLoopBtn = document.getElementById("playLoop");
+let tempoBox = document.getElementById("tempoBox");
+let arrow = document.getElementsByClassName("arrow")[0];
+let keySelect = document.getElementById("keyRoot");
+let scaleType = document.getElementById("typeOfScale")
+
 
 function toggleInstrument() {
   playSynth = !playSynth;
@@ -43,12 +48,17 @@ function toggleOnAirLight() {
 
 instrumentBtn.onclick = toggleInstrument;
 playLoopBtn.onclick = playback;
-
-document.getElementById("tempoBox").oninput = (event) => {
+arrow.onclick = showSpicer;     //Defined in View/spicerSection
+//document.getElementById("tempoBox").oninput = (event) => {
+tempoBox.oninput = () => {
   metronome.setTempo(event.target.value);
   player.setTempo(event.target.value);
   document.getElementById("showTempo").innerText = metronome.getTempo();
 };
+keySelect.onchange = (e) => key.setRootKey(e.target.value);
+scaleType.onchange = (e) => key.setScaleType(e.target.value);
+
+
 
 document.onkeydown = (e) => {
   switch(e.code) {

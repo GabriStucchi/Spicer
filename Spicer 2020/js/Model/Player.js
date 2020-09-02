@@ -27,6 +27,7 @@ class Player {
       console.log("Track undefined");
     else {
       if(shouldPlay) {
+        this.#bassTrack = bass_spicer.spice();
         this.#pianoTrack.forEach((note) => playbackNote(note));    //Defined in midiManagement.js
         this.#bassTrack.forEach((note) => playbackBass(note));
       }

@@ -28,6 +28,7 @@ class PianoSpicer {
         default: //do nothing
       }
     }
+    console.log(this);
 
     return track
   }

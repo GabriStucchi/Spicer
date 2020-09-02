@@ -45,6 +45,7 @@ class Metronome {
 
   // Start the metronome (and the recording)
   start() {
+    console.log(this.#tempo);
     this.#isSounding = true;
     this.#current16thNote = 0;
     this.#bar = -1;
@@ -57,6 +58,7 @@ class Metronome {
 
   // Pause the metronome
   pause() {
+    console.log(this.#tempo);
     //Stop the loop
     player.play(false);
     // Stop the timer

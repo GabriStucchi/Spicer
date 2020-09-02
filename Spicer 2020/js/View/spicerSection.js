@@ -1,11 +1,11 @@
-let arrow = document.getElementsByClassName("arrow")[0]
+//let arrow = document.getElementsByClassName("arrow")[0]
 let spicerSection = document.getElementById("spicerSection")
 let spicerSectionUp = false;
 let spicerAnimInterval;
 spicerSection.style.height = "5%" //fixes a problem.. it seems like it has to be initialized somehow
 
 //brings up or moves down the spicer section
-arrow.onclick = () => showSpicer(); 
+//arrow.onclick = () => showSpicer(); 
 
 function showSpicer() {
     clearInterval(spicerAnimInterval)
@@ -87,27 +87,27 @@ function showSpicer() {
 
 
 //populates the Key selection 
-let selector = document.getElementById("keyRoot");
-let option
+//let selector = document.getElementById("keyRoot");
+
 possible_notes.forEach((item) => {
-    option = document.createElement("option");
+    let option = document.createElement("option");
     option.text = item
-    selector.add(option)
+    document.getElementById("keyRoot").add(option)
 })
 
-selector.onchange = (e) => {
+/*selector.onchange = (e) => {
     key.setRootKey(e.target.value)
-}
+}*/
 
 
-selector = document.getElementById("typeOfScale")
+//selector = document.getElementById("typeOfScale")
 tonalities.forEach((item) => {
     option = document.createElement("option");
     option.text = item
-    selector.add(option)
+    document.getElementById("typeOfScale").add(option)
 })
 
-selector.onchange = (e) => {
+/*selector.onchange = (e) => {
     key.setScaleType(e.target.value)
-}
+}*/
 

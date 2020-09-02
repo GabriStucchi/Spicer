@@ -27,19 +27,8 @@ class Recorder{
     setOnAirTxt();            //sets text in on air div
     setLoopBtnTxt("STOP");    //sets text in loop button
     cprog.detectChords(this.#track);
-    //let trackToPlay= spicer.spice().getNotesTrack()
-   // trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
-    //player.setTrack(spicer.spice().getNotesTrack());
-    console.log("chord progression" + cprog)
-    console.log("piano" + spicer.spice().getNotesTrack())
-    console.log("bass" + bass_spicer.spice(this.#timeStart))
     player.setTrack(spicer.spice().getNotesTrack());          // Set the piano track as the spiced track
-    player.setBassTrack(bass_spicer.spice(this.#timeStart))   // Set the bass track as the scheduled bass
     player.play(true);
-
-
-
-    //player.play(cprog.getNotesTrack())
   }
 
   endNote(note,timeStamp){
