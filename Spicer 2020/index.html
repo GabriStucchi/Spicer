@@ -20,6 +20,7 @@
   <script src="js/Model/Recorder.js" defer></script>
   <script src="js/Model/PianoSpicer.js" defer></script>
   <script src="js/Model/Metronome.js" defer></script>
+  <script src="js/Model/Drums.js" defer></script>
   <script src="js/Model/Player.js" defer></script>
   <script src="js/Model/global.js" defer></script>
   <script src="js/Model/Chord.js" defer></script>
@@ -72,7 +73,6 @@
 </head>
 
 <body>
-
   <div class="title">
     <h1>SPICER</h1>
     <div class="onAirBtn">ON AIR</div>
@@ -450,6 +450,12 @@
     <p><select id="keyRoot"></select></p>
     <p><select id='typeOfScale'"></select></p>
     <button id="playLoop">START</button>
+    <button class="spicerBtn" name="piano" value=0>PIANO -</button>
+    <button class="spicerBtn" name="piano" value=1>PIANO +</button>
+    <button class="spicerBtn" name="bass" value=0>BASS -</button>
+    <button class="spicerBtn" name="bass" value=1>BASS +</button>
+    <button class="spicerBtn" name="drums" value=0>DRUM -</button>
+    <button class="spicerBtn" name="drums" value=1>DRUM +</button>
   </div>
 
   <div id="spicerContent-small">

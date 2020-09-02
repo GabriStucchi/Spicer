@@ -3,7 +3,7 @@ class BassSpicer {
   #spiced_tracks
 
   constructor() {
-    this.#level = 1;
+    this.#level = 0;
     this.#spiced_tracks = undefined
   }
 
@@ -25,15 +25,21 @@ class BassSpicer {
 
 
   levelUp(){
-    if(this.#level<1){
-      level++
+    if(this.#level < 2){
+      this.#level++
+      globalSpiceLevel++
     }
+    console.log("Bass: " + this.#level)
+    console.log("Total: " + globalSpiceLevel);
   }
 
   levelDown(){
-    if(this.#level>0){
-      level--
+    if(this.#level > 0){
+      this.#level--
+      globalSpiceLevel--
     }
+    console.log("Bass: " + this.#level)
+    console.log("Total: " + globalSpiceLevel);
   }
 
   clean() {

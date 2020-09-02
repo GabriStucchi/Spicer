@@ -99,7 +99,7 @@ class Metronome {
     }
 
     //Instruction for 16th notes
-    if ((!this.#isSounding) && (this.#current16thNote == 0)) {
+    if ((!this.#isSounding) && (this.#current16thNote == 0)) {    // This control prevent the drums starting 1 bar before
       if (!this.#playDrum) {
         this.#playDrum = true;
       }

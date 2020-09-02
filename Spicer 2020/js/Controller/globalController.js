@@ -5,8 +5,8 @@ let playLoopBtn = document.getElementById("playLoop");
 let tempoBox = document.getElementById("tempoBox");
 let arrow = document.getElementsByClassName("arrow")[0];
 let keySelect = document.getElementById("keyRoot");
-let scaleType = document.getElementById("typeOfScale")
-
+let scaleType = document.getElementById("typeOfScale");
+let spicers = document.querySelectorAll(".spicerBtn");
 
 function toggleInstrument() {
   playSynth = !playSynth;
@@ -45,6 +45,28 @@ function toggleOnAirLight() {
   onAirBtn.classList.toggle("onAir");
 }
 
+function changeSpice(button) {
+  let spicerEngine;
+
+  button.onclick = () => {
+    switch (button.name) {
+      case "piano":
+        spicerEngine = spicer;
+        break;
+      case "bass":
+        spicerEngine = bass_spicer;
+        break;
+      case "drums":
+        spicerEngine = player;        // Drums are in the player
+        break;
+    }
+  
+    button.value == 1
+      ? spicerEngine.levelUp()
+      : spicerEngine.levelDown();
+  }
+}
+
 
 instrumentBtn.onclick = toggleInstrument;
 playLoopBtn.onclick = playback;
@@ -56,6 +78,7 @@ tempoBox.oninput = () => {
 };
 keySelect.onchange = (e) => key.setRootKey(e.target.value);
 scaleType.onchange = (e) => key.setScaleType(e.target.value);
+spicers.forEach(changeSpice);
 
 
 

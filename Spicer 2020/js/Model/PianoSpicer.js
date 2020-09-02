@@ -3,14 +3,11 @@ class PianoSpicer {
   #spiced_tracks
 
   constructor() {
-    this.#level = 2;
+    this.#level = 0;
     this.#spiced_tracks = undefined
   }
 
-
-
-
-//spice verrà utilizzatov per creare le 3 tracce spiced subito dopo la rec
+  //spice verrà utilizzatov per creare le 3 tracce spiced subito dopo la rec
   spiceTrack(baseTrack,level){
     let track = new ChordProgression(baseTrack)
 
@@ -30,6 +27,7 @@ class PianoSpicer {
     console.log(this);
     return track
   }
+
   spice(){ //returns the spiced track according to the level
     if(this.#spiced_tracks === undefined){
       this.#spiced_tracks = []
@@ -42,15 +40,21 @@ class PianoSpicer {
 
 
   levelUp(){
-    if(this.#level<1){
-      level++
+    if(this.#level < 2){
+      this.#level++
+      globalSpiceLevel++
     }
+    console.log("Piano: " + this.#level)
+    console.log("Total: " + globalSpiceLevel);
   }
 
   levelDown(){
-    if(this.#level>0){
-      level--
+    if(this.#level > 0){
+      this.#level--
+      globalSpiceLevel--
     }
+    console.log("Piano: " + this.#level)
+    console.log("Total: " + globalSpiceLevel);
   }
 
   clean() {
