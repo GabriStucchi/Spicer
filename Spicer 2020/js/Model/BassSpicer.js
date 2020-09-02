@@ -21,7 +21,6 @@ class BassSpicer {
     if (this.#level == 1 || this.#level == 2 ) {
       return this.#spiced_tracks[this.#level]
     }
-    console.log(this);
     return undefined
   }
 
