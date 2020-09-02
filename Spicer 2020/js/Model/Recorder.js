@@ -28,7 +28,7 @@ class Recorder{
     setLoopBtnTxt("STOP");    //sets text in loop button
     cprog.detectChords(this.#track);
     let trackToPlay= spicer.spice().getNotesTrack()
-   // trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
+    trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
     //player.setTrack(spicer.spice().getNotesTrack());
     console.log(cprog)
     console.log(trackToPlay)
@@ -46,7 +46,7 @@ class Recorder{
       this.record(note)
     }else{
       note.setInstantOn(note.getInstantOn() - this.#timeStart) //shifts the timestamp accordingly to the beginning of the recording
-    }  
+    }
     note.setInstantOff(timeStamp - this.#timeStart)
   }
 

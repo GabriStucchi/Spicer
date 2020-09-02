@@ -239,15 +239,15 @@ class Chord {
     } else {
       ninth = this.#root.getMidiNote() + 14;
     }
-    newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
-    newOn = this.#notes[this.#notes.length - 1].getInstantOn() + 2;
-    newOff = this.#notes[this.#notes.length - 1].getInstantOff();
-    newQueue = this.#notes[this.#notes.length - 1].getQueue();
-    this.addNotes(new Note(ninth, newQueue, newVel, newOn, newOff));
-    this.deleteSpecificNote(this.#root.getMidiNote());    //It deletes the perfect 5th when adding 9th
-    this.rearrange();
-
-    //Da fare controllo different notes?
+    if (this.#grade != 7) {   //Ninth on the seventh grade is not good
+      newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
+      newOn = this.#notes[this.#notes.length - 1].getInstantOn() + 2;
+      newOff = this.#notes[this.#notes.length - 1].getInstantOff();
+      newQueue = this.#notes[this.#notes.length - 1].getQueue();
+      this.addNotes(new Note(ninth, newQueue, newVel, newOn, newOff));
+      this.deleteSpecificNote(this.#root.getMidiNote());    //It deletes the root
+      this.rearrange();
+    }
   }
 }
 
