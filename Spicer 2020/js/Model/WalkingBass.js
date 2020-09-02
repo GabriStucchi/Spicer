@@ -63,7 +63,7 @@ class WalkingBass {
           chordProgression[i].getNotes().forEach((candidate, i) => {
             candidates_set.push(...this.duplicateInRange(candidate.getMidiNote()))
           });
-
+          let selected_candidate = this.chooseRandom(candidates_set)
           bass_bar[index] = new Note(selected_candidate, newQueue,newVel, newOn, newOff);
         }
     });
@@ -200,7 +200,7 @@ class WalkingBass {
         fourth_set.splice(i,1)
       }
     });
-    fourth_set = [... new Set(fourth_set)]        //Elimino i doppioni  
+    fourth_set = [... new Set(fourth_set)]        //Elimino i doppioni
 
 
     fourth_beat = this.chooseRandom(fourth_set);
