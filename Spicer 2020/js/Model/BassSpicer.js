@@ -37,7 +37,7 @@ class BassSpicer {
     }
   }
 
-  clear() {
+  clean() {
     this.#spiced_tracks = undefined;
   }
 
