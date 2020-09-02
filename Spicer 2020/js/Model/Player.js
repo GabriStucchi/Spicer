@@ -77,8 +77,12 @@ class Player {
 
   // Clean the layer (deletes the tracks and restart the drums)
   clean() {
-    this.#pianoTrack = undefined;
-    this.#bassTrack = undefined;
+    if(this.#pianoTrack != undefined){
+      this.#pianoTrack.forEach((note) => stopNote(note));        //Defined in midiManagement.js
+      this.#bassTrack.forEach((note) => stopNote(note));
+      this.#pianoTrack = undefined;
+      this.#bassTrack = undefined;
+    }
     this.#currentBeat = 0;
   }
 }

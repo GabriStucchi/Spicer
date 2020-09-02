@@ -52,7 +52,6 @@ arrow.onclick = showSpicer;     //Defined in View/spicerSection
 //document.getElementById("tempoBox").oninput = (event) => {
 tempoBox.oninput = () => {
   metronome.setTempo(event.target.value);
-  player.setTempo(event.target.value);
   document.getElementById("showTempo").innerText = metronome.getTempo();
 };
 keySelect.onchange = (e) => key.setRootKey(e.target.value);
@@ -63,12 +62,12 @@ scaleType.onchange = (e) => key.setScaleType(e.target.value);
 document.onkeydown = (e) => {
   switch(e.code) {
 
-    case "Space":
+    case "KeyR":
       playSynth ? toggleInstrument() : 0;
-      metronome.pause();     //stop the metronome (if it was playing)
       cleanRec();           //Defined in global.js
       activeNotes.splice(0, activeNotes.length);
-      metronome.start();
+      metronome.pause();      //stop the metronome (if it was playing)
+      metronome.start();      // Start the metronome (and recording)
       break;
 
     case "KeyP":

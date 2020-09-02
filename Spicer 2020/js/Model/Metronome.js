@@ -45,7 +45,6 @@ class Metronome {
 
   // Start the metronome (and the recording)
   start() {
-    console.log(this.#tempo);
     this.#isSounding = true;
     this.#current16thNote = 0;
     this.#bar = -1;
@@ -58,25 +57,19 @@ class Metronome {
 
   // Pause the metronome
   pause() {
-    console.log(this.#tempo);
-    //Stop the loop
-    player.play(false);
-    // Stop the timer
-    this.#timerWorker.postMessage("stop");
-    // Reset all values
-    this.#current16thNote = 0;
-    this.#bar = -0;
+    player.play(false);                         // Stop the loop
+    this.#timerWorker.postMessage("stop");      // Stop the timer
+    this.#current16thNote = 0;                  // Reset all values
+    this.#bar = 0;
   }
 
   // Resume the metronome
   resume() {
-    // Start the timer
     this.#timerWorker.postMessage("start");
   }
 
   // Schedule the actions
   schedule() {
-
     // Instructions for QUARTER notes
     if ((this.#current16thNote % 4) == 0) {
       if ((this.#bar == 0) && (this.#current16thNote == 0)) {   // We are at the beginning of the first bar
