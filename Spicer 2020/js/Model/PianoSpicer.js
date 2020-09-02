@@ -3,7 +3,7 @@ class PianoSpicer {
   #spiced_tracks
 
   constructor() {
-    this.#level = 1;
+    this.#level = 2;
     this.#spiced_tracks = undefined
   }
 
@@ -21,14 +21,13 @@ class PianoSpicer {
         case 2: {
           track.add9s();
           track.generateVoicings();
-          //walking_bass.computeBassLine(track.getChords());
         }
 
         break;
         default: //do nothing
       }
     }
-
+    console.log(this);
     return track
   }
   spice(){ //returns the spiced track according to the level

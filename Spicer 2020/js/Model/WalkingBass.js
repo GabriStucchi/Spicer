@@ -14,10 +14,10 @@ class WalkingBass {
     this.#highLimit = 57;     //A3 change up to 60
     this.#lowLimit = 41;      //F2 change down to 24
     this.#firstBeats = [];
-    this.#firstVelocity = Array(127 - 110 + 1).fill().map((_, idx) => 110 - 40 + idx);
-    this.#secondVelocity = Array(100 - 80 + 1).fill().map((_, idx) => 80 - 40 + idx);
-    this.#thirdVelocity = Array(110 - 100 + 1).fill().map((_, idx) => 100 - 40 + idx);
-    this.#fourthVelocity = Array(80 - 60 + 1).fill().map((_, idx) => 60 - 40 + idx);
+    this.#firstVelocity = Array(127 - 110 + 1).fill().map((_, idx) => 110 + idx);
+    this.#secondVelocity = Array(90 - 70 + 1).fill().map((_, idx) => 70 + idx);
+    this.#thirdVelocity = Array(110 - 90 + 1).fill().map((_, idx) => 90 + idx);
+    this.#fourthVelocity = Array(70 - 50 + 1).fill().map((_, idx) => 50 + idx);
   }
 
   computeBassLine(chordProgression) {
@@ -122,7 +122,7 @@ class WalkingBass {
       }
     }
 
-    return this.chooseRandom([close_walking, close_walking]);
+    return this.chooseRandom([close_walking, random_walking]);
   }
 
 

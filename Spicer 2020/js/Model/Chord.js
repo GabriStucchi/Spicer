@@ -232,7 +232,7 @@ class Chord {
       let newQueue;
     //Nella scala maggiore il III grado può essere minore o maggiore (preso in prestito dalla relativa minore melodica)
     if (
-      this.#grade == 3 &&
+      this.#grade == 3 && key.isMajor() &&
       (this.#type !== undefined && (this.#type.getName() == "maj" || this.#type.getName() == "maj7"))
     ) {
       ninth = this.#root.getMidiNote() + 13;
