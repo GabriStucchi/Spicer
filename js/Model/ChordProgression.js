@@ -191,7 +191,7 @@ class ChordProgression {
       console.log('instantsOn');
       console.log(instantsOn);
       chordsInWind = instantsOn.filter(
-          (el) => el >= windowStart && el < windowEnd);
+          (el) => el >= windowStart - beatLength/8 && el < windowEnd - beatLength/8);
       console.log('chordsInWind')
       console.log(chordsInWind)
       if (chordsInWind.length == 0) {

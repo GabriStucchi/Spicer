@@ -15,6 +15,10 @@ class Drums {
     this.#currentBeat = 0;
     this.#spiceLevel = 0;
     this.#tempLevel = 0;
+    this.#sounds.forEach(sound => {
+      //console.log(sound.volume)
+      sound.volume = 0.4;
+    });
   }
 
   // LevelUp and LevelDown update the temporary level. At the next progression it will be applied
