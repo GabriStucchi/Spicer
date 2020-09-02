@@ -29,7 +29,6 @@ class Recorder{
     cprog.detectChords(this.#track);
     player.setTrack(spicer.spice().getNotesTrack());          // Set the piano track as the spiced track
    // player.setTrack(cprog.getNotesTrack());          // Set the piano track as the spiced track
-    console.log(spicer.spice().getNotesTrack())
     player.play(true);
   }
 

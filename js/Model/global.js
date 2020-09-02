@@ -135,7 +135,6 @@ function isInKey(midiNote){
   tempScale.forEach((item,i) => {
     item>=12 ? tempScale[i] = item - 12 : 0;
   });
-  console.log('check')
   if(tempScale.find(el => el== shiftToOctave(0,midiNote))==undefined){
     return false
   }
