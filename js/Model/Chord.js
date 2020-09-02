@@ -119,8 +119,6 @@ class Chord {
     }
     //if the root note is not found in the tonality then the grade is left undefined
     //if the grade is undefined we are not going to _s p i c e_ it
-    console.log("grade:")
-    console.log(this.#grade)
     if (this.#grade !== undefined) {
       this.#grade++; //this is done to shift the 0 value to 1;
 
@@ -200,10 +198,7 @@ class Chord {
       if (this.#notes.length == 3) {
         //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
         key.isMajor() =="Min" ? scale = minor : scale = major ;
-        console.log("------------------------------")
-        console.log("grade")
-        console.log(this.#grade)
-        scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals down  
+        scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals down
         seventhGrade = this.#grade -1 + 6
         seventhGrade >= scale.length ? seventhGrade -= (scale.length-1) + 1 : 0;
         seventhMidiNote = this.#root.getMidiNote() + scale[seventhGrade]
@@ -225,13 +220,7 @@ class Chord {
           seventh = seventh - 12;
         }
         seventh = this.#root.getMidiNote() + seventh;
-*/      console.log(this.#root)
-        console.log("scale")
-        console.log(scale)
-        console.log("seventhGrade :")
-        console.log(seventhGrade)
-        console.log("seventhMidiNote >")
-        console.log(seventhMidiNote)
+*/
 
         //todo if execution is too slow delete velocity average
         /* this.#notes.forEach((item) => {
@@ -244,7 +233,6 @@ class Chord {
        newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
        newVel<= 0 ? newVel = 10: 0;
        this.addNote(new Note(seventhMidiNote, newQueue, newVel, newOn, newOff))
-       console.log(this)
        this.rearrange();
       }
     }
@@ -363,7 +351,7 @@ class Chord {
     let newQueue = root.getQueue();
 
     //sets the scale itervals to scale
-    
+
     key.isMajor() =="Min" ? scale = minor : scale = major ;
     let rootMidi = root.getMidiNote();
 
@@ -423,5 +411,3 @@ class Chord {
     return this.#type;
   }
 }
-
-
