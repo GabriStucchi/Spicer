@@ -2,13 +2,11 @@ class Player {
   #track;         //Reference to the track to play
   #drums;
   #currentBeat;
-  #firstTime;
 
   constructor() {
     this.#track = undefined;
     this.#drums = [new Audio('/css/Audio/kickHat.wav'), new Audio('/css/Audio/kickHard.wav'), new Audio('/css/Audio/snareRide.wav'), new Audio('/css/Audio/ch1.wav')];
     this.#currentBeat = 0;
-    this.#firstTime = true;
   }
 
   setTrack(track) {
@@ -25,6 +23,7 @@ class Player {
       }
       else{
         this.#track.forEach((note) => stopNote(note));        //Defined in midiManagement.js
+        this.#currentBeat = 0;
       }
     }
   }
@@ -65,7 +64,8 @@ class Player {
       this.#currentBeat = 0;
   }
 
-  clear() {
+  clean() {
     this.#track = undefined;
+    this.#currentBeat = 0;
   }
 }

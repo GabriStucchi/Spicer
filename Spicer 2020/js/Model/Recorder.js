@@ -9,7 +9,6 @@ class Recorder{
   }
 
   record(note){
-    note.setInstantOn(note.getInstantOn() - this.#timeStart) //shifts the timestamp accordingly to the beginning of the recording
     this.#track.addNote(note); //add note automatically checks if the arg is a note
   }
 
@@ -29,9 +28,10 @@ class Recorder{
     setLoopBtnTxt("STOP");    //sets text in loop button
     cprog.detectChords(this.#track);
     let trackToPlay= spicer.spice().getNotesTrack()
-
-    trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
+   // trackToPlay = trackToPlay.concat(bass_spicer.spice(this.#timeStart))
     //player.setTrack(spicer.spice().getNotesTrack());
+    console.log(cprog)
+    console.log(trackToPlay)
     player.setTrack(trackToPlay);
     player.play(true);
 
@@ -41,6 +41,12 @@ class Recorder{
   }
 
   endNote(note,timeStamp){
+    if(note.getInstantOn()<this.#timeStart){
+      note.setInstantOn(0)
+      this.record(note)
+    }else{
+      note.setInstantOn(note.getInstantOn() - this.#timeStart) //shifts the timestamp accordingly to the beginning of the recording
+    }  
     note.setInstantOff(timeStamp - this.#timeStart)
   }
 
@@ -48,7 +54,7 @@ class Recorder{
     return this.#track;
   }
 
-  clear() {
+  clean() {
     this.#track = undefined;
     this.#timeStart = 0;
     this.#track = new RecTrack();

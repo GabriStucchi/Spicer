@@ -118,8 +118,8 @@ function mapLog(value, start1, stop1, start2, stop2) {
 }
 
 function cleanRec() {
-  player.clear();
-  recorder.clear();
-  cprog.clear();
-  spicer.clear();
+  player.clean();
+  recorder.clean();
+  cprog.clean();
+  spicer.clean();
 }
