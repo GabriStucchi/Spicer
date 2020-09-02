@@ -22,10 +22,19 @@ class Player {
     this.#bassTrack = track;
   }
 
+  // Return true if the player has a track to play
+  hasTrack() {
+    if(this.#pianoTrack != undefined){
+      return true;
+    }
+    return false;
+  }
+
   //Play/Stop the track depending on shouldPlay value
   play(shouldPlay) {
-    if(this.#pianoTrack === undefined)
+    if(this.#pianoTrack === undefined){
       console.log("Track undefined");
+    }
     else {
       if(shouldPlay) {
         this.#pianoTrack = spicer.spice().getNotesTrack();        // Reload piano and bass track in case the spice level is changed
@@ -49,43 +58,11 @@ class Player {
   // Plays one drum hit depending on the current 16th note (saved in this.#drums object)
   playDrum() {
     this.#drums.play();
-    /*switch(this.#currentBeat) {
-      case 0:
-        this.#drums[0].play();
-        break;
-      case 2:
-      case 6:
-      case 10:
-      case 14:
-      case 18:
-      case 22:
-      case 26:
-      case 30:
-        this.#drums[3].play();
-        break;
-      case 4:
-      case 12:
-      case 20:
-      case 28:
-        this.#drums[2].play();
-        break;
-      case 8:
-      case 16:
-      case 24:
-        this.#drums[1].play();
-        break;
-      default:
-        //do nothing
-    }
-
-    this.#currentBeat++;
-    if(this.#currentBeat == 32)
-      this.#currentBeat = 0;*/
   }
 
   // Clean the layer (deletes the tracks and restart the drums)
   clean() {
-    if(this.#pianoTrack != undefined){
+    if((this.#pianoTrack != undefined) && (this.#bassTrack != undefined)){
       this.#pianoTrack.forEach((note) => stopNote(note));        //Defined in midiManagement.js
       this.#bassTrack.forEach((note) => stopNote(note));
       this.#pianoTrack = undefined;

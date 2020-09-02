@@ -21,13 +21,15 @@ function toggleInstrument() {
 }
 
 function playback() {
-  if(playLoopBtn.innerText == "START"){
-    metronome.resume();
-    setLoopBtnTxt("STOP")
+  if(metronome.isPlaying() && (!metronome.isTicking())){   // If the track is looping
+    metronome.pause();                                    // Stop it
+    setLoopBtnTxt("START");                               // Change the button name
   }
-  else {
-    metronome.pause();
-    setLoopBtnTxt("START");
+  else if (!metronome.isPlaying()) {                      // If the metronome is stopped
+    if(player.hasTrack()){                                // If the player has a track saved
+      metronome.resume()                                  // Resume the playing
+      setLoopBtnTxt("STOP")                               // Change the button name
+    }
   }
 }
 
@@ -67,11 +69,32 @@ function changeSpice(button) {
   }
 }
 
+function manageRecording() {
+  if(metronome.isPlaying()) {       // If the metronome is playing
+    if(metronome.isTicking()) {     // If the metronome is ticking
+      metronome.stop();             // Stop it
+      if(onAir)                     // If we are on air
+        recorder.stop(false);       // Stop the recording, set onAir on false and clean the recorded track
+    }
+    else {                          // If the metronome is used to loop the track (but not ticking)
+      metronome.stop();             // Stop it
+      // Should reset levels?
+      cleanRec();                   // The recording is cleaned on everything (Recorder, ChordProgression, Player) - DEFINED IN GLOBAL.JS
+      setLoopBtnTxt("START");       // Change the button name
+    }
+  }
+  else {
+    if(player.hasTrack()){          // If the track is paused clean everything and start recording
+      cleanRec()
+    }
+    playSynth ? toggleInstrument() : 0;
+    metronome.start();
+  }
+}
 
 instrumentBtn.onclick = toggleInstrument;
 playLoopBtn.onclick = playback;
 arrow.onclick = showSpicer;     //Defined in View/spicerSection
-//document.getElementById("tempoBox").oninput = (event) => {
 tempoBox.oninput = () => {
   metronome.setTempo(event.target.value);
   document.getElementById("showTempo").innerText = metronome.getTempo();
@@ -86,11 +109,7 @@ document.onkeydown = (e) => {
   switch(e.code) {
 
     case "KeyR":
-      playSynth ? toggleInstrument() : 0;
-      cleanRec();           //Defined in global.js
-      activeNotes.splice(0, activeNotes.length);
-      metronome.pause();      //stop the metronome (if it was playing)
-      metronome.start();      // Start the metronome (and recording)
+      manageRecording();
       break;
 
     case "KeyP":
