@@ -349,14 +349,16 @@ class Chord {
     midiNote = root.getMidiNote() + scale[noteGrade]
     newOn = root.getInstantOn() +6;
     newVel = root.getVelocity() - 6;
+    newVel<= 0 ? newVel = 10: 0;
     this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
 
     //add fifth
     noteGrade = this.#grade -1 + 4
     noteGrade > scale.length ? noteGrade -= scale.length : 0;
     midiNote = root.getMidiNote() + scale[noteGrade]
-    newOn = root.getInstantOn() +6;
-    newVel = root.getVelocity() - 6;
+    newOn = root.getInstantOn() +12;
+    newVel = root.getVelocity() -2;
+    newVel<= 0 ? newVel = 14: 0;
     this.addNote(new Note(midiNote, newQueue, newVel, newOn, newOff))
     //this.identifyChord()
 //    return new Chord(this.#notes[0],this.#notes[1],this.#notes[2])
