@@ -43,7 +43,7 @@ class Metronome {
     return this.#tempo;
   }
 
-  // Start the metronome
+  // Start the metronome (and the recording)
   start() {
     this.#isSounding = true;
     this.#current16thNote = 0;
@@ -53,6 +53,23 @@ class Metronome {
     toggleOnAirLight()                            // Ligths up the label
     this.#timerWorker.postMessage("start");       // Start the timer
     this.schedule();
+  }
+
+  // Pause the metronome
+  pause() {
+    //Stop the loop
+    player.play(false);
+    // Stop the timer
+    this.#timerWorker.postMessage("stop");
+    // Reset all values
+    this.#current16thNote = 0;
+    this.#bar = -0;
+  }
+
+  // Resume the metronome
+  resume() {
+    // Start the timer
+    this.#timerWorker.postMessage("start");
   }
 
   // Schedule the actions
@@ -133,21 +150,6 @@ class Metronome {
 
     osc.start(this.#audioContext.currentTime);
     osc.stop(this.#audioContext.currentTime + this.#tickLength);
-  }
-
-  pause() {
-    //Stop the loop
-    player.play(false);
-    // Stop the timer
-    this.#timerWorker.postMessage("stop");
-    // Reset all values
-    this.#current16thNote = 0;
-    this.#bar = -0;
-  }
-
-  resume() {
-    // Start the timer
-    this.#timerWorker.postMessage("start");
   }
 
 }

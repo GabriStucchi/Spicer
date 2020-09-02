@@ -122,4 +122,5 @@ function cleanRec() {
   recorder.clean();
   cprog.clean();
   spicer.clean();
+  bass_spicer.clean();
 }
