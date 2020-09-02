@@ -22,13 +22,11 @@ class Key {
 
   setScaleType(type){ //if the type of scale is changed then i delete everything that has been recorded + all the spicer tracks
     this.#type= type;
-    console.log(type);
     //cleanRec()
   }
 
   setRootKey(root){ //if the root of the scale is changed then i delete everything that has been recorded + all the spicer tracks
     this.#rootKey = root;
-    console.log(type);
     //cleanRec()
   }
 

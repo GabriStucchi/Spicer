@@ -3,7 +3,7 @@ class PianoSpicer {
   #spiced_tracks
 
   constructor() {
-    this.#level = 2;
+    this.#level = 1;
     this.#spiced_tracks = undefined
   }
 
@@ -18,16 +18,13 @@ class PianoSpicer {
       switch (level) {
         case 1: track.add7s();
         break;
-        case 2: {
+        case 2:
           track.add9s();
           track.generateVoicings();
-        }
-
         break;
         default: //do nothing
       }
     }
-    console.log(this);
     return track
   }
   spice(){ //returns the spiced track according to the level
@@ -35,7 +32,7 @@ class PianoSpicer {
       this.#spiced_tracks = []
       this.#spiced_tracks.push(cprog);
       this.#spiced_tracks.push(this.spiceTrack(this.#spiced_tracks[0],1)); //spices the base track
-      this.#spiced_tracks.push(this.spiceTrack(this.#spiced_tracks[1],2)); //spices the already spiced track
+    //  this.#spiced_tracks.push(this.spiceTrack(this.#spiced_tracks[1],2)); //spices the already spiced track
     }
     return this.#spiced_tracks[this.#level]
   }

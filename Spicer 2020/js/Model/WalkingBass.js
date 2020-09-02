@@ -72,7 +72,6 @@ class WalkingBass {
 
 
       this.assignTimeStamps()
-      console.log(this.#bassLine.map((note) => note.getName()));
       console.log(this.#bassLine.map((note) => note.getMidiNote()));
   }
 
