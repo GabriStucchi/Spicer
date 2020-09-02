@@ -123,3 +123,19 @@ function cleanRec() {
   cprog.clean();
   spicer.clean();
 }
+
+
+function isInKey(midiNote){
+  let scale
+  key.isMajor() =="Min" ? scale = minor : scale = major ;
+  let tempScale = scale.map(el=> el + possible_notes.indexOf(key.getKeyNote())) //shifts the scale intervals dow
+
+  tempScale.forEach((item,i) => {
+    item>=12 ? tempScale[i] = item - 12 : 0;
+  });
+  console.log('check')
+  if(tempScale.find(el => el== shiftToOctave(0,midiNote))==undefined){
+    return false
+  }
+  return true
+}
