@@ -39,7 +39,7 @@ function selectIns(o){
 // Load the bass sound (predefined)
 webAudioFontPlayer.loader.startLoad(audioContext, webAudioFontPlayer.loader.instrumentInfo(378).url, webAudioFontPlayer.loader.instrumentInfo(378).variable);
 webAudioFontPlayer.loader.waitLoad(function () {
-    console.log('done',webAudioFontPlayer.loader.instrumentInfo(378).variable);
+    //console.log('done',webAudioFontPlayer.loader.instrumentInfo(378).variable);
     bassTone = window[webAudioFontPlayer.loader.instrumentInfo(378).variable];
     webAudioFontPlayer.cancelQueue(audioContext);
 });
@@ -47,7 +47,7 @@ webAudioFontPlayer.loader.waitLoad(function () {
 
 function changeInstrument() {
     var info = webAudioFontPlayer.loader.instrumentInfo(availableInstruments[selectedInstrument]);
-    console.log('select',selectedInstrument,info);
+    //console.log('select',selectedInstrument,info);
     webAudioFontPlayer.loader.startLoad(audioContext, info.url, info.variable);
     webAudioFontPlayer.loader.waitLoad(function () {
         console.log('done',info.variable);

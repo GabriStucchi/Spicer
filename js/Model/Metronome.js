@@ -63,6 +63,7 @@ class Metronome {
   stop() {
     this.#timerWorker.postMessage("stop");      // Stop the timer
     this.#isPlaying = false;
+    this.#playDrum = false;
     this.#drums.stop();
     if (this.#isSounding) {           // If is in the recording mode
       setOnAirTxt();                // Sets the text "ON AIR" (It may be showing the countdown)
@@ -99,6 +100,13 @@ class Metronome {
 
   // Schedule the actions
   schedule() {
+
+    //Instruction for 16th notes
+    if ((!this.#isSounding) && (this.#current16thNote == 0)) {    // This control prevent the drums starting 1 bar before
+      if (!this.#playDrum) {
+        this.#playDrum = true;
+      }
+    }
     
     // Instructions for QUARTER notes
     if ((this.#current16thNote % 4) == 0) {
@@ -125,15 +133,7 @@ class Metronome {
       }
     }
 
-    //Instruction for 16th notes
-    if ((!this.#isSounding) && (this.#current16thNote == 0)) {    // This control prevent the drums starting 1 bar before
-      if (!this.#playDrum) {
-        this.#playDrum = true;
-      }
-    }
-
     if (this.#playDrum) {
-      //player.playDrum();
       this.#drums.play();
     }
 
@@ -150,7 +150,7 @@ class Metronome {
       }
     }
 
-    if((this.#current16thNote == 14) && (this.#bar == 3) && (instrumentChanged)){
+    if((this.#current16thNote == 12) && (this.#bar == 3) && (instrumentChanged)){
       changeInstrument();
     }
   }
