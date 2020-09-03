@@ -35,6 +35,8 @@ class ChordProgression {
   }
 
   detectChords(recTrack) {
+    let beatLength = 60000 / metronome.getTempo();
+    
     if (recTrack.getNotes().length == 0) return;
     //todo CONTROL ON MAX MS
     //scorre la traccia e partendo dalla prima nota, prende tutte le note che si trovano dopo il primo note On fino al primo note Off,
@@ -50,7 +52,7 @@ class ChordProgression {
         endOfChord = item.getInstantOff(); //sets  end of chord
       } else {
         //if we're already working on a chord
-        if (endOfChord > item.getInstantOn()) {
+        if (endOfChord - beatLength/4 > item.getInstantOn()) {
           // if the current note start falls between the duration of the chord shortest note
           tempChord.addNote(item); //add note to the chord
           if (item.getInstantOff() < endOfChord) {
