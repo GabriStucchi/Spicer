@@ -435,15 +435,10 @@ class WalkingBass {
   assignTimeStamps() {
 /*
     if (this.#bassLine != undefined) {
-<<<<<<< HEAD
-      //let loopLenght = beatLength = 60000 / metronome.getTempo() * 4;
-
-=======
       let newQueue = cprog.getChords()[0].getNotes()[0].getQueue();
       let beatLength = 60000 / metronome.getTempo();
       //let loopLenght = beatLength = 60000 / metronome.getTempo() * 4;
       /*
->>>>>>> parent of aa02ae1... comments deleted
       let nOfChords = cprog.getChords().length;
       let windowStart = 0;
       let windowEnd = 0;
@@ -496,7 +491,6 @@ class WalkingBass {
         }
 
       }
-<<<<<<< HEAD
     }
       console.log(newBassLine.map((note) => note.getName()));
 
@@ -504,28 +498,16 @@ class WalkingBass {
     cprog.forEach((item) => {
       if(cprog[i+1] !=undefined)
         let chord_distance =cprog[i+1].getNotes()[0].getInstantOn() - item.getNotes()[0].getInstantOn()
-=======
-      /*
-    cprog.forEach((item) => {
-      if(cprog[i+1] !=undefined)
-        let chord_distance =cprog[i+1].getNotes()[0].getInstantOn() - item.getNotes()[0].getInstantOn() 
->>>>>>> parent of aa02ae1... comments deleted
         if (chord_distance/4 > note8thLength){
 
         }else{
 
         }
     });
-<<<<<<< HEAD
 */
         let newQueue = cprog.getChords()[0].getNotes()[0].getQueue();
         let beatLength = 60000 / metronome.getTempo();
         this.#bassLine.forEach((note, i) => {
-=======
-
-    */
-      this.#bassLine.forEach((note, i) => {
->>>>>>> parent of aa02ae1... comments deleted
         note.setInstantOn(beatLength * i)
         note.setQueue(newQueue);
         note.setDuration(beatLength / 2);

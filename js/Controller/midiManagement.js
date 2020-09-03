@@ -127,7 +127,7 @@ function playbackNote(note) {
     audioContext.currentTime + timestampOn,
     note.getMidiNote(),
     duration,
-    note.getVolume()-0.5
+    note.getVolume()
   );
   note.setQueue(queue);
 }

@@ -200,14 +200,7 @@ class Chord {
       if (this.#notes.length == 3) {
         //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
         key.isMajor() =="Min" ? scale = minor : scale = major ;
-<<<<<<< HEAD
         scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals down
-=======
-        console.log("------------------------------")
-        console.log("grade")
-        console.log(this.#grade)
-        scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals down  
->>>>>>> parent of aa02ae1... comments deleted
         seventhGrade = this.#grade -1 + 6
         seventhGrade >= scale.length ? seventhGrade -= (scale.length-1) + 1 : 0;
         seventhMidiNote = this.#root.getMidiNote() + scale[seventhGrade]
@@ -229,17 +222,7 @@ class Chord {
           seventh = seventh - 12;
         }
         seventh = this.#root.getMidiNote() + seventh;
-<<<<<<< HEAD
 */
-=======
-*/      console.log(this.#root)
-        console.log("scale")
-        console.log(scale)
-        console.log("seventhGrade :")
-        console.log(seventhGrade)
-        console.log("seventhMidiNote >")
-        console.log(seventhMidiNote)
->>>>>>> parent of aa02ae1... comments deleted
 
         //todo if execution is too slow delete velocity average
         /* this.#notes.forEach((item) => {
@@ -247,6 +230,7 @@ class Chord {
           newVel += item.getVelocity() / this.#notes.length;
         });
         */
+       
        newOn = this.#notes[this.#notes.length -1].getInstantOn() +6;
        newOff = this.#notes[this.#notes.length - 1].getInstantOff();
        newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
