@@ -129,7 +129,7 @@ function cleanRec() {
 
 function isInKey(midiNote){
   let scale
-  key.isMajor() =="Min" ? scale = minor : scale = major ;
+  key.isMajor()  ? scale = major : scale = minor ;
   let tempScale = scale.map(el=> el + possible_notes.indexOf(key.getKeyNote())) //shifts the scale intervals dow
 
   tempScale.forEach((item,i) => {
