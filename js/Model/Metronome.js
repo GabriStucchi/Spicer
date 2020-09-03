@@ -63,6 +63,7 @@ class Metronome {
   stop() {
     this.#timerWorker.postMessage("stop");      // Stop the timer
     this.#isPlaying = false;
+    this.#drums.stop();
     if (this.#isSounding) {           // If is in the recording mode
       setOnAirTxt();                // Sets the text "ON AIR" (It may be showing the countdown)
       toggleOnAirLight();           // Toggle the light off
@@ -72,6 +73,7 @@ class Metronome {
   // Pause the metronome (during playback)
   pause() {
     player.play(false);                         // Stop the loop
+    this.#drums.stop();
     this.#timerWorker.postMessage("stop");      // Stop the timer
     this.#isPlaying = false;
     this.#current16thNote = 0;                  // Reset all values

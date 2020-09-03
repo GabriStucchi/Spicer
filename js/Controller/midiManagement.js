@@ -130,7 +130,6 @@ function playbackNote(note) {
     note.getVolume()*0.9
   );
   note.setQueue(queue);
-  console.log(compressor.reduction);
 }
 
 function playbackBass(note) {
