@@ -34,7 +34,7 @@ function showSpicer() {
         currentHeight = parseInt(currentHeight); //converts the string in int
 
        
-        spicerSection.style.backgroundColor = "rgba(200, 200, 200,"+ String((1 - (45-currentHeight)/45)/3)+")"
+        spicerSection.style.backgroundColor = "rgba(100, 100, 100,"+ String((1 - (45-currentHeight)/45)/3)+")"
         console.log((1 - (45-currentHeight)/45)/3)
         if (currentHeight > 10) {
             currentHeight--; //decreases the height
@@ -65,7 +65,7 @@ function showSpicer() {
         currentHeight.replace(['%'], ''); //removes the % character
         currentHeight = parseInt(currentHeight); //converts the string in int
 
-        spicerSection.style.backgroundColor = "rgba(200, 200, 200,"+ String((1 - (45-currentHeight)/45)/3)+")"
+        spicerSection.style.backgroundColor = "rgba(100, 100, 100,"+ String((1 - (45-currentHeight)/45)/3)+")"
         
         if (currentHeight < 40) {
             currentHeight++; //decreases the height
