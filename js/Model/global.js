@@ -47,7 +47,7 @@ let metronome = new Metronome(120);
 let player = new Player;
 let spicer = new PianoSpicer();
 let bass_spicer = new BassSpicer();
-let globalSpiceLevel = 0
+let globalSpiceLevel = new Spiciness
 
 let chordsIntervals = {
   "[4,7]": new ChordType("maj", 0, 0),

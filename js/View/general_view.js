@@ -1,7 +1,7 @@
 
-let logo = document.getElementById("logo")
-let glare = document.getElementById("glare")
 
+/*
+let glare = document.getElementById("glare")
 
 var cumulativeOffset = function(element) {
     var top = 0, left = 0;
@@ -27,3 +27,4 @@ console.log(glare.style.top)
 console.log(glare.style.left)
 
 
+*/

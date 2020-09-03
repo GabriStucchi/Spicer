@@ -15,6 +15,17 @@ background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox=
   height: auto;
 }
 
+
+#logo_container{
+align-self: center;
+width: 50%;
+}
+
+#logo{
+  width: 300px;
+  height: auto;
+}
+
 .leather-box{
   width: 1200px;
   height: 650px;

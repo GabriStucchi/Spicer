@@ -24,7 +24,7 @@ class Drums {
   levelUp() {
     if(this.#tempLevel < 2) {
       this.#tempLevel++;
-      globalSpiceLevel++;
+      globalSpiceLevel.levelUp();
     }
     console.log("Drums: " + this.#spiceLevel);
     console.log("Global: " + globalSpiceLevel);
@@ -33,7 +33,7 @@ class Drums {
   levelDown() {
     if(this.#tempLevel > 0) {
       this.#tempLevel--;
-      globalSpiceLevel--; 
+      globalSpiceLevel.levelDown(); 
     }
     console.log("Drums: " + this.#spiceLevel);
     console.log("Global: " + globalSpiceLevel);
