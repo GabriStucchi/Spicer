@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/24576858/92102333-bf866500-edde-11ea-867d-1f769cc146eb.gif" width="900"//>
+  <img src="https://user-images.githubusercontent.com/24576858/92103904-e0e85080-ede0-11ea-8e61-5ba2f4050be4.gif" width="900"//>
 </p>
 
 <h3 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
