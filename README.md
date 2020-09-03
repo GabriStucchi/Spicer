@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/24576858/92103904-e0e85080-ede0-11ea-8e61-5ba2f4050be4.gif" width="50%"//>
 </p>
 
-<h3 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
+<h2 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
 
 ![tag](https://img.shields.io/aur/last-modified/google-chrome) ![Mozilla Add-on](https://img.shields.io/amo/rating/dustman) ![Github All Contributors](https://img.shields.io/github/all-contributors/all-contributors/all-contributors/master) 
 
@@ -87,7 +87,9 @@ The choice of <img src="https://user-images.githubusercontent.com/57997005/91971
 * **Random Walking** : They are chosen from the _possible beats sets_ randomly. The result will be a walking bass with a more random behaviour, possibly showing certain number of jumps, but still respect the basic constrains.
 
 After having computed these two different walking bass bars the algorithm will randomly choose one of them and construct a multicolored and ever changing bass line!
-![1](https://user-images.githubusercontent.com/57997005/91876344-e167d680-ec7c-11ea-9260-d4bf05276bb9.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/57997005/91876344-e167d680-ec7c-11ea-9260-d4bf05276bb9.png" alt="Walking" width="500"/>
+</p>
 
 ## Controls
 * Open the spicer menu by clicking on the window on the bottom
