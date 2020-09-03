@@ -17,6 +17,7 @@ class BassSpicer {
       return 
       
     if(this.#spiced_tracks === undefined){
+      console.log(cprog)
       this.#spiced_tracks = []
       let bassLines = [];
       let firstNotes = [];
@@ -30,10 +31,10 @@ class BassSpicer {
       this.#spiced_tracks.push(firstNotes)
       this.#spiced_tracks.push(bassLines)
     }
-    
-    
+
+
     if (this.#level == 1 || this.#level == 2 ) {
-      let tempTrack 
+      let tempTrack
       tempTrack = this.#spiced_tracks[this.#level-1][this.#currentLine]
       this.#currentLine == 3 ? this.#currentLine = 0 : this.#currentLine++
       return tempTrack
