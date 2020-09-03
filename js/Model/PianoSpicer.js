@@ -42,7 +42,7 @@ class PianoSpicer {
       globalSpiceLevel++
     }
     console.log("Piano: " + this.#level)
-    console.log("Total: " + globalSpiceLevel);
+    console.log("Global: " + globalSpiceLevel);
   }
 
   levelDown(){
@@ -51,7 +51,7 @@ class PianoSpicer {
       globalSpiceLevel--
     }
     console.log("Piano: " + this.#level)
-    console.log("Total: " + globalSpiceLevel);
+    console.log("Global: " + globalSpiceLevel);
   }
 
   clean() {

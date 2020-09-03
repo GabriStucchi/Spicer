@@ -101,7 +101,7 @@ class WalkingBass {
     this.#bassLine.push(...bass_bar);
 
     this.assignTimeStamps();
-    console.log(this.#bassLine.map((note) => note.getName()));
+    //console.log(this.#bassLine.map((note) => note.getName()));
   }
 
   //Compute the 4 beats walking bass bar of index i (of the progression) between
@@ -421,7 +421,13 @@ class WalkingBass {
   }
 
   getFirstBeats() {
-    return this.#firstBeats;
+    let firstBeats = []
+    for (var i = 0; i < this.#bassLine.length; i += 4 ) {
+      firstBeats.push(this.#bassLine[i])
+      firstBeats.push(this.#bassLine[i+3])
+    }
+
+    return firstBeats;
   }
 
   //temp for testing

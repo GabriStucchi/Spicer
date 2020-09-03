@@ -35,6 +35,7 @@ class ChordProgression {
   }
 
   detectChords(recTrack) {
+    let beatLength = 60000 / metronome.getTempo();
     if (recTrack.getNotes().length == 0) return;
     //todo CONTROL ON MAX MS
     //scorre la traccia e partendo dalla prima nota, prende tutte le note che si trovano dopo il primo note On fino al primo note Off,
@@ -50,7 +51,7 @@ class ChordProgression {
         endOfChord = item.getInstantOff(); //sets  end of chord
       } else {
         //if we're already working on a chord
-        if (endOfChord > item.getInstantOn()) {
+        if (endOfChord - (beatLength/2 - 200) > item.getInstantOn() ) {
           // if the current note start falls between the duration of the chord shortest note
           tempChord.addNote(item); //add note to the chord
           if (item.getInstantOff() < endOfChord) {
@@ -183,17 +184,9 @@ class ChordProgression {
       windowStart = beatLength * i;
       windowEnd = beatLength * (i + 4);
 
-      console.log('-------------------------GET FIRST BEAT')
-      console.log('windowStart')
-      console.log(windowStart)
-      console.log('windowEnd')
-      console.log(windowEnd)
-      console.log('instantsOn');
-      console.log(instantsOn);
       chordsInWind = instantsOn.filter(
           (el) => el >= windowStart - beatLength/8 && el < windowEnd - beatLength/8);
-      console.log('chordsInWind')
-      console.log(chordsInWind)
+
       if (chordsInWind.length == 0) {
         if(choosen_chords.length>1){
           choosen_chords.push(choosen_chords[choosen_chords.length - 1])
@@ -203,10 +196,8 @@ class ChordProgression {
         }
       } else {
         choosen_chords.push(cprog.getChords().find(el=> el.getNotes()[0].getInstantOn() == chordsInWind[0]))
-        console.log(choosen_chords)
       }
     }
-//    console.log(choosen_chords)
     return choosen_chords
   }
 
