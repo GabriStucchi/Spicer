@@ -15,15 +15,15 @@ function showSpicer() {
         spicerSectionUp = false;
         arrow.id = "bringUp"
         spicerAnimInterval = setInterval(moveDown, 1);
-        //document.getElementById("spicerContent-large").style.display = "none";
-        //document.getElementById("spicerContent-small").style.display = "block";
+        document.getElementById("spicerContent-large").style.display = "none";
+        document.getElementById("spicerContent-small").style.display = "block";
 
     } else {
         spicerSectionUp = true;
         arrow.id = "dropDown"
         spicerAnimInterval = setInterval(moveUp, 1);
-        //document.getElementById("spicerContent-large").style.display = "block";
-        //document.getElementById("spicerContent-small").style.display = "none";
+        document.getElementById("spicerContent-large").style.display = "block";
+        document.getElementById("spicerContent-small").style.display = "none";
     }
 
 
