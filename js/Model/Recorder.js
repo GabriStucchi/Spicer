@@ -25,11 +25,16 @@ class Recorder {
     stopAllNotes()
     onAir = false;
     if (hasToBeSaved) {
-      setLoopBtnTxt("STOP");                              // Set text in loop button
       cprog.detectChords(this.#track);                    // Do chord detection
-      player.setTrack(spicer.spice().getNotesTrack());    // Set the piano track as the spiced track
-      bass_spicer.spice();                                // Compute all the basslines (the player will just retrieve them)
-      player.play(true);                                  // Play the track
+      if(cprog.getChords().length == 0) {                 // If there is no recorder sound
+        metronome.stop();                                 // Stop the metronome
+      }
+      else {
+        setLoopBtnTxt("STOP");                              // Set text in loop button
+        player.setTrack(spicer.spice().getNotesTrack());    // Set the piano track as the spiced track
+        bass_spicer.spice();                                // Compute all the basslines (the player will just retrieve them)
+        player.play(true);                                  // Play the track
+      }
     }
     else {
       this.clean();
