@@ -12,10 +12,7 @@ class BassSpicer {
 
 //spice verrà utilizzato per creare le 3 tracce spiced subito dopo la rec
 
-  spice(){ //returns the spiced track according to the level
-    if(cprog == undefined || isNaN(cprog) || cprog == [] )
-      return 
-      
+  spice(){ //returns the spiced track according to the level  
     if(this.#spiced_tracks === undefined){
       console.log(cprog)
       this.#spiced_tracks = []
