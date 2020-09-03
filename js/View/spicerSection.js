@@ -35,7 +35,6 @@ function showSpicer() {
 
        
         spicerSection.style.backgroundColor = "rgba(100, 100, 100,"+ String((1 - (45-currentHeight)/45)/3)+")"
-        console.log((1 - (45-currentHeight)/45)/3)
         if (currentHeight > 10) {
             currentHeight--; //decreases the height
             currentHeight += "%" //adds % to the end of currentHeight, turning it into a string
