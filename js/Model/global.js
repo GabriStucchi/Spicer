@@ -119,11 +119,11 @@ function mapLog(value, start1, stop1, start2, stop2) {
 }
 
 function cleanRec() {
-  player.clean();
-  recorder.clean();
-  cprog.clean();
-  spicer.clean();
-  bass_spicer.clean();
+  player.clean();           // Stops all the tracks (Piano, Bass, Drums) and delete them all
+  recorder.clean();         // Delete the track recorder
+  cprog.clean();            // Delete the chord progression of the track
+  spicer.clean();           // Delete the spiced piano tracks
+  bass_spicer.clean();      // Delete the spiced bass tracks
 }
 
 
@@ -135,7 +135,6 @@ function isInKey(midiNote){
   tempScale.forEach((item,i) => {
     item>=12 ? tempScale[i] = item - 12 : 0;
   });
-  console.log('check')
   if(tempScale.find(el => el== shiftToOctave(0,midiNote))==undefined){
     return false
   }

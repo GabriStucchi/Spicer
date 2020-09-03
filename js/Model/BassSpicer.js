@@ -13,8 +13,8 @@ class BassSpicer {
   spice(){ //returns the spiced track according to the level
     this.#spiced_tracks = undefined;
     let walking_bass = new WalkingBass;
-    walking_bass.computeBassLine(cprog.getChords())
     this.#spiced_tracks = []
+    walking_bass.computeBassLine(cprog.getFirstChords())
     this.#spiced_tracks.push(walking_bass.getFirstBeats());
     this.#spiced_tracks.push(walking_bass.getBassLine());
     if (this.#level == 1 || this.#level == 2 ) {

@@ -127,7 +127,7 @@ function playbackNote(note) {
     audioContext.currentTime + timestampOn,
     note.getMidiNote(),
     duration,
-    note.getVolume()
+    note.getVolume()-0.5
   );
   note.setQueue(queue);
 }
@@ -142,7 +142,7 @@ function playbackBass(note) {
     bassAudioContext.currentTime + timestampOn,
     note.getMidiNote(),
     duration,
-    note.getVolume()
+    note.getVolume() -0.2
   );
   note.setQueue(queue);
 }
