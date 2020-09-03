@@ -13,18 +13,29 @@ body{
 background-color: #081222;
 background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23000000' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   height: auto;
+  zoom: 80%;
 }
 
 
-#logo_container{
-align-self: center;
-width: 50%;
-}
 
 #logo{
-  width: 300px;
+  width: 250px;
   height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 8px;
+  border: 4px solid rgb(255, 72, 72);
+  box-shadow: 0px 0px 10px 5px rgba(255, 72, 72, 0.842)
 }
+
+.title{
+  width: 100%;
+}
+
 
 .leather-box{
   width: 1200px;
@@ -71,10 +82,7 @@ width: 50%;
 
 #spicerSection{
   z-index: 1;
-  background-color: rgba(42, 241, 255, 0.788);
-  background-image: url("images/mountains.svg");
-  border-top: 4px solid rgba(255, 72, 72, 0.842);
-  box-shadow: 0px -7px 10px 0px rgba(255, 72, 72, 0.842);
+  background-color: rgba(208, 200, 200,0.037);
   display: block;
   position: fixed;
   bottom : 0%;
@@ -124,6 +132,8 @@ h1{
   border-radius: 4px;
   text-shadow: 0 0px 50px rgb(0, 0, 0,0.6);
   box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.7);
+  border: 4px solid rgb(255, 72, 72);
+  box-shadow: 0px 0px 10px 5px rgba(255, 72, 72, 0.842)
 }
 
 .onAir {

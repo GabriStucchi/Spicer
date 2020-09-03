@@ -15,22 +15,27 @@ function showSpicer() {
         spicerSectionUp = false;
         arrow.id = "bringUp"
         spicerAnimInterval = setInterval(moveDown, 1);
-        document.getElementById("spicerContent-large").style.display = "none";
-        document.getElementById("spicerContent-small").style.display = "block";
+        //document.getElementById("spicerContent-large").style.display = "none";
+        //document.getElementById("spicerContent-small").style.display = "block";
 
     } else {
         spicerSectionUp = true;
         arrow.id = "dropDown"
         spicerAnimInterval = setInterval(moveUp, 1);
-        document.getElementById("spicerContent-large").style.display = "block";
-        document.getElementById("spicerContent-small").style.display = "none";
+        //document.getElementById("spicerContent-large").style.display = "block";
+        //document.getElementById("spicerContent-small").style.display = "none";
     }
 
 
     function moveDown() {
+    
         let currentHeight = spicerSection.style.height;  //gets the height as a string
         currentHeight.replace(['%'], ''); //removes the % character
         currentHeight = parseInt(currentHeight); //converts the string in int
+
+       
+        spicerSection.style.backgroundColor = "rgba(200, 200, 200,"+ String((1 - (45-currentHeight)/45)/3)+")"
+        console.log((1 - (45-currentHeight)/45)/3)
         if (currentHeight > 10) {
             currentHeight--; //decreases the height
             currentHeight += "%" //adds % to the end of currentHeight, turning it into a string
@@ -59,6 +64,9 @@ function showSpicer() {
         let currentHeight = spicerSection.style.height;  //gets the height as a string
         currentHeight.replace(['%'], ''); //removes the % character
         currentHeight = parseInt(currentHeight); //converts the string in int
+
+        spicerSection.style.backgroundColor = "rgba(200, 200, 200,"+ String((1 - (45-currentHeight)/45)/3)+")"
+        
         if (currentHeight < 40) {
             currentHeight++; //decreases the height
             currentHeight += "%" //adds % to the end of currentHeight, turning it into a string
