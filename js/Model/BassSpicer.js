@@ -17,8 +17,9 @@ class BassSpicer {
       this.#spiced_tracks = []
       let bassLines = [];
       let firstNotes = [];
-      let walking_bass = new WalkingBass;
+      let walking_bass;
       for(i =0; i<4;++i){
+        walking_bass = new WalkingBass;
         walking_bass.computeBassLine(cprog.getFirstChords())
         bassLines.push(walking_bass.getBassLine());
         firstNotes.push(walking_bass.getFirstBeats());
