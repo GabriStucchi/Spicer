@@ -19,7 +19,7 @@ Follow this simple steps to get started:
 
 1. Connect a MIDI keyboard
 2. Select the tonality and bpm of your music piece
-3. Press 'R' and wait for the countdown to start recording
+3. Press 'R' and wait a bar to start recording
 4. Play in four bars the basic chords of your piece, then they will loop and form the harmony structure 
 5. Choose which instruments to include and their spicer levels: the pepper on the logo will tell you the spiciness of the performance!
 6. Now you can start playing and improvising your solo with a synth and obtain the spiciest sound by tuning its parameters
@@ -39,19 +39,6 @@ Follow this simple steps to get started:
 | **Bass**   | Plays the fundamental note of each chord and the leading tone to the next fundamental .      | Create a walking bass line.      |
 | **Drums**    | Plays a standard drumfill.       | Plays a strong drumfill.     |
 
-### Different piano sounds
-
-### Voicings
-If the piano complexity level is set to its maximum, whenever in the chord progression is detected a II - V - I fragement, then voicings are performed. 
-Voicings are particular arangements and movementes of the pitches of a chord aimed at achieving a pleasurable effect. The chords used can include 7ths, 9ths and also 13ths and they can have two configurations:
-* Basic:
-<img src="https://user-images.githubusercontent.com/57997005/92108562-e8f7be80-ede7-11ea-824f-5250d232e16a.jpg" alt="beat_4" width="300"/> 
-
-* First Inversion:
-<img src="https://user-images.githubusercontent.com/57997005/92108563-ea28eb80-ede7-11ea-85c5-ac1946a0e525.jpg" alt="beat_4" width="300"/>
-
-The algorithm chooses everytime the one that falls within the range D4 - F5.
-
 ### Synthesizer
 Inspired by the colorful design of the _Moog Grandmother_ and build using [Tone.js](https://tonejs.github.io/) framework the Spicer monophonic Synthesizer gives the opportunity to jam on top of your spiced arrangement.
 The synth is composed of the following components:
@@ -65,6 +52,17 @@ The synth is composed of the following components:
 | **Output** | Control the main output gain. |
 | **Effects** | The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_. |
 | **Modulation** | Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitches and the filter cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated. |
+
+### Voicings
+If the piano complexity level is set to its maximum, whenever in the chord progression is detected a II - V - I fragement, then voicings are performed. 
+Voicings are particular arangements and movementes of the pitches of a chord aimed at achieving a pleasurable effect. The chords used can include 7ths, 9ths and also 13ths and they can have two configurations:
+* Basic:
+<img src="https://user-images.githubusercontent.com/57997005/92108562-e8f7be80-ede7-11ea-824f-5250d232e16a.jpg" alt="beat_4" width="300"/> 
+
+* First Inversion:
+<img src="https://user-images.githubusercontent.com/57997005/92108563-ea28eb80-ede7-11ea-85c5-ac1946a0e525.jpg" alt="beat_4" width="300"/>
+
+The algorithm chooses everytime the one that falls within the range D4 - F5.
 
 ### Walking Bass
 If the bass is active and set to the higher complexity level it plays an ever changing walking bass line, which consists of notes of equal duration (typically 1/4 notes) that create a feeling of forward motion. Its implementation is designed in order to give a realistic feel and a certain degree of freedom to it and the four beats <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> of each bass line are choosen by following specific rules:
@@ -95,6 +93,7 @@ After having computed these two different walking bass bars the algorithm will r
 * Open the spicer menu by clicking on the window on the bottom
 * Insert the tonality on the dedicated drop down menu
 * Change the piano sound on the dedicated drop down menu
+* Change the bpm by dragging the slider
 * Spice up or down each instrument by clicking on their spice buttons: level 0 is for muting the instrument (except for piano) & level 2 is the maximum spiciness
 * Press 'R' to start recording, press it again to discard the record
 * Press 'P' to pause the execution, press it again to resume
