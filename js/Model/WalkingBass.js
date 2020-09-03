@@ -436,8 +436,9 @@ class WalkingBass {
     if (this.#bassLine != undefined) {
       let newQueue = cprog.getChords()[0].getNotes()[0].getQueue();
       let beatLength = 60000 / metronome.getTempo();
+      console.log(beatLength)
       //let loopLenght = beatLength = 60000 / metronome.getTempo() * 4;
-      /*
+      
       let nOfChords = cprog.getChords().length;
       let windowStart = 0;
       let windowEnd = 0;
@@ -484,20 +485,8 @@ class WalkingBass {
           }
         }
       }
-      /*
-    cprog.forEach((item) => {
-      if(cprog[i+1] !=undefined)
-        let chord_distance =cprog[i+1].getNotes()[0].getInstantOn() - item.getNotes()[0].getInstantOn() 
-        if (chord_distance/4 > note8thLength){
-
-        }else{
-
-        }
-    });
-
-    */
       this.#bassLine.forEach((note, i) => {
-        note.setInstantOn(beatLength * i)
+     //   note.setInstantOn(beatLength * i)
         note.setQueue(newQueue);
         note.setDuration(beatLength / 2);
       });

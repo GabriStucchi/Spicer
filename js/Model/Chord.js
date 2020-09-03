@@ -119,8 +119,6 @@ class Chord {
     }
     //if the root note is not found in the tonality then the grade is left undefined
     //if the grade is undefined we are not going to _s p i c e_ it
-    console.log("grade:")
-    console.log(this.#grade)
     if (this.#grade !== undefined) {
       this.#grade++; //this is done to shift the 0 value to 1;
 
@@ -200,45 +198,11 @@ class Chord {
       if (this.#notes.length == 3) {
         //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
         key.isMajor() =="Min" ? scale = minor : scale = major ;
-        console.log("------------------------------")
-        console.log("grade")
-        console.log(this.#grade)
         scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals down  
         seventhGrade = this.#grade -1 + 6
         seventhGrade >= scale.length ? seventhGrade -= (scale.length-1) + 1 : 0;
         seventhMidiNote = this.#root.getMidiNote() + scale[seventhGrade]
-        /*
-        if (key.isMajor()) {
-          seventh =
-            major[(this.#grade + 5) % major.length] +
-            12 -
-            major[this.#grade - 1];
-        } else {
-          //IF MINOR
-          seventh =
-            minor[(this.#grade + 5) % minor.length] +
-            12 -
-            minor[this.#grade - 1];
-        }
 
-        if (seventh > 12) {
-          seventh = seventh - 12;
-        }
-        seventh = this.#root.getMidiNote() + seventh;
-*/      console.log(this.#root)
-        console.log("scale")
-        console.log(scale)
-        console.log("seventhGrade :")
-        console.log(seventhGrade)
-        console.log("seventhMidiNote >")
-        console.log(seventhMidiNote)
-
-        //todo if execution is too slow delete velocity average
-        /* this.#notes.forEach((item) => {
-          //the velocity is an everage of the velocities of the chord
-          newVel += item.getVelocity() / this.#notes.length;
-        });
-        */
        newOn = this.#notes[this.#notes.length -1].getInstantOn() +6;
        newOff = this.#notes[this.#notes.length - 1].getInstantOff();
        newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
