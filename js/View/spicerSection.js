@@ -15,6 +15,7 @@ function showSpicer() {
         spicerSectionUp = false;
         arrow.id = "bringUp"
         spicerAnimInterval = setInterval(moveDown, 1);
+        spicerSection.classList.toggle("withShadow")
         document.getElementById("spicerContent-large").style.display = "none";
         document.getElementById("spicerContent-small").style.display = "block";
 
@@ -22,6 +23,7 @@ function showSpicer() {
         spicerSectionUp = true;
         arrow.id = "dropDown"
         spicerAnimInterval = setInterval(moveUp, 1);
+        spicerSection.classList.toggle("withShadow")
         document.getElementById("spicerContent-large").style.display = "block";
         document.getElementById("spicerContent-small").style.display = "none";
     }
@@ -34,7 +36,7 @@ function showSpicer() {
         currentHeight = parseInt(currentHeight); //converts the string in int
 
        
-        spicerSection.style.backgroundColor = "rgba(100, 100, 100,"+ String((1 - (45-currentHeight)/45)/3)+")"
+        spicerSection.style.backgroundColor = "rgba(20, 20, 20,"+ String((1 - (45-currentHeight)/45)/1.1)+")"
         if (currentHeight > 10) {
             currentHeight--; //decreases the height
             currentHeight += "%" //adds % to the end of currentHeight, turning it into a string
@@ -64,7 +66,7 @@ function showSpicer() {
         currentHeight.replace(['%'], ''); //removes the % character
         currentHeight = parseInt(currentHeight); //converts the string in int
 
-        spicerSection.style.backgroundColor = "rgba(100, 100, 100,"+ String((1 - (45-currentHeight)/45)/3)+")"
+        spicerSection.style.backgroundColor = "rgba(20, 20, 20,"+ String((1 - (45-currentHeight)/45)/1.1)+")"
         
         if (currentHeight < 40) {
             currentHeight++; //decreases the height
