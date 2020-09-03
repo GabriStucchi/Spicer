@@ -1,0 +1,63 @@
+
+.levels_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.levelContainer{
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    border: 2px solid grey; 
+}
+
+.meter{
+    display: flex;
+    flex-direction: column;
+}
+
+.meterLevel{
+    height: 50px;
+    width: 150px;
+}
+
+
+.level_0{
+    background-color: rgb(39, 243, 127);
+}
+
+.level_1{
+    background-color: rgba(170, 170, 91, 0.7);
+}
+
+.level_1.on{
+    background-color: rgb(255, 255, 91);
+}
+.level_1.off{
+    background-color: rgba(170, 170, 91, 0.7);
+}
+
+.level_2{
+    background-color: rgba(158, 32, 32, 0.7);
+}
+
+.level_2.on{
+    background-color: rgb(255, 50, 50);
+}
+
+.level_2.off{
+    background-color: rgba(158, 32, 32, 0.7);
+}
+
+
+
+.spicerBtn{
+    width: 150px;
+    height: 50px;
+}

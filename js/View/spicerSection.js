@@ -117,4 +117,40 @@ tonalities.forEach((item) => {
 /*selector.onchange = (e) => {
     key.setScaleType(e.target.value)
 }*/
+function renderLevel(instrument){
+    console.log("whats")
+    let meter = document.getElementById(instrument+"Meter");
+    let level1 = meter.querySelector(".level_1")
+    let level2 = meter.querySelector(".level_2")
+    let instSpiceLevel = 0; 
+    switch(instrument){
+        case "piano": instSpiceLevel = spicer.getLevel();
+        break;
+        case "bass": instSpiceLevel = bass_spicer.getLevel();
+        break;
+        case "drums": instSpiceLevel = metronome.getDrumsLevel();
+        break;
+    }
+    switch(instSpiceLevel){
+        case 0:
+            level1.classList.add("off");
+            level1.classList.remove("on");
+            level2.classList.remove("on");
+            level2.classList.add("off");
 
+        break;
+        case 1: 
+            level1.classList.add("on");
+            level1.classList.remove("off");
+            level2.classList.remove("on");
+            level2.classList.add("off");
+        break;
+        case 2: 
+            level2.classList.add("on");
+            level2.classList.remove("off");
+            level1.classList.add("on");
+            level1.classList.remove("off");
+        break;
+        default:
+    }
+}

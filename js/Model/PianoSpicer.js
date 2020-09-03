@@ -39,23 +39,29 @@ class PianoSpicer {
   levelUp(){
     if(this.#level < 2){
       this.#level++
-      globalSpiceLevel.levelUp()
+      globalSpiceLevel.updateLevel()
     }
     console.log("Piano: " + this.#level)
     console.log("Global: " + globalSpiceLevel);
+    renderLevel("piano")
   }
 
   levelDown(){
     if(this.#level > 0){
       this.#level--
-      globalSpiceLevel.levelDown()
+      globalSpiceLevel.updateLevel()
     }
     console.log("Piano: " + this.#level)
     console.log("Global: " + globalSpiceLevel);
+    renderLevel("piano")
   }
 
   clean() {
     this.#spiced_tracks = undefined;
+  }
+
+  getLevel(){
+    return this.#level;
   }
 
 }

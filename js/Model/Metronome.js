@@ -184,4 +184,8 @@ class Metronome {
     this.#drums.levelDown();
   }
 
+
+  getDrumsLevel(){
+    return this.#drums.getLevel()
+  }
 }

@@ -8,22 +8,19 @@ class Spiciness{
         this.changeLogo()
     }
 
-    levelUp(){
-        if(this.#level<6){
-            this.#level++;
-            this.changeLogo()
-        }
-    }
 
-    levelDown(){
-        if(this.#level>0){
-            this.#level--;
+
+    updateLevel(){
+        let level = spicer.getLevel() + bass_spicer.getLevel() + metronome.getDrumsLevel()
+        if(this.#level != level){
+            this.#level = level;
             this.changeLogo()
         }
     }
 
     changeLogo(){
         //logo.src = "css/images/logo/spicer_" + String(this.#level) +".gif"
+
         logo.src = "css/images/logo/spicer_" + String(this.#level) +".png"
     }
 

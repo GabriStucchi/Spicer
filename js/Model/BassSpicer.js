@@ -45,7 +45,8 @@ class BassSpicer {
   levelUp(){
     if(this.#level < 2){
       this.#level++
-      globalSpiceLevel.levelUp()
+      globalSpiceLevel.updateLevel()
+      renderLevel("bass")
     }
     console.log("Bass: " + this.#level)
     console.log("Total: " + globalSpiceLevel);
@@ -54,7 +55,8 @@ class BassSpicer {
   levelDown(){
     if(this.#level > 0){
       this.#level--
-      globalSpiceLevel.levelDown()
+      globalSpiceLevel.updateLevel()
+      renderLevel("bass")
     }
     console.log("Bass: " + this.#level)
     console.log("Total: " + globalSpiceLevel);
@@ -62,6 +64,11 @@ class BassSpicer {
 
   clean() {
     this.#spiced_tracks = undefined;
+  }
+
+
+  getLevel(){
+    return this.#level;
   }
 
 }

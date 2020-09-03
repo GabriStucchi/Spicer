@@ -24,19 +24,21 @@ class Drums {
   levelUp() {
     if(this.#tempLevel < 2) {
       this.#tempLevel++;
-      globalSpiceLevel.levelUp();
+      globalSpiceLevel.updateLevel();
     }
     console.log("Drums: " + this.#spiceLevel);
     console.log("Global: " + globalSpiceLevel);
+    renderLevel("drums")
   }
 
   levelDown() {
     if(this.#tempLevel > 0) {
       this.#tempLevel--;
-      globalSpiceLevel.levelDown(); 
+      globalSpiceLevel.updateLevel(); 
     }
     console.log("Drums: " + this.#spiceLevel);
     console.log("Global: " + globalSpiceLevel);
+    renderLevel("drums")
   }
 
   applyLevel() {
@@ -158,5 +160,10 @@ class Drums {
   // Reset the current beat when the track is paused
   stop() {
     this.#currentBeat = 0;
+  }
+
+
+  getLevel(){
+    return this.#spiceLevel;
   }
 }

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/synthStyle.css">
   <link rel="stylesheet" href="css/images.css">
+  <link rel="stylesheet" href="css/spicerSection.css">
 
   <script src="js/Model/WalkingBass.js" defer></script>
   <script src="js/Model/BassSpicer.js" defer></script>
@@ -441,6 +442,8 @@
     <img src="css/images/arrow.svg" class="arrow" id="bringUp" >
 
     <div id="spicerContent-large">
+
+    <div style= "display: block;">
     <button id="instrumentToggle">Instrumet Toggle</button>
     <p><select id='ins' onchange="selectIns(this)"></select></p>
     <div id="tempoBox">Tempo: <span id="showTempo">120</span>BPM <input id="tempo" type="range" min="30.0" max="300.0"
@@ -448,17 +451,46 @@
     <p><select id="keyRoot"></select></p>
     <p><select id='typeOfScale'"></select></p>
     <button id="playLoop">START</button>
-    <button class="spicerBtn" name="piano" value=0>PIANO -</button>
-    <button class="spicerBtn" name="piano" value=1>PIANO +</button>
-    <button class="spicerBtn" name="bass" value=0>BASS -</button>
-    <button class="spicerBtn" name="bass" value=1>BASS +</button>
-    <button class="spicerBtn" name="drums" value=0>DRUM -</button>
-    <button class="spicerBtn" name="drums" value=1>DRUM +</button>
+    </div>
+
+<div class="levels_container">
+    <div class="levelContainer" id="pianoLevelContainer">
+      <h2 class = "levelTitle">KEYS</h2>
+      <button class="spicerBtn" name="piano" value=1>PIANO +</button>      
+      <div class = "meter" id="pianoMeter">
+        <div class="meterLevel level_2"></div>
+        <div class="meterLevel level_1"></div>
+        <div class="meterLevel level_0"></div>
+      </div>
+      <button class="spicerBtn" name="piano" value=0>PIANO -</button>
+    </div>
+
+    <div class="levelContainer" id="bassLevelContainer">
+      <h2 class = "levelTitle">BASS</h2>
+      <button class="spicerBtn" name="bass" value=1>BASS +</button>
+      <div class="meter" id="bassMeter">
+        <div class="meterLevel level_2"></div>
+        <div class="meterLevel level_1"></div>
+        <div class="meterLevel level_0"></div>
+      </div>
+      <button class="spicerBtn" name="bass" value=0>BASS -</button>
+    </div>
+
+    <div class="levelContainer" id="bassLevelContainer">
+      <h2 class = "levelTitle">DRUMS</h2>
+      <button class="spicerBtn" name="drums" value=1>DRUM +</button>      
+      <div class="meter" id="drumsMeter">
+        <div class="meterLevel level_2"></div>
+        <div class="meterLevel level_1"></div>
+        <div class="meterLevel level_0"></div>
+      </div>
+      <button class="spicerBtn" name="drums" value=0>DRUM -</button>      
+    </div>
   </div>
 
-  <div id="spicerContent-small">
-
   </div>
+
+  <div id="spicerContent-small"></div>
 
   </div>
 
