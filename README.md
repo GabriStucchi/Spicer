@@ -21,7 +21,7 @@ Follow this simple steps to get started:
 2. Select the tonality and bpm of your music piece
 3. Press 'R' and wait for the countdown to start recording
 4. Play in four bars the basic chords of your piece, then they will loop and form the harmony structure 
-5. Choose which instruments to include and their spicer levels
+5. Choose which instruments to include and their spicer levels: the pepper on the logo will tell you the spiciness of the performance!
 6. Now you can start playing and improvising your solo with a synth and obtain the spiciest sound by tuning its parameters
 
 * EASY MODE: Instead of playing the chords for defining the harmony of the piece it's possible to play just the root of each one; then they will be harmonized by looking at the key.
@@ -91,3 +91,10 @@ The choice of <img src="https://user-images.githubusercontent.com/57997005/91971
 After having computed these two different walking bass bars the algorithm will randomly choose one of them and construct a multicolored and ever changing bass line!
 ![1](https://user-images.githubusercontent.com/57997005/91876344-e167d680-ec7c-11ea-9260-d4bf05276bb9.png)
 
+## Controls
+* Open the spicer menu by clicking on the window on the bottom
+* Insert the tonality on the dedicated drop down menu
+* Change the piano sound on the dedicated drop down menu
+* Spice up or down each instrument by clicking on their spice buttons: level 0 is for muting the instrument (except for piano) & level 2 is the maximum spiciness
+* Press 'R' to start recording, press it again to discard the record
+* Press 'P' to pause the execution, press it again to resume
