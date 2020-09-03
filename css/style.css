@@ -12,7 +12,7 @@ body{
   
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('images/darkWall.jpg');
   height: auto;
-  //zoom: 80%;
+  zoom: 80%;
 }
 
 
@@ -138,14 +138,7 @@ h1{
 }
 
 @-webkit-keyframes glow {
-  /*from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  }
-  
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-  }
-*/
+
   from {
     text-shadow: 0 0 5px rgb(238, 137, 137), 0 0 10px rgb(236, 100, 100), 0 0 15px #e6001f, 0 0 20px #e6001f, 0 0 25px #e6001f, 0 0 30px #e6001f, 0 0 35px #e6001f;
   }
