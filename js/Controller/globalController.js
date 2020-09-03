@@ -59,7 +59,7 @@ function changeSpice(button) {
         spicerEngine = bass_spicer;
         break;
       case "drums":
-        spicerEngine = player;        // Drums are in the player
+        spicerEngine = metronome;        // Drums are in the player
         break;
     }
   

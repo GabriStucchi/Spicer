@@ -9,7 +9,8 @@ class Metronome {
   #bar;                 // Bar tracker
   #countdown;           // Countdown for recording
   #timerWorker;         // Keeps the time
-  #playDrum;
+  #playDrum;            // True if the drums should play
+  #drums;               // Drums sounds
 
   constructor(bpm) {
     this.#isPlaying = false;
@@ -22,6 +23,7 @@ class Metronome {
     this.#countdown = 4;
     this.#timerWorker = new Worker("js/Model/timerWorker.js");
     this.#playDrum = false;
+    this.#drums = new Drums();
 
     // Manages the messages received from the Worker
     this.#timerWorker.onmessage = function (e) {
@@ -74,6 +76,7 @@ class Metronome {
     this.#isPlaying = false;
     this.#current16thNote = 0;                  // Reset all values
     this.#bar = 0;
+    this.#drums.stop();
   }
 
   // Resume the metronome (from playback)
@@ -94,6 +97,7 @@ class Metronome {
 
   // Schedule the actions
   schedule() {
+    
     // Instructions for QUARTER notes
     if ((this.#current16thNote % 4) == 0) {
       if ((this.#bar == 0) && (this.#current16thNote == 0)) {   // We are at the beginning of the first bar
@@ -102,13 +106,14 @@ class Metronome {
           console.log("RECORDING");
         }
         else {                              // The recording tick is finished
-          if (onAir) {                      //If we are on air stop the recording
+          if (onAir) {                      // If we are on air stop the recording
             recorder.stop(true);
             toggleOnAirLight();             // Toggle the light off
             console.log("STOP RECORDING")
           }
-          else {                            //If we are not on air loop the recording
+          else {                            // If we are not on air loop the recording
             player.play(true);
+            this.#drums.applyLevel();
           }
         }
       }
@@ -116,11 +121,6 @@ class Metronome {
       if (this.#isSounding) {     // Play the tick
         this.playTick();
       }
-    }
-
-    //Instructions for 8th notes
-    if ((this.#current16thNote % 2) == 0) {
-      // Walking bass
     }
 
     //Instruction for 16th notes
@@ -131,7 +131,8 @@ class Metronome {
     }
 
     if (this.#playDrum) {
-      player.playDrum();
+      //player.playDrum();
+      this.#drums.play();
     }
 
     //Increasing the counters
@@ -148,6 +149,7 @@ class Metronome {
     }
   }
 
+  // Play the metronome sound
   playTick() {
     // create an oscillator
     let osc = this.#audioContext.createOscillator();
@@ -170,6 +172,16 @@ class Metronome {
 
     osc.start(this.#audioContext.currentTime);
     osc.stop(this.#audioContext.currentTime + this.#tickLength);
+  }
+
+
+  // Methods for drums spice level
+  levelUp() {
+    this.#drums.levelUp();
+  }
+
+  levelDown() {
+    this.#drums.levelDown();
   }
 
 }

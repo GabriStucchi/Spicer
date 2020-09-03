@@ -119,8 +119,6 @@ class Chord {
     }
     //if the root note is not found in the tonality then the grade is left undefined
     //if the grade is undefined we are not going to _s p i c e_ it
-    console.log("grade:")
-    console.log(this.#grade)
     if (this.#grade !== undefined) {
       this.#grade++; //this is done to shift the 0 value to 1;
 

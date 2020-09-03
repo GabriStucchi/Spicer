@@ -16,7 +16,6 @@ class Drums {
     this.#spiceLevel = 0;
     this.#tempLevel = 0;
     this.#sounds.forEach(sound => {
-      //console.log(sound.volume)
       sound.volume = 0.4;
     });
   }
@@ -27,6 +26,8 @@ class Drums {
       this.#tempLevel++;
       globalSpiceLevel++;
     }
+    console.log("Drums: " + this.#spiceLevel);
+    console.log("Global: " + globalSpiceLevel);
   }
 
   levelDown() {
@@ -34,11 +35,12 @@ class Drums {
       this.#tempLevel--;
       globalSpiceLevel--; 
     }
+    console.log("Drums: " + this.#spiceLevel);
+    console.log("Global: " + globalSpiceLevel);
   }
 
   applyLevel() {
     this.#spiceLevel = this.#tempLevel;
-    console.log(this.#spiceLevel)
   }
 
   //Play the drum (at scheduled instants)

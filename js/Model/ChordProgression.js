@@ -183,17 +183,9 @@ class ChordProgression {
       windowStart = beatLength * i;
       windowEnd = beatLength * (i + 4);
 
-      console.log('-------------------------GET FIRST BEAT')
-      console.log('windowStart')
-      console.log(windowStart)
-      console.log('windowEnd')
-      console.log(windowEnd)
-      console.log('instantsOn');
-      console.log(instantsOn);
       chordsInWind = instantsOn.filter(
           (el) => el >= windowStart - beatLength/8 && el < windowEnd - beatLength/8);
-      console.log('chordsInWind')
-      console.log(chordsInWind)
+
       if (chordsInWind.length == 0) {
         if(choosen_chords.length>1){
           choosen_chords.push(choosen_chords[choosen_chords.length - 1])
@@ -203,10 +195,8 @@ class ChordProgression {
         }
       } else {
         choosen_chords.push(cprog.getChords().find(el=> el.getNotes()[0].getInstantOn() == chordsInWind[0]))
-        console.log(choosen_chords)
       }
     }
-//    console.log(choosen_chords)
     return choosen_chords
   }
 
