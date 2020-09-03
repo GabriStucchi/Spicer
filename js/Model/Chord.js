@@ -193,16 +193,18 @@ class Chord {
       let newQueue = this.#root.getQueue();
       let scale
       let seventhGrade
-      let seventhMidiNote
+      let seventh
 
       if (this.#notes.length == 3) {
+        /*
         //Trovo la settima con un loop sull' array major e poi trovo il suo intervallo con la radice
-        key.isMajor() =="Min" ? scale = minor : scale = major ;
+        key.isMajor()  ? scale = major : scale = minor ;
         scale = scale.map(el=> el- scale[this.#grade-1]) //shifts the scale intervals down
         seventhGrade = this.#grade -1 + 6
         seventhGrade >= scale.length ? seventhGrade -= (scale.length-1) + 1 : 0;
         seventhMidiNote = this.#root.getMidiNote() + scale[seventhGrade]
-        /*
+        */
+
         if (key.isMajor()) {
           seventh =
             major[(this.#grade + 5) % major.length] +
@@ -220,7 +222,7 @@ class Chord {
           seventh = seventh - 12;
         }
         seventh = this.#root.getMidiNote() + seventh;
-*/
+
 
         //todo if execution is too slow delete velocity average
         /* this.#notes.forEach((item) => {
@@ -228,12 +230,12 @@ class Chord {
           newVel += item.getVelocity() / this.#notes.length;
         });
         */
-       
+
        newOn = this.#notes[this.#notes.length -1].getInstantOn() +6;
        newOff = this.#notes[this.#notes.length - 1].getInstantOff();
        newVel = this.#notes[this.#notes.length - 1].getVelocity() - 6;
        newVel<= 0 ? newVel = 10: 0;
-       this.addNote(new Note(seventhMidiNote, newQueue, newVel, newOn, newOff))
+       this.addNote(new Note(seventh, newQueue, newVel, newOn, newOff))
        this.rearrange();
       }
     }
@@ -353,7 +355,7 @@ class Chord {
 
     //sets the scale itervals to scale
 
-    key.isMajor() =="Min" ? scale = minor : scale = major ;
+    key.isMajor()  ? scale = major : scale = minor ;
     let rootMidi = root.getMidiNote();
 
     if(!isInKey(rootMidi)){ //if the played note is not In key
