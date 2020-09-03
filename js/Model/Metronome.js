@@ -147,6 +147,10 @@ class Metronome {
         }
       }
     }
+
+    if((this.#current16thNote == 14) && (this.#bar == 3) && (instrumentChanged)){
+      changeInstrument();
+    }
   }
 
   // Play the metronome sound
