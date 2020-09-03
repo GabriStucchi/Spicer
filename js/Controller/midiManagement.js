@@ -79,12 +79,12 @@ function instrumentNoteOn(note) {
   noteOff(note.getMidiNote(), note.getInstantOn());
   let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
-    audioContext.destination,
+    compressor,
     tone,
     0,
     note.getMidiNote(),
     default_duration,
-    note.getVolume()
+    note.getVolume()*0.9
   );
   note.setQueue(queue);
   activeNotes.push(note);
@@ -122,24 +122,25 @@ function playbackNote(note) {
   duration = note.getDuration() / 1000;
   let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
-    audioContext.destination,
+    compressor,
     tone,
     audioContext.currentTime + timestampOn,
     note.getMidiNote(),
     duration,
-    note.getVolume()
+    note.getVolume()*0.9
   );
   note.setQueue(queue);
+  console.log(compressor.reduction);
 }
 
 function playbackBass(note) {
   timestampOn = note.getInstantOn() / 1000;
   duration = note.getDuration() / 1000;
   let queue = webAudioFontPlayer.queueWaveTable(
-    bassAudioContext,
-    bassAudioContext.destination,
+    audioContext,
+    compressor,
     bassTone,
-    bassAudioContext.currentTime + timestampOn,
+    audioContext.currentTime + timestampOn,
     note.getMidiNote(),
     duration,
     note.getVolume()
