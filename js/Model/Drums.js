@@ -7,7 +7,7 @@ class Drums {
 
   constructor() {
     //this.#sounds = [new Audio('/css/Audio/oldsouds/kickHat.wav'), new Audio('/css/Audio/oldsouds/kickHard.wav'), new Audio('/css/Audio/oldsouds/snareRide.wav'), new Audio('/css/Audio/oldsouds/ch1.wav')];
-    this.#sounds = [new Audio('/css/Audio/0_64.mp3'), new Audio('/css/Audio/4_64.mp3'), new Audio('/css/Audio/7_64.mp3'), new Audio('/css/Audio/8_64.mp3'), new Audio('/css/Audio/11_64.mp3'),
+    this.#sounds = [new Audio('/css/Audio/0_64.mp3'), new Audio('/css/Audio/4_64.mp3'), new Audio('/css/Audio/7_64.mp3'), new Audio('/css/Audio/8_64.mp3'), new Audio('/css/Audio/11_64.mp3'), 
                     new Audio('/css/Audio/14_64.mp3'), new Audio('/css/Audio/15_64.mp3'), new Audio('/css/Audio/19_64.mp3'), new Audio('/css/Audio/22_64.mp3'), new Audio('/css/Audio/23_64.mp3'),
                     new Audio('/css/Audio/27_64.mp3'), new Audio('/css/Audio/30_64.mp3'), new Audio('/css/Audio/31_64.mp3'), new Audio('/css/Audio/35_64.mp3'), new Audio('/css/Audio/38_64.mp3'),
                     new Audio('/css/Audio/38_64.mp3'), new Audio('/css/Audio/43_64.mp3'), new Audio('/css/Audio/46_64.mp3'), new Audio('/css/Audio/50_64.mp3'), new Audio('/css/Audio/51_64.mp3'),
@@ -17,7 +17,7 @@ class Drums {
     this.#tempLevel = 0;
     this.#sounds.forEach(sound => {
       //console.log(sound.volume)
-      sound.volume = 0.09;
+      sound.volume = 0.4;
     });
   }
 
@@ -32,7 +32,7 @@ class Drums {
   levelDown() {
     if(this.#tempLevel > 0) {
       this.#tempLevel--;
-      globalSpiceLevel--;
+      globalSpiceLevel--; 
     }
   }
 
@@ -146,7 +146,7 @@ class Drums {
         default:
           //do nothing
     }
-
+  
       this.#currentBeat++;
       if (this.#currentBeat == 64)
         this.#currentBeat = 0;
