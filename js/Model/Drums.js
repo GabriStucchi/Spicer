@@ -26,7 +26,7 @@ class Drums {
       this.#tempLevel++;
       globalSpiceLevel.updateLevel();
     }
-    console.log("Drums: " + this.#spiceLevel);
+    console.log("Drums: " + this.#tempLevel);
     console.log("Global: " + globalSpiceLevel);
     renderLevel("drums")
   }
@@ -36,7 +36,7 @@ class Drums {
       this.#tempLevel--;
       globalSpiceLevel.updateLevel(); 
     }
-    console.log("Drums: " + this.#spiceLevel);
+    console.log("Drums: " + this.#tempLevel);
     console.log("Global: " + globalSpiceLevel);
     renderLevel("drums")
   }
