@@ -92,7 +92,7 @@
 /* The container must be positioned relative: */
 .custom-select {
     position: relative;
-    font-family: Arial;
+    text-align: center;
   }
   
   .custom-select select {
@@ -100,7 +100,7 @@
   }
   
   .select-selected {
-    background-color: DodgerBlue;
+    background-color: rgba(255, 0, 0, 0.3);
   }
   
   /* Style the arrow inside the select element: */
@@ -133,7 +133,7 @@
   /* Style items (options): */
   .select-items {
     position: absolute;
-    background-color: DodgerBlue;
+    background-color: rgba(255, 0, 0, 0.3);
     top: 100%;
     left: 0;
     right: 0;
@@ -147,6 +147,15 @@
   
   .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
+  }
+
+
+  #selectKey{
+    width: 10px;
+  }
+
+  #selectScale{
+    width: 10px;
   }
 
 #tempoBox > div{
