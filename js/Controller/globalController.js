@@ -2,7 +2,8 @@
 let instrumentBtn = document.getElementById("instrumentToggle");
 let onAirBtn = document.querySelector(".onAirBtn");
 let playLoopBtn = document.getElementById("playLoop");
-let tempoBox = document.getElementById("tempoBox");
+let bpmNumber = document.getElementById("showTempo");
+let bpmButtons = document.querySelectorAll(".tempoBtn");
 let arrow = document.getElementsByClassName("arrow")[0];
 let keySelect = document.getElementById("keyRoot");
 let scaleType = document.getElementById("typeOfScale");
@@ -12,10 +13,12 @@ function toggleInstrument() {
   playSynth = !playSynth;
   if (playSynth) {
     muteSynth(false);
-    stopAllNotes()
+    stopAllNotes();
+    instrumentBtn.innerText = "KEYS";
   } else {
     muteSynth(true);
     synthNoteOff();
+    instrumentBtn.innerText = "SYNTH";
   }
   activeNotes.splice(0, activeNotes.length);
 }
@@ -23,7 +26,7 @@ function toggleInstrument() {
 function playback() {
   if(metronome.isPlaying() && (!metronome.isTicking())){   // If the track is looping
     metronome.pause();                                    // Stop it
-    setLoopBtnTxt("START");                               // Change the button name
+    setLoopBtnTxt("PLAY");                                // Change the button name
   }
   else if (!metronome.isPlaying()) {                      // If the metronome is stopped
     if(player.hasTrack()){                                // If the player has a track saved
@@ -45,6 +48,15 @@ function setLoopBtnTxt(txt) {
 
 function toggleOnAirLight() {
   onAirBtn.classList.toggle("onAir");
+}
+
+function changeTempo(button) {
+  button.onclick = () => {
+    button.value == 1
+      ? metronome.increaseBpm()
+      : metronome.decreaseBpm();
+    bpmNumber.innerText = metronome.getTempo();
+  }
 }
 
 function changeSpice(button) {
@@ -92,18 +104,6 @@ function manageRecording() {
   }
 }
 
-instrumentBtn.onclick = toggleInstrument;
-playLoopBtn.onclick = playback;
-arrow.onclick = showSpicer;     //Defined in View/spicerSection
-tempoBox.oninput = () => {
-  metronome.setTempo(event.target.value);
-  document.getElementById("showTempo").innerText = "Bpm " + String(metronome.getTempo());
-};
-keySelect.onchange = changeKey
-scaleType.onchange = changeScale
-spicers.forEach(changeSpice);
-
-
 function changeKey (e){
   key.setRootKey(possible_notes[keySelect.selectedIndex])
 };
@@ -111,6 +111,14 @@ function changeKey (e){
 function changeScale (e){
   key.setScaleType(tonalities[scaleType.selectedIndex])
 };
+
+instrumentBtn.onclick = toggleInstrument;
+playLoopBtn.onclick = playback;
+arrow.onclick = showSpicer;     //Defined in View/spicerSection
+bpmButtons.forEach(changeTempo); 
+keySelect.onchange = changeKey
+scaleType.onchange = changeScale
+spicers.forEach(changeSpice);
 
 
 document.onkeydown = (e) => {

@@ -446,17 +446,26 @@
       <div class="loopInfoContainer">
 
         <div id="tempoBox">
-          <div>
+        <!--  <div>
             <span id="showTempo">Bpm 120</span>
-          </div>
+          </div>-->
 
-          <div>
+        <!--  <div>
             <input id="tempo" type="range" min="30.0" max="300.0" step="1" value="120"
               style="height: 20px; width: 200px">
-          </div>
+          </div>-->
+
+          <div class="levels_container">
+            <div class="levelContainer" id="bpmChange">
+              <h2 class="levelTitle">BPM</h2>
+              <button class="tempoBtn" name="bpm" value=1>+</button>
+                  <span id="showTempo" style="font-size: 4em;">120</span>
+              <button class="tempoBtn" name="bpm" value=0>-</button>
+            </div>
+
         </div>
 
-        <button id="instrumentToggle">Instrumet Toggle</button>
+   <!--     <button id="instrumentToggle">Instrumet Toggle</button>-->
 
         <div class="custom-select" style="width:200px;">
           <select id='ins' onchange="selectIns(this)"></select>
@@ -471,8 +480,22 @@
           <select id='typeOfScale'"></select>
         </div>
 
+        <div id="playLoop" class="neon-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          PLAY
+        </div>
 
-        <button id="playLoop">START</button>
+    <!--    <button id="playLoop">START</button>-->
+        <div id="instrumentToggle" class="neon-button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          KEYS
+        </div>
 
       </div>
 

@@ -34,7 +34,8 @@
   border-radius: 10px;
 }
 
-.spicerBtn {
+.tempoBtn {
+  text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
   width: 50px;
@@ -51,6 +52,48 @@
 
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
+}
+
+.tempoBtn:hover{
+  transition: 0.5s;
+  background: #C00000;
+  color: #ffffff;
+  box-shadow: 0 0 5px #C00000,
+              0 0 25px #C00000,
+              0 0 50px #C00000,
+              0 0 200px #C00000;
+  /* -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);*/
+}
+
+.spicerBtn {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgb(192, 0, 0);
+  box-shadow: 0px 0px 15px 0px rgba(192, 0, 0, 0.8),
+    0px 0px 30px 0px rgba(238, 160, 160, 0.425);
+
+  background-color: rgba(192, 0, 0, 0);
+
+  font-size: large;
+  color: rgb(192, 0, 0);
+
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+}
+
+.spicerBtn:hover{
+  transition: 0.5s;
+  background: #C00000;
+  color: #ffffff;
+  box-shadow: 0 0 5px #C00000,
+              0 0 25px #C00000,
+              0 0 50px #C00000,
+              0 0 200px #C00000;
+  /* -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);*/
 }
 
 .level_0 {
@@ -160,4 +203,37 @@
 
 #tempoBox > div{
     display: block;
+}
+
+.neon-button{
+  position: relative;
+  display: inline-block;
+  padding: 25px 30px;
+  margin: 40px 0;
+  color: #C00000;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  overflow: hidden;
+  margin-right: 50px;
+  width: 85px;
+  text-align: center;
+}
+.neon-button:hover{
+  background: #C00000;
+  color: #ffffff;
+  box-shadow: 0 0 5px #C00000,
+              0 0 25px #C00000,
+              0 0 50px #C00000,
+              0 0 200px #C00000;
+}
+.neon-button:nth-child(1){
+  filter: hue-rotate(270deg);
+}
+.neon-button:nth-child(2){
+  filter: hue-rotate(110deg);
+}
+.neon-button span{
+  position: absolute;
+  display: block;
 }

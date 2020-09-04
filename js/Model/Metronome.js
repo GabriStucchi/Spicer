@@ -37,9 +37,18 @@ class Metronome {
   }
 
   // Set the tempo (NOT POSSIBLE WHILE PLAYING)
-  setTempo(bpm) {
-    this.#tempo = bpm;
-    this.#timerWorker.postMessage({ "interval": 60000 / (4 * bpm) });
+  increaseBpm() {
+    if(this.#tempo < 300) {
+      this.#tempo++;
+      this.#timerWorker.postMessage({ "interval": 60000 / (4 * this.#tempo) });
+    }
+  }
+
+  decreaseBpm() {
+    if(this.#tempo > 30) {
+      this.#tempo--;
+      this.#timerWorker.postMessage({ "interval": 60000 / (4 * this.#tempo) });
+    }
   }
 
   getTempo() {
