@@ -4,7 +4,7 @@
 
 <h2 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
 
-![tag](https://img.shields.io/aur/last-modified/google-chrome) ![David](https://img.shields.io/david/surikov/webaudiofont)
+![GitHub stars](https://img.shields.io/github/stars/GabriStucchi/Spicer?style=social)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/57997005/91635013-1f52c980-e9f5-11ea-852c-8e1d80ab34b9.png?raw=true" alt="image"/>
