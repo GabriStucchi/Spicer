@@ -21,7 +21,7 @@ Follow this simple steps to get started:
 2. Select the tonality and bpm of your music piece.
 3. Press 'R' and wait a bar to start recording.
 4. Play in four bars the basic chords of your piece, then they will loop and form the harmony structure.
-5. Choose which instruments to include and their spicer levels: the pepper on the logo will tell you the spiciness of the performance!
+5. Choose which instruments to include and their Spicer levels: look at the chili pepper on the logo to check the spiciness of the performance!
 6. Now you can start playing and improvising your solo with a synth and obtain the spiciest sound by tuning its parameters.
 
 * EASY MODE: Instead of playing the chords for defining the harmony of the piece it's possible to play just the root of each one; then they will be harmonized depending on the key.
@@ -35,7 +35,7 @@ Follow this simple steps to get started:
 <img src="https://user-images.githubusercontent.com/57997005/92218168-fcaf2d80-ee98-11ea-97f8-37b02cdb112b.png" alt="Spicer Bar" width="1200"/>
 </p>
 
-Open the spicer menu by clicking on the window on the bottom:
+Open the Spicer menu by clicking on the window on the bottom:
 1 Change the bpm.
 2 Insert the tonality. 
 3 Change the piano sound. 
@@ -47,7 +47,7 @@ Open the spicer menu by clicking on the window on the bottom:
 ## Shortcuts
 * Press 'R' to start recording, press it again to discard the record
 * Press 'P' to pause the execution, press it again to resume
-* Press shift to open/close the spicer menu
+* Press shift to open/close the Spicer menu
 
 
 ## Features
