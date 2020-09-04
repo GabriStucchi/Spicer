@@ -2,7 +2,7 @@
 
 
 .black{
-    background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=090a09&noise=626262&density=47&opacity=13");
+    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=090a09&noise=626262&density=47&opacity=13");
     color: white;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .green {
-    background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=4ec979ff&noise=626262&density=47&opacity=13");
+    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=4ec979ff&noise=626262&density=47&opacity=13");
 }
 
 .invert-color{
@@ -63,7 +63,7 @@ filter: invert(1);
 
 .lightblue {
     border: 2px solid rgba(207, 31, 31, 0.7);
-    background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=4ea6caff&noise=626262&density=47&opacity=13");
+    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=4ea6caff&noise=626262&density=47&opacity=13");
 }
 
 .main-container {
@@ -100,7 +100,7 @@ filter: invert(1);
 
 .red {
   border: 2px solid rgba(207, 31, 31, 0.7);
-  background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=cf1f1fff&noise=737367&density=47&opacity=13");
+  background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=cf1f1fff&noise=737367&density=47&opacity=13");
   box-shadow: 1px 4px 4px 0px rgba(0, 0, 0, 0.7), -1px -1px 1px 0px rgba(207, 31, 31, 0.7);
 
 }
@@ -158,7 +158,7 @@ filter: invert(1);
 .yellow {
     height: 125px;
     border: 2px solid rgba(237, 217, 87, 0.7);
-    background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=edd957ff&noise=a3a396&density=47&opacity=13");
+    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=edd957ff&noise=a3a396&density=47&opacity=13");
     box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.7), -1px -1px 1px 0px rgba(0, 0, 0, 0.7);
 }
 
