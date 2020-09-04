@@ -445,30 +445,30 @@
 
     <div class= "loopInfoContainer">
 
+      <div id="tempoBox">
+        <div>
+          <span id="showTempo">Bpm 120</span>
+        </div>
+  
+        <div>
+          <input id="tempo" type="range" min="30.0" max="300.0"step="1" value="120" style="height: 20px; width: 200px">
+        </div>
+      </div>
+
     <button id="instrumentToggle">Instrumet Toggle</button>
 
     <div class="custom-select" style="width:200px;">
       <select id='ins' onchange="selectIns(this)"></select>
     </div>
-    
-    <div id="tempoBox">
-      <div>
-        <span id="showTempo">Bpm 120</span>
-      </div>
 
-      <div>
-        <input id="tempo" type="range" min="30.0" max="300.0"step="1" value="120" style="height: 20px; width: 200px">
-      </div>
-    </div>
-
-    <div class="custom-select" style="width:200px;">
+    <div class="custom-select" id="selectKey" style="width:200px;">
       <select id="keyRoot">
 </select>
     </div>
 
 
 
-    <div class="custom-select" style="width:200px;">
+    <div class="custom-select" id="selectScale" style="width:200px;">
       <select id='typeOfScale'"></select>
     </div>
 
