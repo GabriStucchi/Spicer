@@ -215,6 +215,6 @@ class Drums {
 
 
   getLevel() {
-    return this.#spiceLevel;
+    return this.#tempLevel;
   }
 }

@@ -116,6 +116,7 @@ class Metronome {
           console.log("RECORDING");
         }
         else {                              // The recording tick is finished
+          this.#drums.applyLevel();
           if (onAir) {                      // If we are on air stop the recording
             recorder.stop(true);
             toggleOnAirLight();             // Toggle the light off
@@ -123,7 +124,6 @@ class Metronome {
           }
           else {                            // If we are not on air loop the recording
             player.play(true);
-            this.#drums.applyLevel();
           }
         }
       }
@@ -150,7 +150,7 @@ class Metronome {
       }
     }
 
-    if((this.#current16thNote == 12) && (this.#bar == 3) && (instrumentChanged)){
+    if((this.#current16thNote == 10) && (this.#bar == 3) && (instrumentChanged)){
       changeInstrument();
     }
   }

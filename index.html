@@ -103,22 +103,22 @@
             <form class="radio-container">
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="sine" name="0" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" checked />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" checked />
                 <img class="invert-color" src="css/images/sine.svg" alt="sine">
               </div>
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="triangle" name="0" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
                 <img class="invert-color" src="css/images/triangle.svg" alt="triangle">
               </div>
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="square" name="0" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
                 <img class="invert-color" src="css/images/square.svg" alt="square">
               </div>
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="sawtooth" name="0" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
                 <img class="invert-color" src="css/images/sawtooth.svg" alt="sawtooth">
               </div>
             </form>
@@ -151,22 +151,22 @@
             <form class="radio-container">
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="sine" name="1" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" checked />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" checked />
                 <img class="invert-color" src="css/images/sine.svg" alt="sine">
               </div>
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="triangle" name="1" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
                 <img class="invert-color" src="css/images/triangle.svg" alt="triangle">
               </div>
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="square" name="1" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
                 <img class="invert-color" src="css/images/square.svg" alt="square">
               </div>
               <div class="vertical-radio">
                 <input type="radio" class="input-switch lfoWaveform" value="sawtooth" name="1" data-diameter="17"
-                  data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                  data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
                 <img class="invert-color" src="css/images/sawtooth.svg" alt="sawtooth">
               </div>
             </form>
@@ -309,17 +309,17 @@
           <form class="radio-container" id="noise-type">
             <div class="vertical-radio">
               <input type="radio" class="input-switch" value="white" name="noiseType" data-diameter="17"
-                data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" checked />
+                data-bgcolor="#f5f5f5" data-fgcolor="#03abff" checked />
               <br><label for="white">W</label>
             </div>
             <div class="vertical-radio">
               <input type="radio" class="input-switch" value="pink" name="noiseType" data-diameter="17"
-                data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
               <br><label for="pink">P</label>
             </div>
             <div class="vertical-radio">
               <input type="radio" class="input-switch" value="brown" name="noiseType" data-diameter="17"
-                data-bgcolor="#f5f5f5" data-fgcolor="#2be3ff" />
+                data-bgcolor="#f5f5f5" data-fgcolor="#03abff" />
               <br><label for="brown">B</label>
             </div>
           </form>
@@ -342,15 +342,15 @@
           <form class="radio-container filterradio" id="filter-type">
             <div class="vertical-radio">
               <input type="radio" class="input-switch" value="lowpass" name="filterType" data-diameter="17" checked />
-              <br><label for="lowpass">LP</label>
+              <br><label for="lowpass">L</label>
             </div>
             <div class="vertical-radio">
               <input type="radio" class="input-switch" value="highpass" name="filterType" data-diameter="17" />
-              <br><label for="highpass">HP</label>
+              <br><label for="highpass">H</label>
             </div>
             <div class="vertical-radio">
               <input type="radio" class="input-switch" value="bandpass" name="filterType" data-diameter="17" />
-              <br><label for="bandpass">BP</label>
+              <br><label for="bandpass">B</label>
             </div>
           </form>
 
@@ -439,82 +439,81 @@
   </div>
 
   <div id="spicerSection">
-    <img src="css/images/arrow.svg" class="arrow" id="bringUp" >
+    <img src="css/images/arrow.svg" class="arrow" id="bringUp">
 
     <div id="spicerContent-large">
 
-    <div class= "loopInfoContainer">
+      <div class="loopInfoContainer">
 
-      <div id="tempoBox">
-        <div>
-          <span id="showTempo">Bpm 120</span>
+        <div id="tempoBox">
+          <div>
+            <span id="showTempo">Bpm 120</span>
+          </div>
+
+          <div>
+            <input id="tempo" type="range" min="30.0" max="300.0" step="1" value="120"
+              style="height: 20px; width: 200px">
+          </div>
         </div>
-  
-        <div>
-          <input id="tempo" type="range" min="30.0" max="300.0"step="1" value="120" style="height: 20px; width: 200px">
+
+        <button id="instrumentToggle">Instrumet Toggle</button>
+
+        <div class="custom-select" style="width:200px;">
+          <select id='ins' onchange="selectIns(this)"></select>
+        </div>
+
+        <div class="custom-select" id="selectKey" style="width:200px;">
+          <select id="keyRoot">
+          </select>
+        </div>
+
+        <div class="custom-select" id="selectScale" style="width:200px;">
+          <select id='typeOfScale'"></select>
+        </div>
+
+
+        <button id="playLoop">START</button>
+
+      </div>
+
+      <div class="levels_container">
+        <div class="levelContainer" id="pianoLevelContainer">
+          <h2 class="levelTitle">KEYS</h2>
+          <button class="spicerBtn" name="piano" value=1>+</button>
+          <div class="meter" id="pianoMeter">
+            <div class="meterLevel level_2"></div>
+            <div class="meterLevel level_1"></div>
+            <div class="meterLevel level_0"></div>
+          </div>
+          <button class="spicerBtn" name="piano" value=0>-</button>
+        </div>
+
+        <div class="levelContainer" id="bassLevelContainer">
+          <h2 class="levelTitle">BASS</h2>
+          <button class="spicerBtn" name="bass" value=1>+</button>
+          <div class="meter" id="bassMeter">
+            <div class="meterLevel level_2"></div>
+            <div class="meterLevel level_1"></div>
+            <div class="meterLevel level_0"></div>
+          </div>
+          <button class="spicerBtn" name="bass" value=0>-</button>
+        </div>
+
+        <div class="levelContainer" id="bassLevelContainer">
+          <h2 class="levelTitle">DRUMS</h2>
+          <button class="spicerBtn" name="drums" value=1>+</button>
+          <div class="meter" id="drumsMeter">
+            <div class="meterLevel level_2"></div>
+            <div class="meterLevel level_1"></div>
+            <div class="meterLevel level_0"></div>
+          </div>
+          <button class="spicerBtn" name="drums" value=0>-</button>
         </div>
       </div>
 
-    <button id="instrumentToggle">Instrumet Toggle</button>
-
-    <div class="custom-select" style="width:200px;">
-      <select id='ins' onchange="selectIns(this)"></select>
     </div>
 
-    <div class="custom-select" id="selectKey" style="width:200px;">
-      <select id="keyRoot">
-</select>
-    </div>
-
-
-
-    <div class="custom-select" id="selectScale" style="width:200px;">
-      <select id='typeOfScale'"></select>
-    </div>
-
-
-    <button id="playLoop">START</button>
-
-    </div>
-
-<div class="levels_container">
-    <div class="levelContainer" id="pianoLevelContainer">
-      <h2 class = "levelTitle">KEYS</h2>
-      <button class="spicerBtn" name="piano" value=1>+</button>      
-      <div class = "meter" id="pianoMeter">
-        <div class="meterLevel level_2"></div>
-        <div class="meterLevel level_1"></div>
-        <div class="meterLevel level_0"></div>
-      </div>
-      <button class="spicerBtn" name="piano" value=0>-</button>
-    </div>
-
-    <div class="levelContainer" id="bassLevelContainer">
-      <h2 class = "levelTitle">BASS</h2>
-      <button class="spicerBtn" name="bass" value=1>+</button>
-      <div class="meter" id="bassMeter">
-        <div class="meterLevel level_2"></div>
-        <div class="meterLevel level_1"></div>
-        <div class="meterLevel level_0"></div>
-      </div>
-      <button class="spicerBtn" name="bass" value=0>-</button>
-    </div>
-
-    <div class="levelContainer" id="bassLevelContainer">
-      <h2 class = "levelTitle">DRUMS</h2>
-      <button class="spicerBtn" name="drums" value=1>+</button>      
-      <div class="meter" id="drumsMeter">
-        <div class="meterLevel level_2"></div>
-        <div class="meterLevel level_1"></div>
-        <div class="meterLevel level_0"></div>
-      </div>
-      <button class="spicerBtn" name="drums" value=0>-</button>      
-    </div>
-  </div>
-
-  </div>
-
-  <div id="spicerContent-small"></div>
+    <div id="spicerContent-small"></div>
 
   </div>
 

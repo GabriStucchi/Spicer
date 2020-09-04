@@ -2,8 +2,9 @@
 
 
 .black{
-    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=090a09&noise=626262&density=47&opacity=13");
+    background-image: url("images/synth_colors/black.png");
     color: white;
+    font-family: "neon";
 }
 
 
@@ -30,7 +31,8 @@
 }
 
 .green {
-    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=4ec979ff&noise=626262&density=47&opacity=13");
+    background-image: url("images/synth_colors/green.png");
+    font-family: "neon";
 }
 
 .invert-color{
@@ -41,7 +43,7 @@ filter: invert(1);
 .knob-label{
   font-weight:normal;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 4px;
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -63,7 +65,8 @@ filter: invert(1);
 
 .lightblue {
     border: 2px solid rgba(207, 31, 31, 0.7);
-    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=4ea6caff&noise=626262&density=47&opacity=13");
+    background-image: url("images/synth_colors/blue.png");
+    font-family: "neon";
 }
 
 .main-container {
@@ -100,9 +103,9 @@ filter: invert(1);
 
 .red {
   border: 2px solid rgba(207, 31, 31, 0.7);
-  background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=cf1f1fff&noise=737367&density=47&opacity=13");
+  background-image: url("images/synth_colors/red.png");
   box-shadow: 1px 4px 4px 0px rgba(0, 0, 0, 0.7), -1px -1px 1px 0px rgba(207, 31, 31, 0.7);
-
+  font-family: "neon";
 }
 
 .section-name {
@@ -158,8 +161,9 @@ filter: invert(1);
 .yellow {
     height: 125px;
     border: 2px solid rgba(237, 217, 87, 0.7);
-    background-image: url("https://api.thumbr.it/whitenoise-361x370.png?background=edd957ff&noise=a3a396&density=47&opacity=13");
+    background-image: url("images/synth_colors/yellow.png");
     box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.7), -1px -1px 1px 0px rgba(0, 0, 0, 0.7);
+    font-family: "neon";
 }
 
 

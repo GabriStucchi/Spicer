@@ -4,7 +4,7 @@ var bassTone = _tone_0000_JCLive_sf2_file;
 var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContextFunc();
 var webAudioFontPlayer = new WebAudioFontPlayer();
-let availableInstruments = [1, 45, 46, 47, 60, 170, 182, 183, 960, 965, 1020];
+let availableInstruments = [1, 45, 46, 60, 170, 182, 183, 960];
 let selectedInstrument = 0;
 let instrumentChanged = false;
 let pianoCompressor;
