@@ -92,6 +92,7 @@ function manageRecording() {
   }
 }
 
+
 instrumentBtn.onclick = toggleInstrument;
 playLoopBtn.onclick = playback;
 arrow.onclick = showSpicer;     //Defined in View/spicerSection
