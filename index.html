@@ -443,14 +443,38 @@
 
     <div id="spicerContent-large">
 
-    <div class= "tempDiv">
+    <div class= "loopInfoContainer">
+
     <button id="instrumentToggle">Instrumet Toggle</button>
-    <p><select id='ins' onchange="selectIns(this)"></select></p>
-    <div id="tempoBox">Tempo: <span id="showTempo">120</span>BPM <input id="tempo" type="range" min="30.0" max="300.0"
-      step="1" value="120" style="height: 20px; width: 200px"></div>
-    <p><select id="keyRoot"></select></p>
-    <p><select id='typeOfScale'"></select></p>
+
+    <div class="custom-select" style="width:200px;">
+      <select id='ins' onchange="selectIns(this)"></select>
+    </div>
+    
+    <div id="tempoBox">
+      <div>
+        <span id="showTempo">Bpm 120</span>
+      </div>
+
+      <div>
+        <input id="tempo" type="range" min="30.0" max="300.0"step="1" value="120" style="height: 20px; width: 200px">
+      </div>
+    </div>
+
+    <div class="custom-select" style="width:200px;">
+      <select id="keyRoot">
+</select>
+    </div>
+
+
+
+    <div class="custom-select" style="width:200px;">
+      <select id='typeOfScale'"></select>
+    </div>
+
+
     <button id="playLoop">START</button>
+
     </div>
 
 <div class="levels_container">
