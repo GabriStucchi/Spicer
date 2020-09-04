@@ -79,7 +79,7 @@ function instrumentNoteOn(note) {
   noteOff(note.getMidiNote(), note.getInstantOn());
   let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
-    compressor,
+    pianoCompressor,
     tone,
     0,
     note.getMidiNote(),
@@ -122,7 +122,7 @@ function playbackNote(note) {
   duration = note.getDuration() / 1000;
   let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
-    compressor,
+    pianoCompressor,
     tone,
     audioContext.currentTime + timestampOn,
     note.getMidiNote(),
@@ -137,7 +137,7 @@ function playbackBass(note) {
   duration = note.getDuration() / 1000;
   let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
-    compressor,
+    bassCompressor,
     bassTone,
     audioContext.currentTime + timestampOn,
     note.getMidiNote(),

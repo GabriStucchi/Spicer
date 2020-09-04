@@ -7,16 +7,38 @@ var webAudioFontPlayer = new WebAudioFontPlayer();
 let availableInstruments = [1, 45, 46, 47, 60, 170, 182, 183, 960, 965, 1020];
 let selectedInstrument = 0;
 let instrumentChanged = false;
-
-let compressor = audioContext.createDynamicsCompressor();	
-compressor.threshold.setValueAtTime(-45, audioContext.currentTime);
-compressor.knee.setValueAtTime(40, audioContext.currentTime);
-compressor.ratio.setValueAtTime(8, audioContext.currentTime);
-compressor.attack.setValueAtTime(0.02, audioContext.currentTime);
-compressor.release.setValueAtTime(0.25, audioContext.currentTime);
-compressor.connect(audioContext.destination);
-
+let pianoCompressor;
+let bassCompressor;
+let pianoGain;          // Piano (WebAudio) Gain: 0 - 1
+let bassGain;           // Bass (WebAudio) Gain: 0 - 1
+let drumsGain;          // Drum gain (not WebAudio): 0 - 0.4
 var selIns = document.getElementById('ins');
+
+pianoCompressor = audioContext.createDynamicsCompressor();	
+bassCompressor = audioContext.createDynamicsCompressor();	
+pianoGain = audioContext.createGain();
+bassGain = audioContext.createGain();
+
+pianoCompressor.threshold.setValueAtTime(-45, audioContext.currentTime);
+pianoCompressor.knee.setValueAtTime(40, audioContext.currentTime);
+pianoCompressor.ratio.setValueAtTime(8, audioContext.currentTime);
+pianoCompressor.attack.setValueAtTime(0.02, audioContext.currentTime);
+pianoCompressor.release.setValueAtTime(0.25, audioContext.currentTime);
+
+bassCompressor.threshold.setValueAtTime(-45, audioContext.currentTime);
+bassCompressor.knee.setValueAtTime(40, audioContext.currentTime);
+bassCompressor.ratio.setValueAtTime(8, audioContext.currentTime);
+bassCompressor.attack.setValueAtTime(0.02, audioContext.currentTime);
+bassCompressor.release.setValueAtTime(0.25, audioContext.currentTime);
+
+pianoGain.gain.value = 0.7;
+bassGain.gain.value = 0.7;
+drumsGain = 0.3;
+
+pianoCompressor.connect(pianoGain);
+bassCompressor.connect(bassGain);
+pianoGain.connect(audioContext.destination);
+bassGain.connect(audioContext.destination);
 
 webAudioFontPlayer.loader.decodeAfterLoading(audioContext, '_tone_0000_JCLive_sf2_file');
 
@@ -55,4 +77,10 @@ function changeInstrument() {
         webAudioFontPlayer.cancelQueue(audioContext);
     });
     instrumentChanged = false
+    if(selectedInstrument == 0) {
+        pianoGain.gain.value = 0.7;
+    }
+    else{
+        pianoGain.value = 0.4;
+    }
 }
