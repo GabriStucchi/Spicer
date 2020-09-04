@@ -237,3 +237,9 @@
   position: absolute;
   display: block;
 }
+
+#lc_wrapper{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}

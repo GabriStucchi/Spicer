@@ -87,6 +87,7 @@ body{
 
 #spicerContent-large{
   display: none;
+  height: 100%;
 }
 
 #spicerContent-small{
