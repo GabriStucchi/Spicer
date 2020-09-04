@@ -35,15 +35,19 @@ Follow this simple steps to get started:
 <img src="https://user-images.githubusercontent.com/57997005/92218168-fcaf2d80-ee98-11ea-97f8-37b02cdb112b.png" alt="Spicer Bar" width="1200"/>
 </p>
 
-1 Open the spicer menu by clicking on the window on the bottom
-2 Insert the tonality on the dedicated drop down menu
-3 Change the piano sound on the dedicated drop down menu
-4 Change the bpm by dragging the slider
+Open the spicer menu by clicking on the window on the bottom:
+1 Change the bpm.
+2 Insert the tonality. 
+3 Change the piano sound. 
+4 Spice up or down the instruments
+5 Switch between synth sound and selected piano sound
+6 Play/stop the loop
+7 Set the volume of each instruments
 
 ## Shortcuts
-* Spice up or down each instrument by clicking on their spice buttons: level 0 is for muting the instrument (except for piano) & level 2 is the maximum spiciness
 * Press 'R' to start recording, press it again to discard the record
 * Press 'P' to pause the execution, press it again to resume
+* Press shift to open/close the spicer menu
 
 
 ## Features
@@ -76,18 +80,6 @@ The synth is composed of the following components:
 | **Effects** | The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_. |
 | **Modulation** | Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitches and the filter cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated. |
 
-### Voicings
-If the piano complexity level is set to its maximum, whenever in the chord progression is detected a II - V - I fragement, then voicings are performed. 
-
-Voicings are particular arangements and movements of the pitches of a chord aimed at achieving a pleasurable effect. The chords used can include 7ths, 9ths and also 13ths and they can have two configurations:
-* Basic:
-<img src="https://user-images.githubusercontent.com/57997005/92108562-e8f7be80-ede7-11ea-824f-5250d232e16a.jpg" alt="beat_4" width="300"/> 
-
-* First Inversion:
-<img src="https://user-images.githubusercontent.com/57997005/92108563-ea28eb80-ede7-11ea-85c5-ac1946a0e525.jpg" alt="beat_4" width="300"/>
-
-The algorithm chooses everytime the one that falls within the range D4 - F5.
-
 ### Walking Bass
 If the bass is active and set to the higher complexity level it plays an ever changing walking bass line, which consists of notes of equal duration (typically 1/4 notes) that create a feeling of forward motion. Its implementation is designed in order to give a realistic feel and a certain degree of freedom to it and the four beats <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> of each bass line are chosen by following specific rules:
 * beat <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/> : It must be the root of the chord played on this beat. It's the first to be computed by the algorithm by randomly choosing the root on different octaves (but constrained to the walking bass range F2 - A3).
@@ -114,6 +106,18 @@ After having computed these two different walking bass bars the algorithm will r
 <p align="center">
 <img src="https://user-images.githubusercontent.com/57997005/91876344-e167d680-ec7c-11ea-9260-d4bf05276bb9.png" alt="Walking" width="500"/>
 </p>
+
+### Voicings
+If the piano complexity level is set to its maximum, whenever in the chord progression is detected a II - V - I fragement, then voicings are performed. 
+
+Voicings are particular arangements and movements of the pitches of a chord aimed at achieving a pleasurable effect. The chords used can include 7ths, 9ths and also 13ths and they can have two configurations:
+* Basic:
+<img src="https://user-images.githubusercontent.com/57997005/92108562-e8f7be80-ede7-11ea-824f-5250d232e16a.jpg" alt="beat_4" width="300"/> 
+
+* First Inversion:
+<img src="https://user-images.githubusercontent.com/57997005/92108563-ea28eb80-ede7-11ea-85c5-ac1946a0e525.jpg" alt="beat_4" width="300"/>
+
+The algorithm chooses everytime the one that falls within the range D4 - F5.
 
 
 
