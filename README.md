@@ -64,7 +64,7 @@ Open the Spicer menu by clicking on the window on the bottom:
 ### Synthesizer
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/57997005/92222700-aee9f380-ee9f-11ea-938f-ec9cdacbd8b4.png" alt="Spicer Bar" width="1000"/>
+<img src="https://user-images.githubusercontent.com/37587013/92247265-4151bd80-eec7-11ea-9425-51c77537ab68.png" alt="Spicer Bar" width="1000"/>
 </p>
 
 Inspired by the colorful design of the _Moog Grandmother_ and build using [Tone.js](https://tonejs.github.io/) framework the monophonic Spicer Synthesizer gives the opportunity to jam on top of your spiced arrangement.
