@@ -81,6 +81,6 @@ function changeInstrument() {
         pianoGain.gain.value = 0.7;
     }
     else{
-        pianoGain.value = 0.4;
+        pianoGain.gain.value = 0.5;
     }
 }
