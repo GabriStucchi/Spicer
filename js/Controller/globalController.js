@@ -97,12 +97,20 @@ playLoopBtn.onclick = playback;
 arrow.onclick = showSpicer;     //Defined in View/spicerSection
 tempoBox.oninput = () => {
   metronome.setTempo(event.target.value);
-  document.getElementById("showTempo").innerText = metronome.getTempo();
+  document.getElementById("showTempo").innerText = "Bpm " + String(metronome.getTempo());
 };
-keySelect.onchange = (e) => key.setRootKey(e.target.value);
-scaleType.onchange = (e) => key.setScaleType(e.target.value);
+keySelect.onchange = changeKey
+scaleType.onchange = changeScale
 spicers.forEach(changeSpice);
 
+
+function changeKey (e){
+  key.setRootKey(possible_notes[keySelect.selectedIndex])
+};
+
+function changeScale (e){
+  key.setScaleType(tonalities[scaleType.selectedIndex])
+};
 
 
 document.onkeydown = (e) => {
