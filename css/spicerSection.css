@@ -49,13 +49,13 @@
 
   font-size: large;
   color: rgb(192, 0, 0);
+  transition: 0.3s;
 
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
 }
 
 .tempoBtn:hover{
-  transition: 0.5s;
   background: #C00000;
   color: #ffffff;
   box-shadow: 0 0 5px #C00000,
@@ -87,13 +87,13 @@
 
   font-size: large;
   color: rgb(192, 0, 0);
+  transition: 0.3s;
 
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
 }
 
 .spicerBtn:hover{
-  transition: 0.5s;
   background: #C00000;
   color: #ffffff;
   box-shadow: 0 0 5px #C00000,
@@ -153,7 +153,6 @@
 
 .select-selected {
   background-color: rgba(255, 0, 0, 0);
-  transition: 0.5s;
 }
 
 .select-selected:hover{
@@ -168,6 +167,7 @@
 /* style the items (options), including the selected item: */
 .select-items div,.select-selected {
   cursor: pointer;
+  transition: 0.3s;
 }
   
 /* Style items (options): */
@@ -198,6 +198,10 @@
   line-height: 43px;
 }
 
+#instrumentSelection .select-items {
+  line-height: 50px;
+}
+
 #instrumentSelection {
   width: 300px;
   margin-bottom: 0;
@@ -211,7 +215,7 @@
   color: #C00000;
   text-decoration: none;
   text-transform: uppercase;
-  transition: 0.5s;
+  transition: 0.3s;
   overflow: hidden;
   width: 150px;
   text-align: center;
@@ -236,7 +240,7 @@
   display: flex;
   align-items: center;
   height: 80%;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .play-keys-btns {
