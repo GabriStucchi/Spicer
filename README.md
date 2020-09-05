@@ -2,28 +2,28 @@
   <img src="https://user-images.githubusercontent.com/24576858/92103904-e0e85080-ede0-11ea-8e61-5ba2f4050be4.gif" width="50%"//>
 </p>
 
-<h2 align="center"> A tool for spicing up your music: as simple as a loop station, as spicy as a whole band! </h3>
+<h2 align="center"> As simple as a loop station, as spicy as a whole band! </h3>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/57997005/92307841-7d555300-ef99-11ea-920d-1980a558dd16.gif" width="150%"/>
 </p>
 
 <h1 align="center">
-<a href="https://gabristucchi.github.io/" align="center"> START JAMMING </a>
+<a href="https://gabristucchi.github.io/" align="center"> START SPICING </a>
 </h1>
 
 ## How To Use
-The Spicer a Web application meant to spice up your music performances offering a virtual band playing live together with you: just play the basic chord progression of your piece and let the magic happen! 
+The Spicer a Web application meant to spice up your music performances offering a virtual band playing live together with you: just play a basic chord progression and let the magic happen! 
 
 You can choose which instruments to include in your band and their level of expertise and also modify them while playing to create different textures.
 
-Follow this simple steps to get started:
+Follow these simple steps to get started:
 
 1. Connect a MIDI keyboard.
-2. Select the tonality and bpm of your music piece.
+2. Select the tonality and the bpm.
 3. Press 'R' and wait a bar to start recording.
-4. Play in four bars the basic chords of your piece, then they will loop and form the harmony structure.
-5. Choose which instruments to include and their Spicer levels: look at the chili pepper on the logo to check on the spiciness of the performance!
+4. Play in four bars the basic chords of your piece; then they will loop and form the harmony structure.
+5. Choose which instruments to include and their Spice levels: look at the chili pepper on the logo to check the spiciness of the performance!
 6. Now you can start playing and improvising your solo with a synth and obtain the spiciest sound by tuning its parameters.
 
 * EASY MODE: Instead of playing the chords for defining the harmony of your piece it's possible to play just the root of each one; then they will be harmonized depending on the key.
@@ -37,30 +37,30 @@ Follow this simple steps to get started:
 <img src="https://user-images.githubusercontent.com/57997005/92308424-b4c5fe80-ef9d-11ea-95b4-e1b578675b70.jpg" alt="Spicer Bar" width="1200"/>
 </p>
 
-Open the Spicer menu by clicking on the window on the bottom:
+Open the Spicer menu by clicking on the window on the bottom or by pressing shift:
 
-1. Change the bpm.
-2. Insert the tonality. 
+1. Choose the bpm.
+2. Choose the tonality. 
 3. Change the piano sound. 
 4. Spice up or down the instruments.
-5. Play/stop the loop.
-6. Switch between synth sound and selected piano sound.
+5. Play/stop the recorded loop.
+6. Switch between playing the Synth or the selected piano.
 
 ## Shortcuts
 * Press 'R' to start recording, press it again to discard the record.
-* Press 'P' to pause the loop, press it again to resume.
+* Press 'P' to pause the recorded loop, press it again to resume.
 * Press shift to open/close the Spicer menu
 
 
 ## Features
 ### Band Instrument Selection
-Each instrument of the band has two levels of Spicer: the higher it is the more complex and spicy will be its performance style!
+Each instrument of the band has two Spice levels: the higher it is the more complex and spicy will be its performance style!
 Level zero corresponds to muting the instrument except for keys which still play the recorded chord progression shifting all the notes to the D4 - F5 range.
 
-| Instrument | First Level  | Second Level | 
+| Instrument | Level 1  | Level 2 | 
 | :---         | :---      | :--- |
 | **Piano**   | Enriches the chords with maj/min 7th or 6th, if possible, depending on the chord progression.    | Enriches the chords with 9th and generates voicings if possible.    |
-| **Bass**   | Plays the fundamental note of each chord and the leading tone to the next fundamental .      | Create a four beat walking bass line.      |
+| **Bass**   | Plays the fundamental note of each chord and the leading tone to the next fundamental.      | Create a four beat walking bass line.      |
 | **Drums**    | Plays a standard drums pattern.       | Plays a strong drumfill.     |
 
 ### Synthesizer
@@ -78,11 +78,11 @@ The synth is composed of the following components:
 3. **Filter** - Can be _low pass_, _high pass_ or _bandpass_ with a 24 dB/octave slope and a Resonance control.
 4. **Envelope** - Shapes the sound amplitude and (optionally) the filter cutoff frequency.
 5. **Output** - Control the main output gain.
-6. **Effects** - The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_.
+6. **Effects** - The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_. The dedicated knobs control the amount of wet signal.
 7. **Modulation** - Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitches and the filter's cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated.
 
 ### Walking Bass
-If the bass is active and set to the higher Spicer level it plays an ever changing walking bass line, which consists of notes of equal duration (typically 1/4 notes) that create a feeling of forward motion. Its implementation is designed to give a realistic feel and a certain degree of freedom to it; the four beats <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> of each bass line are chosen by following specific rules:
+If the bass is active and set to the higher Spice level it plays an ever changing walking bass line, which consists of notes of equal duration (typically 1/4 notes) that create a feeling of forward motion. Its implementation is designed to give a realistic feel and a certain degree of freedom to it; the four beats <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> of each bass line are chosen by following specific rules:
 * beat <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/> : It must be the root of the chord played on this beat. It's the first to be computed by the algorithm by randomly choosing the root on different octaves (but constrained to the walking bass range F2 - A3).
 
 
@@ -109,7 +109,7 @@ After having computed these two different walking bass bars the algorithm will r
 </p>
 
 ### Voicings
-If the piano complexity level is set to its maximum, whenever in the chord progression is detected a II - V - I fragement, then voicings are performed. 
+If the keys Spice level is set to its maximum, whenever in the chord progression is detected a II - V - I fragement, then voicings are performed. 
 
 Voicings are particular arangements and movements of the pitches of a chord aimed at achieving a pleasurable effect. The chords used can include 7ths, 9ths and also 13ths and they can have two configurations:
 * Basic:
