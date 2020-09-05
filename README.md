@@ -64,21 +64,19 @@ Open the Spicer menu by clicking on the window on the bottom:
 ### Synthesizer
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/37587013/92247265-4151bd80-eec7-11ea-9425-51c77537ab68.png" alt="Spicer Bar" width="1000"/>
+<img src="https://user-images.githubusercontent.com/37587013/92270285-175bc380-eee6-11ea-945b-edfc5b78d920.png" alt="Spicer Bar" width="1000"/>
 </p>
 
 Inspired by the colorful design of the _Moog Grandmother_ and build using [Tone.js](https://tonejs.github.io/) framework the monophonic Spicer Synthesizer gives the opportunity to jam on top of your spiced arrangement.
 The synth is composed of the following components:
 
-| Control |  |
-| :---  | :---  | 
-| **Oscillators** | There are two of them: both are able to play the classic four waveforms (_Sine_, _Triangle_, _Square_ and _Sawtooth_) and have a dedicated octave control. |
-| **Mixer** | Craft the sound by controlling the oscillators' gains and by adding some Noise that can be _White_, _Pink_ or _Brown_. |
-| **Filter** | Can be _low pass_, _high pass_ or _bandpass_ with a 24 dB/octave slope and a Resonance control. |
-| **Envelope** | Shapes the sound amplitude and (optionally) the filter cutoff frequency. |
-| **Output** | Control the main output gain. |
-| **Effects** | The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_. |
-| **Modulation** | Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitches and the filter cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated. |
+1. **Oscillators** - Two oscillators, both are able to play the classic four waveforms (_Sine_, _Triangle_, _Square_ and _Sawtooth_) and have a dedicated octave control.
+2. **Mixer** - Craft the sound by controlling the oscillators' gains and by adding some Noise that can be _White_, _Pink_ or _Brown_.
+3. **Filter** - Can be _low pass_, _high pass_ or _bandpass_ with a 24 dB/octave slope and a Resonance control.
+4. **Envelope** - Shapes the sound amplitude and (optionally) the filter cutoff frequency.
+5. **Output** - Control the main output gain.
+6. **Effects** - The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_.
+7. **Modulation** - Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitches and the filter cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated.
 
 ### Walking Bass
 If the bass is active and set to the higher complexity level it plays an ever changing walking bass line, which consists of notes of equal duration (typically 1/4 notes) that create a feeling of forward motion. Its implementation is designed in order to give a realistic feel and a certain degree of freedom to it and the four beats <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> of each bass line are chosen by following specific rules:
