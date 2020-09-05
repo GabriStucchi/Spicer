@@ -27,7 +27,6 @@ body{
   width: 100%;
 }
 
-
 .leather-box{
   width: 1200px;
   height: 650px;
@@ -222,4 +221,12 @@ h1{
   to {
     text-shadow: 0 0 5px rgb(238, 137, 137), 0 0 10px rgb(236, 100, 100), 0 0 15px #e6001f, 0 0 20px #e6001f, 0 0 25px #e6001f, 0 0 30px #e6001f, 0 0 35px #e6001f;
   }
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
 }
