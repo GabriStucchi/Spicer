@@ -9,6 +9,7 @@ let keySelect = document.getElementById("keyRoot");
 let scaleType = document.getElementById("typeOfScale");
 let spicers = document.querySelectorAll(".spicerBtn");
 
+// Onclick function for changing the instrument played by MIDI (Synth or Keys)
 function toggleInstrument() {
   playSynth = !playSynth;
   if (playSynth) {
@@ -23,6 +24,7 @@ function toggleInstrument() {
   activeNotes.splice(0, activeNotes.length);
 }
 
+// Play/Stop the recorded track 
 function playback() {
   if(metronome.isPlaying() && (!metronome.isTicking())){   // If the track is looping
     metronome.pause();                                    // Stop it
@@ -36,33 +38,40 @@ function playback() {
   }
 }
 
+// Set the ON AIR label text
 function setOnAirTxt(txt) {
   txt == undefined
     ? (onAirBtn.innerText = "ON AIR")
     : (onAirBtn.innerText = txt);
 }
 
+// Set the Play/Stop button text
 function setLoopBtnTxt(txt) {
   playLoopBtn.innerText = txt;
 }
 
+// Lights on/off the ON AIR label
 function toggleOnAirLight() {
   onAirBtn.classList.toggle("onAir");
 }
 
+// Change the tempo (works only if no track has been recorded)
 function changeTempo(button) {
   button.onclick = () => {
-    button.value == 1
-      ? metronome.increaseBpm()
-      : metronome.decreaseBpm();
-    bpmNumber.innerText = metronome.getTempo();
+    if(!player.hasTrack()){                         // If no track has been recorder
+      button.value == 1                             // Check the button value
+        ? metronome.increaseBpm()                   // If 1, increase BPM 
+        : metronome.decreaseBpm();                  // Else decrease BPM
+      bpmNumber.innerText = metronome.getTempo();   // Update the label
+    }
   }
 }
 
+// Change the spice level of each instrument
 function changeSpice(button) {
   let spicerEngine;
 
-  button.onclick = () => {
+  button.onclick = () => {              // Choose the right spicer (piano, bass, drum)
     switch (button.name) {
       case "piano":
         spicerEngine = spicer;
@@ -74,13 +83,14 @@ function changeSpice(button) {
         spicerEngine = metronome;        // Drums are in the player
         break;
     }
-
-    button.value == 1
+  
+    button.value == 1                   // Apply the level up/down
       ? spicerEngine.levelUp()
       : spicerEngine.levelDown();
   }
 }
 
+// Onclick function of the key "R"
 function manageRecording() {
   if(metronome.isPlaying()) {       // If the metronome is playing
     if(metronome.isTicking()) {     // If the metronome is ticking
@@ -104,14 +114,17 @@ function manageRecording() {
   }
 }
 
+// Change the key when a new one is chosen
 function changeKey (e){
   key.setRootKey(possible_notes[keySelect.selectedIndex])
 };
 
+// Change the scale when a new one is chosen
 function changeScale (e){
   key.setScaleType(tonalities[scaleType.selectedIndex])
 };
 
+// Change the color of the note played
 function colorKey (pitch, shouldColor){
   document.querySelectorAll('.key').forEach((key, i) => {
     if (i == pitch - 36) {
@@ -120,6 +133,7 @@ function colorKey (pitch, shouldColor){
   });
 }
 
+// Linking HTML element to respective functions
 instrumentBtn.onclick = toggleInstrument;
 playLoopBtn.onclick = playback;
 arrow.onclick = showSpicer;     //Defined in View/spicerSection
@@ -128,7 +142,7 @@ keySelect.onchange = changeKey
 scaleType.onchange = changeScale
 spicers.forEach(changeSpice);
 
-
+// Detecting keyboard pressing and linking to the respective function
 document.onkeydown = (e) => {
   switch(e.code) {
 
