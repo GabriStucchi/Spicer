@@ -48,6 +48,8 @@ class Player {
     }
   }
 
+
+
   // Clean the layer (deletes the tracks and restart the drums)
   clean() {
     if(this.#pianoTrack != undefined){

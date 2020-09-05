@@ -83,8 +83,13 @@ function changeSpice(button) {
         spicerEngine = metronome;        // Drums are in the player
         break;
     }
+<<<<<<< HEAD
   
     button.value == 1                   // Apply the level up/down
+=======
+
+    button.value == 1
+>>>>>>> 27737dccd5510310e80b03b6d33781684d5b6055
       ? spicerEngine.levelUp()
       : spicerEngine.levelDown();
   }
@@ -124,11 +129,20 @@ function changeScale (e){
   key.setScaleType(tonalities[scaleType.selectedIndex])
 };
 
-// Linking HTML elements to functions
+// Change the color of the note played
+function colorKey (pitch, shouldColor){
+  document.querySelectorAll('.key').forEach((key, i) => {
+    if (i == pitch - 36) {
+      key.classList.toggle('active')
+    }
+  });
+}
+
+// Linking HTML element to respective functions
 instrumentBtn.onclick = toggleInstrument;
 playLoopBtn.onclick = playback;
 arrow.onclick = showSpicer;     //Defined in View/spicerSection
-bpmButtons.forEach(changeTempo); 
+bpmButtons.forEach(changeTempo);
 keySelect.onchange = changeKey
 scaleType.onchange = changeScale
 spicers.forEach(changeSpice);
@@ -148,7 +162,7 @@ document.onkeydown = (e) => {
     case "ShiftLeft":
       showSpicer();
       break;
-    
+
     case "ShiftRight":
       showSpicer();
       break;

@@ -19,13 +19,27 @@
   border-top-left-radius: 5px;
 }
 
+.white.active {
+  border-top:1px solid #777;
+  border-left:1px solid #999;
+  border-bottom:1px solid #999;
+  box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
+  background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+}
+
 .white:last-child{
   box-shadow: 4px 0px 2px 0 rgba(0, 0, 0, 0.7);
 }
+
 .black{
   background-color: #1a1a00;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 2px 0px 2px 0 rgba(0, 0, 0, 0.4);
   position: absolute;
+}
+
+.black.active {
+  box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
+  background:linear-gradient(to right,#444 0%,#222 100%)
 }
