@@ -62,13 +62,14 @@
               0 0 25px #C00000,
               0 0 50px #C00000,
               0 0 200px #C00000;
-  /* -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);*/
+  cursor: pointer;
 }
 
 #showTempo {
   font-size: 4em; 
   display: block; 
   margin: 15px 0;
+  width: 120px;
 }
 
 .spicerBtn {
@@ -99,7 +100,7 @@
               0 0 25px #C00000,
               0 0 50px #C00000,
               0 0 200px #C00000;
-  /* -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);*/
+  cursor: pointer;
 }
 
 .level_0 {
@@ -136,8 +137,6 @@
     0px 0px 20px 0px rgba(255, 57, 57, 0.253);
 }
 
-
-
 /* The container must be positioned relative: */
 .custom-select {
   position: relative;
@@ -147,7 +146,7 @@
   line-height: 61px;
   width: 150px;
 }
-  
+ 
 .custom-select select {
   display: none; /*hide original SELECT element: */
 }
@@ -165,38 +164,15 @@
               0 0 50px #C00000,
               0 0 200px #C00000;
 }
-
-/* Style the arrow inside the select element: 
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}*/
-  
-/* Point the arrow upwards when the select box is open (active): 
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}*/
   
 /* style the items (options), including the selected item: */
 .select-items div,.select-selected {
-  /*padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;*/
   cursor: pointer;
 }
   
 /* Style items (options): */
 .select-items {
   position: absolute;
-  /*background-color: rgba(255, 0, 0, 0.3);*/
-  /*background: #C00000;*/
   background-color: rgba(20, 20, 20, 0.7);
   top: 100%;
   left: 0;
@@ -218,6 +194,10 @@
               0 0 200px #C00000;
 }
 
+#selectKey .select-items {
+  line-height: 43px;
+}
+
 #instrumentSelection {
   width: 300px;
 }
@@ -235,6 +215,7 @@
   width: 150px;
   text-align: center;
 }
+
 .neon-button:hover{
   background: #C00000;
   color: #ffffff;
@@ -242,6 +223,7 @@
               0 0 25px #C00000,
               0 0 50px #C00000,
               0 0 200px #C00000;
+  cursor: pointer;
 }
 
 .neon-button span{
@@ -253,7 +235,7 @@
   display: flex;
   align-items: center;
   height: 80%;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .play-keys-btns {
@@ -264,4 +246,9 @@
 #bpmChange {
   margin-left: 350px;
   margin-right: 0px;
+}
+
+.tonalitySelection {
+  display: inline-block !important;
+  width: 145px;
 }
