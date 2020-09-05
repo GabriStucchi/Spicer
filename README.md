@@ -44,7 +44,7 @@ Open the Spicer menu by clicking on the window on the bottom or by pressing shif
 3. Change the piano sound. 
 4. Spice up or down the instruments.
 5. Play/stop the recorded loop.
-6. Switch between playing the Synth or the selected piano.
+6. Switch between playing the synth or the selected keys.
 
 ## Shortcuts
 * Press 'R' to start recording, press it again to discard the record.
