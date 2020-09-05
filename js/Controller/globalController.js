@@ -83,13 +83,8 @@ function changeSpice(button) {
         spicerEngine = metronome;        // Drums are in the player
         break;
     }
-<<<<<<< HEAD
   
     button.value == 1                   // Apply the level up/down
-=======
-
-    button.value == 1
->>>>>>> 27737dccd5510310e80b03b6d33781684d5b6055
       ? spicerEngine.levelUp()
       : spicerEngine.levelDown();
   }
