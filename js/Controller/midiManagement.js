@@ -51,6 +51,7 @@ function noteOn(note) {
       changeSynthNote(note);
       activeNotes.push(note);
       synthNoteOn();
+      colorKey(note.getMidiNote());
     } else {
       //suona piano
       instrumentNoteOn(note);
@@ -63,6 +64,7 @@ function noteOff(pitch, timestamp) {
   if (index != -1) {
     // if the note is found in active notes
     if (playSynth) {
+      colorKey(pitch);
       activeNotes.splice(index, 1);
       if (activeNotes.length == 0) synthNoteOff();
       else if (index == activeNotes.length)
@@ -75,7 +77,7 @@ function noteOff(pitch, timestamp) {
 }
 
 function instrumentNoteOn(note) {
-
+  colorKey(note.getMidiNote());
   noteOff(note.getMidiNote(), note.getInstantOn());
   let queue = webAudioFontPlayer.queueWaveTable(
     audioContext,
@@ -95,11 +97,13 @@ function instrumentNoteOn(note) {
 }
 
 function instrumentNoteOff(timestamp, index) {
+  colorKey(activeNotes[index].getMidiNote());
   if (activeNotes[index].getQueue()) {
     activeNotes[index].getQueue().cancel();
   }
   if (onAir) {
     recorder.endNote(activeNotes[index], timestamp);
+
   }
   activeNotes.splice(index, 1);
 
