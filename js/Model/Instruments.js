@@ -5,6 +5,8 @@ var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContextFunc();
 var webAudioFontPlayer = new WebAudioFontPlayer();
 let availableInstruments = [1, 45, 46, 60, 170, 182, 183, 960];
+let instrumentNames = ["acoustic grand piano", "electric piano 1", "electric piano 2", "electric piano 3", "percussive organ", "rock organ 1", 
+                        "rock organ 2", "synth pad"]
 let selectedInstrument = 0;
 let instrumentChanged = false;
 let pianoCompressor;
@@ -45,7 +47,7 @@ webAudioFontPlayer.loader.decodeAfterLoading(audioContext, '_tone_0000_JCLive_sf
 // Populating the instruments list
 availableInstruments.forEach((instr, index) => {
     var opt = document.createElement('option');
-    opt.innerHTML = ''+(index+1)+'. '+ webAudioFontPlayer.loader.instrumentInfo(instr).title;
+    opt.innerHTML = instrumentNames[index];
     selIns.appendChild(opt);
 })
 

@@ -1,6 +1,6 @@
 .loopInfoContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -12,12 +12,12 @@
 }
 
 .levelContainer {
-  margin-left: 100px;
-  margin-right: 100px;
+  margin: auto 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 150px;
+  text-align: center;
 }
 
 .meter {
@@ -63,6 +63,12 @@
               0 0 50px #C00000,
               0 0 200px #C00000;
   /* -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);*/
+}
+
+#showTempo {
+  font-size: 4em; 
+  display: block; 
+  margin: 15px 0;
 }
 
 .spicerBtn {
@@ -134,89 +140,99 @@
 
 /* The container must be positioned relative: */
 .custom-select {
-    position: relative;
-    text-align: center;
-  }
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  line-height: 61px;
+  width: 150px;
+}
   
-  .custom-select select {
-    display: none; /*hide original SELECT element: */
-  }
-  
-  .select-selected {
-    background-color: rgba(255, 0, 0, 0.3);
-  }
-  
-  /* Style the arrow inside the select element: */
-  .select-selected:after {
-    position: absolute;
-    content: "";
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-color: #fff transparent transparent transparent;
-  }
-  
-  /* Point the arrow upwards when the select box is open (active): */
-  .select-selected.select-arrow-active:after {
-    border-color: transparent transparent #fff transparent;
-    top: 7px;
-  }
-  
-  /* style the items (options), including the selected item: */
-  .select-items div,.select-selected {
-    color: #ffffff;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-    cursor: pointer;
-  }
-  
-  /* Style items (options): */
-  .select-items {
-    position: absolute;
-    background-color: rgba(255, 0, 0, 0.3);
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-  }
-  
-  /* Hide the items when the select box is closed: */
-  .select-hide {
-    display: none;
-  }
-  
-  .select-items div:hover, .same-as-selected {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
 
+.select-selected {
+  background-color: rgba(255, 0, 0, 0);
+  transition: 0.5s;
+}
 
-  #selectKey{
-    width: 10px;
-  }
+.select-selected:hover{
+  background: #C00000;
+  color: #ffffff;
+  box-shadow: 0 0 5px #C00000,
+              0 0 25px #C00000,
+              0 0 50px #C00000,
+              0 0 200px #C00000;
+}
 
-  #selectScale{
-    width: 10px;
-  }
+/* Style the arrow inside the select element: 
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}*/
+  
+/* Point the arrow upwards when the select box is open (active): 
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}*/
+  
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  /*padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;*/
+  cursor: pointer;
+}
+  
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  /*background-color: rgba(255, 0, 0, 0.3);*/
+  /*background: #C00000;*/
+  background-color: rgba(20, 20, 20, 0.7);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+  
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
 
-#tempoBox > div{
-    display: block;
+.select-items div:hover, .same-as-selected {
+  background: #C00000;
+  color: #ffffff;
+  box-shadow: 0 0 5px #C00000,
+              0 0 25px #C00000,
+              0 0 50px #C00000,
+              0 0 200px #C00000;
+}
+
+#instrumentSelection {
+  width: 300px;
 }
 
 .neon-button{
   position: relative;
-  display: inline-block;
-  padding: 25px 30px;
-  margin: 40px 0;
+  display: block;
+  padding: 25px 0;
+  margin: 40px auto;
   color: #C00000;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
   overflow: hidden;
-  margin-right: 50px;
-  width: 85px;
+  width: 150px;
   text-align: center;
 }
 .neon-button:hover{
@@ -227,12 +243,7 @@
               0 0 50px #C00000,
               0 0 200px #C00000;
 }
-.neon-button:nth-child(1){
-  filter: hue-rotate(270deg);
-}
-.neon-button:nth-child(2){
-  filter: hue-rotate(110deg);
-}
+
 .neon-button span{
   position: absolute;
   display: block;
@@ -241,5 +252,16 @@
 #lc_wrapper{
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 80%;
+  margin-top: 20px;
+}
+
+.play-keys-btns {
+  display: inline-block;
+  margin-right: 150px;
+}
+
+#bpmChange {
+  margin-left: 350px;
+  margin-right: 0px;
 }
