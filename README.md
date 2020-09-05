@@ -8,8 +8,10 @@
   <img src="https://user-images.githubusercontent.com/57997005/92307841-7d555300-ef99-11ea-920d-1980a558dd16.gif" width="150%"/>
 </p>
 
+### [Click Here To Open Spicer](https://gabristucchi.github.io/) 
+
 ## How To Use
-The Spicer is meant to spice up your music performances offering a virtual band playing live together with you: just play the basic chord progression of your piece and let the magic happen! 
+The Spicer a Web application meant to spice up your music performances offering a virtual band playing live together with you: just play the basic chord progression of your piece and let the magic happen! 
 
 You can choose which instruments to include in your band and their level of expertise and also modify them while playing to create different textures.
 
