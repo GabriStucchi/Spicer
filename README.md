@@ -61,7 +61,7 @@ Level zero corresponds to muting the instrument except for keys which still play
 | :---         | :---      | :--- |
 | **Piano**   | Enriches the chords with maj/min 7th or 6th, if possible, depending on the chord progression.    | Enriches the chords with 9th and generates voicings if possible.    |
 | **Bass**   | Plays the fundamental note of each chord and the leading tone to the next fundamental.      | Create a four beat walking bass line.      |
-| **Drums**    | Plays a standard drums pattern.       | Plays a strong drumfill.     |
+| **Drums**    | Plays a chilling drums pattern.       | Plays a powerful drums pattern.     |
 
 ### Synthesizer
 Inspired by the colorful design of the _Moog Grandmother_ and built using the [Tone.js](https://tonejs.github.io/) framework, the monophonic Spicer Synthesizer gives the opportunity to jam on top of your spiced arrangement achieving the spiciest solo sound.
