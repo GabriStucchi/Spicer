@@ -14,7 +14,6 @@ class BassSpicer {
 
   spice(){ //returns the spiced track according to the level  
     if(this.#spiced_tracks === undefined){
-      console.log(cprog)
       this.#spiced_tracks = []
       let bassLines = [];
       let firstNotes = [];
@@ -46,8 +45,6 @@ class BassSpicer {
       globalSpiceLevel.updateLevel()
       renderLevel("bass")
     }
-    console.log("Bass: " + this.#level)
-    console.log("Total: " + globalSpiceLevel);
   }
 
   levelDown(){
@@ -56,8 +53,6 @@ class BassSpicer {
       globalSpiceLevel.updateLevel()
       renderLevel("bass")
     }
-    console.log("Bass: " + this.#level)
-    console.log("Total: " + globalSpiceLevel);
   }
 
   clean() {

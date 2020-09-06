@@ -188,7 +188,6 @@ for (i = 0; i < l; i++) {
         for (i = 0; i < sl; i++) {
           if (s.options[i].innerHTML == this.innerHTML) {
             s.selectedIndex = i;
-            console.log(s)
             if(s.id=="ins"){
                 selectIns(s)
             }else{

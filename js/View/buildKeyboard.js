@@ -31,13 +31,6 @@ for(var i=-2;i<=1;i++) {
       visualKeyboard[n + ',' + i] = thisKey;
       visualKeyboard.appendChild(thisKey);
       iKeys++;
-      /* Possible next implementation
-      thisKey.onclick = function () {
-        thisKey.classList.toggle('active')
-        console.log(thisKey.classList);
-        //noteOn(new Note(pitch, undefined, velocity, timestamp, undefined));
-      }
-      */
     }
   }
 }

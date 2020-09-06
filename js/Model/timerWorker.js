@@ -3,7 +3,6 @@ let timerInterval = 100;
 
 self.onmessage=function(e){
 	if (e.data=="start") {
-		console.log("start timer")
 		timerID
 			? console.log("Timer already running")
 			: timerID = setInterval(() => postMessage("timeout"), timerInterval);
@@ -17,7 +16,6 @@ self.onmessage=function(e){
 		}
 	}
 	else if (e.data=="stop") {
-		console.log("stop timer")
 		clearInterval(timerID);
 		timerID = null;
 	}

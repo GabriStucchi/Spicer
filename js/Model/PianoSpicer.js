@@ -41,8 +41,6 @@ class PianoSpicer {
       this.#level++
       globalSpiceLevel.updateLevel()
     }
-    console.log("Piano: " + this.#level)
-    console.log("Global: " + globalSpiceLevel);
     renderLevel("piano")
   }
 
@@ -51,8 +49,6 @@ class PianoSpicer {
       this.#level--
       globalSpiceLevel.updateLevel()
     }
-    console.log("Piano: " + this.#level)
-    console.log("Global: " + globalSpiceLevel);
     renderLevel("piano")
   }
 

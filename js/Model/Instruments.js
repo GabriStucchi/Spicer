@@ -4,8 +4,8 @@ var bassTone = _tone_0000_JCLive_sf2_file;
 var AudioContextFunc = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContextFunc();
 var webAudioFontPlayer = new WebAudioFontPlayer();
-let availableInstruments = [0, 45, 46, 60, 170, 182, 183, 960];
-let instrumentNames = ["acoustic grand piano", "electric piano 1", "electric piano 2", "electric piano 3", "percussive organ", "rock organ 1", 
+let availableInstruments = [0, 45, 46, 60, 169, 181, 182, 960];
+let instrumentNames = ["acoustic grand piano", "electric piano 1", "electric piano 2", "electric piano 3", "organ", "rock organ 1", 
                         "rock organ 2", "synth pad"]
 let selectedInstrument = 0;
 let instrumentChanged = false;
@@ -63,7 +63,6 @@ function selectIns(o){
 // Load the bass sound (predefined)
 webAudioFontPlayer.loader.startLoad(audioContext, webAudioFontPlayer.loader.instrumentInfo(378).url, webAudioFontPlayer.loader.instrumentInfo(378).variable);
 webAudioFontPlayer.loader.waitLoad(function () {
-    //console.log('done',webAudioFontPlayer.loader.instrumentInfo(378).variable);
     bassTone = window[webAudioFontPlayer.loader.instrumentInfo(378).variable];
     webAudioFontPlayer.cancelQueue(audioContext);
 });
@@ -71,10 +70,8 @@ webAudioFontPlayer.loader.waitLoad(function () {
 
 function changeInstrument() {
     var info = webAudioFontPlayer.loader.instrumentInfo(availableInstruments[selectedInstrument]);
-    //console.log('select',selectedInstrument,info);
     webAudioFontPlayer.loader.startLoad(audioContext, info.url, info.variable);
     webAudioFontPlayer.loader.waitLoad(function () {
-        console.log('done',info.variable);
         tone=window[info.variable];
         webAudioFontPlayer.cancelQueue(audioContext);
     });
@@ -83,6 +80,6 @@ function changeInstrument() {
         pianoGain.gain.value = 0.7;
     }
     else{
-        pianoGain.gain.value = 0.5;
+        pianoGain.gain.value = 0.55;
     }
 }
