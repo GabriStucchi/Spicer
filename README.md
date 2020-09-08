@@ -30,7 +30,9 @@ Follow these simple steps to get started:
 * SOUND SELECTION: It's possible to choose between different types of keys, including pianos, organs and pads. The set of possible sampled sounds is imported from [WebAudioFont](https://surikov.github.io/webaudiofont/).
 
 
-<h3 align="center"> youtube demo link </h3>
+<h3 align="center"> 
+  <a href="https://www.youtube.com/watch?v=sBVO2PVux7Y&feature=emb_title" align="center"> WATCH A DEMO </a>
+</h3>
 
 ## Controls
 <p align="center">
