@@ -26,11 +26,13 @@ Follow these simple steps to get started:
 5. Choose which instruments to include and their Spice levels: look at the chili pepper on the logo to check the spiciness of the performance!
 6. Now you can start playing and improvising your solo with a synth and obtain the spiciest sound by tuning its parameters.
 
-* EASY MODE: Instead of playing the chords for defining the harmony of your piece it's possible to play just the root of each one; then they will be harmonized depending on the key.
+* EASY MODE: Instead of playing the chords to define the harmony of your piece it's possible to play just the root of each one; then they will be harmonized depending on the key.
 * SOUND SELECTION: It's possible to choose between different types of keys, including pianos, organs and pads. The set of possible sampled sounds is imported from [WebAudioFont](https://surikov.github.io/webaudiofont/).
 
 
-<h3 align="center"> youtube demo link </h3>
+<h3 align="center"> 
+  <a href="https://www.youtube.com/watch?v=sBVO2PVux7Y&feature=emb_title" align="center"> WATCH A DEMO </a>
+</h3>
 
 ## Controls
 <p align="center">
@@ -54,7 +56,7 @@ Open the Spicer menu by clicking on the window on the bottom or by pressing shif
 
 ## Features
 ### Band Instrument Selection
-Each instrument of the band has two Spice levels: the higher it is the more complex and spicy will be its performance style!
+Each instrument of the band has two Spice levels: the higher it is, the more complex and spicy its performance style will be!
 Level zero corresponds to muting the instrument except for keys which still play the recorded chord progression shifting all the notes to the D4 - F5 range.
 
 | Instrument | Level 1  | Level 2 | 
@@ -79,7 +81,7 @@ The synth is composed of the following components:
 4. **Envelope** - Shapes the sound amplitude and (optionally) the filter cutoff frequency.
 5. **Output** - Control the main output gain.
 6. **Effects** - The sound generated can be spiced up even more applying a _PingPong Delay_ and a _Convolution Reverb_. The dedicated knobs control the amount of wet signal.
-7. **Modulation** - Two indipendent LFOs that can be used to give life to the sound created. The LFOs are pre-routed to modulate the oscillators' pitches and the filter's cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated.
+7. **Modulation** - Two indipendent LFOs that can be used to give life to the created sound. The LFOs are pre-routed to modulate the oscillators' pitches and the filter's cutoff frequency. Both can be toggled on or off and can be controlled in Frequency, Amplitude and Waveform generated.
 
 ### Walking Bass
 If the bass is active and set to the higher Spice level it plays an ever changing walking bass line, which consists of notes of equal duration (typically 1/4 notes) that create a feeling of forward motion. Its implementation is designed to give a realistic feel and a certain degree of freedom to it; the four beats <img src="https://user-images.githubusercontent.com/57997005/91971162-0a3da980-ed19-11ea-9efc-2077535bb9c8.png" alt="beat_1" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/>  <img src="https://user-images.githubusercontent.com/57997005/91971178-10338a80-ed19-11ea-9988-25bf541da008.png" alt="beat_4" width="23"/> of each bass line are chosen by following specific rules:
@@ -101,7 +103,7 @@ If the bass is active and set to the higher Spice level it plays an ever changin
 The choice of <img src="https://user-images.githubusercontent.com/57997005/91971170-0ca00380-ed19-11ea-9836-c5f73ef1b3a4.png" alt="beat_2" width="23"/> and <img src="https://user-images.githubusercontent.com/57997005/91971174-0e69c700-ed19-11ea-93cb-64aacc608455.png" alt="beat_3" width="23"/> can follow two logics:
 * **Close Walking** : They are chosen from the _possible beats sets_ by minimizing the distances between the beats. The result will be a walking bass line in which the notes played are as close as possible but still respect the basic constrains.
 
-* **Random Walking** : They are chosen from the _possible beats sets_ randomly. The result will be a walking bass with a more random behaviour, possibly showing certain number of jumps, but still respect the basic constrains.
+* **Random Walking** : They are chosen from the _possible beats sets_ randomly. The result will be a walking bass with a more random behaviour, possibly showing certain number of jumps, but still respecting the basic constrains.
 
 After having computed these two different walking bass bars the algorithm will randomly choose one of them and construct a multicolored and ever changing bass line!
 <p align="center">
@@ -111,7 +113,7 @@ After having computed these two different walking bass bars the algorithm will r
 ### Voicings
 If the keys Spice level is set to its maximum, whenever in the chord progression is detected a II - V - I fragement, then voicings are performed. 
 
-Voicings are particular arangements and movements of the pitches of a chord aimed at achieving a pleasurable effect. The chords used can include 7ths, 9ths and also 13ths and they can have two configurations:
+Voicings are particular arrangements and movements of the pitches of a chord aimed at achieving a pleasurable effect. The chords used can include 7ths, 9ths and also 13ths and they can have two configurations:
 * Basic:
 <img src="https://user-images.githubusercontent.com/57997005/92108562-e8f7be80-ede7-11ea-824f-5250d232e16a.jpg" alt="beat_4" width="300"/> 
 

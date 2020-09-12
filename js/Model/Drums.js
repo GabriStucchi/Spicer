@@ -1,6 +1,7 @@
 
 class Drums {
   #sounds;
+  #sounds1;
   #currentBeat;
   #spiceLevel;
   #tempLevel;
@@ -11,11 +12,25 @@ class Drums {
     new Audio('/css/Audio/14_64.mp3'), new Audio('/css/Audio/15_64.mp3'), new Audio('/css/Audio/19_64.mp3'), new Audio('/css/Audio/22_64.mp3'), new Audio('/css/Audio/23_64.mp3'),
     new Audio('/css/Audio/27_64.mp3'), new Audio('/css/Audio/30_64.mp3'), new Audio('/css/Audio/31_64.mp3'), new Audio('/css/Audio/35_64.mp3'), new Audio('/css/Audio/38_64.mp3'),
     new Audio('/css/Audio/38_64.mp3'), new Audio('/css/Audio/43_64.mp3'), new Audio('/css/Audio/46_64.mp3'), new Audio('/css/Audio/50_64.mp3'), new Audio('/css/Audio/51_64.mp3'),
-    new Audio('/css/Audio/54_64.mp3'), new Audio('/css/Audio/55_64.mp3'), new Audio('/css/Audio/58_64.mp3'), new Audio('/css/Audio/59_64.mp3'),]
+    new Audio('/css/Audio/54_64.mp3'), new Audio('/css/Audio/55_64.mp3'), new Audio('/css/Audio/58_64.mp3'), new Audio('/css/Audio/59_64.mp3')]
+    this.#sounds1 = [new Audio('/css/Audio/Level1/64_0.mp3'), new Audio('/css/Audio/Level1/64_4.mp3'),
+                      new Audio('/css/Audio/Level1/64_8.mp3'), new Audio('/css/Audio/Level1/64_11.mp3'),
+                      new Audio('/css/Audio/Level1/64_12.mp3'), new Audio('/css/Audio/Level1/64_16.mp3'),
+                      new Audio('/css/Audio/Level1/64_20.mp3'), new Audio('/css/Audio/Level1/64_23.mp3'),
+                      new Audio('/css/Audio/Level1/64_24.mp3'), new Audio('/css/Audio/Level1/64_27.mp3'),
+                      new Audio('/css/Audio/Level1/64_28.mp3'), new Audio('/css/Audio/Level1/64_32.mp3'),
+                      new Audio('/css/Audio/Level1/64_36.mp3'), new Audio('/css/Audio/Level1/64_40.mp3'),
+                      new Audio('/css/Audio/Level1/64_44.mp3'), new Audio('/css/Audio/Level1/64_47.mp3'),
+                      new Audio('/css/Audio/Level1/64_48.mp3'), new Audio('/css/Audio/Level1/64_52.mp3'),
+                      new Audio('/css/Audio/Level1/64_55.mp3'), new Audio('/css/Audio/Level1/64_56.mp3'),
+                      new Audio('/css/Audio/Level1/64_59.mp3'), new Audio('/css/Audio/Level1/64_60.mp3')]
     this.#currentBeat = 0;
     this.#spiceLevel = 0;
     this.#tempLevel = 0;
     this.#sounds.forEach(sound => {
+      sound.volume = drumsGain;
+    });
+    this.#sounds1.forEach(sound => {
       sound.volume = drumsGain;
     });
   }
@@ -46,76 +61,70 @@ class Drums {
     if (this.#spiceLevel == 1) {
       switch (this.#currentBeat) {
         case 0:
-          this.#sounds[0].play();
+          this.#sounds1[0].play();
           break;
         case 4:
-          this.#sounds[1].play();
+          this.#sounds1[1].play();
           break;
-        /*case 7:
-          this.#sounds[2].play();
-          break;*/
         case 8:
-          this.#sounds[3].play();
+          this.#sounds1[2].play();
+          break;
+        case 11:
+          this.#sounds1[3].play();
           break;
         case 12:
-          this.#sounds[4].play();
+          this.#sounds1[4].play();
           break;
-        /*case 15:
-          this.#sounds[5].play();
-          break;*/
         case 16:
-          this.#sounds[6].play();
+          this.#sounds1[5].play();
           break;
         case 20:
-          this.#sounds[7].play();
+          this.#sounds1[6].play();
           break;
-        /*case 23:
-          this.#sounds[8].play();
-          break;*/
+        case 23:
+          this.#sounds1[7].play();
+          break;
         case 24:
-          this.#sounds[9].play();
+          this.#sounds1[8].play();
+          break;
+        case 27:
+          this.#sounds1[9].play();
           break;
         case 28:
-          this.#sounds[10].play();
+          this.#sounds1[10].play();
           break;
-        /*case 31:
-          this.#sounds[11].play();
-          break;*/
         case 32:
-          this.#sounds[12].play();
+          this.#sounds1[11].play();
           break;
         case 36:
-          this.#sounds[13].play();
+          this.#sounds1[12].play();
           break;
-        /*case 39:
-          this.#sounds[14].play();
-          break;*/
         case 40:
-          this.#sounds[15].play();
+          this.#sounds1[13].play();
           break;
         case 44:
-          this.#sounds[16].play();
+          this.#sounds1[14].play();
           break;
-        /*case 47:
-          this.#sounds[17].play();
+        case 47:
+          this.#sounds1[15].play();
           break;
-        case 51:
-          this.#sounds[18].play();
-          break;*/
+        case 48:
+          this.#sounds1[16].play();
+          break;
         case 52:
-          this.#sounds[19].play();
+          this.#sounds1[17].play();
           break;
-        /*case 55:
-          this.#sounds[20].play();
-          break;*/
+        case 55:
+          this.#sounds1[18].play();
+          break;
         case 56:
-          this.#sounds[21].play();
+          this.#sounds1[19].play();
           break;
-        /*case 59:
-          this.#sounds[22].play();
-          break;*/
+        case 59:
+          this.#sounds1[20].play();
+          break;
         case 60:
-          this.#sounds[23].play();
+          this.#sounds1[21].play();
           break;
         default:
         //do nothing
