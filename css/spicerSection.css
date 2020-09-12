@@ -257,3 +257,9 @@
   cursor: pointer;
   height:30px;
 }
+
+.loop-buttons {
+  display: inline-block;
+  width: 145px;
+  margin-top: 0;
+}

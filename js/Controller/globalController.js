@@ -2,6 +2,7 @@
 let instrumentBtn = document.getElementById("instrumentToggle");
 let onAirBtn = document.querySelector(".onAirBtn");
 let playLoopBtn = document.getElementById("playLoop");
+let recordBtn = document.getElementById("recordBtn");
 let bpmNumber = document.getElementById("showTempo");
 let bpmButtons = document.querySelectorAll(".tempoBtn");
 let arrow = document.getElementsByClassName("arrow")[0];
@@ -48,6 +49,11 @@ function setOnAirTxt(txt) {
 // Set the Play/Stop button text
 function setLoopBtnTxt(txt) {
   playLoopBtn.innerText = txt;
+}
+
+// Set the Record button text
+function setRecordBtnTxt(txt) {
+  recordBtn.innerText = txt;
 }
 
 // Lights on/off the ON AIR label
@@ -104,13 +110,18 @@ function manageRecording() {
       cleanRec();                   // The recording is cleaned on everything (Recorder, ChordProgression, Player) - DEFINED IN GLOBAL.JS
       setLoopBtnTxt("START");       // Change the button name
     }
+    setRecordBtnTxt("REC")          // Set back the "REC" label  
   }
   else {
-    if(player.hasTrack()){          // If the track is paused clean everything and start recording
-      cleanRec()
+    if(player.hasTrack()){          // If the track is paused clean everything
+      cleanRec();
+      setRecordBtnTxt("REC")        // Set back the "REC" label  
     }
-    playSynth ? toggleInstrument() : 0;
-    metronome.start();
+    else{                           // Otherwise start the recording
+      playSynth ? toggleInstrument() : 0;
+      setRecordBtnTxt("DELETE")     // Change the "REC" label  
+      metronome.start();
+    }
   }
 }
 
@@ -136,6 +147,7 @@ function colorKey (pitch, shouldColor){
 // Linking HTML element to respective functions
 instrumentBtn.onclick = toggleInstrument;
 playLoopBtn.onclick = playback;
+recordBtn.onclick = manageRecording;
 arrow.onclick = showSpicer;     //Defined in View/spicerSection
 bpmButtons.forEach(changeTempo);
 keySelect.onchange = changeKey

@@ -20,14 +20,15 @@ class Recorder {
     setOnAirTxt() //sets text in on air div
   }
 
-  //Stop the recordig, change the graphic and if it's ok call the chord recognition and save the track
+  //Stop the recording, change the graphic and if it's ok call the chord recognition and save the track
   stop(hasToBeSaved) {
     stopAllNotes()
     onAir = false;
     if (hasToBeSaved) {
       cprog.detectChords(this.#track);                    // Do chord detection
-      if(cprog.getChords().length == 0) {                 // If there is no recorder sound
+      if(cprog.getChords().length == 0) {                 // If there is no recorded sound
         metronome.stop();                                 // Stop the metronome
+        setRecordBtnTxt("REC");                           // Set back the record button
       }
       else {
         setLoopBtnTxt("STOP");                              // Set text in loop button
