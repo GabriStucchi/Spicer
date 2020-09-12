@@ -5,7 +5,7 @@
 <h2 align="center"> As simple as a loop station, as spicy as a whole band! </h3>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/57997005/92307841-7d555300-ef99-11ea-920d-1980a558dd16.gif" width="150%"/>
+  <img src="https://user-images.githubusercontent.com/57997005/92999171-3d551980-f51f-11ea-8f0e-a5b6ac00dccb.gif" width="150%"/>
 </p>
 
 <h1 align="center">
@@ -36,7 +36,7 @@ Follow these simple steps to get started:
 
 ## Controls
 <p align="center">
-<img src="https://user-images.githubusercontent.com/57997005/92308424-b4c5fe80-ef9d-11ea-95b4-e1b578675b70.jpg" alt="Spicer Bar" width="1200"/>
+<img src="https://user-images.githubusercontent.com/57997005/92999179-4f36bc80-f51f-11ea-94eb-66e507c0b769.jpg" alt="Spicer Bar" width="1200"/>
 </p>
 
 Open the Spicer menu by clicking on the window on the bottom or by pressing shift:
@@ -45,8 +45,9 @@ Open the Spicer menu by clicking on the window on the bottom or by pressing shif
 2. Choose the tonality. 
 3. Change the piano sound. 
 4. Spice up or down the instruments.
-5. Play/stop the recorded loop.
-6. Switch between playing the synth or the selected keys.
+5. Record a loop or delete the existing one.
+6. Play or stop the recorded loop
+7. Switch between playing the synth or the selected keys.
 
 ## Shortcuts
 * Press 'R' to start recording, press it again to discard the record.
