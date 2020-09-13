@@ -32,15 +32,19 @@ class Player {
     }
     else {
       if(shouldPlay) {
-        this.#pianoTrack = spicer.spice().getNotesTrack();        // Reload piano and bass track in case the spice level is changed
+        // Reload piano and bass track in case the spice level is changed
+        this.#pianoTrack = spicer.spice().getNotesTrack();
         this.#bassTrack = bass_spicer.spice();
-        this.#pianoTrack.forEach((note) => playbackNote(note));   // Play each note of the tracks (defined in midiManagement.js)
-        if(this.#bassTrack != undefined) {                        // Control on bass track because level 0 is undefined
+        // Play each note of the tracks (defined in midiManagement.js)
+        this.#pianoTrack.forEach((note) => playbackNote(note));
+        // Control on bass track because level 0 is undefined
+        if(this.#bassTrack != undefined) {
           this.#bassTrack.forEach((note) => playbackBass(note));
         }
       }
       else{
-        this.#pianoTrack.forEach((note) => stopNote(note));       // Stop all playing notes and scheduled ones (defined in midiManagement.js)
+        // Stop all playing notes and scheduled ones (defined in midiManagement.js)
+        this.#pianoTrack.forEach((note) => stopNote(note));
         if(this.#bassTrack != undefined){
           this.#bassTrack.forEach((note) => stopNote(note));
         }
@@ -53,11 +57,11 @@ class Player {
   // Clean the layer (deletes the tracks and restart the drums)
   clean() {
     if(this.#pianoTrack != undefined){
-      this.#pianoTrack.forEach((note) => stopNote(note));         //Defined in midiManagement.js
+      this.#pianoTrack.forEach((note) => stopNote(note));  //Defined in midiManagement.js
       this.#pianoTrack = undefined;
     }
     if(this.#bassTrack != undefined){
-      this.#bassTrack.forEach((note) => stopNote(note));          // Defined in midiManagement.js
+      this.#bassTrack.forEach((note) => stopNote(note));    // Defined in midiManagement.js
       this.#bassTrack = undefined;
     }
   }

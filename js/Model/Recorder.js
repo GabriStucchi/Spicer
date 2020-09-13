@@ -47,7 +47,8 @@ class Recorder {
       note.setInstantOn(0)
       this.record(note)
     } else {
-      note.setInstantOn(note.getInstantOn() - this.#timeStart) //shifts the timestamp accordingly to the beginning of the recording
+      //shifts the timestamp accordingly to the beginning of the recording
+      note.setInstantOn(note.getInstantOn() - this.#timeStart)
     }
     note.setInstantOff(timeStamp - this.#timeStart)
   }

@@ -7,7 +7,6 @@ class PianoSpicer {
     this.#spiced_tracks = undefined
   }
 
-  //spice verrà utilizzatov per creare le 3 tracce spiced subito dopo la rec
   spiceTrack(baseTrack,level){
     let track = new ChordProgression(baseTrack)
 
@@ -24,7 +23,8 @@ class PianoSpicer {
     }
     return track
   }
-
+  
+  //spice will be used to generate the 3 spiced tracks right after rec
   spice(){ //returns the spiced track according to the level
     if(this.#spiced_tracks === undefined){
       this.#spiced_tracks = []

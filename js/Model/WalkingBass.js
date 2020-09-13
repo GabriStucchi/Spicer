@@ -1,4 +1,3 @@
-//TODO CONTROLLO SU ACCORDI NON IDENTIFICATI
 class WalkingBass {
   #bassLine;
   #highLimit; //Higher limit of the range of notes
@@ -428,10 +427,6 @@ class WalkingBass {
 
     return firstBeats;
   }
-
-  //temp for testing
-
-  //todo change notes and length based on the distance between chords
 
   //checks how many chors are played in the next quarter beat then decides which notes to play
   //if notesInQuarter > 2 then play the root of the chord at the same instant on as the one of the chord

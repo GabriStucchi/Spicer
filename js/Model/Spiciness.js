@@ -19,8 +19,6 @@ class Spiciness{
     }
 
     changeLogo(){
-        //logo.src = "css/images/logo/spicer_" + String(this.#level) +".gif"
-
         logo.src = "css/images/logo/spicer_" + String(this.#level) +".png"
     }
 

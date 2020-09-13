@@ -1,13 +1,5 @@
 //MIDI
 
-//DA FARE: si potrebbe anche prendere dal midi message la pressione con cui si suona
-//per impostare il volume della nota
-
-//let noteOnCounter = 0;
-
-// TODO: uniform methods for synth and instrument
-//move methods for instrumentnoteOn ecc on a specific file
-
 const default_duration = 123456789;
 let activeNotes = [];
 

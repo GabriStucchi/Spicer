@@ -10,9 +10,9 @@ class BassSpicer {
   }
 
 
-//spice verrà utilizzato per creare le 3 tracce spiced subito dopo la rec
+//spice will be used to generate the three spiced tracks right after rec
 
-  spice(){ //returns the spiced track according to the level  
+  spice(){ //returns the spiced track according to the level
     if(this.#spiced_tracks === undefined){
       this.#spiced_tracks = []
       let bassLines = [];

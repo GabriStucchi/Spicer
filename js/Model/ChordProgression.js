@@ -34,12 +34,10 @@ class ChordProgression {
       this.#chords.push(item); //adds the argument to the note list
   }
 
+  //Organizes the recorded notes into chords
   detectChords(recTrack) {
     let beatLength = 60000 / metronome.getTempo();
     if (recTrack.getNotes().length == 0) return;
-    //todo CONTROL ON MAX MS
-    //scorre la traccia e partendo dalla prima nota, prende tutte le note che si trovano dopo il primo note On fino al primo note Off,
-    //con queste info crea un accordo e procede al calcolo dei successivi accordingly
     let endOfChord = undefined;
     let tempChord;
 
@@ -99,6 +97,7 @@ class ChordProgression {
     }
   }
 
+  //Generates voicings for 2-5-1 progressions
   generateVoicings() {
     this.#chords.forEach((chord, i) => {
       if(i<this.#chords.length-2){
@@ -108,36 +107,36 @@ class ChordProgression {
             let root = this.#chords[i].getRoot().getMidiNote();
             let pitches = [root + 3, root + 7, root + 10, root + 14];
 
-            //Posizione larga
+            //Open position
             if (pitches[3] < 77) {
-              this.#chords[i].changeNotes(pitches);    //Salvo il 2
+              this.#chords[i].changeNotes(pitches);
               pitches[2] = pitches[2] - 1
-              this.#chords[i+1].changeNotes(pitches);   //Salvo il 5
+              this.#chords[i+1].changeNotes(pitches);
               pitches[0] = pitches[0] - 1
               pitches[1] = pitches[1] - 2
               pitches[3] = pitches[3] - 2
-              this.#chords[i+2].changeNotes(pitches);   //Salvo l'1
+              this.#chords[i+2].changeNotes(pitches);
             }
 
-            //Posizione stretta
+            //Close position
             else {
               pitches[2] = pitches[2] - 12
               pitches[3] = pitches[3] - 12
-              this.#chords[i].changeNotes(pitches);    //Salvo il 2
+              this.#chords[i].changeNotes(pitches);
               pitches[0] = pitches[0] - 1
-              this.#chords[i+1].changeNotes(pitches);   //Salvo il 5
+              this.#chords[i+1].changeNotes(pitches);
               pitches[1] = pitches[1] - 2
               pitches[2] = pitches[2] - 1
               pitches[3] = pitches[3] - 2
-              this.#chords[i+2].changeNotes(pitches);   //Salvo l'1
+              this.#chords[i+2].changeNotes(pitches);
             }
-            i = i + 2 //Evito che il 5 e l'1 vengano rianalizzati dalla funzione
+            i = i + 2
           }
         }
     })
   }
 
-
+  //If the chord progression allows it adds the 7th, otherwise the 6th to the chords
   add7s() {
     this.#chords.forEach((chord, i) => {
       if (i < this.#chords.length) {
@@ -147,7 +146,8 @@ class ChordProgression {
             this.#chords[i + 1].getGrade() != 1) ||
             i == this.#chords.length - 1)
         ) {
-          chord.add6(); // if the 5th doesn't resolve to a 1st or if it's the last chord then we add a 6th instead of a 7th
+  // if the 5th doesn't resolve to a 1st or if it's the last chord then we add a 6th instead of a 7th
+          chord.add6();
         } else {
           chord.add7();
         }
@@ -192,7 +192,7 @@ class ChordProgression {
           choosen_chords.push(choosen_chords[choosen_chords.length - 1])
         }
         else{
-        //seleziona il successivo
+        //select the following
         }
       } else {
         choosen_chords.push(cprog.getChords().find(el=> el.getNotes()[0].getInstantOn() == chordsInWind[0]))
