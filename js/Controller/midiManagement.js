@@ -3,8 +3,6 @@
 const default_duration = 123456789;
 let activeNotes = [];
 
-k = 0;
-
 navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
 
 function onMIDIFailure() {
@@ -20,16 +18,17 @@ function onMIDISuccess(midiAccess) {
 // TODO: add record condition
 function getMIDIMessage(message) {
   let command = message.data[0];
-  let pitch = message.data[1];
+  let midiNote = message.data[1];
   let velocity = message.data.length > 2 ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
-  var timestamp = currentTime();
+  let timestamp = currentTime();
   switch (command) {
-    case 144: { // noteOn
-      noteOn(new Note(pitch, undefined, velocity, timestamp, undefined));
+    case 144: {
+      // noteOn
+      noteOn(new Note(midiNote, undefined, velocity, timestamp, undefined));
       break;
     }
     case 128: // noteOff
-      noteOff(pitch, timestamp);
+      noteOff(midiNote, timestamp);
       break;
     // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
   }
@@ -51,12 +50,12 @@ function noteOn(note) {
   }
 }
 
-function noteOff(pitch, timestamp) {
-  let index = activeNotes.map((x) => x.getMidiNote()).indexOf(pitch); // gets the index of the note with the searched pitch
+function noteOff(midiNote, timestamp) {
+  let index = activeNotes.map((x) => x.getMidiNote()).indexOf(midiNote); // gets the index of the note with the searched midiNote
   if (index != -1) {
     // if the note is found in active notes
     if (playSynth) {
-      colorKey(pitch);
+      colorKey(midiNote);
       activeNotes.splice(index, 1);
       if (activeNotes.length == 0) synthNoteOff();
       else if (index == activeNotes.length)
@@ -78,7 +77,7 @@ function instrumentNoteOn(note) {
     0,
     note.getMidiNote(),
     default_duration,
-    note.getVolume()*0.9
+    note.getVolume() * 0.9
   );
   note.setQueue(queue);
   activeNotes.push(note);
@@ -95,7 +94,6 @@ function instrumentNoteOff(timestamp, index) {
   }
   if (onAir) {
     recorder.endNote(activeNotes[index], timestamp);
-
   }
   activeNotes.splice(index, 1);
 
@@ -103,13 +101,13 @@ function instrumentNoteOff(timestamp, index) {
 }
 
 function stopAllNotes() {
-  activeNotes.forEach((item)=> {
-      if (item.getQueue()) {
-          item.getQueue().cancel();
-        }
-        recorder.endNote(item, currentTime());
-  })
-  activeNotes = []
+  activeNotes.forEach((item) => {
+    if (item.getQueue()) {
+      item.getQueue().cancel();
+    }
+    recorder.endNote(item, currentTime());
+  });
+  activeNotes = [];
 }
 
 // Playback the note
@@ -123,7 +121,7 @@ function playbackNote(note) {
     audioContext.currentTime + timestampOn,
     note.getMidiNote(),
     duration,
-    note.getVolume()*0.9
+    note.getVolume() * 0.9
   );
   note.setQueue(queue);
 }
