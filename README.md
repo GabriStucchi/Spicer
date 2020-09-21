@@ -9,7 +9,7 @@
 </p>
 
 <h1 align="center">
-<a href="https://gabristucchi.github.io/" align="center"> START SPICING </a>
+<a href="https://thespicer.github.io/" align="center"> START SPICING </a>
 </h1>
 
 ## How To Use
